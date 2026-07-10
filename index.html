@@ -235,6 +235,46 @@
   .howto p { margin: 0; color: var(--ink-soft); font-size: 15px; max-width: 74ch; }
   .howto strong { color: var(--ink); }
 
+  /* ---------- selected projects ---------- */
+  .band.projects { border-top: 1px solid var(--line); padding: clamp(44px, 6.5vw, 68px) 0; }
+  .proj-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 30px); align-items: start; }
+  .proj {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 4px;
+    padding: 24px 26px; min-width: 0; display: flex; flex-direction: column;
+  }
+  .proj-kicker {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 0 0 10px;
+  }
+  .proj-kicker.alt { color: var(--accent-2); }
+  .proj h3 {
+    font-family: var(--serif); font-weight: 700; font-size: 19.5px;
+    line-height: 1.25; letter-spacing: -0.01em; margin: 0 0 10px;
+  }
+  .proj-desc { color: var(--ink-soft); font-size: 14.5px; margin: 0 0 14px; text-wrap: pretty; }
+  .proj-fig { margin: 0 0 14px; }
+  .proj-fig img {
+    width: 100%; max-width: 280px; height: auto; display: block;
+    border: 1px solid var(--line); border-radius: 4px; background: var(--paper);
+  }
+  .proj-fig figcaption {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em;
+    color: var(--ink-soft); margin-top: 7px; line-height: 1.5;
+  }
+  .proj-note {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .03em;
+    color: var(--ink-soft); line-height: 1.6;
+    border-top: 1px solid var(--line); padding-top: 10px; margin: 0 0 16px;
+  }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; padding: 0; list-style: none; }
+  .proj-tags li {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em;
+    color: var(--ink-soft); background: var(--ground);
+    border: 1px solid var(--line); border-radius: 3px; padding: 4px 9px;
+  }
+  .proj .doc-links { margin-top: auto; }
+  .doclink.live { border-color: var(--accent); }
+
   /* ---------- capabilities ---------- */
   .caps {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -279,6 +319,7 @@
     .hero .wrap { grid-template-columns: 1fr; }
     .hero-fig { max-width: 500px; }
     .study-grid { grid-template-columns: 1fr; }
+    .proj-grid { grid-template-columns: 1fr; }
     .fig-stack { flex-direction: row; flex-wrap: wrap; }
     .fig-stack figure { flex: 1 1 260px; min-width: 0; }
   }
@@ -302,6 +343,7 @@
     <nav class="site-nav" aria-label="Site">
       <a href="#about">About</a>
       <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
       <a href="#capabilities">Capabilities</a>
       <a href="#contact">Contact</a>
       <a class="ext" href="https://github.com/ethanbuckley" rel="me">GitHub ↗</a>
@@ -504,11 +546,66 @@
     </div>
   </section>
 
+  <!-- ================= selected projects ================= -->
+  <section class="band projects" id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">03 · Selected projects</p>
+        <h2>Selected projects</h2>
+        <hr class="rule">
+        <p class="lede">Smaller, independent work outside the DSE research — built and validated end to end.</p>
+      </div>
+
+      <div class="proj-grid">
+        <article class="proj">
+          <p class="proj-kicker">Independent project</p>
+          <h3>S&amp;P 500 stock screener</h3>
+          <p class="proj-desc">A two-stage screening pipeline: an XGBoost classifier with triple-barrier labels, trained on ≈1.4&nbsp;million daily observations across the S&amp;P&nbsp;500, ranks long and short candidates, and FinBERT scores live news sentiment on the top picks. A Streamlit dashboard adds walk-forward validation and a Monte-Carlo portfolio-risk simulator (VaR&nbsp;/&nbsp;CVaR).</p>
+          <p class="proj-note">Validated by expanding-window walk-forward testing, 2020–2026 · limitations reported: survivorship bias, no transaction costs</p>
+          <ul class="proj-tags">
+            <li>XGBoost</li>
+            <li>FinBERT</li>
+            <li>Streamlit</li>
+            <li>NumPy</li>
+            <li>pandas</li>
+            <li>yfinance</li>
+          </ul>
+          <p class="doc-links">
+            <a class="doclink live" href="https://stockmarkets-p-cngwhp4eigfgpq5xphgwng.streamlit.app" target="_blank" rel="noopener">Live demo <span class="k">app</span></a>
+            <a class="doclink" href="https://github.com/ethanbuckley/stockmarketS-P" target="_blank" rel="noopener">GitHub <span class="k">repo</span></a>
+          </p>
+        </article>
+
+        <article class="proj">
+          <p class="proj-kicker alt">UCL group project · individually extended</p>
+          <h3>SEIQR epidemic cellular automaton</h3>
+          <p class="proj-desc">A stochastic 2D cellular automaton of epidemic spread across a spatially heterogeneous population, with an interactive dashboard for lockdown and vaccination scenarios. The model began as a UCL group computing project; I extended it individually into the portfolio piece shown here.</p>
+          <figure class="proj-fig">
+            <img src="assets/epidemic-demo.gif" width="440" height="459" loading="lazy" decoding="async" alt="Animated simulation grid: infection spreading spatially across a heterogeneous population, then receding as the epidemic passes.">
+            <figcaption>One simulated outbreak crossing the grid.</figcaption>
+          </figure>
+          <p class="proj-note">Individual extension: vectorised simulation (~40× faster) · reproducible experiment pipeline · Streamlit dashboard · validated against the analytical SEIQR ODE</p>
+          <ul class="proj-tags">
+            <li>Python</li>
+            <li>NumPy</li>
+            <li>SciPy</li>
+            <li>Streamlit</li>
+            <li>Plotly</li>
+          </ul>
+          <p class="doc-links">
+            <a class="doclink live" href="https://epidemiccellularautomata-bhc8wjiiughpqeuljwgzew.streamlit.app" target="_blank" rel="noopener">Live demo <span class="k">app</span></a>
+            <a class="doclink" href="https://github.com/ethanbuckley/EpidemicCellularAutomata" target="_blank" rel="noopener">GitHub <span class="k">repo</span></a>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= capabilities ================= -->
   <section class="band paper" id="capabilities">
     <div class="wrap">
       <div class="sec-head">
-        <p class="eyebrow">03 · Capabilities</p>
+        <p class="eyebrow">04 · Capabilities</p>
         <h2>What I work with</h2>
         <hr class="rule">
         <p class="lede">Techniques I've shipped on these two studies and can explain from first principles — not a list of tools I've heard of.</p>
@@ -531,7 +628,7 @@
   <section class="band" id="contact">
     <div class="wrap">
       <div class="sec-head">
-        <p class="eyebrow">04 · Contact</p>
+        <p class="eyebrow">05 · Contact</p>
         <h2>Get in touch</h2>
         <hr class="rule">
         <p class="lede">I'm interested in roles and research where careful statistics meet real questions.</p>
