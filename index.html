@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ethan Buckley — Bayesian modelling, causal inference &amp; research engineering</title>
+<meta name="description" content="Portfolio of Ethan Buckley: Bayesian and causal analyses of language development in Down syndrome at Down Syndrome Education International, with plain-language and technical explainers of both studies.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="canonical" href="https://ethanbuckley.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ethan Buckley — Bayesian modelling, causal inference &amp; research engineering">
+<meta property="og:description" content="Statistics with honest uncertainty: two Bayesian studies of language development in Down syndrome, explained in plain language and in full technical detail.">
+<meta property="og:url" content="https://ethanbuckley.github.io/">
+<meta property="og:image" content="https://ethanbuckley.github.io/assets/vocab-production-ratio.png">
+<style>
+  :root {
+    --ground: #f4f6f7;
+    --paper: #ffffff;
+    --ink: #17242c;
+    --ink-soft: #52606a;
+    --accent: #0f766e;
+    --accent-dark: #0b5d57;
+    --accent-2: #b45309;
+    --line: #e2e7ea;
+    --tint: #eef4f3;
+    --serif: Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 48px); }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { color: var(--accent-dark); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  section[id] { scroll-margin-top: 92px; }
+
+  /* ---------- skip link ---------- */
+  .skip {
+    position: absolute; left: -9999px; top: 0; z-index: 100;
+    background: var(--ink); color: #fff; padding: 10px 16px;
+    font-family: var(--mono); font-size: 13px; border-radius: 0 0 4px 0;
+  }
+  .skip:focus { left: 0; }
+
+  /* ---------- header ---------- */
+  .site-head {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+  .site-head .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px 24px; flex-wrap: wrap; padding-top: 14px; padding-bottom: 14px;
+  }
+  .brand {
+    font-family: var(--serif); font-size: 17px; font-weight: 700;
+    color: var(--ink); text-decoration: none; letter-spacing: .01em;
+  }
+  .brand span { color: var(--accent); }
+  .site-nav { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+  .site-nav a {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em;
+    text-transform: uppercase; text-decoration: none; color: var(--ink-soft);
+    padding: 4px 0;
+  }
+  .site-nav a:hover { color: var(--accent); }
+  .site-nav a.ext { color: var(--accent); }
+
+  /* ---------- hero ---------- */
+  .hero { padding: clamp(52px, 9vw, 104px) 0 clamp(48px, 7vw, 80px); }
+  .hero .wrap {
+    display: grid; grid-template-columns: minmax(0, 11fr) minmax(0, 8fr);
+    gap: clamp(32px, 5vw, 64px); align-items: center;
+  }
+  .eyebrow {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent); font-weight: 600;
+    margin: 0 0 18px;
+  }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 700;
+    font-size: clamp(42px, 7vw, 66px); line-height: 1.04;
+    letter-spacing: -0.015em; margin: 0 0 16px;
+  }
+  .tagline {
+    font-family: var(--serif); font-size: clamp(19px, 2.6vw, 24px);
+    line-height: 1.35; color: var(--ink); margin: 0 0 16px; max-width: 24em;
+    text-wrap: balance;
+  }
+  .hero .lede {
+    color: var(--ink-soft); max-width: 58ch; margin: 0 0 26px;
+    font-size: clamp(15.5px, 2vw, 17px); text-wrap: pretty;
+  }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 30px; padding: 0; list-style: none; }
+  .hero-meta li {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .04em;
+    color: var(--ink-soft); background: var(--paper);
+    border: 1px solid var(--line); border-radius: 3px; padding: 6px 11px;
+  }
+  .hero-meta a { color: var(--accent); text-decoration: none; }
+  .hero-meta a:hover { text-decoration: underline; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-block; font-family: var(--mono); font-size: 12px;
+    letter-spacing: .1em; text-transform: uppercase; text-decoration: none;
+    padding: 11px 18px; border-radius: 3px; border: 1px solid var(--accent);
+    color: var(--accent); background: transparent;
+  }
+  .btn:hover { background: var(--tint); color: var(--accent-dark); }
+  .btn.primary { background: var(--accent); color: #fff; }
+  .btn.primary:hover { background: var(--accent-dark); color: #fff; }
+
+  .hero-fig { min-width: 0; }
+  .hero-fig svg { width: 100%; height: auto; display: block; }
+  .hero-fig .note {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em;
+    text-transform: uppercase; color: #8a959c; margin: 10px 0 0; text-align: right;
+  }
+
+  /* ---------- section scaffolding ---------- */
+  .band { padding: clamp(56px, 8vw, 92px) 0; }
+  .band.paper { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .sec-head { max-width: 720px; margin-bottom: clamp(30px, 4vw, 44px); }
+  .sec-head h2 {
+    font-family: var(--serif); font-weight: 700;
+    font-size: clamp(26px, 4vw, 36px); line-height: 1.15;
+    letter-spacing: -0.01em; margin: 0 0 14px;
+  }
+  .rule { border: none; border-top: 2px solid var(--ink); width: 36px; margin: 0 0 18px; }
+  .sec-head .lede { color: var(--ink-soft); margin: 0; max-width: 62ch; text-wrap: pretty; }
+
+  .about-cols p { max-width: 66ch; margin: 0 0 18px; }
+  .about-cols p:last-child { margin-bottom: 0; }
+  .about-cols strong { color: var(--ink); }
+
+  /* ---------- studies ---------- */
+  .study { border-top: 1px solid var(--line); padding-top: clamp(40px, 6vw, 60px); margin-top: clamp(40px, 6vw, 60px); }
+  .study:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .study-eyebrow {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 0 0 12px;
+  }
+  .study h3 {
+    font-family: var(--serif); font-weight: 700;
+    font-size: clamp(23px, 3.4vw, 30px); line-height: 1.15;
+    letter-spacing: -0.01em; margin: 0 0 12px; max-width: 24em; text-wrap: balance;
+  }
+  .study-desc { color: var(--ink-soft); max-width: 66ch; margin: 0 0 16px; text-wrap: pretty; }
+  .study-meta {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .05em;
+    text-transform: uppercase; color: var(--ink-soft);
+    border-top: 1px solid var(--line); padding-top: 12px; margin: 0 0 28px;
+  }
+  .study-meta b { color: var(--accent-2); font-weight: 600; }
+
+  .study-grid {
+    display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(28px, 4vw, 52px); align-items: start;
+  }
+
+  .findings { display: flex; flex-direction: column; gap: 20px; margin: 0 0 26px; }
+  .finding { display: grid; grid-template-columns: 24px 1fr; gap: 2px 12px; }
+  .finding .dot {
+    grid-row: 1 / span 2; width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); margin-top: 8px;
+  }
+  .finding.alt .dot { background: var(--accent-2); }
+  .finding h4 { font-size: 16.5px; font-weight: 700; margin: 0; line-height: 1.35; }
+  .finding p { margin: 3px 0 0; color: var(--ink-soft); font-size: 15px; max-width: 58ch; }
+
+  .contrib {
+    background: var(--tint); border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0; padding: 16px 20px; margin: 0 0 24px;
+  }
+  .contrib .label {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent); font-weight: 600;
+    display: block; margin-bottom: 6px;
+  }
+  .contrib p { margin: 0; font-size: 14.5px; color: var(--ink); }
+
+  .doc-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .doclink {
+    display: inline-flex; align-items: baseline; gap: 8px;
+    border: 1px solid var(--line); background: var(--paper); border-radius: 3px;
+    padding: 9px 14px; font-size: 13.5px; font-weight: 600;
+    color: var(--accent); text-decoration: none;
+  }
+  .doclink:hover { border-color: var(--accent); background: var(--tint); color: var(--accent-dark); }
+  .doclink .k {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-soft); font-weight: 400;
+  }
+
+  .fig-stack { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+  .fig-stack figure { margin: 0; }
+  .figlink { display: block; }
+  .fig-stack img {
+    width: 100%; height: auto; display: block; background: var(--paper);
+    border: 1px solid var(--line); border-radius: 4px;
+  }
+  .figlink:hover img { border-color: var(--accent); }
+  .fig-stack figcaption {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .04em;
+    color: var(--ink-soft); margin-top: 8px; line-height: 1.5;
+  }
+
+  /* ---------- how to read ---------- */
+  .howto {
+    background: var(--tint); border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0; padding: 22px 26px;
+    margin-top: clamp(44px, 6vw, 64px);
+  }
+  .howto h2 {
+    font-family: var(--serif); font-size: 13px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--accent); font-weight: 700; margin: 0 0 10px;
+  }
+  .howto p { margin: 0; color: var(--ink-soft); font-size: 15px; max-width: 74ch; }
+  .howto strong { color: var(--ink); }
+
+  /* ---------- capabilities ---------- */
+  .caps {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px 36px; margin: 0; padding: 0; list-style: none;
+  }
+  .caps li { border-top: 2px solid var(--line); padding-top: 13px; }
+  .caps b { display: block; font-size: 15px; margin-bottom: 3px; }
+  .caps span { color: var(--ink-soft); font-size: 13.5px; line-height: 1.55; display: block; }
+
+  /* ---------- contact ---------- */
+  .contact-list { margin: 0 0 30px; display: flex; flex-direction: column; gap: 14px; }
+  .contact-list > div {
+    display: grid; grid-template-columns: 118px 1fr; gap: 16px; align-items: baseline;
+  }
+  .contact-list dt {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--ink-soft);
+  }
+  .contact-list dd { margin: 0; font-size: 15.5px; }
+  .placeholder {
+    font-family: var(--mono); font-size: 13.5px; color: var(--accent-2);
+    border: 1px dashed var(--accent-2); border-radius: 3px;
+    padding: 3px 9px; background: rgba(180, 83, 9, 0.05);
+  }
+  .placeholder-note { font-size: 12.5px; color: var(--ink-soft); font-style: italic; }
+  .download { max-width: 66ch; color: var(--ink-soft); margin: 0 0 34px; }
+  .smallprint {
+    font-size: 13px; color: var(--ink-soft); border-top: 1px solid var(--line);
+    padding-top: 16px; max-width: 74ch;
+  }
+
+  /* ---------- footer ---------- */
+  .site-foot { background: var(--paper); border-top: 1px solid var(--line); }
+  .site-foot .wrap {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px;
+    padding-top: 20px; padding-bottom: 24px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .05em; color: var(--ink-soft);
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 920px) {
+    .hero .wrap { grid-template-columns: 1fr; }
+    .hero-fig { max-width: 500px; }
+    .study-grid { grid-template-columns: 1fr; }
+    .fig-stack { flex-direction: row; flex-wrap: wrap; }
+    .fig-stack figure { flex: 1 1 260px; min-width: 0; }
+  }
+  @media (max-width: 700px) {
+    .site-head { position: static; }
+    section[id] { scroll-margin-top: 20px; }
+  }
+  @media (max-width: 560px) {
+    .contact-list > div { grid-template-columns: 1fr; gap: 2px; }
+    .fig-stack { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="#top">Ethan Buckley<span>.</span></a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#contact">Contact</a>
+      <a class="ext" href="https://github.com/ethanbuckley" rel="me">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================= hero ================= -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Data science &amp; research portfolio</p>
+        <h1>Ethan Buckley</h1>
+        <p class="tagline">Bayesian modelling, causal inference and research engineering — statistics that say how sure they are.</p>
+        <p class="lede">I work on the models behind two studies of how children with Down syndrome develop language, at Down Syndrome Education International. The thread through all of it: estimates that carry honest uncertainty, and a clear line between what the data shows and what it only suggests.</p>
+        <ul class="hero-meta">
+          <li>MSci Natural Sciences (Physics) · UCL</li>
+          <li>Data Science &amp; Research Intern · DSE</li>
+          <li><a href="https://github.com/ethanbuckley">github.com/ethanbuckley</a></li>
+        </ul>
+        <p class="hero-cta">
+          <a class="btn primary" href="#research">The two studies</a>
+          <a class="btn" href="dse-research-showcase.pdf">Research showcase (PDF)</a>
+        </p>
+      </div>
+      <div class="hero-fig" aria-hidden="true">
+        <svg viewBox="0 0 560 400" xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation">
+          <!-- faint grid -->
+          <line x1="20" y1="90" x2="540" y2="90" stroke="#e2e7ea" stroke-width="1"/>
+          <line x1="20" y1="185" x2="540" y2="185" stroke="#e2e7ea" stroke-width="1"/>
+          <line x1="20" y1="280" x2="540" y2="280" stroke="#e2e7ea" stroke-width="1"/>
+          <line x1="20" y1="375" x2="540" y2="375" stroke="#c9d2d6" stroke-width="1.5"/>
+          <!-- understood: credible band + median -->
+          <path d="M20,318 C150,300 215,96 540,34 L540,88 C215,150 150,336 20,344 Z" fill="rgba(15,118,110,0.10)"/>
+          <path d="M20,331 C150,318 215,122 540,60" fill="none" stroke="#0f766e" stroke-width="2.5"/>
+          <!-- spoken: credible band + median -->
+          <path d="M20,358 C240,352 328,246 540,142 L540,198 C332,282 240,368 20,370 Z" fill="rgba(180,83,9,0.09)"/>
+          <path d="M20,364 C240,358 330,264 540,170" fill="none" stroke="#b45309" stroke-width="2.5"/>
+          <!-- observations -->
+          <g fill="#52606a" opacity="0.5">
+            <circle cx="88" cy="324" r="3"/><circle cx="152" cy="299" r="3"/><circle cx="206" cy="212" r="3"/>
+            <circle cx="262" cy="138" r="3"/><circle cx="330" cy="103" r="3"/><circle cx="422" cy="76" r="3"/>
+            <circle cx="120" cy="362" r="3"/><circle cx="214" cy="352" r="3"/><circle cx="298" cy="308" r="3"/>
+            <circle cx="388" cy="242" r="3"/><circle cx="478" cy="196" r="3"/>
+          </g>
+          <!-- labels -->
+          <text x="540" y="24" text-anchor="end" font-size="11" fill="#0f766e" style="font-family: ui-monospace, 'SF Mono', Menlo, monospace; letter-spacing: .08em;">WORDS UNDERSTOOD</text>
+          <text x="540" y="126" text-anchor="end" font-size="11" fill="#b45309" style="font-family: ui-monospace, 'SF Mono', Menlo, monospace; letter-spacing: .08em;">WORDS SPOKEN</text>
+          <text x="20" y="394" font-size="10" fill="#8a959c" style="font-family: ui-monospace, 'SF Mono', Menlo, monospace; letter-spacing: .08em;">AGE →</text>
+        </svg>
+        <p class="note">Posterior curves with credible bands — the study's shape</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= about ================= -->
+  <section class="band paper" id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">01 · About</p>
+        <h2>Statistics people can act on</h2>
+        <hr class="rule">
+      </div>
+      <div class="about-cols">
+        <p>Down Syndrome Education International researches how children with Down syndrome develop language, and turns the findings into guidance families and teachers can use. I joined as a data science and research intern to work on the statistics behind that: building the models, engineering the data pipelines beneath them, and writing the reports that communicate what they mean — and how confident anyone should be in them.</p>
+        <p>My background is physics: I'm studying for an MSci in Natural Sciences at UCL, and the habits carry over. Model the process that generates the data, quantify what you don't know, and make the whole analysis reproducible from raw data to final figure. <strong>Everything shown here was collaborative research</strong>, developed with DSE's researchers and merged under senior review.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= research ================= -->
+  <section class="band" id="research">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">02 · Research</p>
+        <h2>Two studies of language development</h2>
+        <hr class="rule">
+        <p class="lede">Both are Bayesian analyses reported with full uncertainty, and both are preliminary — the estimates will sharpen as the models are finalised. Each has a plain-language explainer for families and teachers, and a technical one for statisticians.</p>
+      </div>
+
+      <!-- ---- study 1 ---- -->
+      <article class="study">
+        <p class="study-eyebrow">Study 01 · Vocabulary growth</p>
+        <h3>How children with Down syndrome build vocabulary</h3>
+        <p class="study-desc">A pooled Bayesian study of the words children understand, say and sign, drawing on parent-report checklists from eleven international studies harmonised onto a common scale. The models estimate each growth trajectory as a full probability distribution, so every curve comes with a credible range rather than a single line.</p>
+        <p class="study-meta">11 international studies &nbsp;·&nbsp; 588 children &nbsp;·&nbsp; ages 8 months – 9½ years &nbsp;·&nbsp; <b>Preliminary findings</b></p>
+
+        <div class="study-grid">
+          <div>
+            <div class="findings">
+              <div class="finding">
+                <span class="dot"></span>
+                <h4>Understanding runs years ahead of speaking</h4>
+                <p>The production ratio — the share of understood words a child also says — climbs from about 1% at age one to roughly 52% at four, and about 86% by seven and a half.</p>
+              </div>
+              <div class="finding alt">
+                <span class="dot"></span>
+                <h4>The gap is wider than in typical development, then narrows</h4>
+                <p>At the same level of comprehension, children with Down syndrome say a smaller share of the words they know. The difference peaks at around 13 percentage points at 50–150 understood words and fades as vocabulary grows — a stretch that eases, not a fixed deficit.</p>
+              </div>
+              <div class="finding">
+                <span class="dot"></span>
+                <h4>Signing offers a modest early bridge</h4>
+                <p>Counting signed words credits children with expressive vocabulary they already have, and narrows the early gap somewhat — real help while speech catches up, though the spoken-word gap stays large.</p>
+              </div>
+            </div>
+
+            <div class="contrib">
+              <span class="label">My contribution</span>
+              <p>I built the signing and within-child longitudinal models, the multi-study data pipeline that harmonises the eleven datasets in DuckDB, and the descriptive and comprehension–production-gap reports.</p>
+            </div>
+
+            <p class="doc-links">
+              <a class="doclink" href="vocabulary-growth-explainer.html">Plain-language explainer <span class="k">html</span></a>
+              <a class="doclink" href="vocabulary-growth-modelling-explainer.html">Technical explainer <span class="k">html</span></a>
+              <a class="doclink" href="vocabulary-growth-showcase.pdf">Study showcase <span class="k">pdf</span></a>
+            </p>
+          </div>
+
+          <div class="fig-stack">
+            <figure>
+              <a class="figlink" href="assets/vocab-production-ratio.png" target="_blank" rel="noopener">
+                <img src="assets/vocab-production-ratio.png" width="3200" height="2000" alt="Chart: the production ratio, the share of understood words a child with Down syndrome also says, rising from near zero at age one to about 86 per cent by seven and a half years, shown with 50, 75 and 90 per cent credible bands.">
+              </a>
+              <figcaption>The production ratio across age — posterior median with 50/75/90% credible bands.</figcaption>
+            </figure>
+            <figure>
+              <a class="figlink" href="assets/vocab-method.png" target="_blank" rel="noopener">
+                <img src="assets/vocab-method.png" width="3200" height="2000" loading="lazy" decoding="async" alt="Diagram: words spoken modelled as words understood multiplied by the production ratio, so spoken vocabulary can never exceed understood vocabulary.">
+              </a>
+              <figcaption>The modelling idea: spoken = understood × production ratio, so speech never exceeds comprehension.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---- study 2 ---- -->
+      <article class="study">
+        <p class="study-eyebrow">Study 02 · Reading &amp; language</p>
+        <h3>What a reading-and-language intervention actually improved</h3>
+        <p class="study-desc">A re-analysis of the RLI trial (Burgoyne et al., 2012), in which 54 children with Down syndrome were randomly assigned to daily one-to-one reading-and-language teaching or a waiting list. The analysis is built around an explicit causal diagram, so the randomised effect of the teaching stays strictly separate from patterns that merely track a child's general ability.</p>
+        <p class="study-meta">RLI randomised trial &nbsp;·&nbsp; 54 children &nbsp;·&nbsp; 4 assessment waves &nbsp;·&nbsp; only the randomised effects are causal &nbsp;·&nbsp; <b>Preliminary findings</b></p>
+
+        <div class="study-grid">
+          <div>
+            <div class="findings">
+              <div class="finding">
+                <span class="dot"></span>
+                <h4>The teaching credibly improved decoding</h4>
+                <p>Letter-sound knowledge, blending and word reading all rose — and because children were randomised, these effects read as cause, not correlation. The specific words children were taught to say also improved.</p>
+              </div>
+              <div class="finding">
+                <span class="dot"></span>
+                <h4>Broad vocabulary and grammar did not move</h4>
+                <p>Gains faded with distance from what was taught — a transfer gradient. Skills close to the instruction improved; distant ones didn't. That matches the original trial's own conclusion.</p>
+              </div>
+              <div class="finding alt">
+                <span class="dot"></span>
+                <h4>Everything beyond the randomised contrast is association</h4>
+                <p>Where a child starts predicts a lot about where they end up, but which children progress fastest stays confounded with general ability — so it is reported as pattern, never as cause.</p>
+              </div>
+            </div>
+
+            <div class="contrib">
+              <span class="label">My contribution</span>
+              <p>I helped build the re-analysis, contributing the intention-to-treat and difference-in-differences models inside the study's causal DAG, the gradient-boosting discovery layer that ranks candidate predictors, and the results reporting.</p>
+            </div>
+
+            <p class="doc-links">
+              <a class="doclink" href="reading-language-predictors-explainer.html">Plain-language explainer <span class="k">html</span></a>
+              <a class="doclink" href="reading-language-predictors-modelling-explainer.html">Technical explainer <span class="k">html</span></a>
+              <a class="doclink" href="reading-language-showcase.pdf">Study showcase <span class="k">pdf</span></a>
+            </p>
+          </div>
+
+          <div class="fig-stack">
+            <figure>
+              <a class="figlink" href="assets/reading-intervention-effects.png" target="_blank" rel="noopener">
+                <img src="assets/reading-intervention-effects.png" width="3200" height="2000" loading="lazy" decoding="async" alt="Forest plot: randomised intervention effects with 95 per cent credible intervals. Letter-sound knowledge, blending and word reading sit clear of zero; receptive and expressive vocabulary sit on zero.">
+              </a>
+              <figcaption>Randomised effects per skill with 95% credible intervals — clear of zero means a credible benefit.</figcaption>
+            </figure>
+            <figure>
+              <a class="figlink" href="assets/reading-causal-design.png" target="_blank" rel="noopener">
+                <img src="assets/reading-causal-design.png" width="3200" height="2000" loading="lazy" decoding="async" alt="Diagram: the study's causal graph. A randomised intervention node feeds letter-sound, phonological and taught-vocabulary skills through to word reading, while a latent general-ability node confounds every non-randomised path.">
+              </a>
+              <figcaption>The causal design — randomisation identifies the teaching effect; skill-to-skill paths stay association.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---- honesty note ---- -->
+      <aside class="howto">
+        <h2>How to read these results</h2>
+        <p>Both studies are exploratory and their findings <strong>preliminary</strong> — estimates will sharpen as more data arrive and the models are finalised. Every quantity is a posterior distribution: a credible range, not a point. And outside the randomised teaching effects in the RLI trial, relationships are <strong>associations, not proven causes</strong>.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= capabilities ================= -->
+  <section class="band paper" id="capabilities">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">03 · Capabilities</p>
+        <h2>What I work with</h2>
+        <hr class="rule">
+        <p class="lede">Techniques I've shipped on these two studies and can explain from first principles — not a list of tools I've heard of.</p>
+      </div>
+      <ul class="caps">
+        <li><b>Bayesian hierarchical modelling</b><span>Multilevel models with interpretable priors; study- and child-level random effects.</span></li>
+        <li><b>PyMC &amp; NUTS sampling</b><span>Full-posterior MCMC via nutpie, gated on R̂, effective sample size and divergences.</span></li>
+        <li><b>Gaussian processes</b><span>Scalable Hilbert-space (HSGP) smooths for age trajectories.</span></li>
+        <li><b>Causal inference &amp; DAGs</b><span>Randomised effects identified by design; confounded paths reported as association.</span></li>
+        <li><b>Gradient boosting</b><span>LightGBM discovery with grouped cross-validation and SHAP — ranked, never hard-selected.</span></li>
+        <li><b>Model checking &amp; comparison</b><span>Prior and posterior predictive checks; PSIS-LOO and leave-one-study-out cross-validation.</span></li>
+        <li><b>Data engineering</b><span>Eleven studies harmonised in a DuckDB view, with validation and ceiling guards.</span></li>
+        <li><b>Reproducible pipelines</b><span>Raw data → posteriors → figures → Quarto report, reproducible at three sampling tiers.</span></li>
+        <li><b>Git &amp; code review</b><span>Pull requests, Conventional Commits and CI across four research repositories.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= contact ================= -->
+  <section class="band" id="contact">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">04 · Contact</p>
+        <h2>Get in touch</h2>
+        <hr class="rule">
+        <p class="lede">I'm interested in roles and research where careful statistics meet real questions.</p>
+      </div>
+
+      <dl class="contact-list">
+        <div>
+          <dt>Email</dt>
+          <dd><a href="mailto:ethan@ethanbuckley.me.uk">ethan@ethanbuckley.me.uk</a></dd>
+        </div>
+        <div>
+          <dt>GitHub</dt>
+          <dd><a href="https://github.com/ethanbuckley">github.com/ethanbuckley</a></dd>
+        </div>
+        <div>
+          <dt>University</dt>
+          <dd>MSci Natural Sciences (Physics), University College London</dd>
+        </div>
+        <div>
+          <dt>Research</dt>
+          <dd>Down Syndrome Education International — data science &amp; research intern</dd>
+        </div>
+      </dl>
+
+      <p class="download">Prefer something to keep? <a href="dse-research-showcase.pdf">Download the research showcase</a> — a six-page PDF covering both studies, their methods and my contribution.</p>
+
+      <p class="smallprint">The research shown here was carried out at Down Syndrome Education International, collaboratively and under senior review; findings from both studies are preliminary and reported with full uncertainty. Figures are drawn from development-tier model fits.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>© 2026 Ethan Buckley</span>
+    <span>One static page — system fonts, no scripts, no trackers</span>
+  </div>
+</footer>
+
+</body>
+</html>

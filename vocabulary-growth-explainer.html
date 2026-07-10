@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>html,body{margin:0;padding:0;}</style>
+<title>Vocabulary Growth in Down Syndrome — Explainer</title>
+<style>
+  :root {
+    --ground: #f4f6f7;
+    --paper: #ffffff;
+    --ink: #1b2a33;
+    --ink-soft: #55636d;
+    --accent: #0f766e;      /* teal — understanding */
+    --accent-2: #b45309;    /* ochre — speaking / the gap */
+    --line: #e2e7ea;
+    --tint: #eef4f3;        /* faint teal wash */
+    --serif: Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  .page {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    padding: clamp(20px, 4vw, 56px) 16px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .sheet {
+    background: var(--paper);
+    max-width: 780px;
+    width: 100%;
+    padding: clamp(28px, 5vw, 60px);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(27, 42, 51, 0.04), 0 12px 40px rgba(27, 42, 51, 0.05);
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin: 0 0 14px;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(27px, 4.6vw, 40px);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0 0 12px;
+  }
+
+  .lede {
+    font-size: clamp(16px, 2.2vw, 18px);
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin: 0 0 20px;
+    text-wrap: pretty;
+  }
+
+  .meta {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+    margin: 0;
+  }
+  .meta span { color: var(--accent-2); font-weight: 600; }
+
+  .intro { margin: 26px 0 30px; max-width: 64ch; }
+  .intro p { margin: 0; }
+
+  /* --- schematic --- */
+  .schematic {
+    background: var(--tint);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 20px 22px 18px;
+    margin: 0 0 34px;
+  }
+  .schematic .cap {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 16px;
+  }
+  .bar-row { display: grid; grid-template-columns: 122px 1fr; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .bar-row:last-of-type { margin-bottom: 0; }
+  .bar-label { font-size: 13px; font-weight: 600; color: var(--ink-soft); }
+  .track { position: relative; height: 22px; background: rgba(27, 42, 51, 0.05); border-radius: 3px; }
+  .fill { position: absolute; inset: 0 auto 0 0; border-radius: 3px; }
+  .fill.understood { width: 92%; background: var(--accent); }
+  .fill.spoken { width: 40%; background: var(--accent-2); }
+  .gap-note { font-size: 12.5px; color: var(--ink-soft); margin: 14px 0 0; font-style: italic; }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    font-weight: 700;
+    margin: 0 0 4px;
+  }
+  .rule { border: none; border-top: 2px solid var(--ink); width: 34px; margin: 0 0 22px; }
+
+  .findings { display: flex; flex-direction: column; gap: 22px; margin: 0 0 34px; }
+  .finding { display: grid; grid-template-columns: 26px 1fr; gap: 4px 14px; }
+  .finding .dot {
+    grid-row: 1 / span 2;
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--accent); margin-top: 7px;
+  }
+  .finding:nth-child(3) .dot, .finding:nth-child(4) .dot { background: var(--accent-2); }
+  .finding h3 { font-size: 17px; font-weight: 700; margin: 0; line-height: 1.3; text-wrap: balance; }
+  .finding p { margin: 4px 0 0; color: var(--ink-soft); max-width: 62ch; }
+
+  .matters {
+    background: var(--tint);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    padding: 20px 24px;
+    margin: 0 0 30px;
+  }
+  .matters h2 { color: var(--accent); }
+  .matters .rule { border-top-color: var(--accent); }
+  .matters ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .matters li { padding-left: 20px; position: relative; }
+  .matters li::before {
+    content: ""; position: absolute; left: 0; top: 9px;
+    width: 7px; height: 7px; border: 1.6px solid var(--accent); border-radius: 50%;
+  }
+  .matters strong { color: var(--ink); }
+
+  .limits {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+    max-width: 66ch;
+  }
+  .limits b { color: var(--ink); font-weight: 600; }
+
+  @media print {
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    @page { size: A4; margin: 9mm; }
+    .page { padding: 0; background: #fff; font-size: 11.5px; line-height: 1.5; }
+    .sheet { border: none; box-shadow: none; max-width: none; padding: 0; }
+    .eyebrow { margin-bottom: 6px; font-size: 10px; }
+    h1 { font-size: 22px; margin-bottom: 7px; }
+    .lede { font-size: 12.5px; margin-bottom: 9px; }
+    .meta { padding-top: 8px; font-size: 9.5px; }
+    .intro { margin: 9px 0 11px; }
+    .schematic { margin-bottom: 11px; padding: 9px 13px; }
+    .schematic .cap { margin-bottom: 9px; font-size: 13px; }
+    .bar-row { margin-bottom: 6px; }
+    .track { height: 15px; }
+    .gap-note { margin-top: 7px; }
+    h2 { margin-bottom: 2px; }
+    .rule { margin-bottom: 11px; }
+    .findings { gap: 8px; margin-bottom: 11px; }
+    .finding h3 { font-size: 13.5px; }
+    .finding p { margin-top: 2px; }
+    .finding .dot { width: 9px; height: 9px; margin-top: 5px; }
+    .matters { padding: 10px 15px; margin-bottom: 9px; }
+    .matters ul { gap: 6px; }
+    .limits { padding-top: 9px; font-size: 11px; }
+    .schematic, .finding, .matters { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <article class="sheet">
+    <p class="eyebrow">Down Syndrome Education International</p>
+    <h1>How children with Down syndrome build vocabulary</h1>
+    <p class="lede">A large pooled study of the words children understand, say, and sign as they grow — and what the numbers mean for expectations and support.</p>
+    <p class="meta">Exploratory study &nbsp;·&nbsp; 11 international datasets, ~588 children, ages 8&nbsp;months–10&nbsp;years &nbsp;·&nbsp; <span>Preliminary findings</span></p>
+
+    <div class="intro">
+      <p>We pooled parent-report vocabulary checklists from eleven studies and compared them with typically-developing children from the large public Wordbank dataset. Instead of single numbers, the models estimate a <em>range</em> for every growth trajectory — so each result comes with an honest measure of how certain we are.</p>
+    </div>
+
+    <div class="schematic" role="img" aria-label="Diagram: a long bar for words understood, a much shorter bar for words spoken, showing the gap between comprehension and production.">
+      <p class="cap">Understanding runs ahead of speaking</p>
+      <div class="bar-row">
+        <span class="bar-label">Words understood</span>
+        <span class="track"><span class="fill understood"></span></span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Words spoken</span>
+        <span class="track"><span class="fill spoken"></span></span>
+      </div>
+      <p class="gap-note">The space between the bars is the comprehension–production gap — the words a child understands but does not yet say.</p>
+    </div>
+
+    <h2>What we found</h2>
+    <hr class="rule" />
+    <div class="findings">
+      <div class="finding">
+        <span class="dot"></span>
+        <h3>Understanding comes before speaking</h3>
+        <p>Children with Down syndrome understand far more words than they say, right through the early years, and the gap closes only slowly with age. A child who understands much more than they speak is following the typical pattern — not falling behind it.</p>
+      </div>
+      <div class="finding">
+        <span class="dot"></span>
+        <h3>That gap is wider than in other children — especially early on</h3>
+        <p>At the same level of understanding, children with Down syndrome tend to say a smaller share of the words they know than typically-developing children do. The difference is largest when vocabulary is small and narrows as it grows. Some earlier, smaller studies suggested the pattern looked "typical" — the larger pooled data shows it does not.</p>
+      </div>
+      <div class="finding">
+        <span class="dot"></span>
+        <h3>It is a stretch, not just a delay — and speaking is affected most</h3>
+        <p>Both understanding and speaking are delayed, and the delay grows as vocabulary grows. Spoken vocabulary lags furthest: by around age two, most children with Down syndrome say fewer words than the lowest-scoring tenth of typically-developing children.</p>
+      </div>
+      <div class="finding">
+        <span class="dot"></span>
+        <h3>Signing helps early — modestly</h3>
+        <p>Counting signed words credits children with expressive vocabulary they already have, and narrows the gap somewhat in the two-to-three-year window. It genuinely helps, but the spoken-word gap stays large.</p>
+      </div>
+    </div>
+
+    <div class="matters">
+      <h2>Why it matters</h2>
+      <hr class="rule" />
+      <ul>
+        <li><strong>Sets realistic expectations.</strong> Comprehension leading production is normal and expected in Down syndrome.</li>
+        <li><strong>Points support where the need is greatest.</strong> Expressive vocabulary is the widest gap — and signing can act as an early bridge.</li>
+        <li><strong>Averages are not destinies.</strong> Children vary a great deal, and every estimate is reported as a range, not a fixed number.</li>
+      </ul>
+    </div>
+
+    <p class="limits"><b>What to keep in mind.</b> These findings are exploratory and preliminary — they will sharpen as more data arrive and the models are finalised. The typically-developing comparison is strongest for younger ages (roughly 8–30 months). And while "understanding leads speaking" is clear across the whole group, the data at this scale could not yet establish it as a cause <em>within</em> individual children over time.</p>
+  </article>
+</div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>html,body{margin:0;padding:0;}</style>
+<title>Reading &amp; Language Progress in Down Syndrome — Explainer</title>
+<style>
+  :root {
+    --ground: #f4f6f7; --paper: #ffffff;
+    --ink: #1b2a33; --ink-soft: #55636d;
+    --accent: #0f766e; --accent-2: #b45309;
+    --line: #e2e7ea; --tint: #eef4f3;
+    --serif: Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  .page { background: var(--ground); color: var(--ink); font-family: var(--sans);
+    font-size: 16px; line-height: 1.6; padding: clamp(20px,4vw,56px) 16px; display: flex; justify-content: center; }
+  .sheet { background: var(--paper); max-width: 780px; width: 100%; padding: clamp(28px,5vw,60px);
+    border: 1px solid var(--line); border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(27,42,51,.04), 0 12px 40px rgba(27,42,51,.05); }
+
+  .eyebrow { font-size: 12px; letter-spacing: .13em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 0 0 14px; }
+  h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(26px,4.5vw,39px); line-height: 1.12;
+    letter-spacing: -.01em; text-wrap: balance; margin: 0 0 12px; }
+  .lede { font-size: clamp(16px,2.2vw,18px); color: var(--ink-soft); max-width: 60ch; margin: 0 0 20px; text-wrap: pretty; }
+  .meta { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft);
+    border-top: 1px solid var(--line); padding-top: 14px; margin: 0; }
+  .meta span { color: var(--accent-2); font-weight: 600; }
+
+  .intro { margin: 26px 0 30px; max-width: 64ch; }
+  .intro p { margin: 0; }
+
+  .schematic { background: var(--tint); border: 1px solid var(--line); border-radius: 4px; padding: 20px 22px 18px; margin: 0 0 34px; }
+  .schematic .cap { font-family: var(--serif); font-size: 16px; font-weight: 700; margin: 0 0 15px; }
+  .bar-row { display: grid; grid-template-columns: 160px 1fr; align-items: center; gap: 12px; margin-bottom: 11px; }
+  .bar-row:last-of-type { margin-bottom: 0; }
+  .bar-label { font-size: 12.5px; font-weight: 600; color: var(--ink-soft); }
+  .track { position: relative; height: 20px; background: rgba(27,42,51,.05); border-radius: 3px; }
+  .fill { position: absolute; inset: 0 auto 0 0; border-radius: 3px; }
+  .fill.g1 { width: 90%; background: var(--accent); }
+  .fill.g2 { width: 55%; background: var(--accent); opacity: .72; }
+  .fill.g3 { width: 24%; background: var(--accent-2); opacity: .7; }
+  .fill.g4 { width: 5%; background: var(--accent-2); opacity: .4; }
+  .gap-note { font-size: 12.5px; color: var(--ink-soft); margin: 15px 0 0; font-style: italic; }
+
+  h2 { font-family: var(--serif); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); font-weight: 700; margin: 0 0 4px; }
+  .rule { border: none; border-top: 2px solid var(--ink); width: 34px; margin: 0 0 22px; }
+
+  .findings { display: flex; flex-direction: column; gap: 22px; margin: 0 0 34px; }
+  .finding { display: grid; grid-template-columns: 26px 1fr; gap: 4px 14px; }
+  .finding .dot { grid-row: 1 / span 2; width: 11px; height: 11px; border-radius: 50%; background: var(--accent); margin-top: 7px; }
+  .finding:nth-child(3) .dot, .finding:nth-child(4) .dot { background: var(--accent-2); }
+  .finding h3 { font-size: 17px; font-weight: 700; margin: 0; line-height: 1.3; text-wrap: balance; }
+  .finding p { margin: 4px 0 0; color: var(--ink-soft); max-width: 62ch; }
+
+  .matters { background: var(--tint); border-left: 3px solid var(--accent); border-radius: 0 4px 4px 0; padding: 20px 24px; margin: 0 0 30px; }
+  .matters h2 { color: var(--accent); }
+  .matters .rule { border-top-color: var(--accent); }
+  .matters ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .matters li { padding-left: 20px; position: relative; }
+  .matters li::before { content: ""; position: absolute; left: 0; top: 9px; width: 7px; height: 7px; border: 1.6px solid var(--accent); border-radius: 50%; }
+  .matters strong { color: var(--ink); }
+
+  .limits { font-size: 13.5px; color: var(--ink-soft); border-top: 1px solid var(--line); padding-top: 18px; max-width: 66ch; }
+  .limits b { color: var(--ink); font-weight: 600; }
+
+  @media print {
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    @page { size: A4; margin: 8mm; }
+    .page { padding: 0; background: #fff; font-size: 10.6px; line-height: 1.42; }
+    .sheet { border: none; box-shadow: none; max-width: none; padding: 0; }
+    .eyebrow { margin-bottom: 5px; font-size: 9.5px; }
+    h1 { font-size: 19px; margin-bottom: 6px; }
+    .lede { font-size: 11.5px; margin-bottom: 7px; }
+    .meta { padding-top: 6px; font-size: 9px; }
+    .intro { margin: 7px 0 9px; }
+    .schematic { margin-bottom: 9px; padding: 8px 12px; }
+    .schematic .cap { margin-bottom: 7px; font-size: 12px; }
+    .bar-row { margin-bottom: 5px; }
+    .track { height: 12px; }
+    .gap-note { margin-top: 6px; }
+    h2 { margin-bottom: 2px; }
+    .rule { margin-bottom: 9px; }
+    .findings { gap: 7px; margin-bottom: 9px; }
+    .finding h3 { font-size: 12.5px; }
+    .finding p { margin-top: 2px; }
+    .finding .dot { width: 8px; height: 8px; margin-top: 5px; }
+    .matters { padding: 9px 14px; margin-bottom: 8px; }
+    .matters ul { gap: 5px; }
+    .limits { padding-top: 8px; font-size: 10.3px; }
+    .schematic, .finding, .matters { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <article class="sheet">
+    <p class="eyebrow">Down Syndrome Education International</p>
+    <h1>What helps children with Down syndrome progress in reading and language</h1>
+    <p class="lede">A careful re-analysis of a reading-and-language teaching trial — what the teaching improved, what it didn't, and how confident we can be.</p>
+    <p class="meta">Re-analysis of the RLI trial &nbsp;·&nbsp; 54 children, 4 assessments &nbsp;·&nbsp; <span>Preliminary findings</span></p>
+
+    <div class="intro">
+      <p>Children with Down syndrome almost always find reading and language harder — but good teaching can help. The open question is <em>which</em> skills respond, and for which children. We re-analysed a trial in which children received daily one-to-one reading-and-language teaching (some straight away, others after a waiting period), using statistics that report an honest range around every result rather than a single number. Because children were randomly assigned to start early or wait, the teaching's effects can be read as genuine cause and effect.</p>
+    </div>
+
+    <div class="schematic" role="img" aria-label="Diagram: a long bar for letter sounds and word reading, a medium bar for taught words, a short bar for other untaught words, and almost nothing for general vocabulary and grammar.">
+      <p class="cap">You get what you teach</p>
+      <div class="bar-row"><span class="bar-label">Letter sounds &amp; word reading</span><span class="track"><span class="fill g1"></span></span></div>
+      <div class="bar-row"><span class="bar-label">Words taught directly</span><span class="track"><span class="fill g2"></span></span></div>
+      <div class="bar-row"><span class="bar-label">Other, untaught words</span><span class="track"><span class="fill g3"></span></span></div>
+      <div class="bar-row"><span class="bar-label">General vocabulary &amp; grammar</span><span class="track"><span class="fill g4"></span></span></div>
+      <p class="gap-note">The teaching helped most on the skills it targeted directly, and its effect faded with distance from what was taught.</p>
+    </div>
+
+    <h2>What we found</h2>
+    <hr class="rule" />
+    <div class="findings">
+      <div class="finding">
+        <span class="dot"></span>
+        <h3>The teaching clearly improved decoding — letter sounds and word reading</h3>
+        <p>These were the strongest, most reliable results: letter-sound and word-reading scores rose, confirmed by several independent ways of analysing the trial, and more teaching sessions meant more gain. The effect held even after accounting for family background and non-verbal ability.</p>
+      </div>
+      <div class="finding">
+        <span class="dot"></span>
+        <h3>It improved the specific words children were taught to say</h3>
+        <p>Expressive vocabulary rose for the words that were actually taught — a real, if smaller, gain.</p>
+      </div>
+      <div class="finding">
+        <span class="dot"></span>
+        <h3>It did not lift broad vocabulary or grammar</h3>
+        <p>General (untaught) vocabulary and grammar scores did not move. This isn't a failure — it's the shape of learning: skills close to what's taught improve, distant ones don't (yet). It matches the original trial's own conclusion.</p>
+      </div>
+      <div class="finding">
+        <span class="dot"></span>
+        <h3>Where children start matters more than how fast they grow</h3>
+        <p>A child's non-verbal ability and starting scores strongly predict where they begin, but tell us much less about how quickly they then progress. These are patterns, not proven causes.</p>
+      </div>
+    </div>
+
+    <div class="matters">
+      <h2>Why it matters</h2>
+      <hr class="rule" />
+      <ul>
+        <li><strong>Focus teaching where it responds.</strong> Decoding, letter sounds, and specific target words show the clearest gains.</li>
+        <li><strong>Expect near-transfer, not broad transfer.</strong> Children learn what they are taught directly, so broad goals need to be taught directly too.</li>
+        <li><strong>Averages hide big individual differences.</strong> Every result is a range from one small study — a guide to expectations, not a guarantee for any one child.</li>
+      </ul>
+    </div>
+
+    <p class="limits"><b>What to keep in mind.</b> This is a preliminary re-analysis of a single trial of 54 children, so estimates carry real uncertainty and await replication. The trustworthy cause-and-effect results are the teaching effects — children were randomly assigned, so those comparisons are fair. Findings about <em>which</em> children do better are associations, not proven causes.</p>
+  </article>
+</div>
+</body>
+</html>
