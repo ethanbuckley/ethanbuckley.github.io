@@ -146,6 +146,16 @@
   .rule { border: none; border-top: 2px solid var(--ink); width: 36px; margin: 0 0 18px; }
   .sec-head .lede { color: var(--ink-soft); margin: 0; max-width: 62ch; text-wrap: pretty; }
 
+  .approach-fig { margin: clamp(24px, 4vw, 34px) 0; }
+  .approach-fig svg {
+    width: 100%; max-width: 640px; height: auto; display: block;
+    border: 1px solid var(--line); border-radius: 6px; background: var(--paper);
+  }
+  .approach-fig figcaption {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .04em;
+    color: var(--ink-soft); margin-top: 10px; line-height: 1.5; max-width: 640px;
+  }
+
   .about-cols p { max-width: 66ch; margin: 0 0 18px; }
   .about-cols p:last-child { margin-bottom: 0; }
   .about-cols strong { color: var(--ink); }
@@ -346,9 +356,9 @@
     <a class="brand" href="#top">Ethan Buckley<span>.</span></a>
     <nav class="site-nav" aria-label="Site">
       <a href="#about">About</a>
+      <a href="#approach">Approach</a>
       <a href="#research">Research</a>
       <a href="#projects">Projects</a>
-      <a href="#capabilities">Capabilities</a>
       <a href="#contact">Contact</a>
       <a class="ext" href="https://github.com/ethanbuckley" rel="me">GitHub ↗</a>
     </nav>
@@ -363,8 +373,8 @@
       <div>
         <p class="eyebrow">Data science &amp; research portfolio</p>
         <h1>Ethan Buckley</h1>
-        <p class="tagline">Bayesian modelling, causal inference and research engineering — statistics that say how sure they are.</p>
-        <p class="lede">I work on the models behind two studies of how children with Down syndrome develop language, at Down Syndrome Education International. The thread through all of it: estimates that carry honest uncertainty, and a clear line between what the data shows and what it only suggests.</p>
+        <p class="tagline">Bayesian modelling, machine learning and scientific computing — statistics that say how sure they are.</p>
+        <p class="lede">I build statistical and machine-learning models, and the software around them, across applied research and independent projects. Most of my current work is at Down Syndrome Education International, on two studies of how children with Down syndrome develop language; alongside it I build independent work in machine learning and scientific computing. The thread through all of it: estimates that carry honest uncertainty, and a clear line between what the data shows and what it only suggests.</p>
         <ul class="hero-meta">
           <li>MSci Natural Sciences (Physics) · UCL</li>
           <li>Data Science &amp; Research Intern · DSE</li>
@@ -372,6 +382,7 @@
         </ul>
         <p class="hero-cta">
           <a class="btn primary" href="#research">The two studies</a>
+          <a class="btn" href="#projects">Selected projects</a>
           <a class="btn" href="dse-research-showcase.pdf">Research showcase (PDF)</a>
         </p>
       </div>
@@ -414,9 +425,53 @@
         <hr class="rule">
       </div>
       <div class="about-cols">
-        <p>Down Syndrome Education International researches how children with Down syndrome develop language, and turns the findings into guidance families and teachers can use. I joined as a data science and research intern to work on the statistics behind that: building the models, engineering the data pipelines beneath them, and writing the reports that communicate what they mean — and how confident anyone should be in them.</p>
-        <p>My background is physics: I'm studying for an MSci in Natural Sciences at UCL, and the habits carry over. Model the process that generates the data, quantify what you don't know, and make the whole analysis reproducible from raw data to final figure. <strong>Everything shown here was collaborative research</strong>, developed with DSE's researchers and merged under senior review.</p>
+        <p>I build the statistics and the software beneath it: designing models, engineering the data pipelines that feed them, and writing up what the results mean and how much to trust them. Most of that work right now is at Down Syndrome Education International, which researches how children with Down syndrome develop language and turns the findings into guidance families and teachers can use — I joined as a data science and research intern to work on the models behind it.</p>
+        <p>My background is physics: I'm studying for an MSci in Natural Sciences at UCL, and the habits carry over. Model the process that generates the data, quantify what you don't know, and make the whole analysis reproducible from raw data to final figure. <strong>The DSE research shown here was collaborative</strong>, developed with DSE's researchers and merged under senior review; the projects further down are independent work of my own.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- ================= approach ================= -->
+  <section class="band paper" id="approach">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">02 · Approach</p>
+        <h2>How I work</h2>
+        <hr class="rule">
+        <p class="lede">Across research and independent projects I reach for the same toolkit: model the process that generates the data, fit it with full-posterior MCMC so every estimate carries honest uncertainty, use machine learning to surface structure, and wrap the whole thing in reproducible, tested code. What's below is what I've actually shipped and can explain from first principles — not a list of tools I've heard of.</p>
+      </div>
+      <figure class="approach-fig">
+        <svg viewBox="0 0 620 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An MCMC diagnostic: three sampler chains on the left overlap in one stable band, showing they have converged (R-hat about 1.00); on the right, the resulting posterior distribution is summarised by a 95% credible interval around its median rather than a single point estimate.">
+          <line x1="40" y1="30" x2="40" y2="200" stroke="#e2e7ea" stroke-width="1"/>
+          <line x1="40" y1="200" x2="386" y2="200" stroke="#e2e7ea" stroke-width="1"/>
+          <line x1="40" y1="115" x2="386" y2="115" stroke="#eef1f3" stroke-width="1"/>
+          <polyline fill="none" stroke="#0f766e" stroke-width="1.4" opacity="0.8" points="44,150 65,92 86,128 107,104 128,138 149,110 170,96 191,132 212,112 233,120 254,100 275,126 296,108 317,130 338,114 359,122 380,116"/>
+          <polyline fill="none" stroke="#5ea59d" stroke-width="1.4" opacity="0.75" points="44,128 65,100 86,146 107,112 128,120 149,138 170,98 191,134 212,110 233,130 254,116 275,122 296,105 317,127 338,120 359,124 380,118"/>
+          <polyline fill="none" stroke="#0f766e" stroke-width="1.4" opacity="0.4" points="44,96 65,140 86,108 107,150 128,102 149,124 170,142 191,106 212,128 233,118 254,134 275,110 296,126 317,113 338,131 359,119 380,124"/>
+          <rect x="452" y="58" width="116" height="132" fill="#b45309" opacity="0.10"/>
+          <path d="M430,190 C466,186 486,66 510,60 C534,66 554,186 590,190 Z" fill="#0f766e" opacity="0.14"/>
+          <path d="M430,190 C466,186 486,66 510,60 C534,66 554,186 590,190" fill="none" stroke="#0f766e" stroke-width="2"/>
+          <line x1="510" y1="60" x2="510" y2="190" stroke="#b45309" stroke-width="1.3" stroke-dasharray="3 3"/>
+          <line x1="420" y1="190" x2="600" y2="190" stroke="#e2e7ea" stroke-width="1"/>
+          <text x="40" y="22" font-size="10" fill="#8a959c" style="font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.12em;">MCMC TRACE · 3 CHAINS</text>
+          <text x="420" y="22" font-size="10" fill="#8a959c" style="font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.12em;">POSTERIOR</text>
+          <text x="600" y="22" text-anchor="end" font-size="11" fill="#b45309" style="font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.08em;font-weight:600;">R&#x0302; &#8776; 1.00</text>
+          <text x="510" y="210" text-anchor="middle" font-size="9" fill="#b45309" style="font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.1em;">95% CrI</text>
+          <text x="40" y="216" font-size="9" fill="#8a959c" style="font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.1em;">iteration &#8594;</text>
+        </svg>
+        <figcaption>Convergence check from a Bayesian fit: independent MCMC chains agree (R&#x0302; &#8776; 1.00), and each estimate is reported as a posterior with a 95% credible interval — not a single number.</figcaption>
+      </figure>
+      <ul class="caps">
+        <li><b>Bayesian hierarchical modelling</b><span>Multilevel models with interpretable priors; study- and child-level random effects.</span></li>
+        <li><b>PyMC &amp; NUTS sampling</b><span>Full-posterior MCMC via nutpie, gated on R&#x0302;, effective sample size and divergences.</span></li>
+        <li><b>Gaussian processes</b><span>Scalable Hilbert-space (HSGP) smooths for age trajectories.</span></li>
+        <li><b>Causal inference &amp; DAGs</b><span>Randomised effects identified by design; confounded paths reported as association.</span></li>
+        <li><b>Gradient boosting &amp; NLP</b><span>XGBoost and LightGBM with grouped cross-validation and SHAP; FinBERT for financial-news sentiment.</span></li>
+        <li><b>Scientific computing &amp; simulation</b><span>Vectorised simulations — a spatial epidemic cellular automaton — validated against their analytical limits; ~40× speedups.</span></li>
+        <li><b>Model checking &amp; comparison</b><span>Prior and posterior predictive checks; PSIS-LOO and leave-one-study-out cross-validation.</span></li>
+        <li><b>Data engineering</b><span>Eleven studies harmonised in a DuckDB view, with validation and ceiling guards.</span></li>
+        <li><b>Reproducible pipelines</b><span>Raw data → posteriors → figures → report, reproducible at three sampling tiers and tested in CI.</span></li>
+      </ul>
     </div>
   </section>
 
@@ -424,10 +479,10 @@
   <section class="band" id="research">
     <div class="wrap">
       <div class="sec-head">
-        <p class="eyebrow">02 · Research</p>
+        <p class="eyebrow">03 · Research</p>
         <h2>Two studies of language development</h2>
         <hr class="rule">
-        <p class="lede">Both are Bayesian analyses reported with full uncertainty, and both are preliminary — the estimates will sharpen as the models are finalised. Each has a plain-language explainer for families and teachers, and a technical one for statisticians.</p>
+        <p class="lede">The applied-research side of my work, at Down Syndrome Education International. Both are Bayesian analyses reported with full uncertainty, and both are preliminary — the estimates will sharpen as the models are finalised. Each has a plain-language explainer for families and teachers, and a technical one for statisticians.</p>
       </div>
 
       <!-- ---- study 1 ---- -->
@@ -555,7 +610,7 @@
   <section class="band projects" id="projects">
     <div class="wrap">
       <div class="sec-head">
-        <p class="eyebrow">03 · Selected projects</p>
+        <p class="eyebrow">04 · Selected projects</p>
         <h2>Selected projects</h2>
         <hr class="rule">
         <p class="lede">Smaller, independent work outside the DSE research — built and validated end to end.</p>
@@ -629,29 +684,6 @@
           </p>
         </article>
       </div>
-    </div>
-  </section>
-
-  <!-- ================= capabilities ================= -->
-  <section class="band paper" id="capabilities">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">04 · Capabilities</p>
-        <h2>What I work with</h2>
-        <hr class="rule">
-        <p class="lede">Techniques I've shipped on these two studies and can explain from first principles — not a list of tools I've heard of.</p>
-      </div>
-      <ul class="caps">
-        <li><b>Bayesian hierarchical modelling</b><span>Multilevel models with interpretable priors; study- and child-level random effects.</span></li>
-        <li><b>PyMC &amp; NUTS sampling</b><span>Full-posterior MCMC via nutpie, gated on R̂, effective sample size and divergences.</span></li>
-        <li><b>Gaussian processes</b><span>Scalable Hilbert-space (HSGP) smooths for age trajectories.</span></li>
-        <li><b>Causal inference &amp; DAGs</b><span>Randomised effects identified by design; confounded paths reported as association.</span></li>
-        <li><b>Gradient boosting</b><span>LightGBM discovery with grouped cross-validation and SHAP — ranked, never hard-selected.</span></li>
-        <li><b>Model checking &amp; comparison</b><span>Prior and posterior predictive checks; PSIS-LOO and leave-one-study-out cross-validation.</span></li>
-        <li><b>Data engineering</b><span>Eleven studies harmonised in a DuckDB view, with validation and ceiling guards.</span></li>
-        <li><b>Reproducible pipelines</b><span>Raw data → posteriors → figures → Quarto report, reproducible at three sampling tiers.</span></li>
-        <li><b>Git &amp; code review</b><span>Pull requests, Conventional Commits and CI across four research repositories.</span></li>
-      </ul>
     </div>
   </section>
 
