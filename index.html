@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ethan Buckley — Bayesian modelling, causal inference &amp; research engineering</title>
-<meta name="description" content="Portfolio of Ethan Buckley: Bayesian and causal analyses of language development in Down syndrome at Down Syndrome Education International, with plain-language and technical explainers of both studies.">
+<title>Ethan Buckley — data science, machine learning and scientific computing</title>
+<meta name="description" content="Ethan Buckley, a physics student at UCL. Bayesian research at Down Syndrome Education International, and independent machine-learning and scientific-computing projects.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="canonical" href="https://ethanbuckley.github.io/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Ethan Buckley — Bayesian modelling, causal inference &amp; research engineering">
-<meta property="og:description" content="Statistics with honest uncertainty: two Bayesian studies of language development in Down syndrome, explained in plain language and in full technical detail.">
+<meta property="og:title" content="Ethan Buckley — data science, machine learning and scientific computing">
+<meta property="og:description" content="Ethan Buckley builds Bayesian models, machine-learning systems and scientific simulations. Research at Down Syndrome Education International, plus independent projects.">
 <meta property="og:url" content="https://ethanbuckley.github.io/">
 <meta property="og:image" content="https://ethanbuckley.github.io/assets/vocab-production-ratio.png">
 <style>
@@ -373,8 +373,8 @@
       <div>
         <p class="eyebrow">Data science &amp; research portfolio</p>
         <h1>Ethan Buckley</h1>
-        <p class="tagline">Bayesian modelling, machine learning and scientific computing — statistics that say how sure they are.</p>
-        <p class="lede">I build statistical and machine-learning models, and the software around them, across applied research and independent projects. Most of my current work is at Down Syndrome Education International, on two studies of how children with Down syndrome develop language; alongside it I build independent work in machine learning and scientific computing. The thread through all of it: estimates that carry honest uncertainty, and a clear line between what the data shows and what it only suggests.</p>
+        <p class="tagline">Bayesian modelling, machine learning and scientific computing.</p>
+        <p class="lede">I'm a physics student at UCL. At Down Syndrome Education International I build the Bayesian models behind two studies of how children with Down syndrome learn to understand and say words. On my own I've built a machine-learning stock screener and an epidemic simulator. I try to be careful about uncertainty, and clear about what the data can't show.</p>
         <ul class="hero-meta">
           <li>MSci Natural Sciences (Physics) · UCL</li>
           <li>Data Science &amp; Research Intern · DSE</li>
@@ -411,7 +411,7 @@
           <text x="540" y="126" text-anchor="end" font-size="11" fill="#b45309" style="font-family: ui-monospace, 'SF Mono', Menlo, monospace; letter-spacing: .08em;">WORDS SPOKEN</text>
           <text x="20" y="394" font-size="10" fill="#8a959c" style="font-family: ui-monospace, 'SF Mono', Menlo, monospace; letter-spacing: .08em;">AGE →</text>
         </svg>
-        <p class="note">Posterior curves with credible bands — the study's shape</p>
+        <p class="note">Posterior curves with credible bands.</p>
       </div>
     </div>
   </section>
@@ -421,12 +421,12 @@
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow">01 · About</p>
-        <h2>Statistics people can act on</h2>
+        <h2>What I do</h2>
         <hr class="rule">
       </div>
       <div class="about-cols">
-        <p>I build the statistics and the software beneath it: designing models, engineering the data pipelines that feed them, and writing up what the results mean and how much to trust them. Most of that work right now is at Down Syndrome Education International, which researches how children with Down syndrome develop language and turns the findings into guidance families and teachers can use — I joined as a data science and research intern to work on the models behind it.</p>
-        <p>My background is physics: I'm studying for an MSci in Natural Sciences at UCL, and the habits carry over. Model the process that generates the data, quantify what you don't know, and make the whole analysis reproducible from raw data to final figure. <strong>The DSE research shown here was collaborative</strong>, developed with DSE's researchers and merged under senior review; the projects further down are independent work of my own.</p>
+        <p>I work on the statistics and the code underneath it. Right now that's at Down Syndrome Education International, as their data science intern. They study how children with Down syndrome learn language and turn it into guidance for families and teachers, and I build the models behind that work.</p>
+        <p>I come from physics. I'm doing an MSci in Natural Sciences at UCL, and I approach data the way I learned to approach experiments: build a model of what's going on, and stay honest about what you don't know. <strong>The DSE research here was done with their team and reviewed by senior researchers.</strong> The projects further down are my own.</p>
       </div>
     </div>
   </section>
@@ -438,7 +438,7 @@
         <p class="eyebrow">02 · Approach</p>
         <h2>How I work</h2>
         <hr class="rule">
-        <p class="lede">Across research and independent projects I reach for the same toolkit: model the process that generates the data, fit it with full-posterior MCMC so every estimate carries honest uncertainty, use machine learning to surface structure, and wrap the whole thing in reproducible, tested code. What's below is what I've actually shipped and can explain from first principles — not a list of tools I've heard of.</p>
+        <p class="lede">A few ideas run through most of what I do. I fit models with MCMC, which gives a full distribution for every quantity instead of one number, so the answer comes with a sense of how sure it is. I use machine learning to find structure in larger datasets, and I keep the work in tested, version-controlled code so results can be reproduced. Below is what I've actually built with.</p>
       </div>
       <figure class="approach-fig">
         <svg viewBox="0 0 620 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An MCMC diagnostic: three sampler chains on the left overlap in one stable band, showing they have converged (R-hat about 1.00); on the right, the resulting posterior distribution is summarised by a 95% credible interval around its median rather than a single point estimate.">
@@ -459,7 +459,7 @@
           <text x="510" y="210" text-anchor="middle" font-size="9" fill="#b45309" style="font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.1em;">95% CrI</text>
           <text x="40" y="216" font-size="9" fill="#8a959c" style="font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.1em;">iteration &#8594;</text>
         </svg>
-        <figcaption>Convergence check from a Bayesian fit: independent MCMC chains agree (R&#x0302; &#8776; 1.00), and each estimate is reported as a posterior with a 95% credible interval — not a single number.</figcaption>
+        <figcaption>A convergence check from a Bayesian fit. The chains agree (R&#x0302; &#8776; 1.00), and the result is a posterior with a 95% credible interval, not a single number.</figcaption>
       </figure>
       <ul class="caps">
         <li><b>Bayesian hierarchical modelling</b><span>Multilevel models with interpretable priors; study- and child-level random effects.</span></li>
@@ -467,7 +467,7 @@
         <li><b>Gaussian processes</b><span>Scalable Hilbert-space (HSGP) smooths for age trajectories.</span></li>
         <li><b>Causal inference &amp; DAGs</b><span>Randomised effects identified by design; confounded paths reported as association.</span></li>
         <li><b>Gradient boosting &amp; NLP</b><span>XGBoost and LightGBM with grouped cross-validation and SHAP; FinBERT for financial-news sentiment.</span></li>
-        <li><b>Scientific computing &amp; simulation</b><span>Vectorised simulations — a spatial epidemic cellular automaton — validated against their analytical limits; ~40× speedups.</span></li>
+        <li><b>Scientific computing &amp; simulation</b><span>Vectorised simulations, like a spatial epidemic cellular automaton, validated against their analytical limits; ~40× speedups.</span></li>
         <li><b>Model checking &amp; comparison</b><span>Prior and posterior predictive checks; PSIS-LOO and leave-one-study-out cross-validation.</span></li>
         <li><b>Data engineering</b><span>Eleven studies harmonised in a DuckDB view, with validation and ceiling guards.</span></li>
         <li><b>Reproducible pipelines</b><span>Raw data → posteriors → figures → report, reproducible at three sampling tiers and tested in CI.</span></li>
@@ -482,14 +482,14 @@
         <p class="eyebrow">03 · Research</p>
         <h2>Two studies of language development</h2>
         <hr class="rule">
-        <p class="lede">The applied-research side of my work, at Down Syndrome Education International. Both are Bayesian analyses reported with full uncertainty, and both are preliminary — the estimates will sharpen as the models are finalised. Each has a plain-language explainer for families and teachers, and a technical one for statisticians.</p>
+        <p class="lede">My research work at Down Syndrome Education International. Both studies are Bayesian, and both are still preliminary; the estimates will tighten as the models are finished. Each one has a plain-language explainer and a more technical write-up.</p>
       </div>
 
       <!-- ---- study 1 ---- -->
       <article class="study">
         <p class="study-eyebrow">Study 01 · Vocabulary growth</p>
         <h3>How children with Down syndrome build vocabulary</h3>
-        <p class="study-desc">A pooled Bayesian study of the words children understand, say and sign, drawing on parent-report checklists from eleven international studies harmonised onto a common scale. The models estimate each growth trajectory as a full probability distribution, so every curve comes with a credible range rather than a single line.</p>
+        <p class="study-desc">A pooled Bayesian study of the words children understand, say and sign. It draws on parent-report checklists from eleven international studies, put onto a common scale. Each growth curve is estimated as a full distribution, so it carries a credible range rather than being a single line.</p>
         <p class="study-meta">11 international studies &nbsp;·&nbsp; 588 children &nbsp;·&nbsp; ages 8 months – 9½ years &nbsp;·&nbsp; <b>Preliminary findings</b></p>
 
         <div class="study-grid">
@@ -498,17 +498,17 @@
               <div class="finding">
                 <span class="dot"></span>
                 <h4>Understanding runs years ahead of speaking</h4>
-                <p>The production ratio — the share of understood words a child also says — climbs steeply with age, reaching roughly half by age four and about 88% by seven and a half.</p>
+                <p>The production ratio is the share of understood words a child also says. It climbs steeply with age, reaching roughly half by age four and about 88% by seven and a half.</p>
               </div>
               <div class="finding alt">
                 <span class="dot"></span>
                 <h4>The gap is wider than in typical development, then narrows</h4>
-                <p>At the same level of comprehension, children with Down syndrome say a smaller share of the words they know. The difference peaks at around 13 percentage points at 50–150 understood words and fades as vocabulary grows — a stretch that eases, not a fixed deficit.</p>
+                <p>At the same level of comprehension, children with Down syndrome say a smaller share of the words they know. The difference peaks at around 13 percentage points at 50–150 understood words, then fades as vocabulary grows. It's a stretch that eases, not a fixed deficit.</p>
               </div>
               <div class="finding">
                 <span class="dot"></span>
                 <h4>Signing offers a modest early bridge</h4>
-                <p>Counting signed words credits children with expressive vocabulary they already have, and narrows the early gap somewhat — real help while speech catches up, though the spoken-word gap stays large.</p>
+                <p>Counting signed words credits children with expressive vocabulary they already have, and narrows the early gap somewhat. It's real help while speech catches up, though the spoken-word gap stays large.</p>
               </div>
             </div>
 
@@ -530,7 +530,7 @@
               <a class="figlink" href="assets/vocab-production-ratio.png" target="_blank" rel="noopener">
                 <img src="assets/vocab-production-ratio.png" width="3200" height="2000" alt="Chart: the production ratio, the share of understood words a child with Down syndrome also says, rising steeply with age to about 88 per cent by seven and a half years, shown with 50, 75 and 90 per cent credible bands.">
               </a>
-              <figcaption>The production ratio across age — posterior median with 50/75/90% credible bands.</figcaption>
+              <figcaption>The production ratio across age. Posterior median with 50/75/90% credible bands.</figcaption>
             </figure>
             <figure>
               <a class="figlink" href="assets/vocab-method.png" target="_blank" rel="noopener">
@@ -546,7 +546,7 @@
       <article class="study">
         <p class="study-eyebrow">Study 02 · Reading &amp; language</p>
         <h3>What a reading-and-language intervention actually improved</h3>
-        <p class="study-desc">A re-analysis of the RLI trial (Burgoyne et al., 2012), in which 54 children with Down syndrome were randomly assigned to daily one-to-one reading-and-language teaching or a waiting list. The analysis is built around an explicit causal diagram, so the randomised effect of the teaching stays strictly separate from patterns that merely track a child's general ability.</p>
+        <p class="study-desc">A re-analysis of the RLI trial (Burgoyne et al., 2012). 54 children with Down syndrome were randomly assigned to daily one-to-one reading-and-language teaching, or to a waiting list. The analysis is built around a causal diagram, which keeps the effect of the teaching separate from patterns that just track a child's general ability.</p>
         <p class="study-meta">RLI randomised trial &nbsp;·&nbsp; 54 children &nbsp;·&nbsp; 4 assessment waves &nbsp;·&nbsp; only the randomised effects are causal &nbsp;·&nbsp; <b>Preliminary findings</b></p>
 
         <div class="study-grid">
@@ -555,17 +555,17 @@
               <div class="finding">
                 <span class="dot"></span>
                 <h4>The teaching credibly improved decoding</h4>
-                <p>Letter-sound knowledge, blending and word reading all rose — and because children were randomised, these effects read as cause, not correlation. The specific words children were taught to say also improved.</p>
+                <p>Letter-sound knowledge, blending and word reading all rose. Because children were randomised, these effects read as cause, not correlation. The specific words children were taught to say also improved.</p>
               </div>
               <div class="finding">
                 <span class="dot"></span>
                 <h4>Broad vocabulary and grammar did not move</h4>
-                <p>Gains faded with distance from what was taught — a transfer gradient. Skills close to the instruction improved; distant ones didn't. That matches the original trial's own conclusion.</p>
+                <p>Gains faded with distance from what was taught, a transfer gradient. Skills close to the instruction improved; distant ones didn't. That matches the original trial's own conclusion.</p>
               </div>
               <div class="finding alt">
                 <span class="dot"></span>
                 <h4>Everything beyond the randomised contrast is association</h4>
-                <p>Where a child starts predicts a lot about where they end up, but which children progress fastest stays confounded with general ability — so it is reported as pattern, never as cause.</p>
+                <p>Where a child starts predicts a lot about where they end up. But which children progress fastest stays confounded with general ability, so it's reported as a pattern, never a cause.</p>
               </div>
             </div>
 
@@ -586,13 +586,13 @@
               <a class="figlink" href="assets/reading-intervention-effects.png" target="_blank" rel="noopener">
                 <img src="assets/reading-intervention-effects.png" width="3200" height="2000" loading="lazy" decoding="async" alt="Forest plot: randomised intervention effects with 95 per cent credible intervals. Letter-sound knowledge, blending and word reading sit clear of zero; receptive and expressive vocabulary sit on zero.">
               </a>
-              <figcaption>Randomised effects per skill with 95% credible intervals — clear of zero means a credible benefit.</figcaption>
+              <figcaption>Randomised effects per skill, with 95% credible intervals. Clear of zero means a credible benefit.</figcaption>
             </figure>
             <figure>
               <a class="figlink" href="assets/reading-causal-design.png" target="_blank" rel="noopener">
                 <img src="assets/reading-causal-design.png" width="3200" height="2000" loading="lazy" decoding="async" alt="Diagram: the study's causal graph. A randomised intervention node feeds letter-sound, phonological and taught-vocabulary skills through to word reading, while a latent general-ability node confounds every non-randomised path.">
               </a>
-              <figcaption>The causal design — randomisation identifies the teaching effect; skill-to-skill paths stay association.</figcaption>
+              <figcaption>The causal design. Randomisation identifies the teaching effect; skill-to-skill paths stay associational.</figcaption>
             </figure>
           </div>
         </div>
@@ -601,7 +601,7 @@
       <!-- ---- honesty note ---- -->
       <aside class="howto">
         <h2>How to read these results</h2>
-        <p>Both studies are exploratory and their findings <strong>preliminary</strong> — estimates will sharpen as more data arrive and the models are finalised. Every quantity is a posterior distribution: a credible range, not a point. And outside the randomised teaching effects in the RLI trial, relationships are <strong>associations, not proven causes</strong>.</p>
+        <p>Both studies are exploratory and the findings are <strong>preliminary</strong>; the estimates will sharpen as more data arrive. Every quantity is a posterior distribution, so it's a credible range, not a point. And apart from the randomised teaching effects in the RLI trial, these are <strong>associations, not proven causes</strong>.</p>
       </aside>
     </div>
   </section>
@@ -613,14 +613,14 @@
         <p class="eyebrow">04 · Selected projects</p>
         <h2>Selected projects</h2>
         <hr class="rule">
-        <p class="lede">Smaller, independent work outside the DSE research — built and validated end to end.</p>
+        <p class="lede">Independent projects I've built and validated end to end.</p>
       </div>
 
       <div class="proj-grid">
         <article class="proj">
           <p class="proj-kicker">Independent project</p>
           <h3>S&amp;P 500 stock screener</h3>
-          <p class="proj-desc">A two-stage screening pipeline: an XGBoost classifier with triple-barrier labels, trained on ≈1.4&nbsp;million daily observations across the S&amp;P&nbsp;500, ranks long and short candidates, and FinBERT scores live news sentiment on the top picks. A Streamlit dashboard adds walk-forward validation and a Monte-Carlo portfolio-risk simulator (VaR&nbsp;/&nbsp;CVaR).</p>
+          <p class="proj-desc">A two-stage screener for the S&amp;P&nbsp;500. An XGBoost classifier, trained on ~1.3&nbsp;million daily observations, ranks long and short candidates, and FinBERT reads the news sentiment on the top picks. Labels use the triple-barrier method to avoid look-ahead. In walk-forward testing from 2020 to 2026 the top-15 picks were right about 48% of the time, against a 29% base rate. A Streamlit dashboard runs it live, with a Monte-Carlo VaR/CVaR risk simulator.</p>
           <figure class="proj-fig">
             <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scatter of candidate stocks by model confidence on the x-axis and news sentiment on the y-axis: high-confidence, positive-sentiment names cluster top-right as longs; low-confidence, negative-sentiment names cluster bottom-left as shorts.">
               <rect x="173" y="26" width="129" height="117" fill="#0f766e" opacity="0.10"/>
@@ -663,7 +663,7 @@
         <article class="proj">
           <p class="proj-kicker alt">UCL group project · individually extended</p>
           <h3>SEIQR epidemic cellular automaton</h3>
-          <p class="proj-desc">A stochastic 2D cellular automaton of epidemic spread across a spatially heterogeneous population, with an interactive dashboard for lockdown and vaccination scenarios. The model began as a UCL group computing project; I extended it individually into the portfolio piece shown here.</p>
+          <p class="proj-desc">A cellular-automaton model of an epidemic spreading across a grid with dense and sparse areas. You can try lockdown and vaccination scenarios in the dashboard. It started as a UCL group project, and I rebuilt and extended it on my own.</p>
           <figure class="proj-fig">
             <img src="assets/epidemic-demo.gif" width="440" height="459" loading="lazy" decoding="async" alt="Animated simulation grid: infection spreading spatially across a heterogeneous population, then receding as the epidemic passes.">
             <figcaption>One simulated outbreak crossing the grid.</figcaption>
@@ -694,7 +694,7 @@
         <p class="eyebrow">05 · Contact</p>
         <h2>Get in touch</h2>
         <hr class="rule">
-        <p class="lede">I'm interested in roles and research where careful statistics meet real questions.</p>
+        <p class="lede">I'm looking for internships in data science, machine learning and quantitative research. If you have something you think I'd fit, get in touch.</p>
       </div>
 
       <dl class="contact-list">
@@ -707,16 +707,20 @@
           <dd><a href="https://github.com/ethanbuckley">github.com/ethanbuckley</a></dd>
         </div>
         <div>
+          <dt>LinkedIn</dt>
+          <dd><a href="https://www.linkedin.com/in/ethanbuckley">linkedin.com/in/ethanbuckley</a></dd>
+        </div>
+        <div>
           <dt>University</dt>
           <dd>MSci Natural Sciences (Physics), University College London</dd>
         </div>
         <div>
           <dt>Research</dt>
-          <dd>Down Syndrome Education International — data science &amp; research intern</dd>
+          <dd>Down Syndrome Education International, data science &amp; research intern</dd>
         </div>
       </dl>
 
-      <p class="smallprint">The research shown here was carried out at Down Syndrome Education International, collaboratively and under senior review; findings from both studies are preliminary and reported with full uncertainty. Figures are drawn from development-tier model fits.</p>
+      <p class="smallprint">The research here was done at Down Syndrome Education International, with the team and under senior review. Findings from both studies are preliminary. Figures come from development-tier model fits.</p>
     </div>
   </section>
 
@@ -725,7 +729,7 @@
 <footer class="site-foot">
   <div class="wrap">
     <span>© 2026 Ethan Buckley</span>
-    <span>One static page — system fonts, no scripts, no trackers</span>
+    <span>One static page. System fonts, no scripts, no trackers.</span>
   </div>
 </footer>
 
