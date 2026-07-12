@@ -93,12 +93,12 @@
   <article class="sheet">
     <p class="eyebrow">Technical note · Down Syndrome Education International</p>
     <h1>Modelling vocabulary growth: the statistics &amp; computation</h1>
-    <p class="lede">A Bayesian hierarchical model family that turns sparse, multi-study checklist counts into full probability distributions over children's vocabulary trajectories — and the pipeline that fits, checks, and reproduces it.</p>
+    <p class="lede">A Bayesian hierarchical model family that turns sparse, multi-study checklist counts into full probability distributions over children's vocabulary trajectories, plus the pipeline that fits, checks and reproduces it.</p>
     <p class="meta">Bayesian hierarchical · PyMC + nutpie (NUTS) · Beta-Binomial + HSGP · <b>15 models (VG01–VG16)</b></p>
 
     <h2>The estimation problem</h2>
     <hr class="rule" />
-    <p class="body">The data are bounded word counts (0–800) pooled from eleven studies — sparse, and repeated on the same children. Three features drive the design: counts are <strong>over-dispersed</strong> (more between-child spread than a Binomial allows); <strong>studies differ</strong> in composition and instrument; and <strong>speaking is conditional on understanding</strong>. Every quantity is estimated as a posterior distribution, so results carry explicit uncertainty rather than a single point.</p>
+    <p class="body">The data are bounded word counts (0–800) pooled from eleven studies, sparse and repeated on the same children. Three features drive the design: counts are <strong>over-dispersed</strong> (more between-child spread than a Binomial allows); <strong>studies differ</strong> in composition and instrument; and <strong>speaking is conditional on understanding</strong>. Every quantity is estimated as a posterior distribution, so results carry explicit uncertainty rather than a single point.</p>
 
     <h2>Core model</h2>
     <hr class="rule" />
@@ -111,17 +111,17 @@
         <div class="eq">f(a) = trend(a) + g(a),&nbsp; g ~ <span class="k">HSGP</span> <span class="c">&nbsp; // smooth nonparametric mean; Beta anchor priors at set ages</span></div>
         <div class="eq">f<sub>•</sub>(z<sub>i</sub>) &nbsp;+=&nbsp; δ<sup>study</sup><sub>s(i)</sub> + δ<sup>subj</sup><sub>j(i)</sub>,&nbsp; δ = τ·z <span class="c">&nbsp; // non-centred random intercepts</span></div>
       </dl>
-      <p class="eqnote">The production ratio <code>q</code> is the model's pivot — the share of understood words a child also says. A Gaussian process (approximated with a scalable <code>HSGP</code> basis) carries the trajectory shape; study- and child-level random intercepts separate the population curve from who was sampled and from repeated measures.</p>
+      <p class="eqnote">The production ratio <code>q</code> is the model's pivot: the share of understood words a child also says. A Gaussian process (approximated with a scalable <code>HSGP</code> basis) carries the trajectory shape; study- and child-level random intercepts separate the population curve from who was sampled and from repeated measures.</p>
     </div>
 
     <h2>The model family</h2>
     <hr class="rule" />
     <ul class="family">
-      <li><span class="lvl">Single</span><span class="txt"><strong>One outcome</strong> — understood or spoken alone, the shared building block. <span class="ids">VG01–04, 11–12</span></span></li>
+      <li><span class="lvl">Single</span><span class="txt"><strong>One outcome</strong>: understood or spoken alone, the shared building block. <span class="ids">VG01–04, 11–12</span></span></li>
       <li><span class="lvl">Joint</span><span class="txt"><strong>Understood + spoken</strong> via the <code>q</code>-decomposition, with study and subject random effects. <span class="ids">VG05, 07–10, 13</span></span></li>
       <li><span class="lvl">Signing</span><span class="txt"><strong>Adds a sign ratio</strong> r; VG15 adds a <strong>Plackett copula</strong> ψ + Dirichlet-Multinomial on the sign×speech cross-tab to identify their overlap. <span class="ids">VG14–15</span></span></li>
-      <li><span class="lvl">Longitudinal</span><span class="txt"><strong>Within-child cross-lag</strong> — does earlier comprehension predict later production? <span class="ids">VG16</span></span></li>
-      <li><span class="lvl">DS vs TD</span><span class="txt"><strong>Per-draw differences of disjoint posteriors</strong> — because the populations share no children, the contrast is exact with no joint model needed.</span></li>
+      <li><span class="lvl">Longitudinal</span><span class="txt"><strong>Within-child cross-lag</strong>: does earlier comprehension predict later production? <span class="ids">VG16</span></span></li>
+      <li><span class="lvl">DS vs TD</span><span class="txt"><strong>Per-draw differences of disjoint posteriors</strong>: because the populations share no children, the contrast is exact, with no joint model needed.</span></li>
     </ul>
 
     <h2>Inference &amp; pipeline</h2>
@@ -129,9 +129,9 @@
     <ul class="chips">
       <li>PyMC</li><li>nutpie (Rust NUTS)</li><li>HSGP</li><li>ArviZ</li><li>DuckDB</li><li>Quarto</li><li>PSIS-LOO</li><li>leave-one-study-out CV</li>
     </ul>
-    <p class="body">Fitting runs full-posterior MCMC (NUTS via <strong>nutpie</strong>), screened with prior- and posterior-predictive checks and standard diagnostics — R̂, effective sample size, divergences. Models are compared with <strong>PSIS-LOO</strong> and <strong>leave-one-study-out</strong> cross-validation. Studies are harmonised in a DuckDB view onto the common 800-item scale, and the whole run — data → posteriors → figures → report (Quarto) — is reproducible at three sampling tiers (dev / test / rep), so every result regenerates from raw data as the models improve.</p>
+    <p class="body">Fitting runs full-posterior MCMC (NUTS via <strong>nutpie</strong>), screened with prior- and posterior-predictive checks and standard diagnostics: R̂, effective sample size, divergences. Models are compared with <strong>PSIS-LOO</strong> and <strong>leave-one-study-out</strong> cross-validation. Studies are harmonised in a DuckDB view onto the common 800-item scale, and the whole run (data → posteriors → figures → report in Quarto) is reproducible at three sampling tiers (dev / test / rep), so every result regenerates from raw data as the models improve.</p>
 
-    <p class="foot"><b>Workflow &amp; rigour.</b> Built as an iterative Bayesian workflow: interpretable anchor priors informed by expectation and independent Wordbank norms, explicit identification arguments, and candid caveats (e.g. short-panel bias makes the naïve within-child lag misleading, so VG16 headlines a bias-robust baseline). A methodology and code audit independently verified the statistical core and fixed several issues — a comprehension-proxy data leak, a GP-boundary mis-sizing, young-age prior calibration, and per-form ceiling validation — before the reporting-quality run.</p>
+    <p class="foot"><b>Workflow &amp; rigour.</b> Built as an iterative Bayesian workflow: interpretable anchor priors informed by expectation and independent Wordbank norms, explicit identification arguments, and candid caveats (e.g. short-panel bias makes the naïve within-child lag misleading, so VG16 headlines a bias-robust baseline). A methodology and code audit independently verified the statistical core and fixed several issues (a comprehension-proxy data leak, a GP-boundary mis-sizing, young-age prior calibration, and per-form ceiling validation) before the reporting-quality run.</p>
   </article>
 </div>
 </body>

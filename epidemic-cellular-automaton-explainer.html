@@ -85,13 +85,13 @@
 <div class="page">
   <article class="sheet">
     <p class="eyebrow">Technical note · Independent project</p>
-    <h1>A spatial epidemic on a grid — and how it was checked against the maths</h1>
-    <p class="lede">A stochastic 2D cellular automaton of epidemic spread across a spatially heterogeneous population, extended individually from a UCL group project. Its local update rules are shown to <strong>reduce to the classical well-mixed SEIQR ODE</strong> in the mean-field limit — so the "checked against an analytical model" claim is derived, not asserted, and the spatial model's departure from that reference becomes interpretable.</p>
+    <h1>A spatial epidemic on a grid, and how I checked it against the maths</h1>
+    <p class="lede">A stochastic cellular automaton of an epidemic spreading across a grid, extended from a UCL group project. Its local rules <strong>reduce to the classic well-mixed SEIQR ODE</strong> in the mean-field limit. So I can check the model against a known analytical limit rather than just claiming it works, and where the spatial version departs from that limit, the departure is meaningful.</p>
     <p class="meta">Stochastic spatial CA · NumPy + <code style="font-family:var(--mono)">scipy.convolve2d</code> · validated vs the analytical SEIQR ODE · reproducible &amp; CI-tested · <b>Educational project</b></p>
 
     <h2>The model</h2>
     <hr class="rule" />
-    <p class="body">A 50×50 grid of cells, each in one of five states — <strong>S</strong>usceptible, <strong>E</strong>xposed, <strong>I</strong>nfected, <strong>Q</strong>uarantined, <strong>R</strong>ecovered. A fixed density map sets three concentric exposure zones: a dense centre, a suburban ring, and sparse outskirts. Each timestep, a susceptible cell with at least one infected Moore neighbour is exposed with its zone's probability; the exposed become infected, the infected either quarantine or recover on a single random draw, and the quarantined recover. The one-cell border is held permanently susceptible and excluded from the counts, so the participating population is the 48×48 = 2,304-cell interior.</p>
+    <p class="body">A 50×50 grid of cells, each in one of five states: <strong>S</strong>usceptible, <strong>E</strong>xposed, <strong>I</strong>nfected, <strong>Q</strong>uarantined or <strong>R</strong>ecovered. A fixed density map sets three exposure zones: a dense centre, a suburban ring, and sparse outskirts. Each timestep, a susceptible cell with at least one infected Moore neighbour catches it with its zone's probability. The exposed become infected; the infected either quarantine or recover on a single draw; the quarantined recover. The one-cell border stays susceptible and is left out of the counts, so the working population is the 48×48 = 2,304-cell interior.</p>
 
     <h2>Validation against the ODE</h2>
     <hr class="rule" />
@@ -102,17 +102,17 @@
         <div class="eq">low-prevalence slope <span class="k">β = 8·p<sub>expose</sub></span> &nbsp; ⟹ &nbsp; <span class="cause">R₀ = β / (γ_Q + γ_R) ≈ 15</span> at p<sub>expose</sub> = 0.30</div>
         <div class="eq">I-exit is one draw: split I→Q / I→R by combined hazard <span class="k">ρ<sub>tot</sub> = −ln(1 − p_Q − p_Ri)</span> in ratio p_Q : p_Ri</div>
       </dl>
-      <p class="eqnote">The honest claim is a <em>reduction</em>, not a coincidence: the CA's local Moore-neighbour rule, averaged over a well-mixed population, <strong>is</strong> the classical SEIQR ODE with these rates. Matching the ODE therefore tests that the stochastic rules were implemented correctly — while the spatial model's departure from it is then interpretable as structure, not as a bug.</p>
+      <p class="eqnote">This is a reduction, not a coincidence: averaged over a well-mixed population, the CA's local Moore-neighbour rule <strong>is</strong> the SEIQR ODE with these rates. So matching the ODE checks that the rules were coded correctly, and the spatial model's departure from it can then be read as real structure rather than a bug.</p>
     </div>
 
     <h2>What the comparison shows</h2>
     <hr class="rule" />
-    <p class="body">Driven by the <strong>global</strong> infected fraction instead of local neighbours (the well-mixed limit), the CA ensemble reproduces the exact discrete recursion and the continuous ODE to about <strong>2% of peak</strong> (RMSE), with an essentially identical final attack rate, at R₀ ≈ 15. The standard <strong>local</strong> (spatial) CA departs — a peak roughly <strong>3.5× lower and about 50 steps later</strong>. That gap is the genuine effect of spatial structure and local susceptible depletion, which is the reason to use a cellular automaton in the first place, not a validation failure. Both curves use the same 2,304-cell interior, so the CA and the ODE share a denominator.</p>
+    <p class="body">When it runs on the <strong>global</strong> infected fraction instead of local neighbours (the well-mixed limit), the CA ensemble matches the exact discrete recursion and the continuous ODE to about <strong>2% of peak</strong> (RMSE), with essentially the same final attack rate, at R₀ ≈ 15. The ordinary <strong>local</strong> (spatial) CA behaves differently: its peak is roughly <strong>3.5× lower and about 50 steps later</strong>. That gap is the effect of spatial structure and local susceptible depletion. It is the whole point of using a cellular automaton, not a sign the model is wrong. Both curves use the same 2,304-cell interior, so the CA and the ODE share a denominator.</p>
 
     <h2>Key findings</h2>
     <hr class="rule" />
     <ul class="family">
-      <li><span class="lvl">Density gradient</span><span class="txt"><strong>Lower, earlier peak</strong> on the heterogeneous grid than a uniform one — the sparse outskirts act as a natural brake on transmission.</span></li>
+      <li><span class="lvl">Density gradient</span><span class="txt">A <strong>lower, earlier peak</strong> on the mixed-density grid than on a uniform one. The sparse outskirts act as a brake on transmission.</span></li>
       <li><span class="lvl">Wave</span><span class="txt">Infection spreads outward in a <strong>measurable wave</strong>: the dense centre peaks first and highest, the middle ring follows, the outskirts last.</span></li>
       <li><span class="lvl">Targeted lockdown</span><span class="txt">Locking down only the 289-cell centre (<strong>12% of the grid</strong>) gives suppression comparable to a whole-grid lockdown, at a fraction of the cost.</span></li>
       <li><span class="lvl">Targeted vaccination</span><span class="txt">200 doses concentrated in the centre <strong>dramatically outperform</strong> the same 200 spread uniformly.</span></li>
@@ -121,7 +121,7 @@
 
     <h2>How it is built</h2>
     <hr class="rule" />
-    <p class="body">The per-cell Python loops of the original group code were replaced with a single <code style="font-family:var(--mono)">scipy.signal.convolve2d</code> for Moore-neighbour counting and NumPy boolean masking for the transitions — about <strong>40× faster</strong> per run. Every scenario is regenerated from fixed seeds, and a regression test asserts the published curves stay <strong>bit-identical</strong>; a headless test checks the dashboard loads; both run in CI across Python 3.10–3.12. An interactive Streamlit dashboard drives the model live.</p>
+    <p class="body">The per-cell Python loops in the original group code were replaced with a single <code style="font-family:var(--mono)">scipy.signal.convolve2d</code> for Moore-neighbour counting and NumPy boolean masking for the transitions. That is about <strong>40× faster</strong> per run. Every scenario is regenerated from fixed seeds, and a regression test checks the published curves stay <strong>bit-identical</strong>. A headless test checks the dashboard loads. Both run in CI on Python 3.10 to 3.12. A Streamlit dashboard runs the model live.</p>
     <ul class="chips">
       <li>Python</li>
       <li>NumPy</li>
@@ -135,7 +135,7 @@
     <hr class="rule" />
     <p class="body"><a href="https://epidemiccellularautomata-bhc8wjiiughpqeuljwgzew.streamlit.app" target="_blank" rel="noopener">Live dashboard</a> · <a href="https://github.com/ethanbuckley/EpidemicCellularAutomata" target="_blank" rel="noopener">Source on GitHub</a></p>
 
-    <p class="foot"><b>Rigour &amp; status.</b> An educational project — a simplified academic model, not public-health advice. It was extended individually from a UCL group computing project: the original simulation code is preserved unmodified and the team is credited, and the headline scenario findings are the group's. The analytical ODE validation, the vectorised core, the reproducible and CI-tested pipeline, and the dashboard are the individual extension. Parameters are illustrative, from a single synthetic setup.</p>
+    <p class="foot"><b>Rigour &amp; status.</b> An educational project: a simplified academic model, not public-health advice. It grew out of a UCL group computing project. The original simulation code is kept unmodified and the team is credited, and the headline scenario findings are theirs. The ODE validation, the vectorised core, the tested pipeline and the dashboard are my own additions. Parameters are illustrative, from one synthetic setup.</p>
   </article>
 </div>
 </body>
