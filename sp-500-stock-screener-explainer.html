@@ -85,43 +85,43 @@
 <div class="page">
   <article class="sheet">
     <p class="eyebrow">Technical note · Independent project</p>
-    <h1>An ML + NLP stock screener — how it is built, and how it is validated</h1>
-    <p class="lede">A two-stage pipeline that ranks long and short candidates across the S&amp;P 500: an XGBoost classifier trained on triple-barrier labels does the heavy lifting, and FinBERT scores live news sentiment on the shortlist. Built as an independent quantitative-finance project — and, as importantly, honest about what a backtest like this does and doesn't prove.</p>
-    <p class="meta">XGBoost + FinBERT · ~1.3M daily observations · triple-barrier labels · walk-forward validation · <b>Educational project — not investment advice</b></p>
+    <h1>A stock screener built with ML and NLP, and how I tested it</h1>
+    <p class="lede">A two-stage pipeline that ranks long and short candidates across the S&amp;P 500. An XGBoost classifier trained on triple-barrier labels does the main ranking, and FinBERT scores live news sentiment on the shortlist. I built it on my own, and I've tried to be clear about what a backtest like this can and can't prove.</p>
+    <p class="meta">XGBoost + FinBERT · ~1.3M daily observations · triple-barrier labels · walk-forward: top-15 ~48% vs 29% base · <b>Educational project, not investment advice</b></p>
 
     <h2>The pipeline</h2>
     <hr class="rule" />
     <p class="body">S&amp;P 500 tickers are pulled from Wikipedia, priced with <code style="font-family:var(--mono)">yfinance</code>, and turned into technical + macro features. A single gradient-boosting model scores every stock; the strongest longs and shorts are then passed to a financial-language model for a sentiment cross-check. The output is a ranked leaderboard written to <code style="font-family:var(--mono)">latest_signals.csv</code> and served through a Streamlit dashboard.</p>
 
-    <h2>Stage 1 — the XGBoost classifier</h2>
+    <h2>Stage 1: the XGBoost classifier</h2>
     <hr class="rule" />
     <div class="model">
       <dl>
-        <div class="eq">target: <span class="k">triple-barrier label</span> — 1 if <span class="cause">+4% take-profit</span> is hit before <span class="cause">−4% stop-loss</span> within 5 trading days <span class="c">// not a raw forward return</span></div>
+        <div class="eq">target: <span class="k">triple-barrier label</span> = 1 if <span class="cause">+4% take-profit</span> is hit before <span class="cause">−4% stop-loss</span> within 5 trading days <span class="c">// not a raw forward return</span></div>
         <div class="eq">features (5 groups): momentum (RSI, MACD, lagged returns) · volatility (Bollinger, ATR) · volume (surge, VWAP dev.) · macro (SPY, QQQ, SMH, VIX, 10Y) · relative performance</div>
         <div class="eq">one model across <span class="k">all tickers</span>, not one per stock <span class="c">// learns market-wide patterns, not per-ticker history</span></div>
         <div class="eq">regularised: <span class="k">max_depth 5 · subsample 0.8 · colsample_bytree 0.8</span></div>
         <div class="eq">output: P(hit +4% before −4%) → rank → top 15 longs · bottom 5 shorts</div>
       </dl>
-      <p class="eqnote">The <strong>triple-barrier</strong> target is the important design choice: instead of asking "did the price go up in 5 days", it asks "would a trade with a +4% target and a −4% stop have closed green" — which reflects how a risk-managed position actually resolves. The label is computed only from <em>future</em> highs and lows, with no lookahead into the model's own predictions.</p>
+      <p class="eqnote">The <strong>triple-barrier</strong> target is the key design choice. Instead of asking "did the price go up in 5 days", it asks "would a trade with a +4% target and a −4% stop have closed green". That reflects how a risk-managed position actually resolves. The label is computed only from <em>future</em> highs and lows, with no lookahead into the model's own predictions.</p>
     </div>
 
-    <h2>Stage 2 — FinBERT sentiment</h2>
+    <h2>Stage 2: FinBERT sentiment</h2>
     <hr class="rule" />
-    <p class="body">The top 15 and bottom 5 candidates by model confidence are passed to <strong>FinBERT</strong> (<code style="font-family:var(--mono)">ProsusAI/finbert</code>), a BERT model fine-tuned on financial news, analyst reports and earnings calls. Live headlines for each name are fetched and scored, and the final leaderboard combines the two signals — a bullish call wants <strong>high model confidence <em>and</em> positive news sentiment</strong>, not either alone.</p>
+    <p class="body">The top 15 and bottom 5 candidates by model confidence are passed to <strong>FinBERT</strong> (<code style="font-family:var(--mono)">ProsusAI/finbert</code>), a BERT model fine-tuned on financial news, analyst reports and earnings calls. Live headlines for each name are fetched and scored, and the final leaderboard combines the two signals. A bullish call needs <strong>high model confidence <em>and</em> positive news sentiment</strong>, not either on its own.</p>
 
-    <h2>Validation — and what it does not show</h2>
+    <h2>Validation, and what it doesn't show</h2>
     <hr class="rule" />
     <ul class="family">
       <li><span class="lvl">No lookahead</span><span class="txt">The triple-barrier label uses only future highs/lows; the dashboard adds <strong>expanding-window walk-forward</strong> testing so the model is always scored on data after its training window.</span></li>
       <li><span class="lvl">Overfit guards</span><span class="txt">Regularisation (shallow trees, row/column subsampling) and a single market-wide model rather than per-ticker fits.</span></li>
-      <li class="assoc"><span class="lvl">Survivorship</span><span class="txt">Training uses <strong>current</strong> S&amp;P 500 constituents, so delisted/removed names are absent — this flatters historical performance.</span></li>
+      <li class="assoc"><span class="lvl">Survivorship</span><span class="txt">Training uses <strong>current</strong> S&amp;P 500 constituents, so delisted or removed names are absent. That flatters the historical performance.</span></li>
       <li class="assoc"><span class="lvl">Frictions</span><span class="txt">No transaction costs, slippage or borrow fees; sentiment is headline-level only. So this is a <strong>screener and research tool, not a live-traded strategy</strong>.</span></li>
     </ul>
 
     <h2>Dashboard &amp; build</h2>
     <hr class="rule" />
-    <p class="body">The Streamlit dashboard exposes the leaderboard, the walk-forward validation, and a Monte-Carlo portfolio-risk simulator (VaR / CVaR) over a chosen basket. The screener's latest signals are also surfaced — read-only — inside my personal dashboard, purely as information.</p>
+    <p class="body">The Streamlit dashboard shows the leaderboard, the walk-forward validation, and a Monte-Carlo portfolio-risk simulator (VaR / CVaR) over a chosen basket. The screener's latest signals also show up, read-only, inside my personal dashboard, purely as information.</p>
     <ul class="chips">
       <li>Python</li>
       <li>XGBoost</li>
@@ -135,7 +135,7 @@
     <hr class="rule" />
     <p class="body"><a href="https://stockmarkets-p-cngwhp4eigfgpq5xphgwng.streamlit.app" target="_blank" rel="noopener">Live dashboard</a> · <a href="https://github.com/ethanbuckley/stockmarketS-P" target="_blank" rel="noopener">Source on GitHub</a></p>
 
-    <p class="foot"><b>Rigour &amp; status.</b> An educational project applying quantitative-finance techniques — <strong>not investment advice and not a live-traded system</strong>. Results come from a single backtest with the survivorship and transaction-cost caveats above, so they should be read as evidence the pipeline is sound, not as a claim of realised returns. Predicted probabilities are just that: probabilities, with all the uncertainty that implies.</p>
+    <p class="foot"><b>Rigour &amp; status.</b> An educational project applying quantitative-finance techniques. It is <strong>not investment advice and not a live-traded system</strong>. The results come from a single backtest, with the survivorship and transaction-cost caveats above, so they show the pipeline works rather than any realised return. The outputs are predicted probabilities, not guarantees.</p>
   </article>
 </div>
 </body>
