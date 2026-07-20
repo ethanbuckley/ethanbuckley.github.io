@@ -98,13 +98,13 @@
 
     <h2>The estimation problem</h2>
     <hr class="rule" />
-    <p class="body">The data are bounded word counts (0–800) pooled from eleven studies, sparse and repeated on the same children. Three features drive the design: counts are <strong>over-dispersed</strong> (more between-child spread than a Binomial allows); <strong>studies differ</strong> in composition and instrument; and <strong>speaking is conditional on understanding</strong>. Every quantity is estimated as a posterior distribution, so results carry explicit uncertainty rather than a single point.</p>
+    <p class="body">The data are bounded word counts (0–810) pooled from eleven studies, sparse and repeated on the same children. Three features drive the design: counts are <strong>over-dispersed</strong> (more between-child spread than a Binomial allows); <strong>studies differ</strong> in composition and instrument; and <strong>speaking is conditional on understanding</strong>. Every quantity is estimated as a posterior distribution, so results carry explicit uncertainty rather than a single point.</p>
 
     <h2>Core model</h2>
     <hr class="rule" />
     <div class="model">
       <dl>
-        <div class="eq"><span class="k">y<sub>i</sub></span> ~ BetaBinomial(N = 800, &nbsp;mean = p<sub>i</sub>, &nbsp;concentration = κ(a<sub>i</sub>)) <span class="c">&nbsp; // over-dispersed counts, age-varying dispersion</span></div>
+        <div class="eq"><span class="k">y<sub>i</sub></span> ~ BetaBinomial(N = 810, &nbsp;mean = p<sub>i</sub>, &nbsp;concentration = κ(a<sub>i</sub>)) <span class="c">&nbsp; // over-dispersed counts, age-varying dispersion</span></div>
         <div class="eq">p<sub>U</sub>(a) = σ(f<sub>U</sub>(a)) <span class="c">&nbsp; // words understood</span></div>
         <div class="eq"><span class="k">q(a)</span> = σ(h(a)) = P(speak | understand) <span class="c">&nbsp; // production ratio</span></div>
         <div class="eq">p<sub>S</sub>(a) = p<sub>U</sub>(a) · q(a) <span class="c">&nbsp; ⟹ &nbsp;p<sub>S</sub> ≤ p<sub>U</sub> by construction</span></div>
