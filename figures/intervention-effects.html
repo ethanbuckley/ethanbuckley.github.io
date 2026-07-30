@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>The intervention lifted reading, not broad vocabulary</title>
+<!--
+  Source for assets/reading-intervention-effects.png (and its -1600 derivatives).
+  Canvas is 1600 x 1000 CSS px; render at 2x via figures/render.sh to get the 3200 x 2000 master.
+  The forest plot is embedded from figures/panels/intervention-effects-panel.png; do not redraw
+  or re-label it (it carries its own group labels, skill names and x-axis).
+-->
+<style>
+  :root{
+    --ground:#f4f6f7; --paper:#ffffff; --ink:#17242c; --ink-soft:#52606a;
+    --accent:#0f766e; --accent-2:#b45309; --line:#e2e7ea; --tint:#eef4f3;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{margin:0;background:var(--paper)}
+  #fig{width:1600px;height:1000px;overflow:hidden;background:var(--paper);color:var(--ink);
+       font-family:var(--sans);display:flex;flex-direction:column;padding:52px 64px 0}
+  header{border-bottom:1px solid var(--line);padding-bottom:26px}
+  .eyebrow{font-family:var(--mono);font-size:17px;font-weight:600;letter-spacing:.14em;
+           text-transform:uppercase;color:var(--accent)}
+  h1{font-family:var(--serif);font-size:52px;font-weight:700;line-height:1.06;
+     letter-spacing:-.008em;margin-top:14px;color:var(--ink)}
+  .standfirst{font-size:24px;line-height:1.45;color:var(--ink-soft);margin-top:12px}
+  main{flex:1;min-height:0;display:flex;align-items:center;gap:60px;padding:12px 0}
+  .panel{flex:0 0 auto}
+  .panel img{display:block;width:890px;height:415px}
+  aside{flex:1;display:flex;flex-direction:column;gap:32px}
+  aside p{font-size:22.5px;line-height:1.55}
+  .teal{color:var(--accent);font-weight:700}
+  .note{border-left:4px solid var(--accent-2);padding-left:20px;font-size:21px;line-height:1.5}
+  .legend{display:flex;align-items:baseline;gap:13px;font-size:18px;line-height:1.45;color:var(--ink-soft)}
+  .legend .dot{flex:0 0 auto;width:12px;height:12px;border-radius:50%;background:var(--accent);
+               position:relative;top:1px}
+  footer{border-top:1px solid var(--line);margin-top:auto;padding:19px 0 24px;
+         font-family:var(--mono);font-size:13.3px;color:var(--ink-soft);white-space:nowrap}
+</style>
+</head>
+<body>
+<div id="fig">
+  <header>
+    <div class="eyebrow">Down Syndrome Education International &middot; Reading &amp; Language (RLI) Study</div>
+    <h1>The intervention lifted reading, not broad vocabulary</h1>
+    <p class="standfirst">The randomised effect of the teaching on each skill. Clear of the zero line means a credible benefit.</p>
+  </header>
+  <main>
+    <figure class="panel">
+      <img src="panels/intervention-effects-panel.png" width="890" height="415" alt="">
+    </figure>
+    <aside>
+      <p>Each bar is the intervention&rsquo;s effect on one skill, with its <span class="teal">95% credible interval</span>. Children were randomised, so these read as cause, not correlation.</p>
+      <p>The gains cluster on the skills taught most directly: letter-sounds, blending and word reading. Broad, untaught vocabulary barely moved.</p>
+      <p class="note"><strong>Learning transfers near what&rsquo;s taught, not far.</strong> The effect fades with distance from instruction. This is the transfer gradient.</p>
+      <div class="legend"><span class="dot"></span><span>A bar clear of the dashed zero line is a credibly non-zero effect.</span></div>
+    </aside>
+  </main>
+  <footer>Intention-to-treat effects (log-odds) from the randomised phase of the RLI trial &middot; Down syndrome, n = 54 &middot; single-outcome Bayesian models &middot; preliminary, integrated report in progress</footer>
+</div>
+</body>
+</html>
