@@ -358,6 +358,7 @@
       <a href="#about">About</a>
       <a href="#approach">Approach</a>
       <a href="#research">Research</a>
+      <a href="#engineering">Engineering</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
       <a class="ext" href="https://github.com/ethanbuckley" rel="me">GitHub ↗</a>
@@ -469,6 +470,7 @@
         <li><b>Gradient boosting &amp; NLP</b><span>XGBoost and LightGBM with grouped cross-validation and SHAP; FinBERT for financial-news sentiment.</span></li>
         <li><b>Scientific computing &amp; simulation</b><span>Vectorised simulations, like a spatial epidemic cellular automaton, validated against their analytical limits; ~40× speedups.</span></li>
         <li><b>Model checking &amp; comparison</b><span>Prior and posterior predictive checks; PSIS-LOO and leave-one-study-out cross-validation.</span></li>
+        <li><b>Generative-model evaluation</b><span>Blind A/B comparison with Bradley–Terry ranking and bootstrap intervals; specification-driven prompting.</span></li>
         <li><b>Data engineering</b><span>Eleven studies harmonised in a DuckDB view, with validation and ceiling guards.</span></li>
         <li><b>Reproducible pipelines</b><span>Raw data → posteriors → figures → report, reproducible at three sampling tiers and tested in CI.</span></li>
       </ul>
@@ -606,11 +608,59 @@
     </div>
   </section>
 
+  <!-- ================= engineering ================= -->
+  <section class="band paper" id="engineering">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">04 · Engineering</p>
+        <h2>Tooling for teaching materials</h2>
+        <hr class="rule">
+        <p class="lede">Two production systems I built at DSE to generate teaching materials, run as evaluation harnesses first: the point was to decide which model and which settings to trust, with evidence, before spending at scale.</p>
+      </div>
+
+      <div class="proj-grid">
+        <article class="proj">
+          <p class="proj-kicker">Down Syndrome Education International · production system</p>
+          <h3>Teaching-image pipeline</h3>
+          <p class="proj-desc">A pipeline producing photographic teaching images for a 500-word early-vocabulary programme, three complexity levels per word. Children with Down syndrome commonly have reduced contrast sensitivity, so the specification picks each background against its subject: the object keeps its true colour and the background moves, which is what stops a white bath dissolving into the backdrop. A wrong image gets a glossary fix; a wrong class of images gets a master-prompt rule that also governs the words not yet generated. A batch-inference integration halved the unit cost, and reruns are idempotent by request hash.</p>
+          <p class="proj-note">~600 images generated · in production · quality review barely started: no claim is made about image quality</p>
+          <ul class="proj-tags">
+            <li>Python</li>
+            <li>CLI</li>
+            <li>YAML</li>
+            <li>batch inference</li>
+            <li>idempotent reruns</li>
+          </ul>
+          <p class="doc-links">
+            <a class="doclink" href="asset-generation-explainer.html">Technical note <span class="k">html</span></a>
+          </p>
+        </article>
+
+        <article class="proj">
+          <p class="proj-kicker">Down Syndrome Education International · production system</p>
+          <h3>Spoken-word audio pipeline</h3>
+          <p class="proj-desc">A pipeline that produced 4,307 spoken clips of words and sentences across 10 English accents. The voices were chosen in a blind A/B listening arena over four commercial text-to-speech providers, ranked by Bradley–Terry with bootstrap confidence intervals. The scorer reports 90% intervals, the probability each configuration ranks first, and which configurations are statistically indistinguishable from the leader, so a thin ranking reads as thin. One methodology bug was found and fixed: tie-credit, which had been inventing leaders out of dead heats.</p>
+          <p class="proj-note">Blind A/B arena · 90% bootstrap intervals · many short-phrase comparisons tie, so the middle of the ranking stays unresolved</p>
+          <ul class="proj-tags">
+            <li>Python</li>
+            <li>CLI</li>
+            <li>blind A/B arena</li>
+            <li>Bradley–Terry</li>
+            <li>bootstrap intervals</li>
+          </ul>
+          <p class="doc-links">
+            <a class="doclink" href="asset-generation-explainer.html">Technical note <span class="k">html</span></a>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= selected projects ================= -->
   <section class="band projects" id="projects">
     <div class="wrap">
       <div class="sec-head">
-        <p class="eyebrow">04 · Selected projects</p>
+        <p class="eyebrow">05 · Selected projects</p>
         <h2>Selected projects</h2>
         <hr class="rule">
         <p class="lede">Independent projects I've built and validated end to end.</p>
@@ -691,7 +741,7 @@
   <section class="band" id="contact">
     <div class="wrap">
       <div class="sec-head">
-        <p class="eyebrow">05 · Contact</p>
+        <p class="eyebrow">06 · Contact</p>
         <h2>Get in touch</h2>
         <hr class="rule">
         <p class="lede">I'm looking for internships in data science, machine learning and quantitative research. If you have something you think I'd fit, get in touch.</p>
