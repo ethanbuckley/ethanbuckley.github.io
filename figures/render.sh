@@ -70,4 +70,26 @@ print(f"    {base}-1600.webp / -1600.png written")
 PY
 done
 
-echo "Done. Rendered ${#FIGURES[@]} figures into $ASSETS_DIR"
+# The Open Graph card is a different shape from the four plates: 1200 x 630 CSS px,
+# the 1.91:1 ratio Facebook, LinkedIn and Slack all crop to. It gets no -1600
+# derivatives because nothing on the site loads it; only link unfurlers fetch it.
+echo "==> asset-generation-og.html -> asset-generation-og (1200x630 Open Graph card)"
+OG_MASTER="$ASSETS_DIR/asset-generation-og.png"
+"$CHROME" --headless --disable-gpu \
+  --hide-scrollbars --force-device-scale-factor=2 --window-size=1200,630 \
+  --blink-settings=preferredColorScheme=1 \
+  --screenshot="$OG_MASTER" "file://$SCRIPT_DIR/asset-generation-og.html"
+
+"$PYTHON" - "$OG_MASTER" <<'PY'
+import sys
+from PIL import Image
+
+p = sys.argv[1]
+im = Image.open(p).convert("RGB")
+if im.size != (2400, 1260):
+    raise SystemExit(f"error: {p} is {im.size}, expected (2400, 1260)")
+im.resize((1200, 630), Image.LANCZOS).save(p, optimize=True)
+print("    asset-generation-og.png written at 1200x630")
+PY
+
+echo "Done. Rendered ${#FIGURES[@]} figures plus the Open Graph card into $ASSETS_DIR"

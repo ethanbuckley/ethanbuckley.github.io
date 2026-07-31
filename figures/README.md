@@ -15,8 +15,11 @@ The four "showcase" research figures on the site (`assets/vocab-production-ratio
 | `vocab-method.html`         | `assets/vocab-method.*`                |
 | `intervention-effects.html` | `assets/reading-intervention-effects.*`|
 | `causal-design.html`        | `assets/reading-causal-design.*`       |
+| `asset-generation-og.html`  | `assets/asset-generation-og.png`       |
 
-Each HTML file is a fixed 1600 x 1000 CSS px canvas. Rendering at a device scale factor of 2 produces the 3200 x 2000 PNG master that `index.html` links to; the script then emits the two 1600px-wide derivatives the page actually loads (`<name>-1600.webp` and a palettised `<name>-1600.png` fallback).
+`asset-generation-og.html` is the odd one out: a **1200 x 630** canvas, the 1.91:1 ratio link unfurlers crop to, rendered at 2x and downscaled back to 1200 x 630 with no `-1600` derivatives, because nothing on the site loads it. It is the `og:image` for `asset-generation-explainer.html`, which means it is the thumbnail on the LinkedIn Featured card and in any Slack or Facebook unfurl of that page. It embeds the **same four-layer schematic SVG** as `asset-generation-explainer.html`; the two are copies, so change both together. **LinkedIn caches Featured thumbnails when the link is added**, so re-rendering this file does not update an existing card: the link has to be removed and re-added, which also resets that card's title and description.
+
+The other four HTML files are a fixed 1600 x 1000 CSS px canvas. Rendering at a device scale factor of 2 produces the 3200 x 2000 PNG master that `index.html` links to; the script then emits the two 1600px-wide derivatives the page actually loads (`<name>-1600.webp` and a palettised `<name>-1600.png` fallback).
 
 `panels/` holds the two real plot panels (`production-ratio-panel.png`, `intervention-effects-panel.png`), extracted from the original masters. They are model output, embedded as `<img>`; do not try to redraw them in CSS. If the models are re-fitted, replace these PNGs and re-render.
 
