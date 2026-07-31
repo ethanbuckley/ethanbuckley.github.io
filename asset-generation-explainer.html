@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>html,body{margin:0;padding:0;}</style>
-<title>Generating teaching materials with AI: Method &amp; Evaluation</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Generating teaching materials with AI: method and evaluation · Ethan Buckley</title>
 <meta name="description" content="How an accessibility requirement became a written specification for AI-generated teaching assets, how the models were chosen by blind comparison, and what has not been verified.">
 <link rel="canonical" href="https://ethanbuckley.github.io/asset-generation-explainer.html">
 <meta property="og:type" content="article">
@@ -53,6 +54,7 @@
 
   a { color: var(--accent); text-underline-offset: 2px; }
   a:hover { color: var(--accent-dark); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
 
   .back { display: inline-block; font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em;
     text-transform: uppercase; color: var(--ink-soft); text-decoration: none; margin: 0 0 18px; }
@@ -138,7 +140,7 @@
     <h2>The accessibility requirement</h2>
     <hr class="rule" />
     <p class="body">Children with Down syndrome commonly have reduced contrast sensitivity and lower visual acuity, so figure/ground separation decides whether an image teaches anything. The style presets therefore pick the background <em>against</em> the subject: off-white behind mid-toned or dark subjects, and a definite mid-grey whenever anything named in the picture is white, cream or pale. The object keeps its true colour; the background moves. That rule is what stops a white bath or a white nappy dissolving into the backdrop.</p>
-    <p class="body">Related rules were earned from real failures. The object has to be the prototype a teacher would hold up: a panelled ball, not a red sphere, because the seams carry the curvature independently of shading, and shading is the first cue lost to reduced contrast sensitivity. Where a child's own version of a thing exists, the image shows it: a velcro shoe, not a men's brogue. And tense has to be visible, since "eat", "eating" and "ate" are drawn identically unless the past form is described by its aftermath.</p>
+    <p class="body">Related rules were earned from real failures. The object has to be the prototype a teacher would hold up: a panelled ball, not a red sphere, because the seams carry the curvature independently of shading, and shading is the first cue lost to reduced contrast sensitivity. Where a child’s own version of a thing exists, the image shows it: a velcro shoe, not a men’s brogue. And tense has to be visible, since "eat", "eating" and "ate" are drawn identically unless the past form is described by its aftermath.</p>
 
     <h2>Four layers of specification</h2>
     <hr class="rule" />
@@ -194,17 +196,17 @@
 
     <h2>Failure modes worth knowing</h2>
     <hr class="rule" />
-    <p class="body"><strong>Safety classifiers refuse legitimate children's material.</strong> An affectionate parent-and-child image was refused at the output stage; a near-identical one passed. The difference was wording: the refused brief described the physical contact, which reads to a classifier the way it reads on the page. Rewritten toward the relationship and the setting, it passed first time. Close crops of bare feet are the same class of problem, refused as a category whatever the intent; the fix is to pull the camera back. The refusal rate is about 2%.</p>
-    <p class="body"><strong>The drafting model degrades on long lists.</strong> On a single 100-item call it echoed its own classification into the word field for 87 of them. Nothing downstream noticed, because only the ID was validated. And since filenames derive from the word, dozens of images would have written to the same handful of paths and silently overwritten each other after being paid for. Fixed by chunking, and by never trusting the model's echo of an input the pipeline already knows.</p>
+    <p class="body"><strong>Safety classifiers refuse legitimate children’s material.</strong> An affectionate parent-and-child image was refused at the output stage; a near-identical one passed. The difference was wording: the refused brief described the physical contact, which reads to a classifier the way it reads on the page. Rewritten toward the relationship and the setting, it passed first time. Close crops of bare feet are the same class of problem, refused as a category whatever the intent; the fix is to pull the camera back. The refusal rate is about 2%.</p>
+    <p class="body"><strong>The drafting model degrades on long lists.</strong> On a single 100-item call it echoed its own classification into the word field for 87 of them. Nothing downstream noticed, because only the ID was validated. And since filenames derive from the word, dozens of images would have written to the same handful of paths and silently overwritten each other after being paid for. Fixed by chunking, and by never trusting the model’s echo of an input the pipeline already knows.</p>
     <p class="body"><strong>Retrieval does not scale the way generation does.</strong> An 828-image batch produces a 3.46&nbsp;GB results file with the images base64-embedded and no per-image URL, which the CDN repeatedly failed to serve. Submitting in roughly 250-image chunks gives the same price and speed with far less retrieval risk.</p>
     <p class="body"><strong>Cancelling a batch preserves the results already completed.</strong> The provider docs do not say either way, so it was measured: a ten-image submission, cancelled with nine complete, and all nine were collected. That later let a stalled 828-image batch be cut loose without losing the finished work.</p>
 
-    <h2>What isn't done</h2>
+    <h2>What isn’t done</h2>
     <hr class="rule" />
     <ul class="family">
       <li class="assoc"><span class="lvl">Quality review</span><span class="txt">Barely started. About a dozen images have been looked at individually, and the automated vision verifier has run on <strong>none</strong> of them. No claim is made about image quality.</span></li>
-      <li class="assoc"><span class="lvl">Known defects</span><span class="txt">Two real ones found in that handful: unnamed props drift pale, a leak from the contrast rule; and transparent subjects such as a glass of water take the background's tone and disappear.</span></li>
-      <li class="assoc"><span class="lvl">Contrast metric</span><span class="txt">The repo's own contrast metric is not trustworthy: two of its three numbers are artefacts, documented in the module. It reported a large failure count on a batch where the true number was unknown and far smaller.</span></li>
+      <li class="assoc"><span class="lvl">Known defects</span><span class="txt">Two real ones found in that handful: unnamed props drift pale, a leak from the contrast rule; and transparent subjects such as a glass of water take the background’s tone and disappear.</span></li>
+      <li class="assoc"><span class="lvl">Contrast metric</span><span class="txt">The repo’s own contrast metric is not trustworthy: two of its three numbers are artefacts, documented in the module. It reported a large failure count on a batch where the true number was unknown and far smaller.</span></li>
       <li class="assoc"><span class="lvl">Coverage</span><span class="txt">The image set is still <strong>in production</strong>, not finished.</span></li>
     </ul>
 

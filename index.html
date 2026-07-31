@@ -309,6 +309,7 @@
   .howto {
     background: var(--tint); border-left: 3px solid var(--accent);
     padding: 22px 26px; margin-top: clamp(44px, 6vw, 64px);
+    max-width: calc(var(--measure) + 29px);
   }
   .howto h3 {
     font-family: var(--serif); font-size: var(--step-2); letter-spacing: .12em;
@@ -339,10 +340,9 @@
     border: 1px solid var(--line); border-radius: 4px; background: var(--paper);
   }
   /* The SVG's labels are user-unit attributes, so its effective type size is
-     attr x rendered / viewBox. Capping at 352px (320 x 11/10) lands its 10px
-     labels on the 11px floor; 440px would push them to 13.8px, above the
-     figcaption beneath them. */
-  .proj-fig svg { width: 100%; max-width: min(352px, 100%); height: auto; display: block; }
+     attr x rendered / viewBox. At 440px the scale is 1.375, so the 8px label
+     attributes land on the 11px --step-1 floor and both project figures match. */
+  .proj-fig svg { width: 100%; max-width: min(440px, 100%); height: auto; display: block; }
   .proj-fig figcaption {
     font-family: var(--mono); font-size: var(--step-1); letter-spacing: 0;
     color: var(--ink-soft); margin-top: 7px; line-height: 1.6; max-width: min(440px, 100%);
@@ -418,6 +418,8 @@
 
     .study-detail { align-items: start; }
     .study-main { grid-column: 1 / 8; }
+    .study-aside { grid-column: 8 / 13; min-width: 0; }
+    .study-aside .doc-links { flex-direction: column; gap: 10px 0; }
     .fig-side { grid-column: 1 / -1; grid-row: 2; max-width: 860px; margin-top: clamp(28px, 4vw, 40px); }
 
     .proj-grid { row-gap: 56px; }
@@ -488,13 +490,13 @@
   <section class="hero" id="top" aria-labelledby="top-h">
     <div class="wrap">
       <div class="hero-copy">
-        <p class="eyebrow">Data science &amp; research portfolio</p>
         <h1 id="top-h">Ethan Buckley</h1>
-        <p class="tagline">Bayesian modelling, machine&nbsp;learning and scientific&nbsp;computing.</p>
-        <p class="lede">I’m a physics student at UCL. At Down Syndrome Education International I build the Bayesian models behind two studies of how children with Down syndrome learn to understand and say words. On my own I’ve built a machine-learning stock screener and an epidemic simulator.</p>
+        <p class="tagline">Bayesian models for language research, and the code that runs them.</p>
+        <p class="lede">At Down Syndrome Education International I build the models behind two studies of how children with Down syndrome learn to understand and say words. On my own I’ve built a machine-learning stock screener and an epidemic simulator.</p>
         <ul class="hero-meta">
-          <li>MSci Natural Sciences (Physics) · UCL</li>
-          <li>Data Science &amp; Research Intern · DSE</li>
+          <li>MSci Natural Sciences (Physics) · UCL · graduating 2028</li>
+          <li>Data Science &amp; Research Intern · DSE · since June 2026</li>
+          <li>London, UK</li>
           <li><a href="https://github.com/ethanbuckley">github.com/ethanbuckley</a></li>
         </ul>
         <p class="hero-cta">
@@ -517,9 +519,11 @@
           <path d="M20,358 C240,352 328,246 540,142 L540,198 C332,282 240,368 20,370 Z" style="fill:var(--accent-2);fill-opacity:.09"/>
           <path d="M20,364 C240,358 330,264 540,170" fill="none" style="stroke:var(--accent-2)" stroke-width="2.5"/>
           <!-- observations -->
-          <g style="fill:var(--ink-soft)" opacity="0.5">
+          <g style="fill:var(--accent)" opacity="0.55">
             <circle cx="88" cy="324" r="3"/><circle cx="152" cy="299" r="3"/><circle cx="206" cy="212" r="3"/>
             <circle cx="262" cy="138" r="3"/><circle cx="330" cy="103" r="3"/><circle cx="422" cy="76" r="3"/>
+          </g>
+          <g style="fill:var(--accent-2)" opacity="0.55">
             <circle cx="120" cy="362" r="3"/><circle cx="214" cy="352" r="3"/><circle cx="298" cy="308" r="3"/>
             <circle cx="388" cy="242" r="3"/><circle cx="478" cy="196" r="3"/>
           </g>
@@ -528,7 +532,7 @@
           <text x="540" y="126" text-anchor="end" font-size="14" style="fill:var(--accent-2);font-family: ui-monospace, 'SF Mono', Menlo, monospace; letter-spacing: .08em;">WORDS SPOKEN</text>
           <text x="20" y="394" font-size="13" style="fill:var(--ink-soft);font-family: ui-monospace, 'SF Mono', Menlo, monospace; letter-spacing: .08em;">AGE →</text>
         </svg>
-        <p class="note">Posterior curves with credible bands.</p>
+        <p class="note">Schematic &middot; growth curves with credible bands.</p>
       </div>
     </div>
   </section>
@@ -554,15 +558,15 @@
         <p class="eyebrow">01 · Research</p>
         <h2 id="research-h">Two studies of language development</h2>
         <hr class="rule">
-        <p class="lede">Both studies are Bayesian, and both are still preliminary; the estimates will tighten as the models are finished. Each one has a plain-language explainer and a more technical write-up.</p>
+        <p class="lede">Both studies are Bayesian, and both are still being finished. Each one has a plain-language explainer and a more technical write-up.</p>
       </div>
 
       <!-- ---- study 1 ---- -->
       <article class="study">
         <p class="study-eyebrow">Study 01 · Vocabulary growth</p>
         <h3>How children with Down&nbsp;syndrome build vocabulary</h3>
-        <p class="study-desc">A pooled Bayesian study of the words children understand, say and sign. It draws on parent-report checklists from eleven international studies, put onto a common scale. Each growth curve is estimated as a full distribution, so it carries a credible range rather than being a single line.</p>
-        <p class="study-meta">11 international studies &nbsp;·&nbsp; 576 children &nbsp;·&nbsp; ages 8 months – 9½ years &nbsp;·&nbsp; <b>Preliminary findings</b></p>
+        <p class="study-desc">A pooled Bayesian study of the words children understand, say and sign. It draws on parent-report checklists from eleven international studies, put onto a common scale.</p>
+        <p class="study-meta">11 international studies&nbsp;&nbsp;·&nbsp; 576 children&nbsp;&nbsp;·&nbsp; ages 8 months – 9½ years&nbsp;&nbsp;·&nbsp; <b>Preliminary findings</b></p>
 
         <figure class="fig fig-primary">
           <a class="figlink" href="assets/vocab-production-ratio.png" target="_blank" rel="noopener">
@@ -571,7 +575,7 @@
               <img src="assets/vocab-production-ratio-1600.png" width="1600" height="1000" alt="Chart: the production ratio, the share of understood words a child with Down syndrome also says, rising steeply with age to about 86 per cent by seven and a half years, shown with 50, 75 and 90 per cent credible bands.">
             </picture>
           </a>
-          <figcaption>The production ratio across age. Posterior median with 50/75/90% credible bands.</figcaption>
+          <figcaption>The production ratio across age. Posterior median with 50/75/90% credible bands. <a href="assets/vocab-production-ratio.png" target="_blank" rel="noopener">Open full size</a></figcaption>
         </figure>
 
         <div class="study-detail">
@@ -593,7 +597,9 @@
                 <p>Counting signed words credits children with expressive vocabulary they already have, and narrows the early gap somewhat. It’s real help while speech catches up, though the spoken-word gap stays large.</p>
               </div>
             </div>
+          </div>
 
+          <div class="study-aside">
             <div class="contrib">
               <span class="label">My contribution</span>
               <p>I built the signing and within-child longitudinal models, the multi-study data pipeline that harmonises the eleven datasets in DuckDB, and the descriptive and comprehension–production-gap reports.</p>
@@ -614,7 +620,7 @@
                 <img src="assets/vocab-method-1600.png" width="1600" height="1000" loading="lazy" decoding="async" alt="Diagram: words spoken modelled as words understood multiplied by the production ratio, so spoken vocabulary can never exceed understood vocabulary.">
               </picture>
             </a>
-            <figcaption>The modelling idea: spoken = understood × production ratio, so speech never exceeds comprehension.</figcaption>
+            <figcaption>The modelling idea: spoken = understood × production ratio, so speech never exceeds comprehension. <a href="assets/vocab-method.png" target="_blank" rel="noopener">Open full size</a></figcaption>
           </figure>
         </div>
       </article>
@@ -624,7 +630,7 @@
         <p class="study-eyebrow">Study 02 · Reading &amp; language</p>
         <h3>What a reading-and-language intervention improved</h3>
         <p class="study-desc">A re-analysis of the RLI trial (Burgoyne et al., 2012). 54 children with Down syndrome were randomly assigned to daily one-to-one reading-and-language teaching, or to a waiting list. The analysis is built around a causal diagram, which keeps the effect of the teaching separate from patterns that just track a child’s general ability.</p>
-        <p class="study-meta">RLI randomised trial &nbsp;·&nbsp; 54 children &nbsp;·&nbsp; 4 assessment waves &nbsp;·&nbsp; only the randomised effects are causal &nbsp;·&nbsp; <b>Preliminary findings</b></p>
+        <p class="study-meta">RLI randomised trial&nbsp;&nbsp;·&nbsp; 54 children&nbsp;&nbsp;·&nbsp; 4 assessment waves&nbsp;&nbsp;·&nbsp; only the randomised effects are causal&nbsp;&nbsp;·&nbsp; <b>Preliminary findings</b></p>
 
         <figure class="fig fig-primary">
           <a class="figlink" href="assets/reading-intervention-effects.png" target="_blank" rel="noopener">
@@ -633,7 +639,7 @@
               <img src="assets/reading-intervention-effects-1600.png" width="1600" height="1000" loading="lazy" decoding="async" alt="Forest plot: randomised intervention effects with 95 per cent credible intervals. Letter-sound knowledge, blending and word reading sit clear of zero; receptive and expressive vocabulary sit on zero.">
             </picture>
           </a>
-          <figcaption>Randomised effects per skill, with 95% credible intervals. Clear of zero means a credible benefit.</figcaption>
+          <figcaption>Randomised effects per skill, with 95% credible intervals. Clear of zero means a credible benefit. <a href="assets/reading-intervention-effects.png" target="_blank" rel="noopener">Open full size</a></figcaption>
         </figure>
 
         <div class="study-detail">
@@ -655,10 +661,12 @@
                 <p>Where a child starts predicts a lot about where they end up. But which children progress fastest stays confounded with general ability, so it’s reported as a pattern, never a cause.</p>
               </div>
             </div>
+          </div>
 
+          <div class="study-aside">
             <div class="contrib">
               <span class="label">My contribution</span>
-              <p>I helped build the re-analysis, contributing the intention-to-treat, difference-in-differences, mediation and mechanism models inside the study’s causal DAG, the gradient-boosting discovery layer that ranks candidate predictors, and the results reporting.</p>
+              <p>I worked on the re-analysis with the team. My part was the intention-to-treat, difference-in-differences, mediation and mechanism models inside the study’s causal DAG, plus the gradient-boosting layer that ranks candidate predictors and the results reporting.</p>
             </div>
 
             <p class="doc-links">
@@ -675,7 +683,7 @@
                 <img src="assets/reading-causal-design-1600.png" width="1600" height="1000" loading="lazy" decoding="async" alt="Diagram: the study’s causal graph. A randomised intervention node feeds letter-sound, phonological and taught-vocabulary skills through to word reading, while a latent general-ability node confounds every non-randomised path.">
               </picture>
             </a>
-            <figcaption>The causal design. Randomisation identifies the teaching effect; skill-to-skill paths stay associational.</figcaption>
+            <figcaption>The causal design. Randomisation identifies the teaching effect; skill-to-skill paths stay associational. <a href="assets/reading-causal-design.png" target="_blank" rel="noopener">Open full size</a></figcaption>
           </figure>
         </div>
       </article>
@@ -713,7 +721,7 @@
             <li>idempotent reruns</li>
           </ul>
           <p class="doc-links">
-            <a class="doclink" href="asset-generation-explainer.html">Technical note <span class="k">html</span></a>
+            <a class="doclink" href="asset-generation-explainer.html">Technical explainer <span class="k">html</span></a>
           </p>
         </article>
 
@@ -731,7 +739,7 @@
             <li>bootstrap intervals</li>
           </ul>
           <p class="doc-links">
-            <a class="doclink" href="asset-generation-explainer.html">Technical note <span class="k">html</span></a>
+            <a class="doclink" href="asset-generation-explainer.html">Technical explainer <span class="k">html</span></a>
           </p>
         </article>
       </div>
@@ -742,7 +750,7 @@
   <section class="band" id="projects" aria-labelledby="projects-h">
     <div class="wrap">
       <div class="sec-head">
-        <p class="eyebrow">03 · Selected projects</p>
+        <p class="eyebrow">03 · Projects</p>
         <h2 id="projects-h">A stock screener and an epidemic model</h2>
         <hr class="rule">
         <p class="lede">Independent projects, built and tested on my own.</p>
@@ -769,12 +777,12 @@
               <g style="fill:var(--ink-soft)" opacity="0.35">
                 <circle cx="150" cy="140" r="4"/><circle cx="178" cy="124" r="4"/><circle cx="140" cy="162" r="4"/><circle cx="196" cy="150" r="4"/><circle cx="166" cy="110" r="4"/>
               </g>
-              <text x="296" y="45" text-anchor="end" font-size="10" style="fill:var(--accent);font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.1em;font-weight:600;">LONG</text>
-              <text x="50" y="250" font-size="10" style="fill:var(--accent-2);font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.1em;font-weight:600;">SHORT</text>
-              <text x="173" y="286" text-anchor="middle" font-size="9" style="fill:var(--ink-soft);font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.12em;">CONFIDENCE →</text>
-              <text x="18" y="143" text-anchor="middle" font-size="9" transform="rotate(-90 18 143)" style="fill:var(--ink-soft);font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.12em;">SENTIMENT</text>
+              <text x="296" y="45" text-anchor="end" font-size="8" style="fill:var(--accent);font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.1em;font-weight:600;">LONG</text>
+              <text x="50" y="250" font-size="8" style="fill:var(--accent-2);font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.1em;font-weight:600;">SHORT</text>
+              <text x="173" y="286" text-anchor="middle" font-size="8" style="fill:var(--ink-soft);font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.12em;">CONFIDENCE →</text>
+              <text x="18" y="143" text-anchor="middle" font-size="8" transform="rotate(-90 18 143)" style="fill:var(--ink-soft);font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.12em;">SENTIMENT</text>
             </svg>
-            <figcaption>How the screener separates candidates: model confidence vs news sentiment.</figcaption>
+            <figcaption>Schematic: how the screener separates candidates, model confidence vs news sentiment.</figcaption>
           </figure>
           <p class="proj-note">Validated by expanding-window walk-forward testing, 2020–2026 · limitations reported: survivorship bias, no transaction costs</p>
           <ul class="proj-tags">
@@ -787,7 +795,7 @@
           </ul>
           <p class="doc-links">
             <a class="doclink live" href="https://stockmarkets-p-cngwhp4eigfgpq5xphgwng.streamlit.app" target="_blank" rel="noopener">Live demo <span class="k">app</span></a>
-            <a class="doclink" href="sp-500-stock-screener-explainer.html">Deep dive <span class="k">html</span></a>
+            <a class="doclink" href="sp-500-stock-screener-explainer.html">Technical explainer <span class="k">html</span></a>
             <a class="doclink" href="https://github.com/ethanbuckley/stockmarketS-P" target="_blank" rel="noopener">GitHub <span class="k">repo</span></a>
           </p>
         </article>
@@ -814,7 +822,7 @@
           </ul>
           <p class="doc-links">
             <a class="doclink live" href="https://epidemiccellularautomata-bhc8wjiiughpqeuljwgzew.streamlit.app" target="_blank" rel="noopener">Live demo <span class="k">app</span></a>
-            <a class="doclink" href="epidemic-cellular-automaton-explainer.html">Deep dive <span class="k">html</span></a>
+            <a class="doclink" href="epidemic-cellular-automaton-explainer.html">Technical explainer <span class="k">html</span></a>
             <a class="doclink" href="https://github.com/ethanbuckley/EpidemicCellularAutomata" target="_blank" rel="noopener">GitHub <span class="k">repo</span></a>
           </p>
         </article>
@@ -839,18 +847,19 @@
             <polyline fill="none" style="stroke:var(--accent)" stroke-width="1.4" opacity="0.8" points="44,150 65,92 86,128 107,104 128,138 149,110 170,96 191,132 212,112 233,120 254,100 275,126 296,108 317,130 338,114 359,122 380,116"/>
             <polyline fill="none" style="stroke:var(--fig-chain)" stroke-width="1.4" opacity="0.75" points="44,128 65,100 86,146 107,112 128,120 149,138 170,98 191,134 212,110 233,130 254,116 275,122 296,105 317,127 338,120 359,124 380,118"/>
             <polyline fill="none" style="stroke:var(--accent)" stroke-width="1.4" opacity="0.4" points="44,96 65,140 86,108 107,150 128,102 149,124 170,142 191,106 212,128 233,118 254,134 275,110 296,126 317,113 338,131 359,119 380,124"/>
-            <rect x="452" y="58" width="116" height="132" style="fill:var(--accent-2)" opacity="0.10"/>
-            <path d="M430,190 C466,186 486,66 510,60 C534,66 554,186 590,190 Z" style="fill:var(--accent)" opacity="0.14"/>
-            <path d="M430,190 C466,186 486,66 510,60 C534,66 554,186 590,190" fill="none" style="stroke:var(--accent)" stroke-width="2"/>
-            <line x1="510" y1="60" x2="510" y2="190" style="stroke:var(--ink-soft)" stroke-width="1.3" stroke-dasharray="3 3"/>
-            <line x1="420" y1="190" x2="600" y2="190" style="stroke:var(--fig-grid)" stroke-width="1"/>
+            <clipPath id="crI-dens"><path d="M430,200 C466,196 486,76 510,70 C534,76 554,196 590,200 Z"/></clipPath>
+            <rect x="452" y="68" width="116" height="132" clip-path="url(#crI-dens)" style="fill:var(--accent-2)" opacity="0.10"/>
+            <path d="M430,200 C466,196 486,76 510,70 C534,76 554,196 590,200 Z" style="fill:var(--accent)" opacity="0.14"/>
+            <path d="M430,200 C466,196 486,76 510,70 C534,76 554,196 590,200" fill="none" style="stroke:var(--accent)" stroke-width="2"/>
+            <line x1="510" y1="70" x2="510" y2="200" style="stroke:var(--ink-soft)" stroke-width="1.3" stroke-dasharray="3 3"/>
+            <line x1="420" y1="200" x2="600" y2="200" style="stroke:var(--fig-grid)" stroke-width="1"/>
             <text x="40" y="22" font-size="10" style="fill:var(--ink-soft);font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.12em;">MCMC TRACE · 3 CHAINS</text>
             <text x="420" y="22" font-size="10" style="fill:var(--ink-soft);font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.12em;">POSTERIOR</text>
             <text x="600" y="22" text-anchor="end" font-size="11" style="fill:var(--accent);font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.08em;font-weight:600;">R&#x0302; &#8776; 1.00</text>
             <text x="510" y="210" text-anchor="middle" font-size="9" style="fill:var(--ink-soft);font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.1em;">95% CrI</text>
             <text x="40" y="216" font-size="9" style="fill:var(--ink-soft);font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.1em;">iteration &#8594;</text>
           </svg>
-          <figcaption><span class="tag">Schematic</span>A convergence check from a Bayesian fit. The chains agree (R&#x0302; &#8776; 1.00), and the result is a posterior with a 95% credible interval, not a single number.</figcaption>
+          <figcaption><span class="tag">Schematic</span>A convergence check from a Bayesian fit. The three chains cover the same band (R&#x0302; &#8776; 1.00), so the draws can be pooled into the posterior on the right.</figcaption>
         </figure>
         <div class="cap-clusters">
           <p class="cap"><b>Bayesian hierarchical modelling:</b> multilevel models with interpretable priors; study- and child-level random effects. <b>Gaussian processes:</b> scalable Hilbert-space (HSGP) smooths for age trajectories. <b>PyMC &amp; NUTS sampling:</b> full-posterior MCMC via nutpie, gated on <span class="stat">R&#x0302;</span>, effective sample size and divergences. <b>Model checking &amp; comparison:</b> prior and posterior predictive checks; PSIS-LOO and leave-one-study-out cross-validation.</p>
@@ -869,7 +878,7 @@
         <h2 id="contact-h">Get in touch</h2>
       </div>
       <div class="side-body">
-        <p class="lede">I’m looking for internships in data science, machine learning and quantitative research. If you have something you think I’d fit, get in touch.</p>
+        <p class="lede">I’m looking for internships in data science, machine learning and quantitative research. If you’re hiring for one, email me.</p>
 
         <dl class="contact-list">
           <div>
@@ -908,7 +917,7 @@
 <footer class="site-foot">
   <div class="wrap">
     <span>© 2026 Ethan Buckley</span>
-    <span>One static page. System fonts, no scripts, no trackers.</span>
+    <span>Hand-written HTML. System fonts, no trackers, no third-party requests.</span>
     <a href="#top">Back to top</a>
   </div>
 </footer>

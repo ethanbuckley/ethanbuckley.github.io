@@ -42,7 +42,7 @@
   * { box-sizing: border-box; }
   .page { color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.5;
     padding: clamp(20px, 4vw, 52px) 16px; display: flex; justify-content: center; }
-  .sheet { background: var(--paper); max-width: 860px; width: 100%;
+  .sheet { background: var(--paper); max-width: 720px; width: 100%;
     padding: clamp(26px, 5vw, 54px); border: 1px solid var(--line); border-radius: 3px; }
 
   a { color: var(--accent); text-underline-offset: 2px; }
@@ -59,7 +59,7 @@
     line-height: 1.7; margin: 0 0 16px; }
   .contact a { text-decoration: none; }
   .contact a:hover { text-decoration: underline; }
-  .summary { color: var(--ink-soft); max-width: 74ch; margin: 0 0 4px;
+  .summary { color: var(--ink-soft); max-width: 41em; margin: 0 0 4px;
     border-top: 1px solid var(--line); padding-top: 14px; }
 
   h2 { font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em;
@@ -72,16 +72,21 @@
   .role .what { font-weight: 600; }
   .role .when { font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft);
     white-space: nowrap; }
-  .detail { color: var(--ink-soft); margin: 0; max-width: 82ch; }
+  .detail { color: var(--ink-soft); margin: 0; max-width: 41em; }
 
   ul { margin: 4px 0 0; padding-left: 17px; }
-  li { color: var(--ink-soft); margin-bottom: 5px; max-width: 82ch; }
+  li { color: var(--ink-soft); margin-bottom: 5px; max-width: 41em; }
   li:last-child { margin-bottom: 0; }
-  .skills p { margin: 0 0 6px; color: var(--ink-soft); max-width: 86ch; }
+  .skills p { margin: 0 0 6px; color: var(--ink-soft); max-width: 41em; }
   .skills b { color: var(--ink); font-weight: 600; }
 
   .foot { font-family: var(--mono); font-size: 11px; color: var(--ink-soft);
     border-top: 1px solid var(--line); padding-top: 14px; margin-top: 26px; }
+
+  @media (max-width: 560px) {
+    .role { display: block; }
+    .role .when { display: block; margin-top: 1px; }
+  }
 
   /* Tuned so the whole CV lands on one A4 page, which is the point of it. */
   @media print {
@@ -118,9 +123,9 @@
     <a class="back" href="index.html">&#8592; Back to the portfolio</a>
 
     <h1>Ethan Buckley</h1>
-    <p class="contact">London, UK &nbsp;·&nbsp; <a href="mailto:ethan.buckley.24@ucl.ac.uk">ethan.buckley.24@ucl.ac.uk</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/ethan-buckley">linkedin.com/in/ethan-buckley</a> &nbsp;·&nbsp; <a href="https://github.com/ethanbuckley">github.com/ethanbuckley</a> &nbsp;·&nbsp; <a href="https://ethanbuckley.github.io">ethanbuckley.github.io</a> &nbsp;·&nbsp; phone on request</p>
+    <p class="contact">London, UK&nbsp;&nbsp;·&nbsp; <a href="mailto:ethan@ethanbuckley.me.uk">ethan@ethanbuckley.me.uk</a>&nbsp;&nbsp;·&nbsp; <a href="https://www.linkedin.com/in/ethan-buckley">linkedin.com/in/ethan-buckley</a>&nbsp;&nbsp;·&nbsp; <a href="https://github.com/ethanbuckley">github.com/ethanbuckley</a>&nbsp;&nbsp;·&nbsp; <a href="https://ethanbuckley.github.io">ethanbuckley.github.io</a>&nbsp;&nbsp;·&nbsp; phone on request</p>
 
-    <p class="summary">Natural Sciences undergraduate (Physics major) at UCL, working as a data science intern applying Bayesian statistics and machine learning to live research data. Strong programming and quantitative background. Seeking data science and quantitative research internships.</p>
+    <p class="summary">Natural Sciences undergraduate (Physics major) at UCL, working as a data science intern applying Bayesian statistics and machine learning to live research data. Hierarchical models fitted with MCMC, and the Python pipelines that keep them reproducible. Seeking data science and quantitative research internships.</p>
 
     <h2>Education</h2>
     <div class="role"><span class="what">University College London, MSci Natural Sciences</span><span class="when">Sep 2024 &ndash; Jun 2028</span></div>
@@ -130,18 +135,18 @@
     <p class="detail">A-levels: Mathematics, Chemistry, Biology, Physics; awarded school Physics prizes (GCSE and Year 12). GCSEs: ten subjects including Mathematics, Physics and Computer Science.</p>
 
     <h2>Experience</h2>
-    <div class="role"><span class="what">Data Science Intern, Down Syndrome Education International</span><span class="when">Jun 2026 &ndash; Present</span></div>
+    <div class="role"><span class="what">Data Science &amp; Research Intern, Down Syndrome Education International</span><span class="when">Jun 2026 &ndash; Present</span></div>
     <ul>
       <li>Build and extend hierarchical Bayesian models (PyMC, MCMC) of vocabulary growth in children with Down syndrome, using Beta-Binomial likelihoods with age-varying dispersion and Hilbert-space Gaussian-process trajectories, fitted to Communicative Development Inventory data pooled across UK, US and Italian cohorts plus around 6,100 typically-developing children from Wordbank.</li>
-      <li>Contribute to a randomised controlled reading-intervention trial, using LightGBM/SHAP predictor ranking and a DAG-based causal framework for treatment-effect and mediation analysis.</li>
+      <li>Contribute to a Bayesian re-analysis of a randomised controlled reading-intervention trial (54 children, four assessment waves), using LightGBM/SHAP predictor ranking and a DAG-based causal framework for treatment-effect and mediation analysis.</li>
       <li>Rebuilt a fragile single-notebook pipeline into modular, auditable per-source ETL scripts and replaced a hard-coded anonymisation key with environment-based secrets; work in Python with DuckDB, Quarto, Azure Blob Storage and Git/GitHub review.</li>
-      <li>Build the pipeline that generates DSE's teaching images and audio from a written content specification. Its main rule is contrast, for the reduced contrast sensitivity common in Down syndrome.</li>
+      <li>Build the pipeline that generates DSE’s teaching images and audio from a written content specification. Its main rule is contrast, for the reduced contrast sensitivity common in Down syndrome.</li>
       <li>Chose the voices by measurement rather than preference, using a blind A/B listening arena with Bradley&ndash;Terry ranking and bootstrap confidence intervals across four commercial text-to-speech providers (4,307 clips, 10 English accents), and halved the image unit cost with a verified batch-inference integration.</li>
     </ul>
 
     <div class="role"><span class="what">UCL Centre for Computational Science, Supervised Literature Review</span><span class="when">2026</span></div>
     <ul>
-      <li>Selected for a supervised literature review under Professor Peter Coveney FRS on quantum-GPU computing and variational quantum algorithms for biomolecular simulation.</li>
+      <li>Selected to review quantum-GPU computing and variational quantum algorithms for biomolecular simulation, under Professor Peter Coveney FRS.</li>
     </ul>
 
     <div class="role"><span class="what">Seasonal Team Member, Roadchef, Killington Lake</span><span class="when">Jul 2025 &ndash; Apr 2026</span></div>
@@ -163,10 +168,11 @@
     <h2>Projects</h2>
     <ul>
       <li>Algorithmic S&amp;P 500 stock screener (independent): combined an XGBoost classifier with a FinBERT sentiment model, trained on around 1.3 million daily observations. Built 22 technical indicators (RSI, MACD, VWAP, ATR) and used Triple-Barrier-Method labelling to avoid look-ahead bias; validated with expanding-window walk-forward testing over 1,630 out-of-sample days (2020&ndash;2026): top-15 precision around 48% versus a 29% base rate.</li>
+      <li>SEIQR epidemic cellular automaton (extended from a UCL group project): vectorised the simulation with SciPy convolution and NumPy masking for a roughly 40&times; speed-up, and validated it against its analytical mean-field SEIQR ODE limit. Reproducible from fixed seeds, with bit-identical regression tests in CI on Python 3.10&ndash;3.12.</li>
     </ul>
 
     <h2>Additional</h2>
-    <p class="detail">UCL Men's Hockey Club and volunteer junior coach at Kirkby Lonsdale HC; Duke of Edinburgh Gold Award. Societies: AI, Natural Sciences. Interests: mountaineering, skiing, running.</p>
+    <p class="detail">UCL Men’s Hockey Club and volunteer junior coach at Kirkby Lonsdale HC; Duke of Edinburgh Gold Award. Societies: AI, Natural Sciences. Interests: mountaineering, skiing, running.</p>
 
     <p class="foot noprint">Web copy of my CV. <a href="assets/ethan-buckley-cv.pdf">Download as PDF</a>.</p>
   </article>

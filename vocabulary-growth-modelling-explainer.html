@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#edf1f3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#101a20" media="(prefers-color-scheme: dark)">
 <style>html,body{margin:0;padding:0;}</style>
-<title>Vocabulary Growth: Modelling &amp; Computation</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Vocabulary growth: modelling and computation · Ethan Buckley</title>
 <style>
   :root {
     --ground: #edf1f3; --paper: #ffffff;
@@ -111,6 +112,7 @@
      outside .page falls through to the UA canvas on overscroll. */
   @media screen { html, body { background: var(--ground); } }
   a:hover { color: var(--accent-dark); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
 </style>
 </head>
 <body>
@@ -119,8 +121,8 @@
     <a class="back" href="index.html#research">← Back to research</a>
     <p class="eyebrow">Technical note · Down Syndrome Education International</p>
     <h1>Modelling vocabulary growth: the statistics &amp; computation</h1>
-    <p class="lede">A Bayesian hierarchical model family that turns sparse, multi-study checklist counts into full probability distributions over children's vocabulary trajectories, plus the pipeline that fits, checks and reproduces it.</p>
-    <p class="meta">Bayesian hierarchical · PyMC + nutpie (NUTS) · Beta-Binomial + HSGP · <b>15 models (VG01–VG16)</b></p>
+    <p class="lede">A Bayesian hierarchical model family that turns sparse, multi-study checklist counts into full probability distributions over children’s vocabulary trajectories, plus the pipeline that fits, checks and reproduces it.</p>
+    <p class="meta">Bayesian hierarchical · PyMC + nutpie (NUTS) · Beta-Binomial + HSGP · 15 models (VG01–VG16) · <b>Preliminary findings</b></p>
 
     <h2>The estimation problem</h2>
     <hr class="rule" />
@@ -137,7 +139,7 @@
         <div class="eq">f(a) = trend(a) + g(a),&nbsp; g ~ <span class="k">HSGP</span> <span class="c">&nbsp; // smooth nonparametric mean; Beta anchor priors at set ages</span></div>
         <div class="eq">f<sub>•</sub>(z<sub>i</sub>) &nbsp;+=&nbsp; δ<sup>study</sup><sub>s(i)</sub> + δ<sup>subj</sup><sub>j(i)</sub>,&nbsp; δ = τ·z <span class="c">&nbsp; // non-centred random intercepts</span></div>
       </dl>
-      <p class="eqnote">The production ratio <code>q</code> is the model's pivot: the share of understood words a child also says. A Gaussian process (approximated with a scalable <code>HSGP</code> basis) carries the trajectory shape; study- and child-level random intercepts separate the population curve from who was sampled and from repeated measures.</p>
+      <p class="eqnote">The production ratio <code>q</code> is the model’s pivot: the share of understood words a child also says. A Gaussian process (approximated with a scalable <code>HSGP</code> basis) carries the trajectory shape; study- and child-level random intercepts separate the population curve from who was sampled and from repeated measures.</p>
     </div>
 
     <h2>The model family</h2>
@@ -157,7 +159,7 @@
     </ul>
     <p class="body">Fitting runs full-posterior MCMC (NUTS via <strong>nutpie</strong>), screened with prior- and posterior-predictive checks and standard diagnostics: R̂, effective sample size, divergences. Models are compared with <strong>PSIS-LOO</strong> and <strong>leave-one-study-out</strong> cross-validation. Studies are harmonised in a DuckDB view onto the common 800-item scale, and the whole run (data → posteriors → figures → report in Quarto) is reproducible at three sampling tiers (dev / test / rep), so every result regenerates from raw data as the models improve.</p>
 
-    <p class="foot"><b>Workflow &amp; rigour.</b> Built as an iterative Bayesian workflow: interpretable anchor priors informed by expectation and independent Wordbank norms, explicit identification arguments, and caveats where they matter (e.g. short-panel bias makes the naïve within-child lag misleading, so VG16 headlines a bias-robust baseline). A methodology and code audit independently verified the statistical core and fixed several issues (a comprehension-proxy data leak, a GP-boundary mis-sizing, young-age prior calibration, and per-form ceiling validation) before the reporting-quality run.</p>
+    <p class="foot"><b>How this was checked.</b> Built as an iterative Bayesian workflow: interpretable anchor priors informed by expectation and independent Wordbank norms, explicit identification arguments, and caveats where they matter (e.g. short-panel bias makes the naïve within-child lag misleading, so VG16 headlines a bias-robust baseline). A methodology and code audit independently verified the statistical core and fixed several issues (a comprehension-proxy data leak, a GP-boundary mis-sizing, young-age prior calibration, and per-form ceiling validation) before the reporting-quality run.</p>
   </article>
 </div>
 </body>
