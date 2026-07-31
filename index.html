@@ -366,6 +366,13 @@
     font-family: var(--mono); font-size: var(--step-1); letter-spacing: 0;
     color: var(--ink-soft); margin-top: 10px; line-height: 1.6; max-width: 640px;
   }
+  /* The figure above is drawn by hand, not plotted from a fit. Say so, in the
+     same register the doclink type badges use. */
+  .approach-fig figcaption .tag {
+    font-family: var(--mono); letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent-2); font-weight: 600;
+    margin-right: 8px;
+  }
   .cap-clusters { margin-top: clamp(28px, 4vw, 38px); }
   .cap { color: var(--ink-soft); max-width: var(--measure); margin: 0 0 22px; }
   .cap:last-child { margin-bottom: 0; }
@@ -735,7 +742,7 @@
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow">03 · Selected projects</p>
-        <h2 id="projects-h">Selected projects</h2>
+        <h2 id="projects-h">A stock screener and an epidemic model</h2>
         <hr class="rule">
         <p class="lede">Independent projects, built and tested on my own.</p>
       </div>
@@ -824,7 +831,7 @@
       <div class="side-body">
         <p class="lede">I fit models with MCMC, so every quantity comes out as a full distribution with a credible interval, not a single number. I use machine learning to find structure in larger datasets, and I keep the work in tested, version-controlled code so results reproduce.</p>
         <figure class="approach-fig">
-          <svg viewBox="0 0 620 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An MCMC diagnostic: three sampler chains on the left overlap in one stable band, showing they have converged (R-hat about 1.00); on the right, the resulting posterior distribution is summarised by a 95% credible interval around its median rather than a single point estimate.">
+          <svg viewBox="0 0 620 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schematic, not plotted from data. An MCMC diagnostic: three sampler chains on the left overlap in one stable band, showing they have converged (R-hat about 1.00); on the right, the resulting posterior distribution is summarised by a 95% credible interval around its median rather than a single point estimate.">
             <line x1="40" y1="30" x2="40" y2="200" style="stroke:var(--fig-grid)" stroke-width="1"/>
             <line x1="40" y1="200" x2="386" y2="200" style="stroke:var(--fig-grid)" stroke-width="1"/>
             <line x1="40" y1="115" x2="386" y2="115" style="stroke:var(--fig-grid-faint)" stroke-width="1"/>
@@ -842,7 +849,7 @@
             <text x="510" y="210" text-anchor="middle" font-size="9" style="fill:var(--ink-soft);font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.1em;">95% CrI</text>
             <text x="40" y="216" font-size="9" style="fill:var(--ink-soft);font-family:ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.1em;">iteration &#8594;</text>
           </svg>
-          <figcaption>A convergence check from a Bayesian fit. The chains agree (R&#x0302; &#8776; 1.00), and the result is a posterior with a 95% credible interval, not a single number.</figcaption>
+          <figcaption><span class="tag">Schematic</span>A convergence check from a Bayesian fit. The chains agree (R&#x0302; &#8776; 1.00), and the result is a posterior with a 95% credible interval, not a single number.</figcaption>
         </figure>
         <div class="cap-clusters">
           <p class="cap"><b>Bayesian hierarchical modelling:</b> multilevel models with interpretable priors; study- and child-level random effects. <b>Gaussian processes:</b> scalable Hilbert-space (HSGP) smooths for age trajectories. <b>PyMC &amp; NUTS sampling:</b> full-posterior MCMC via nutpie, gated on <span class="stat">R&#x0302;</span>, effective sample size and divergences. <b>Model checking &amp; comparison:</b> prior and posterior predictive checks; PSIS-LOO and leave-one-study-out cross-validation.</p>
