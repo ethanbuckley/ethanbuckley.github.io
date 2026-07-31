@@ -23,6 +23,8 @@ The other four HTML files are a fixed 1600 x 1000 CSS px canvas. Rendering at a 
 
 `panels/` holds the two real plot panels (`production-ratio-panel.png`, `intervention-effects-panel.png`), extracted from the original masters. They are model output, embedded as `<img>`; do not try to redraw them in CSS. If the models are re-fitted, replace these PNGs and re-render.
 
+**Read `panels/PROVENANCE.md` before replacing either.** These two are the only figures on the site that are still pixels without a source, which is the exact problem the rest of this directory exists to solve. `panels/render_panels.py` now supplies that source for the production-ratio panel, styled to the site's tokens rather than matplotlib's defaults, but it is deliberately not wired into `render.sh`: the published panel and the current VG14 fit disagree by up to 0.05, and the number is quoted in three places in `index.html`. Which model is canonical is a decision to take before regenerating, not a lookup.
+
 ## Regenerating
 
 ```bash
