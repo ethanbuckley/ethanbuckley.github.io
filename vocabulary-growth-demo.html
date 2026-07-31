@@ -13,6 +13,13 @@
     --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
     color-scheme:light;
   }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#101a20; --paper:#16232b; --ink:#e8eef1; --ink-soft:#a7b6bf;
+      --accent:#4cc8b9; --accent-dark:#a8efe4; --accent-2:#e59d55; --line:#2a3b45; --tint:#1a2b2e;
+      color-scheme:dark;
+    }
+  }
   body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);}
   /* namespaced so this whole block can drop straight into the site */
   .vgdemo{max-width:900px;margin:0 auto;padding:24px clamp(16px,4vw,32px);}
@@ -85,7 +92,10 @@ const DATA = {"age":[0.667,0.81,0.953,1.096,1.238,1.381,1.524,1.667,1.81,1.953,2
 (function(){
   const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
   const A=DATA.age, N=A.length;
-  const TEAL='#0f766e', AMBER='#a4490a', SLATE='#52606a', INK='#17242c', SOFT='#8a959c', LINE='#d5dde2';
+  // Read the palette at draw time so the canvas follows the colour scheme.
+  const cssVar=k=>getComputedStyle(document.documentElement).getPropertyValue(k).trim();
+  const rgbOf=h=>{h=h.replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');
+    return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)].join(',');};
   let view='vocab', ai=27, kf=1.0;
 
   const btnV=document.getElementById('btnVocab'), btnR=document.getElementById('btnRatio');
@@ -111,6 +121,9 @@ const DATA = {"age":[0.667,0.81,0.953,1.096,1.238,1.381,1.524,1.667,1.81,1.953,2
   }
 
   function draw(){
+    const LINE=cssVar('--line'), SOFT=cssVar('--ink-soft'), PAPER=cssVar('--paper');
+    const RGB={teal:rgbOf(cssVar('--accent')), amber:rgbOf(cssVar('--accent-2')), slate:rgbOf(cssVar('--ink-soft'))};
+    const INKRGB=rgbOf(cssVar('--ink'));
     const {w,h}=size();
     ctx.clearRect(0,0,w,h);
     const mL=44,mR=14,mT=14,mB=30, pw=w-mL-mR, ph=h-mT-mB;
@@ -147,7 +160,6 @@ const DATA = {"age":[0.667,0.81,0.953,1.096,1.238,1.381,1.524,1.667,1.81,1.953,2
       for(let i=0;i<N;i++){ const v=view==='ratio'?series.m[i]:series.m[i]; if(i===0)ctx.moveTo(X(A[i]),Y(v)); else ctx.lineTo(X(A[i]),Y(v)); }
       ctx.stroke(); ctx.setLineDash([]);
     }
-    const RGB={teal:'15,118,110',amber:'180,83,9',slate:'82,96,106'};
     if(view==='ratio'){
       band(DATA.ratio,'lo90','hi90',RGB.teal,0.12);
       band(DATA.ratio,'lo75','hi75',RGB.teal,0.18);
@@ -164,10 +176,10 @@ const DATA = {"age":[0.667,0.81,0.953,1.096,1.238,1.381,1.524,1.667,1.81,1.953,2
     }
     // age marker
     const px=X(A[ai]);
-    ctx.strokeStyle='rgba(23,36,44,0.45)'; ctx.setLineDash([3,3]); ctx.lineWidth=1;
+    ctx.strokeStyle='rgba('+INKRGB+',0.45)'; ctx.setLineDash([3,3]); ctx.lineWidth=1;
     ctx.beginPath(); ctx.moveTo(px,mT); ctx.lineTo(px,mT+ph); ctx.stroke(); ctx.setLineDash([]);
     function dot(v,rgb){ ctx.beginPath(); ctx.arc(px,Y(v),3.5,0,7); ctx.fillStyle='rgb('+rgb+')'; ctx.fill();
-      ctx.lineWidth=1.5; ctx.strokeStyle='#fff'; ctx.stroke(); }
+      ctx.lineWidth=1.5; ctx.strokeStyle=PAPER; ctx.stroke(); }
     if(view==='ratio'){ dot(DATA.ratio.m[ai],RGB.teal); }
     else { dot(DATA.understood.m[ai],RGB.teal); dot(DATA.spoken.m[ai],RGB.amber); dot(DATA.signed.m[ai],RGB.slate); }
 
@@ -206,6 +218,7 @@ const DATA = {"age":[0.667,0.81,0.953,1.096,1.238,1.381,1.524,1.667,1.81,1.953,2
   }
 
   window.addEventListener('resize', ()=>{ clearTimeout(window.__vgt); window.__vgt=setTimeout(draw,120); });
+  matchMedia('(prefers-color-scheme:dark)').addEventListener('change',draw);
   draw();
 })();
 </script>
