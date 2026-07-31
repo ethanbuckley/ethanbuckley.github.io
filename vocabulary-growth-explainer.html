@@ -3,23 +3,48 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#edf1f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#101a20" media="(prefers-color-scheme: dark)">
 <style>html,body{margin:0;padding:0;}</style>
 <title>Vocabulary Growth in Down Syndrome — Explainer</title>
 <style>
   :root {
-    --ground: #f4f6f7;
+    --ground: #edf1f3;
     --paper: #ffffff;
     --ink: #1b2a33;
     --ink-soft: #55636d;
-    --accent: #0f766e;      /* teal — understanding */
-    --accent-2: #b45309;    /* ochre — speaking / the gap */
-    --line: #e2e7ea;
-    --tint: #eef4f3;        /* faint teal wash */
+    --accent: #0f766e; --accent-dark: #064540;      /* teal — understanding */
+    --accent-2: #a4490a;    /* ochre — speaking / the gap */
+    --line: #d5dde2;
+    --tint: #e4eeeb;        /* faint teal wash */
     --serif: Georgia, "Times New Roman", serif;
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --track: rgba(27, 42, 51, 0.05);
+    --sheet-shadow: 0 1px 2px rgba(27, 42, 51, 0.04), 0 12px 40px rgba(27, 42, 51, 0.05);
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #101a20;
+      --paper: #16232b;
+      --ink: #e8eef1;
+      --ink-soft: #a7b6bf;
+      --accent: #4cc8b9; --accent-dark: #a8efe4;
+      --accent-2: #e59d55;
+      --line: #2a3b45;
+      --tint: #1a2b2e;
+      --track: rgba(232, 238, 241, 0.08);
+      --sheet-shadow: 0 1px 2px rgba(0, 0, 0, 0.30), 0 12px 40px rgba(0, 0, 0, 0.38);
+      color-scheme: dark;
+    }
   }
 
   * { box-sizing: border-box; }
+
+  /* screen only, so the print sheet stays white */
+  @media screen { html, body { background: var(--ground); } }
 
   .page {
     background: var(--ground);
@@ -39,8 +64,20 @@
     padding: clamp(28px, 5vw, 60px);
     border: 1px solid var(--line);
     border-radius: 3px;
-    box-shadow: 0 1px 2px rgba(27, 42, 51, 0.04), 0 12px 40px rgba(27, 42, 51, 0.05);
+    box-shadow: var(--sheet-shadow);
   }
+
+  .back {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    margin: 0 0 18px;
+  }
+  .back:hover { color: var(--accent); }
 
   .eyebrow {
     font-size: 12px;
@@ -100,7 +137,7 @@
   .bar-row { display: grid; grid-template-columns: 122px 1fr; align-items: center; gap: 12px; margin-bottom: 12px; }
   .bar-row:last-of-type { margin-bottom: 0; }
   .bar-label { font-size: 13px; font-weight: 600; color: var(--ink-soft); }
-  .track { position: relative; height: 22px; background: rgba(27, 42, 51, 0.05); border-radius: 3px; }
+  .track { position: relative; height: 22px; background: var(--track); border-radius: 3px; }
   .fill { position: absolute; inset: 0 auto 0 0; border-radius: 3px; }
   .fill.understood { width: 92%; background: var(--accent); }
   .fill.spoken { width: 40%; background: var(--accent-2); }
@@ -159,6 +196,7 @@
     @page { size: A4; margin: 9mm; }
     .page { padding: 0; background: #fff; font-size: 11.5px; line-height: 1.5; }
     .sheet { border: none; box-shadow: none; max-width: none; padding: 0; }
+    .back { display: none; }
     .eyebrow { margin-bottom: 6px; font-size: 10px; }
     h1 { font-size: 22px; margin-bottom: 7px; }
     .lede { font-size: 12.5px; margin-bottom: 9px; }
@@ -180,11 +218,13 @@
     .limits { padding-top: 9px; font-size: 11px; }
     .schematic, .finding, .matters { break-inside: avoid; }
   }
+  a:hover { color: var(--accent-dark); }
 </style>
 </head>
 <body>
 <div class="page">
   <article class="sheet">
+    <a class="back" href="index.html#research">← Back to research</a>
     <p class="eyebrow">Down Syndrome Education International</p>
     <h1>How children with Down syndrome build vocabulary</h1>
     <p class="lede">A large pooled study of the words children understand, say, and sign as they grow, and what the numbers mean for expectations and support.</p>

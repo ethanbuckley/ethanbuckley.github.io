@@ -3,23 +3,50 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#edf1f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#101a20" media="(prefers-color-scheme: dark)">
 <style>html,body{margin:0;padding:0;}</style>
 <title>Reading &amp; Language Progress in Down Syndrome — Explainer</title>
 <style>
   :root {
-    --ground: #f4f6f7; --paper: #ffffff;
+    --ground: #edf1f3; --paper: #ffffff;
     --ink: #1b2a33; --ink-soft: #55636d;
-    --accent: #0f766e; --accent-2: #b45309;
-    --line: #e2e7ea; --tint: #eef4f3;
+    --accent: #0f766e; --accent-dark: #064540; --accent-2: #a4490a;
+    --line: #d5dde2; --tint: #e4eeeb;
+    --track-bg: rgba(27,42,51,.05);
+    --sheet-shadow: 0 1px 2px rgba(27,42,51,.04), 0 12px 40px rgba(27,42,51,.05);
     --serif: Georgia, "Times New Roman", serif;
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    color-scheme: light;
   }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #101a20;
+      --paper: #16232b;
+      --ink: #e8eef1;
+      --ink-soft: #a7b6bf;
+      --accent: #4cc8b9; --accent-dark: #a8efe4;
+      --accent-2: #e59d55;
+      --line: #2a3b45;
+      --tint: #1a2b2e;
+      --track-bg: rgba(232,238,241,.09);
+      --sheet-shadow: 0 1px 2px rgba(0,0,0,.34), 0 12px 40px rgba(0,0,0,.42);
+      color-scheme: dark;
+    }
+  }
+
   * { box-sizing: border-box; }
   .page { background: var(--ground); color: var(--ink); font-family: var(--sans);
     font-size: 16px; line-height: 1.6; padding: clamp(20px,4vw,56px) 16px; display: flex; justify-content: center; }
   .sheet { background: var(--paper); max-width: 780px; width: 100%; padding: clamp(28px,5vw,60px);
     border: 1px solid var(--line); border-radius: 3px;
-    box-shadow: 0 1px 2px rgba(27,42,51,.04), 0 12px 40px rgba(27,42,51,.05); }
+    box-shadow: var(--sheet-shadow); }
+
+  .back { display: inline-block; font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-soft); text-decoration: none; margin: 0 0 20px; }
+  .back:hover { color: var(--accent); }
 
   .eyebrow { font-size: 12px; letter-spacing: .13em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 0 0 14px; }
   h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(26px,4.5vw,39px); line-height: 1.12;
@@ -37,7 +64,7 @@
   .bar-row { display: grid; grid-template-columns: 160px 1fr; align-items: center; gap: 12px; margin-bottom: 11px; }
   .bar-row:last-of-type { margin-bottom: 0; }
   .bar-label { font-size: 12.5px; font-weight: 600; color: var(--ink-soft); }
-  .track { position: relative; height: 20px; background: rgba(27,42,51,.05); border-radius: 3px; }
+  .track { position: relative; height: 20px; background: var(--track-bg); border-radius: 3px; }
   .fill { position: absolute; inset: 0 auto 0 0; border-radius: 3px; }
   .fill.g1 { width: 90%; background: var(--accent); }
   .fill.g2 { width: 55%; background: var(--accent); opacity: .72; }
@@ -71,6 +98,7 @@
     @page { size: A4; margin: 8mm; }
     .page { padding: 0; background: #fff; font-size: 10.6px; line-height: 1.42; }
     .sheet { border: none; box-shadow: none; max-width: none; padding: 0; }
+    .back { display: none; }
     .eyebrow { margin-bottom: 5px; font-size: 9.5px; }
     h1 { font-size: 19px; margin-bottom: 6px; }
     .lede { font-size: 11.5px; margin-bottom: 7px; }
@@ -92,11 +120,16 @@
     .limits { padding-top: 8px; font-size: 10.3px; }
     .schematic, .finding, .matters { break-inside: avoid; }
   }
+  /* Screen-only so it cannot leak into the print sheet. Without this the area
+     outside .page falls through to the UA canvas on overscroll. */
+  @media screen { html, body { background: var(--ground); } }
+  a:hover { color: var(--accent-dark); }
 </style>
 </head>
 <body>
 <div class="page">
   <article class="sheet">
+    <a class="back" href="index.html#research">← Back to research</a>
     <p class="eyebrow">Down Syndrome Education International</p>
     <h1>What helps children with Down syndrome progress in reading and language</h1>
     <p class="lede">A re-analysis of a reading-and-language teaching trial: what the teaching improved, what it didn't, and how sure we can be.</p>
