@@ -6,8 +6,8 @@
 <title>Vocabulary growth — interactive posterior</title>
 <style>
   :root{
-    --ground:#f4f6f7; --paper:#fff; --ink:#17242c; --ink-soft:#52606a;
-    --accent:#0f766e; --accent-dark:#0b5d57; --accent-2:#b45309; --line:#e2e7ea; --tint:#eef4f3;
+    --ground:#edf1f3; --paper:#fff; --ink:#17242c; --ink-soft:#52606a;
+    --accent:#0f766e; --accent-dark:#064540; --accent-2:#a4490a; --line:#d5dde2; --tint:#e4eeeb;
     --serif:Georgia,"Times New Roman",serif;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
@@ -85,7 +85,7 @@ const DATA = {"age":[0.667,0.81,0.953,1.096,1.238,1.381,1.524,1.667,1.81,1.953,2
 (function(){
   const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
   const A=DATA.age, N=A.length;
-  const TEAL='#0f766e', AMBER='#b45309', SLATE='#52606a', INK='#17242c', SOFT='#8a959c', LINE='#e2e7ea';
+  const TEAL='#0f766e', AMBER='#a4490a', SLATE='#52606a', INK='#17242c', SOFT='#8a959c', LINE='#d5dde2';
   let view='vocab', ai=27, kf=1.0;
 
   const btnV=document.getElementById('btnVocab'), btnR=document.getElementById('btnRatio');

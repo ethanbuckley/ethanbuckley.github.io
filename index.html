@@ -24,19 +24,19 @@
 <style>
   /* ---------- tokens ---------- */
   :root {
-    --ground: #f4f6f7;
+    --ground: #edf1f3;
     --paper: #ffffff;
     --ink: #17242c;
     --ink-soft: #52606a;
     --accent: #0f766e;
-    --accent-dark: #0b5d57;
-    --accent-2: #b45309;
-    --line: #e2e7ea;
-    --tint: #eef4f3;
+    --accent-dark: #064540;
+    --accent-2: #a4490a;
+    --line: #d5dde2;
+    --tint: #e4eeeb;
     --btn-ink: #ffffff;
 
     /* figure/illustration tones (inline SVGs read these) */
-    --fig-grid: #e2e7ea;
+    --fig-grid: #d5dde2;
     --fig-grid-faint: #eef1f3;
     --fig-axis: #c9d2d6;
     --fig-chain: #5ea59d;
@@ -69,10 +69,10 @@
       --ink: #e8eef1;
       --ink-soft: #a7b6bf;
       --accent: #4cc8b9;
-      --accent-dark: #7eddd1;
+      --accent-dark: #a8efe4;
       --accent-2: #e59d55;
       --line: #2a3b45;
-      --tint: #12302b;
+      --tint: #1a2b2e;
       --btn-ink: #07211d;
       --fig-grid: #2a3b45;
       --fig-grid-faint: #223038;
@@ -335,13 +335,17 @@
   .proj-desc { color: var(--ink-soft); font-size: var(--step-3); max-width: var(--measure); margin: 0 0 16px; text-wrap: pretty; }
   .proj-fig { margin: 0 0 16px; min-width: 0; }
   .proj-fig img {
-    width: 100%; max-width: 280px; height: auto; display: block;
+    width: 100%; max-width: min(440px, 100%); height: auto; display: block;
     border: 1px solid var(--line); border-radius: 4px; background: var(--paper);
   }
-  .proj-fig svg { width: 100%; max-width: 280px; height: auto; display: block; }
+  /* The SVG's labels are user-unit attributes, so its effective type size is
+     attr x rendered / viewBox. Capping at 352px (320 x 11/10) lands its 10px
+     labels on the 11px floor; 440px would push them to 13.8px, above the
+     figcaption beneath them. */
+  .proj-fig svg { width: 100%; max-width: min(352px, 100%); height: auto; display: block; }
   .proj-fig figcaption {
     font-family: var(--mono); font-size: var(--step-1); letter-spacing: 0;
-    color: var(--ink-soft); margin-top: 7px; line-height: 1.6;
+    color: var(--ink-soft); margin-top: 7px; line-height: 1.6; max-width: min(440px, 100%);
   }
   .proj-note {
     font-family: var(--mono); font-size: var(--step-2); letter-spacing: 0; line-height: 1.55;
@@ -785,7 +789,10 @@
           <h3>SEIQR epidemic cellular automaton</h3>
           <p class="proj-desc">A cellular-automaton model of an epidemic spreading across a grid with dense and sparse areas. You can try lockdown and vaccination scenarios in the dashboard. It started as a UCL group project, and I rebuilt and extended it on my own.</p>
           <figure class="proj-fig">
-            <img src="assets/epidemic-demo.gif" width="440" height="459" loading="lazy" decoding="async" alt="Animated simulation grid: infection spreading spatially across a heterogeneous population, then receding as the epidemic passes.">
+            <picture>
+              <source media="(prefers-reduced-motion: reduce)" srcset="data:image/png;base64,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">
+              <img src="assets/epidemic-demo.gif" width="440" height="459" loading="lazy" decoding="async" alt="Animated simulation grid: infection spreading spatially across a heterogeneous population, then receding as the epidemic passes.">
+            </picture>
             <figcaption>One simulated outbreak crossing the grid.</figcaption>
           </figure>
           <p class="proj-note">Individual extension: vectorised simulation (~40× faster) · reproducible pipeline, tested in CI (bit-identical results across Python 3.10–3.12) · Streamlit dashboard · validated against the analytical SEIQR ODE</p>
