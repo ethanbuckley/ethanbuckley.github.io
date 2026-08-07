@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Understanding runs years ahead of speaking — og card</title>
+<!--
+  Source for assets/og-card-production-ratio.png, the og:image for index.html
+  (and its twitter:image), so also the LinkedIn Featured thumbnail for the site.
+  Canvas is 1200 x 630 CSS px (the 1.91:1 Open Graph ratio); render at 2x via
+  figures/render.sh, which downscales to 1200 x 630. The chart is the real
+  matplotlib panel from figures/panels/; do not redraw it.
+-->
+<style>
+  :root{
+    --paper:#ffffff; --ink:#17242c; --ink-soft:#52606a; --ink-faint:#8a949c;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{margin:0;background:var(--paper)}
+  #card{width:1200px;height:630px;overflow:hidden;background:var(--paper);color:var(--ink);
+        font-family:var(--sans);display:flex;align-items:center;gap:36px;padding:44px 48px}
+  .txt{flex:1;display:flex;flex-direction:column;height:100%;padding:8px 0 4px}
+  h1{font-family:var(--serif);font-size:46px;line-height:1.18;font-weight:700;
+     letter-spacing:-.008em;max-width:10em}
+  .sub{font-size:21px;line-height:1.5;color:var(--ink-soft);margin-top:18px;max-width:20em}
+  .url{margin-top:auto;font-size:17px;color:var(--ink-faint)}
+  .panel{flex:0 0 auto}
+  .panel img{display:block;width:768px;height:550px}
+</style>
+</head>
+<body>
+<div id="card">
+  <div class="txt">
+    <h1>Understanding runs years ahead of speaking</h1>
+    <p class="sub">The share of understood words a child with Down syndrome also says, by age.</p>
+    <p class="url">ethanbuckley.github.io</p>
+  </div>
+  <figure class="panel">
+    <img src="panels/production-ratio-panel.png" width="768" height="550" alt="">
+  </figure>
+</div>
+</body>
+</html>

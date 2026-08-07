@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>How children with Down syndrome build vocabulary — og card</title>
+<!--
+  Source for assets/og-card-vocab-method.png, the og:image for
+  vocabulary-growth-explainer.html and its LinkedIn Featured thumbnail.
+  Canvas is 1200 x 630 CSS px (1.91:1); render at 2x via figures/render.sh.
+  The three-box identity mirrors the vocab-method plate; if the model framing
+  changes there, change it here.
+-->
+<style>
+  :root{
+    --paper:#ffffff; --ink:#17242c; --ink-soft:#52606a; --ink-faint:#8a949c;
+    --accent:#0f766e; --accent-2:#a4490a;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{margin:0;background:var(--paper)}
+  #card{width:1200px;height:630px;overflow:hidden;background:var(--paper);color:var(--ink);
+        font-family:var(--sans);display:flex;flex-direction:column;padding:48px 52px 0}
+  h1{font-family:var(--serif);font-size:44px;line-height:1.16;font-weight:700;
+     letter-spacing:-.008em;max-width:22em}
+  .sub{font-size:20px;line-height:1.5;color:var(--ink-soft);margin-top:12px}
+  .diagram{flex:1;display:flex;align-items:center;justify-content:center;gap:26px;
+           padding-bottom:26px}
+  .box{width:296px;padding:34px 18px 30px;border-radius:10px;text-align:center}
+  .box .name{font-size:27px;font-weight:650;letter-spacing:-.01em}
+  .box .what{font-size:16.5px;margin-top:9px;color:var(--ink-soft)}
+  .box.u{border:2.5px solid var(--accent)}
+  .box.u .name{color:var(--accent)}
+  .box.q{border:2.5px solid var(--accent-2)}
+  .box.q .name{color:var(--accent-2)}
+  .box.s{background:var(--ink);color:#fff}
+  .box.s .what{color:#b9c2c9}
+  .op{font-size:44px;color:var(--ink-faint);font-weight:400}
+  .url{position:absolute;left:52px;bottom:20px;font-size:17px;color:var(--ink-faint)}
+  #card{position:relative}
+</style>
+</head>
+<body>
+<div id="card">
+  <h1>How children with Down syndrome build vocabulary</h1>
+  <p class="sub">A pooled Bayesian model of 576 children across 11 international studies.</p>
+  <div class="diagram">
+    <div class="box u"><div class="name">Words understood</div><div class="what">what a child understands</div></div>
+    <div class="op">&times;</div>
+    <div class="box q"><div class="name">Share also said</div><div class="what">the production ratio</div></div>
+    <div class="op">=</div>
+    <div class="box s"><div class="name">Words spoken</div><div class="what">what a child says</div></div>
+  </div>
+  <p class="url">ethanbuckley.github.io</p>
+</div>
+</body>
+</html>

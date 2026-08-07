@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Render the four figure sources in figures/ to the site assets in assets/,
-# then re-print the three showcase-deck PDFs that embed those renders.
+# plus the four Open Graph cards, then re-print the three showcase-deck PDFs
+# that embed the plate renders.
 #
 # For each figure this renders the 1600x1000 CSS px HTML at a 2x device scale
 # factor (giving the 3200x2000 PNG master the site links to), then emits the
@@ -71,17 +72,24 @@ print(f"    {base}-1600.webp / -1600.png written")
 PY
 done
 
-# The Open Graph card is a different shape from the four plates: 1200 x 630 CSS px,
-# the 1.91:1 ratio Facebook, LinkedIn and Slack all crop to. It gets no -1600
-# derivatives because nothing on the site loads it; only link unfurlers fetch it.
-echo "==> asset-generation-og.html -> asset-generation-og (1200x630 Open Graph card)"
-OG_MASTER="$ASSETS_DIR/asset-generation-og.png"
-"$CHROME" --headless --disable-gpu \
-  --hide-scrollbars --force-device-scale-factor=2 --window-size=1200,630 \
-  --blink-settings=preferredColorScheme=1 \
-  --screenshot="$OG_MASTER" "file://$SCRIPT_DIR/asset-generation-og.html"
+# The Open Graph cards are a different shape from the four plates: 1200 x 630 CSS px,
+# the 1.91:1 ratio Facebook, LinkedIn and Slack all crop to. They get no -1600
+# derivatives because nothing on the site loads them; only link unfurlers fetch them.
+OG_CARDS=(
+  "og-card-production-ratio"
+  "og-card-intervention-effects"
+  "og-card-vocab-method"
+  "og-card-asset-generation"
+)
+for src in "${OG_CARDS[@]}"; do
+  echo "==> $src.html -> $src (1200x630 Open Graph card)"
+  OG_MASTER="$ASSETS_DIR/$src.png"
+  "$CHROME" --headless --disable-gpu \
+    --hide-scrollbars --force-device-scale-factor=2 --window-size=1200,630 \
+    --blink-settings=preferredColorScheme=1 \
+    --screenshot="$OG_MASTER" "file://$SCRIPT_DIR/$src.html"
 
-"$PYTHON" - "$OG_MASTER" <<'PY'
+  "$PYTHON" - "$OG_MASTER" <<'PY'
 import sys
 from PIL import Image
 
@@ -90,8 +98,9 @@ im = Image.open(p).convert("RGB")
 if im.size != (2400, 1260):
     raise SystemExit(f"error: {p} is {im.size}, expected (2400, 1260)")
 im.resize((1200, 630), Image.LANCZOS).save(p, optimize=True)
-print("    asset-generation-og.png written at 1200x630")
+print("    written at 1200x630")
 PY
+done
 
 # The three showcase decks embed the plate masters rendered above, so they are
 # re-printed here whenever the plates change. Each source is a multi-sheet HTML
@@ -110,4 +119,4 @@ for pair in "${DECKS[@]}"; do
     --print-to-pdf="$REPO_DIR/$out.pdf" "file://$SCRIPT_DIR/$src.html"
 done
 
-echo "Done. Rendered ${#FIGURES[@]} figures plus the Open Graph card into $ASSETS_DIR, and ${#DECKS[@]} showcase PDFs into $REPO_DIR"
+echo "Done. Rendered ${#FIGURES[@]} figures plus ${#OG_CARDS[@]} Open Graph cards into $ASSETS_DIR, and ${#DECKS[@]} showcase PDFs into $REPO_DIR"
