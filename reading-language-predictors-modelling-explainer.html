@@ -8,6 +8,18 @@
 <style>html,body{margin:0;padding:0;}</style>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <title>Reading and language predictors: design and statistics · Ethan Buckley</title>
+<meta name="description" content="The design and statistics behind the RLI re-analysis: gradient-boosting discovery, a locked causal DAG, and Bayesian estimation with full posteriors.">
+<link rel="canonical" href="https://ethanbuckley.github.io/reading-language-predictors-modelling-explainer.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ethan Buckley">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Predicting reading &amp; language progress in Down syndrome: design and statistics">
+<meta property="og:description" content="The design and statistics behind the RLI re-analysis: gradient-boosting discovery, a locked causal DAG, and Bayesian estimation with full posteriors.">
+<meta property="og:url" content="https://ethanbuckley.github.io/reading-language-predictors-modelling-explainer.html">
+<meta property="og:image" content="https://ethanbuckley.github.io/assets/reading-causal-design-1600.png">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1000">
+<meta property="og:image:alt" content="Causal diagram of the RLI re-analysis: the randomised intervention, skill pathways to word reading, and general-ability confounding.">
 <style>
   :root {
     --ground: #edf1f3; --paper: #ffffff;
@@ -113,13 +125,13 @@
   <article class="sheet">
     <a class="back" href="index.html#research">← Back to research</a>
     <p class="eyebrow">Technical note · Down Syndrome Education International</p>
-    <h1>Predicting language &amp; reading progress in Down syndrome: design and statistics</h1>
-    <p class="lede">A re-analysis of a randomised reading-and-language trial, in two steps: gradient boosting to rank the predictors, then Bayesian models identified on a causal DAG.</p>
-    <p class="meta">DAG-identified Bayesian · gradient-boosting discovery → PyMC / NUTS · Beta-Binomial · <b>RLI trial, n≈54 × 4 waves</b></p>
+    <h1>Predicting reading &amp; language progress in Down syndrome: design and statistics</h1>
+    <p class="lede">A re-analysis of a randomised reading-and-language trial, in two layers: gradient boosting to rank the predictors, then Bayesian models identified on a causal DAG.</p>
+    <p class="meta">DAG-identified Bayesian · gradient-boosting discovery → PyMC / NUTS · Beta-Binomial · <b>RLI trial, 54 children × 4 waves</b></p>
 
     <h2>The problem</h2>
     <hr class="rule" />
-    <p class="body">Re-analysing a small randomised trial (54 children, four waves) to get per-child predictive value, not just an average effect. The hard part is that nearly every interesting association (one skill predicting another, ability predicting outcome) is <strong>confounded by a child’s latent general ability</strong>. Only the randomised assignment is clean. The design is built to keep those two apart, and to put an honest uncertainty on every estimate.</p>
+    <p class="body">Re-analysing a small randomised trial (54 children, four waves) to get per-child predictive value rather than only an average effect. The hard part is that nearly every interesting association (one skill predicting another, ability predicting outcome) is <strong>confounded by a child’s latent general ability</strong>. Only the randomised assignment is clean. The design keeps those two apart and puts a credible interval on every estimate.</p>
 
     <h2>Identification &amp; model</h2>
     <hr class="rule" />
@@ -131,7 +143,7 @@
         <div class="eq">y<sub>i</sub> ~ BetaBinomial(N<sub>out</sub>, &nbsp;logit⁻¹(η<sub>i</sub>), &nbsp;κ);&nbsp; smooth terms via <span class="k">HSGP</span></div>
         <div class="eq">τ → posterior median, 95% CrI, P(τ&gt;0), ROPE&nbsp;δ <span class="c">&nbsp; // no p-values</span></div>
       </dl>
-      <p class="eqnote">The DAG is the causal spine. Randomisation d-separates the treatment group from latent ability, so the <code>ITT</code> effect is identified. Every non-randomised path stays confounded, and is reported only as an <em>adjusted association</em>. The rule throughout: <strong>only the randomised contrast is causal.</strong></p>
+      <p class="eqnote">The DAG is the causal spine. Randomisation d-separates the treatment group from latent ability, so the <code>ITT</code> effect is identified. Every non-randomised path stays confounded, and is reported only as an <em>adjusted association</em>.</p>
     </div>
 
     <h2>Two-layer method</h2>
@@ -153,7 +165,7 @@
     <hr class="rule" />
     <p class="body">The intervention effect on <strong>decoding is robust</strong>: letter-sound knowledge (τ ≈ <strong>+3.6 items</strong>, 95% CrI [1.3, 5.8]) and word reading (≈ <strong>+2.4 words</strong> [0.3, 4.5]) are credibly positive under <strong>four independent identification strategies</strong> (ITT, difference-in-differences, gain- and level-factor), survive SES and non-verbal-ability adjustment, and show a session dose-response. Taught vocabulary moves; standardised vocabulary and grammar are precise nulls. This is a <strong>transfer gradient</strong> that shrinks with distance from instruction, reproducing the original trial. Everything outside the randomised contrast (mechanisms, mediators, predictor rankings, ability associations) is reported as adjusted, ability-confounded association, never as a causal lever.</p>
 
-    <p class="foot"><b>Where this stands.</b> At n≈54, point estimates are Type-M inflated, so results lead with the credible interval, not the point. Priors are weakly-informative, scale-calibrated, and independently audited; floored outcomes use a pre-specified off-floor rule; the full pipeline (discovery → DAG → estimation → diagnostics → report) is reproducible and was cross-checked by an independent audit. The integrated report is still being written: the substantive numbers are converged but preliminary, from a single cohort awaiting replication.</p>
+    <p class="foot"><b>Where this stands.</b> At n = 54, point estimates are Type-M inflated, so results lead with the credible interval, not the point. Priors are weakly-informative and scale-calibrated; floored outcomes use a pre-specified off-floor rule; the full pipeline (discovery → DAG → estimation → diagnostics → report) is reproducible and was cross-checked by an independent audit. The integrated report is still being written: the substantive numbers are converged but preliminary, from a single cohort awaiting replication.</p>
   </article>
 </div>
 </body>

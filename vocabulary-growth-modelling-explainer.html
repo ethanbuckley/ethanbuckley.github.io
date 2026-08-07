@@ -8,6 +8,18 @@
 <style>html,body{margin:0;padding:0;}</style>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <title>Vocabulary growth: modelling and computation · Ethan Buckley</title>
+<meta name="description" content="The Bayesian model behind the vocabulary-growth study: a hierarchical Beta-Binomial with Gaussian-process age trends on the 810-item common scale.">
+<link rel="canonical" href="https://ethanbuckley.github.io/vocabulary-growth-modelling-explainer.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ethan Buckley">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Modelling vocabulary growth: the statistics &amp; computation">
+<meta property="og:description" content="The Bayesian model behind the vocabulary-growth study: a hierarchical Beta-Binomial with Gaussian-process age trends on the 810-item common scale.">
+<meta property="og:url" content="https://ethanbuckley.github.io/vocabulary-growth-modelling-explainer.html">
+<meta property="og:image" content="https://ethanbuckley.github.io/assets/vocab-method-1600.png">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1000">
+<meta property="og:image:alt" content="Diagram: words understood times the production ratio equals words spoken, with the data (576 children across 11 studies) and the estimation approach.">
 <style>
   :root {
     --ground: #edf1f3; --paper: #ffffff;
@@ -157,7 +169,7 @@
     <ul class="chips">
       <li>PyMC</li><li>nutpie (Rust NUTS)</li><li>HSGP</li><li>ArviZ</li><li>DuckDB</li><li>Quarto</li><li>PSIS-LOO</li><li>leave-one-study-out CV</li>
     </ul>
-    <p class="body">Fitting runs full-posterior MCMC (NUTS via <strong>nutpie</strong>), screened with prior- and posterior-predictive checks and standard diagnostics: R̂, effective sample size, divergences. Models are compared with <strong>PSIS-LOO</strong> and <strong>leave-one-study-out</strong> cross-validation. Studies are harmonised in a DuckDB view onto the common 800-item scale, and the whole run (data → posteriors → figures → report in Quarto) is reproducible at three sampling tiers (dev / test / rep), so every result regenerates from raw data as the models improve.</p>
+    <p class="body">Fitting runs full-posterior MCMC (NUTS via <strong>nutpie</strong>), screened with prior- and posterior-predictive checks and standard diagnostics: R̂, effective sample size, divergences. Models are compared with <strong>PSIS-LOO</strong> and <strong>leave-one-study-out</strong> cross-validation. Studies are harmonised in a DuckDB view onto the common 810-item scale, and the whole run (data → posteriors → figures → report in Quarto) is reproducible at three sampling tiers (dev / test / rep), so every result regenerates from raw data as the models improve.</p>
 
     <p class="foot"><b>How this was checked.</b> Built as an iterative Bayesian workflow: interpretable anchor priors informed by expectation and independent Wordbank norms, explicit identification arguments, and caveats where they matter (e.g. short-panel bias makes the naïve within-child lag misleading, so VG16 headlines a bias-robust baseline). A methodology and code audit independently verified the statistical core and fixed several issues (a comprehension-proxy data leak, a GP-boundary mis-sizing, young-age prior calibration, and per-form ceiling validation) before the reporting-quality run.</p>
   </article>

@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vocabulary growth: interactive posterior · Ethan Buckley</title>
+<meta name="description" content="Interactive posterior from the pooled Down-syndrome vocabulary model: words understood, spoken and signed by age, with credible bands.">
+<link rel="canonical" href="https://ethanbuckley.github.io/vocabulary-growth-demo.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ethan Buckley">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Vocabulary growth: interactive posterior">
+<meta property="og:description" content="Interactive posterior from the pooled Down-syndrome vocabulary model: words understood, spoken and signed by age, with credible bands.">
+<meta property="og:url" content="https://ethanbuckley.github.io/vocabulary-growth-demo.html">
 <style>
   :root{
     --ground:#edf1f3; --paper:#fff; --ink:#17242c; --ink-soft:#52606a;
@@ -63,8 +71,8 @@
 <header class="vg-top"><div class="in"><a class="brand" href="index.html">Ethan <span>Buckley</span></a><a class="back" href="index.html#research">← Back to research</a></div></header>
 <div class="vgdemo">
   <p class="vg-eyebrow">Interactive · Study 01</p>
-  <h1>Vocabulary growth, carrying its own uncertainty</h1>
-  <p class="vg-lede">The posterior from the pooled Down-syndrome vocabulary model: how many words children understand, say and sign across age, each as a credible range rather than a single line. Drag through age, and use the dispersion control to see why the spread itself is the scientific question.</p>
+  <h1>Vocabulary growth, with the uncertainty shown</h1>
+  <p class="vg-lede">The posterior from the pooled Down-syndrome vocabulary model: how many words children understand, say and sign across age, each as a credible range rather than a single line. Drag through age, and use the dispersion control to see how the spread between children widens the bands.</p>
   <div class="vg-card">
     <div class="vg-controls">
       <div>
@@ -215,7 +223,7 @@ const DATA = {"age":[0.667,0.81,0.953,1.096,1.238,1.381,1.524,1.667,1.81,1.953,2
       readout.innerHTML='At <b>'+fmtAge(y)+'</b>: understood ≈ <b>'+Math.round(u.m[ai])+'</b> words '+
         '<b>(50% CI '+Math.round(u.lo50[ai])+'–'+Math.round(u.hi50[ai])+')</b>, spoken ≈ <b>'+Math.round(s.m[ai])+'</b> '+
         '<b>('+Math.round(s.lo50[ai])+'–'+Math.round(s.hi50[ai])+')</b>, signed ≈ <b>'+Math.round(sg.m[ai])+'</b>.'+
-        '<span class="k">Over-dispersion κ ≈ '+k.toFixed(1)+' here (as fitted). Lower κ means wider spread between children. Bands shown ×'+kf.toFixed(2)+' (illustrative).</span>';
+        '<span class="k">Over-dispersion κ ≈ '+k.toFixed(1)+' here (as fitted). Lower κ means wider spread between children.'+(Math.abs(kf-1)<0.005?'':' Bands rescaled ×'+kf.toFixed(2)+' (what-if).')+'</span>';
     }
   }
 

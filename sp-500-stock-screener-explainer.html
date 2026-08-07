@@ -8,6 +8,14 @@
 <style>html,body{margin:0;padding:0;}</style>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <title>S&amp;P 500 stock screener: method and validation · Ethan Buckley</title>
+<meta name="description" content="An XGBoost + FinBERT screener for the S&amp;P 500, trained on ~1.3M daily observations with triple-barrier labels. Top-15 precision ~48% vs a 29% base rate in walk-forward testing.">
+<link rel="canonical" href="https://ethanbuckley.github.io/sp-500-stock-screener-explainer.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ethan Buckley">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="A stock screener for the S&amp;P 500, and why I don’t trade it">
+<meta property="og:description" content="An XGBoost + FinBERT screener for the S&amp;P 500, trained on ~1.3M daily observations with triple-barrier labels. Top-15 precision ~48% vs a 29% base rate in walk-forward testing.">
+<meta property="og:url" content="https://ethanbuckley.github.io/sp-500-stock-screener-explainer.html">
 <style>
   :root {
     --ground: #edf1f3; --paper: #ffffff;
@@ -118,12 +126,12 @@
     <a class="back" href="index.html#projects">← Back to projects</a>
     <p class="eyebrow">Technical note · Independent project</p>
     <h1>A stock screener for the S&amp;P 500, and why I don’t trade it</h1>
-    <p class="lede">A two-stage pipeline that ranks long and short candidates across the S&amp;P 500. An XGBoost classifier trained on triple-barrier labels does the main ranking, and FinBERT scores live news sentiment on the shortlist. I built it on my own.</p>
+    <p class="lede">A two-stage pipeline that ranks long and short candidates across the S&amp;P 500. An XGBoost classifier trained on triple-barrier labels does the main ranking, and FinBERT scores live news sentiment on the shortlist.</p>
     <p class="meta">XGBoost + FinBERT · ~1.3M daily observations · triple-barrier labels · walk-forward: top-15 ~48% vs 29% base · <b>Educational project, not investment advice</b></p>
 
     <h2>The pipeline</h2>
     <hr class="rule" />
-    <p class="body">S&amp;P 500 tickers are pulled from Wikipedia, priced with <code style="font-family:var(--mono)">yfinance</code>, and turned into technical + macro features. A single gradient-boosting model scores every stock; the strongest longs and shorts are then passed to a financial-language model for a sentiment cross-check. The output is a ranked leaderboard written to <code style="font-family:var(--mono)">latest_signals.csv</code> and served through a Streamlit dashboard.</p>
+    <p class="body">S&amp;P 500 tickers are pulled from Wikipedia, priced with <code style="font-family:var(--mono)">yfinance</code>, and turned into technical + macro features. The XGBoost model scores every stock; the strongest longs and shorts then go to FinBERT for a sentiment cross-check. The output is a ranked leaderboard written to <code style="font-family:var(--mono)">latest_signals.csv</code> and served through a Streamlit dashboard.</p>
 
     <h2>Stage 1: the XGBoost classifier</h2>
     <hr class="rule" />
@@ -135,7 +143,7 @@
         <div class="eq">regularised: <span class="k">max_depth 5 · subsample 0.8 · colsample_bytree 0.8</span></div>
         <div class="eq">output: P(hit +4% before −4%) → rank → top 15 longs · bottom 5 shorts</div>
       </dl>
-      <p class="eqnote">The <strong>triple-barrier</strong> target is the key design choice. Instead of asking "did the price go up in 5 days", it asks "would a trade with a +4% target and a −4% stop have closed green". That reflects how a risk-managed position actually resolves. The label is computed only from <em>future</em> highs and lows, with no lookahead into the model’s own predictions.</p>
+      <p class="eqnote">The <strong>triple-barrier</strong> target is the key design choice. Instead of asking “did the price go up in 5 days”, it asks “would a trade with a +4% target and a −4% stop have closed green”. That reflects how a risk-managed position actually resolves.</p>
     </div>
 
     <h2>Stage 2: FinBERT sentiment</h2>
@@ -153,7 +161,7 @@
 
     <h2>Dashboard &amp; build</h2>
     <hr class="rule" />
-    <p class="body">The Streamlit dashboard shows the leaderboard, the walk-forward validation, and a Monte-Carlo portfolio-risk simulator (VaR / CVaR) over a chosen basket. The screener’s latest signals also show up, read-only, inside my personal dashboard, purely as information.</p>
+    <p class="body">The Streamlit dashboard shows the leaderboard, the walk-forward validation, and a Monte-Carlo portfolio-risk simulator (VaR / CVaR) over a chosen basket. The screener’s latest signals also show up, read-only, in my personal dashboard.</p>
     <ul class="chips">
       <li>Python</li>
       <li>XGBoost</li>
@@ -167,7 +175,7 @@
     <hr class="rule" />
     <p class="body"><a href="https://stockmarkets-p-cngwhp4eigfgpq5xphgwng.streamlit.app" target="_blank" rel="noopener">Live dashboard</a> · <a href="https://github.com/ethanbuckley/stockmarketS-P" target="_blank" rel="noopener">Source on GitHub</a></p>
 
-    <p class="foot"><b>The caveats.</b> An educational project applying quantitative-finance techniques. It is <strong>not investment advice and not a live-traded system</strong>. The results come from a single backtest, with the survivorship and transaction-cost caveats above, so they show the pipeline works rather than any realised return. The outputs are predicted probabilities, not guarantees.</p>
+    <p class="foot"><b>The caveats.</b> Educational project, not investment advice. The results are one backtest, with the survivorship and cost caveats above: they show the pipeline works, not a realised return.</p>
   </article>
 </div>
 </body>

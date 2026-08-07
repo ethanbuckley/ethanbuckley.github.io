@@ -6,11 +6,11 @@
 <style>html,body{margin:0;padding:0;}</style>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <title>Generating teaching materials with AI: method and evaluation · Ethan Buckley</title>
-<meta name="description" content="How an accessibility requirement became a written specification for AI-generated teaching assets, how the models were chosen by blind comparison, and what has not been verified.">
+<meta name="description" content="How an accessibility requirement became a written specification for AI-generated teaching assets. The models were chosen by blind comparison, and the page says what has not been verified.">
 <link rel="canonical" href="https://ethanbuckley.github.io/asset-generation-explainer.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Image and audio pipelines for teaching materials, and how the models were chosen">
-<meta property="og:description" content="An accessibility requirement, written up as a specification and enforced in tooling. Models chosen by blind comparison with real uncertainty. 4,307 audio clips across 10 English accents.">
+<meta property="og:description" content="An accessibility requirement, written up as a specification and enforced in tooling. Models chosen by blind comparison, with bootstrap intervals on the ranking. 4,307 audio clips across 10 English accents.">
 <meta property="og:url" content="https://ethanbuckley.github.io/asset-generation-explainer.html">
 <meta property="og:image" content="https://ethanbuckley.github.io/assets/asset-generation-og.png">
 <meta name="theme-color" content="#edf1f3" media="(prefers-color-scheme: light)">
@@ -185,13 +185,13 @@
 
     <h2>How the models were chosen</h2>
     <hr class="rule" />
-    <p class="body">The voices came out of a <strong>blind A/B listening arena</strong>: pairs of clips judged blind, with <strong>Bradley–Terry</strong> ranking and bootstrap confidence intervals over the outcomes. It compared four commercial text-to-speech providers across American, British and Irish English. The scorer reports 90% bootstrap intervals, the probability that each configuration ranks first, and which configurations are statistically indistinguishable from the leader, so a thin ranking reads as thin.</p>
+    <p class="body">The voices came out of a <strong>blind A/B listening arena</strong>: pairs of clips scored with <strong>Bradley–Terry</strong> ranking and bootstrap confidence intervals over the outcomes. It compared four commercial text-to-speech providers across American, British and Irish English. The scorer reports 90% bootstrap intervals, the probability that each configuration ranks first, and which configurations are statistically indistinguishable from the leader, so a thin ranking reads as thin.</p>
     <p class="body">One methodology bug was found and fixed: <strong>tie-credit</strong>. First-place credit was going to whichever configuration happened to sort first, which invented leaders out of dead heats. The arena also locks the vote buttons until both clips have finished playing, as a protocol safeguard.</p>
-    <p class="body">The honest limit: for short child-vocabulary phrases, many voices are genuinely hard to tell apart, so a lot of comparisons end in ties and the middle of the ranking stays unresolved. A second listener would be worth more than more pairs from the same one.</p>
+    <p class="body">The limit: for short child-vocabulary phrases, many voices are hard to tell apart, so a lot of comparisons end in ties and the middle of the ranking stays unresolved. A second listener would be worth more than more pairs from the same one.</p>
 
     <h2>Cost and reruns</h2>
     <hr class="rule" />
-    <p class="body">A batch-inference integration <strong>halved the unit cost</strong> of image generation, verified end to end, and turned out to be faster than the rate-limited synchronous path: 294 images in about 25 minutes, against about 45. Reruns are idempotent by request hash, so a rerun bills only for what changed, and the plan table marks in yellow any image that would be <em>replaced</em>, because the expensive silent mistake is re-drafting a brief and invalidating approved work.</p>
+    <p class="body">A batch-inference integration <strong>halved the unit cost</strong> of image generation, verified end to end, and turned out to be faster than the rate-limited synchronous path: 294 images in about 25 minutes, against about 45 minutes on the synchronous path. Reruns are idempotent by request hash, so a rerun bills only for what changed, and the plan table marks in yellow any image that would be <em>replaced</em>, because the expensive silent mistake is re-drafting a brief and invalidating approved work.</p>
     <p class="body">A local open-weight image model was evaluated and rejected for this specification. It has a 256-token prompt limit, against presets of roughly 363 tokens, so it silently truncated them. That looked like a model ignoring instructions, and was really a model that never saw them.</p>
 
     <h2>Failure modes worth knowing</h2>
@@ -204,9 +204,9 @@
     <h2>What isn’t done</h2>
     <hr class="rule" />
     <ul class="family">
-      <li class="assoc"><span class="lvl">Quality review</span><span class="txt">Barely started. About a dozen images have been looked at individually, and the automated vision verifier has run on <strong>none</strong> of them. No claim is made about image quality.</span></li>
+      <li class="assoc"><span class="lvl">Quality review</span><span class="txt">Barely started. About a dozen images have been looked at individually, and the automated vision verifier has run on <strong>none</strong> of them.</span></li>
       <li class="assoc"><span class="lvl">Known defects</span><span class="txt">Two real ones found in that handful: unnamed props drift pale, a leak from the contrast rule; and transparent subjects such as a glass of water take the background’s tone and disappear.</span></li>
-      <li class="assoc"><span class="lvl">Contrast metric</span><span class="txt">The repo’s own contrast metric is not trustworthy: two of its three numbers are artefacts, documented in the module. It reported a large failure count on a batch where the true number was unknown and far smaller.</span></li>
+      <li class="assoc"><span class="lvl">Contrast metric</span><span class="txt">The repo’s own contrast metric is not trustworthy: two of its three numbers are artefacts, documented in the module. It reported a large failure count on a batch where the true number, never counted exactly, was far smaller.</span></li>
       <li class="assoc"><span class="lvl">Coverage</span><span class="txt">The image set is still <strong>in production</strong>, not finished.</span></li>
     </ul>
 

@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://ethanbuckley.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ethan Buckley: data science, machine learning and scientific computing">
-<meta property="og:description" content="Ethan Buckley builds Bayesian models, machine-learning systems and scientific simulations. Research at Down Syndrome Education International, plus independent projects.">
+<meta property="og:description" content="Physics student at UCL. Bayesian research at Down Syndrome Education International, plus an S&amp;P 500 stock screener and an epidemic simulator built independently.">
 <meta property="og:url" content="https://ethanbuckley.github.io/">
 <meta property="og:image" content="https://ethanbuckley.github.io/assets/vocab-production-ratio-1600.png">
 <meta property="og:site_name" content="Ethan Buckley">
@@ -545,7 +545,7 @@
         <h2 id="about-h">What I do</h2>
       </div>
       <div class="side-body about-cols">
-        <p>I work on the statistics and the code underneath it. Right now that’s at Down Syndrome Education International, as their data science intern. They study how children with Down syndrome learn language and turn it into guidance for families and teachers, and I build the models behind that work.</p>
+        <p>I’m the data science intern at Down Syndrome Education International. They study how children with Down syndrome learn language and turn it into guidance for families and teachers, and I build the models behind that work.</p>
         <p>I’m doing an MSci in Natural Sciences (Physics) at UCL. <strong>The DSE research here was done with their team and under senior review.</strong> The projects further down are my own.</p>
       </div>
     </div>
@@ -558,7 +558,7 @@
         <p class="eyebrow">01 · Research</p>
         <h2 id="research-h">Two studies of language development</h2>
         <hr class="rule">
-        <p class="lede">Both studies are Bayesian, and both are still being finished. Each one has a plain-language explainer and a more technical write-up.</p>
+        <p class="lede">Both studies are Bayesian; each has a plain-language explainer and a more technical write-up.</p>
       </div>
 
       <!-- ---- study 1 ---- -->
@@ -589,12 +589,12 @@
               <div class="finding">
                 <span class="dot"></span>
                 <h4>The gap is wider than in typical development, then narrows</h4>
-                <p>At the same level of comprehension, children with Down syndrome say a smaller share of the words they know. The difference peaks at around 13 percentage points at 50–150 understood words, then fades as vocabulary grows. It’s a stretch that eases, not a fixed deficit.</p>
+                <p>At the same level of comprehension, children with Down syndrome say a smaller share of the words they know. The difference peaks at around 13 percentage points at 50–150 understood words, then fades as vocabulary grows.</p>
               </div>
               <div class="finding">
                 <span class="dot"></span>
                 <h4>Signing offers a modest early bridge</h4>
-                <p>Counting signed words credits children with expressive vocabulary they already have, and narrows the early gap somewhat. It’s real help while speech catches up, though the spoken-word gap stays large.</p>
+                <p>Counting signed words credits children with expressive vocabulary they already have, and narrows the early gap somewhat. The narrowing is concentrated around ages two to three; the spoken-word gap stays large.</p>
               </div>
             </div>
           </div>
@@ -602,7 +602,7 @@
           <div class="study-aside">
             <div class="contrib">
               <span class="label">My contribution</span>
-              <p>I built the signing and within-child longitudinal models, the multi-study data pipeline that harmonises the eleven datasets in DuckDB, and the descriptive and comprehension–production-gap reports.</p>
+              <p>I built the signing and within-child longitudinal models, the pipeline that harmonises the eleven studies in DuckDB, and the descriptive and comprehension–production-gap reports.</p>
             </div>
 
             <p class="doc-links">
@@ -648,12 +648,12 @@
               <div class="finding">
                 <span class="dot"></span>
                 <h4>The teaching credibly improved decoding</h4>
-                <p>Letter-sound knowledge, blending and word reading all rose. Because children were randomised, these effects read as cause, not correlation. The specific words children were taught to say also improved.</p>
+                <p>Letter-sound knowledge, blending and word reading all rose. The specific words children were taught to say also improved.</p>
               </div>
               <div class="finding">
                 <span class="dot"></span>
                 <h4>Broad vocabulary and grammar did not move</h4>
-                <p>Gains faded with distance from what was taught, a transfer gradient. Skills close to the instruction improved; distant ones didn’t. That matches the original trial’s own conclusion.</p>
+                <p>Gains faded with distance from what was taught: skills close to the instruction improved, distant ones didn’t. That matches the original trial’s own conclusion.</p>
               </div>
               <div class="finding alt">
                 <span class="dot"></span>
@@ -666,7 +666,7 @@
           <div class="study-aside">
             <div class="contrib">
               <span class="label">My contribution</span>
-              <p>I worked on the re-analysis with the team. My part was the intention-to-treat, difference-in-differences, mediation and mechanism models inside the study’s causal DAG, plus the gradient-boosting layer that ranks candidate predictors and the results reporting.</p>
+              <p>My part was the intention-to-treat, difference-in-differences, mediation and mechanism models inside the study’s causal DAG, plus the gradient-boosting layer that ranks candidate predictors and the results reporting.</p>
             </div>
 
             <p class="doc-links">
@@ -683,7 +683,7 @@
                 <img src="assets/reading-causal-design-1600.png" width="1600" height="1000" loading="lazy" decoding="async" alt="Diagram: the study’s causal graph. A randomised intervention node feeds letter-sound, phonological and taught-vocabulary skills through to word reading, while a latent general-ability node confounds every non-randomised path.">
               </picture>
             </a>
-            <figcaption>The causal design. Randomisation identifies the teaching effect; skill-to-skill paths stay associational. <a href="assets/reading-causal-design.png" target="_blank" rel="noopener">Open full size</a></figcaption>
+            <figcaption>The causal diagram the analysis is built around. <a href="assets/reading-causal-design.png" target="_blank" rel="noopener">Open full size</a></figcaption>
           </figure>
         </div>
       </article>
@@ -703,7 +703,7 @@
         <p class="eyebrow">02 · Engineering</p>
         <h2 id="engineering-h">Tooling for teaching materials</h2>
         <hr class="rule">
-        <p class="lede">Two production systems I built at DSE to generate teaching materials. Both were evaluation harnesses before they were pipelines, because the first question was which model to trust.</p>
+        <p class="lede">Two production systems I built at DSE to generate teaching materials. Both started as evaluation harnesses, because the first job was picking which model to use.</p>
       </div>
 
       <div class="proj-grid">
@@ -729,8 +729,8 @@
           <p class="proj-kicker">Down Syndrome Education International · production system</p>
           <h3>Spoken-word audio pipeline</h3>
           <p class="proj-desc">A pipeline that produced 4,307 spoken clips of words and sentences across 10 English accents. The voices were chosen in a blind A/B listening arena over four commercial text-to-speech providers, ranked by Bradley–Terry with bootstrap confidence intervals.</p>
-          <p class="proj-desc">The scorer reports 90% intervals, the probability each configuration ranks first, and which configurations are statistically indistinguishable from the leader, so a thin ranking reads as thin. One methodology bug was found and fixed: tie-credit, which had been inventing leaders out of dead heats.</p>
-          <p class="proj-note">Blind A/B arena · 90% bootstrap intervals · many short-phrase comparisons tie, so the middle of the ranking stays unresolved</p>
+          <p class="proj-desc">The scorer reports 90% intervals and flags which voices are statistically indistinguishable from the leader. I found and fixed one scoring bug: tie-credit had been inventing leaders out of dead heats.</p>
+          <p class="proj-note">Many short-phrase comparisons tie, so the middle of the ranking stays unresolved</p>
           <ul class="proj-tags">
             <li>Python</li>
             <li>CLI</li>
@@ -753,7 +753,6 @@
         <p class="eyebrow">03 · Projects</p>
         <h2 id="projects-h">A stock screener and an epidemic model</h2>
         <hr class="rule">
-        <p class="lede">Independent projects, built and tested on my own.</p>
       </div>
 
       <div class="proj-grid">
@@ -784,7 +783,7 @@
             </svg>
             <figcaption>Schematic: how the screener separates candidates, model confidence vs news sentiment.</figcaption>
           </figure>
-          <p class="proj-note">Validated by expanding-window walk-forward testing, 2020–2026 · limitations reported: survivorship bias, no transaction costs</p>
+          <p class="proj-note">Expanding-window validation · limitations reported: survivorship bias, no transaction costs</p>
           <ul class="proj-tags">
             <li>XGBoost</li>
             <li>FinBERT</li>
@@ -838,7 +837,7 @@
         <h2 id="approach-h">How I work</h2>
       </div>
       <div class="side-body">
-        <p class="lede">I fit models with MCMC, so every quantity comes out as a full distribution with a credible interval, not a single number. I use machine learning to find structure in larger datasets, and I keep the work in tested, version-controlled code so results reproduce.</p>
+        <p class="lede">I fit models with MCMC and report full posteriors. I use machine learning to find structure in larger datasets, and I keep the work in tested, version-controlled code so results reproduce.</p>
         <figure class="approach-fig">
           <svg viewBox="0 0 620 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schematic, not plotted from data. An MCMC diagnostic: three sampler chains on the left overlap in one stable band, showing they have converged (R-hat about 1.00); on the right, the resulting posterior distribution is summarised by a 95% credible interval around its median rather than a single point estimate.">
             <line x1="40" y1="30" x2="40" y2="200" style="stroke:var(--fig-grid)" stroke-width="1"/>
@@ -907,7 +906,7 @@
           </div>
         </dl>
 
-        <p class="smallprint">The research here was done at Down Syndrome Education International, with the team and under senior review. Findings from both studies are preliminary. Figures come from development-tier model fits.</p>
+        <p class="smallprint">Figures come from development-tier model fits.</p>
       </div>
     </div>
   </section>
