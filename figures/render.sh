@@ -80,6 +80,8 @@ OG_CARDS=(
   "og-card-intervention-effects"
   "og-card-vocab-method"
   "og-card-asset-generation"
+  "og-card-vocab-modelling"
+  "og-card-reading-modelling"
 )
 for src in "${OG_CARDS[@]}"; do
   echo "==> $src.html -> $src (1200x630 Open Graph card)"

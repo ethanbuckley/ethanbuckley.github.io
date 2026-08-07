@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>A causal design for reading progress — og card</title>
+<!--
+  Source for assets/og-card-reading-modelling.png, the og:image for
+  reading-language-predictors-modelling-explainer.html.
+  Canvas is 1200 x 630 CSS px (1.91:1); render at 2x via figures/render.sh.
+  The diagram is a compact redraw of the causal-design plate's simplified DAG;
+  if the design changes there, change it here.
+-->
+<style>
+  :root{
+    --paper:#ffffff; --ink:#17242c; --ink-soft:#52606a; --ink-faint:#8a949c;
+    --accent:#0f766e; --accent-2:#a4490a; --line:#d5dde2;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{margin:0;background:var(--paper)}
+  #card{width:1200px;height:630px;overflow:hidden;background:var(--paper);color:var(--ink);
+        font-family:var(--sans);position:relative;display:flex;flex-direction:column;
+        padding:44px 52px 0}
+  h1{font-family:var(--serif);font-size:44px;line-height:1.16;font-weight:700;
+     letter-spacing:-.008em}
+  .sub{font-size:20px;line-height:1.5;color:var(--ink-soft);margin-top:10px}
+  .dag{flex:1;display:flex;align-items:center;justify-content:center;padding-bottom:34px}
+  .dag svg{display:block}
+  .url{position:absolute;left:52px;bottom:20px;font-size:17px;color:var(--ink-faint)}
+</style>
+</head>
+<body>
+<div id="card">
+  <h1>A causal design for reading progress</h1>
+  <p class="sub">How the re-analysis separates what the teaching causes from what tracks a child&rsquo;s general ability.</p>
+  <div class="dag">
+    <svg width="1010" height="400" viewBox="0 0 1010 400" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+      <defs>
+        <marker id="teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0f766e"/></marker>
+        <marker id="dark" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#3b4a55"/></marker>
+        <marker id="grey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#a9b3ba"/></marker>
+      </defs>
+
+      <!-- general ability, latent -->
+      <ellipse cx="505" cy="52" rx="128" ry="40" fill="none" stroke="#a9b3ba" stroke-width="1.8" stroke-dasharray="6 5"/>
+      <text x="505" y="48" text-anchor="middle" font-size="19" font-weight="600" fill="#52606a">General ability</text>
+      <text x="505" y="70" text-anchor="middle" font-size="14.5" fill="#8a949c">latent, unmeasured</text>
+
+      <!-- confounding arrows -->
+      <path d="M431 84 C 350 130, 300 160, 262 190" fill="none" stroke="#a9b3ba" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#grey)"/>
+      <path d="M505 92 L505 186" fill="none" stroke="#a9b3ba" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#grey)"/>
+      <path d="M579 84 C 700 130, 800 160, 872 186" fill="none" stroke="#a9b3ba" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#grey)"/>
+
+      <!-- intervention -->
+      <rect x="20" y="212" width="180" height="76" rx="10" fill="#0f766e"/>
+      <text x="110" y="246" text-anchor="middle" font-size="21" font-weight="650" fill="#ffffff">Intervention</text>
+      <text x="110" y="270" text-anchor="middle" font-size="14.5" fill="#c8e4e0">randomised</text>
+
+      <!-- taught skills -->
+      <rect x="262" y="140" width="200" height="64" rx="10" fill="none" stroke="#0f766e" stroke-width="2.2"/>
+      <text x="362" y="168" text-anchor="middle" font-size="18.5" font-weight="600" fill="#0f766e">Letter&ndash;sound</text>
+      <text x="362" y="189" text-anchor="middle" font-size="14" fill="#52606a">knowledge</text>
+
+      <rect x="262" y="222" width="200" height="64" rx="10" fill="none" stroke="#0f766e" stroke-width="2.2"/>
+      <text x="362" y="250" text-anchor="middle" font-size="18.5" font-weight="600" fill="#0f766e">Phonological</text>
+      <text x="362" y="271" text-anchor="middle" font-size="14" fill="#52606a">awareness</text>
+
+      <rect x="262" y="304" width="200" height="64" rx="10" fill="none" stroke="#0f766e" stroke-width="2.2"/>
+      <text x="362" y="332" text-anchor="middle" font-size="18.5" font-weight="600" fill="#0f766e">Taught</text>
+      <text x="362" y="353" text-anchor="middle" font-size="14" fill="#52606a">vocabulary</text>
+
+      <!-- decoding -->
+      <rect x="562" y="186" width="180" height="64" rx="10" fill="none" stroke="#3b4a55" stroke-width="2"/>
+      <text x="652" y="214" text-anchor="middle" font-size="18.5" font-weight="600" fill="#17242c">Decoding</text>
+      <text x="652" y="235" text-anchor="middle" font-size="14" fill="#52606a">nonword reading</text>
+
+      <!-- word reading -->
+      <rect x="842" y="186" width="148" height="64" rx="10" fill="#a4490a"/>
+      <text x="916" y="214" text-anchor="middle" font-size="18.5" font-weight="650" fill="#ffffff">Word reading</text>
+      <text x="916" y="235" text-anchor="middle" font-size="13.5" fill="#f2d8c4">primary outcome</text>
+
+      <!-- randomised arrows -->
+      <path d="M200 234 L254 182" fill="none" stroke="#0f766e" stroke-width="2.6" marker-end="url(#teal)"/>
+      <path d="M200 250 L254 252" fill="none" stroke="#0f766e" stroke-width="2.6" marker-end="url(#teal)"/>
+      <path d="M200 268 L254 328" fill="none" stroke="#0f766e" stroke-width="2.6" marker-end="url(#teal)"/>
+
+      <!-- skill pathways -->
+      <path d="M462 176 L554 208" fill="none" stroke="#3b4a55" stroke-width="2" marker-end="url(#dark)"/>
+      <path d="M462 250 L554 222" fill="none" stroke="#3b4a55" stroke-width="2" marker-end="url(#dark)"/>
+      <path d="M742 218 L834 218" fill="none" stroke="#3b4a55" stroke-width="2" marker-end="url(#dark)"/>
+      <path d="M462 336 C 620 336, 740 280, 834 240" fill="none" stroke="#3b4a55" stroke-width="2" marker-end="url(#dark)"/>
+
+      <!-- key -->
+      <g font-size="15" fill="#52606a">
+        <line x1="588" y1="330" x2="632" y2="330" stroke="#0f766e" stroke-width="2.6" marker-end="url(#teal)"/>
+        <text x="642" y="335">randomised, causal</text>
+        <line x1="588" y1="360" x2="632" y2="360" stroke="#3b4a55" stroke-width="2" marker-end="url(#dark)"/>
+        <text x="642" y="365">skill pathway, association</text>
+        <line x1="822" y1="360" x2="866" y2="360" stroke="#a9b3ba" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#grey)"/>
+        <text x="876" y="365">confounding</text>
+      </g>
+    </svg>
+  </div>
+  <p class="url">ethanbuckley.github.io</p>
+  <p class="url" style="left:auto;right:52px">simplified from the revised 20-node DAG</p>
+</div>
+</body>
+</html>
