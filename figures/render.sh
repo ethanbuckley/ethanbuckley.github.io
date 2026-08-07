@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Render the four figure sources in figures/ to the site assets in assets/.
+# Render the four figure sources in figures/ to the site assets in assets/,
+# then re-print the three showcase-deck PDFs that embed those renders.
 #
 # For each figure this renders the 1600x1000 CSS px HTML at a 2x device scale
 # factor (giving the 3200x2000 PNG master the site links to), then emits the
@@ -92,4 +93,21 @@ im.resize((1200, 630), Image.LANCZOS).save(p, optimize=True)
 print("    asset-generation-og.png written at 1200x630")
 PY
 
-echo "Done. Rendered ${#FIGURES[@]} figures plus the Open Graph card into $ASSETS_DIR"
+# The three showcase decks embed the plate masters rendered above, so they are
+# re-printed here whenever the plates change. Each source is a multi-sheet HTML
+# file in figures/; Chrome prints one PDF per deck into the repo root, under the
+# filenames index.html links (do not rename them).
+DECKS=(
+  "showcase-dse-research:dse-research-showcase"
+  "showcase-vocabulary-growth:vocabulary-growth-showcase"
+  "showcase-reading-language:reading-language-showcase"
+)
+for pair in "${DECKS[@]}"; do
+  src="${pair%%:*}"
+  out="${pair##*:}"
+  echo "==> $src.html -> $out.pdf"
+  "$CHROME" --headless --disable-gpu --no-pdf-header-footer \
+    --print-to-pdf="$REPO_DIR/$out.pdf" "file://$SCRIPT_DIR/$src.html"
+done
+
+echo "Done. Rendered ${#FIGURES[@]} figures plus the Open Graph card into $ASSETS_DIR, and ${#DECKS[@]} showcase PDFs into $REPO_DIR"

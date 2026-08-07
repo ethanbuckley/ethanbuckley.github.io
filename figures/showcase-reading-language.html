@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Reading and language showcase</title>
+<!--
+  Source for reading-language-showcase.pdf (repo root). Two 1600 x 1000 CSS px
+  sheets: the two reading plates embedded from the rendered masters in assets/.
+  Print via figures/render.sh; do not export by hand.
+-->
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  @page{size:1600px 1000px;margin:0}
+  body{margin:0;background:#ffffff}
+  .sheet{width:1600px;height:1000px;overflow:hidden;page-break-after:always}
+  .sheet:last-child{page-break-after:auto}
+  .sheet img{display:block;width:1600px;height:1000px}
+</style>
+</head>
+<body>
+<section class="sheet"><img src="../assets/reading-causal-design.png" alt="A causal design for reading progress"></section>
+<section class="sheet"><img src="../assets/reading-intervention-effects.png" alt="The intervention lifted reading, not broad vocabulary"></section>
+</body>
+</html>
