@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Render the four figure sources in figures/ to the site assets in assets/,
-# plus the four Open Graph cards, then re-print the three showcase-deck PDFs
+# plus the six Open Graph cards, then re-print the three showcase-deck PDFs
 # that embed the plate renders.
 #
 # For each figure this renders the 1600x1000 CSS px HTML at a 2x device scale
