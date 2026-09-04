@@ -6,8 +6,6 @@
 <style>html,body{margin:0;padding:0;}</style>
 <title>Ethan Buckley: CV</title>
 <meta name="description" content="Ethan Buckley, MSci Natural Sciences (Physics) at UCL and data science intern at Down Syndrome Education International. Bayesian modelling, causal inference and machine learning.">
-<meta name="theme-color" content="#edf1f3" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#101a20" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="canonical" href="https://ethanbuckley.github.io/cv.html">
 <meta property="og:type" content="profile">
@@ -16,166 +14,61 @@
 <meta property="og:title" content="Ethan Buckley: CV">
 <meta property="og:description" content="MSci Natural Sciences (Physics) at UCL, data science intern at Down Syndrome Education International. Bayesian modelling, causal inference and machine learning.">
 <meta property="og:url" content="https://ethanbuckley.github.io/cv.html">
-<style>
-  :root {
-    --ground: #edf1f3; --paper: #ffffff;
-    --ink: #17242c; --ink-soft: #52606a;
-    --accent: #0f766e; --accent-dark: #064540; --accent-2: #14181d;
-    --line: #d5dde2;
-    --serif: Georgia, "Times New Roman", serif;
-    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-    color-scheme: light;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ground: #101a20; --paper: #16232b;
-      --ink: #e8eef1; --ink-soft: #a7b6bf;
-      --accent: #4cc8b9; --accent-dark: #a8efe4; --accent-2: #e59d55;
-      --line: #2a3b45;
-      color-scheme: dark;
-    }
-  }
-  /* Screen-only so it cannot leak into the print sheet. */
-  @media screen { html, body { background: var(--ground); } }
-
-  * { box-sizing: border-box; }
-  .page { color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.5;
-    padding: clamp(20px, 4vw, 52px) 16px; display: flex; justify-content: center; }
-  .sheet { background: var(--paper); max-width: 720px; width: 100%;
-    padding: clamp(26px, 5vw, 54px); border: 1px solid var(--line); border-radius: 3px; }
-
-  a { color: var(--accent); text-underline-offset: 2px; }
-  a:hover { color: var(--accent-dark); }
-
-  .back { display: inline-block; font-family: var(--mono); font-size: 11.5px;
-    letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft);
-    text-decoration: none; margin-bottom: 20px; }
-  .back:hover { color: var(--accent); }
-
-  h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(28px, 4.4vw, 38px);
-    line-height: 1.1; letter-spacing: -.01em; margin: 0 0 8px; }
-  .contact { font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft);
-    line-height: 1.7; margin: 0 0 16px; }
-  .contact a { text-decoration: none; }
-  .contact a:hover { text-decoration: underline; }
-  .summary { color: var(--ink-soft); max-width: 41em; margin: 0 0 4px;
-    border-top: 1px solid var(--line); padding-top: 14px; }
-
-  h2 { font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em;
-    text-transform: uppercase; color: var(--accent); font-weight: 600;
-    margin: 26px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
-
-  .role { display: flex; justify-content: space-between; align-items: baseline;
-    gap: 16px; margin: 14px 0 4px; }
-  .role:first-of-type { margin-top: 0; }
-  .role .what { font-weight: 600; }
-  .role .when { font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft);
-    white-space: nowrap; }
-  .detail { color: var(--ink-soft); margin: 0; max-width: 41em; }
-
-  ul { margin: 4px 0 0; padding-left: 17px; }
-  li { color: var(--ink-soft); margin-bottom: 5px; max-width: 41em; }
-  li:last-child { margin-bottom: 0; }
-  .skills p { margin: 0 0 6px; color: var(--ink-soft); max-width: 41em; }
-  .skills b { color: var(--ink); font-weight: 600; }
-
-  .foot { font-family: var(--mono); font-size: 11px; color: var(--ink-soft);
-    border-top: 1px solid var(--line); padding-top: 14px; margin-top: 26px; }
-
-  @media (max-width: 560px) {
-    .role { display: block; }
-    .role .when { display: block; margin-top: 1px; }
-  }
-
-  /* Tuned so the whole CV lands on one A4 page, which is the point of it. */
-  @media print {
-    @page { size: A4; margin: 11mm 13mm; }
-    /* .page carries the screen font-size and line-height, so it must be the
-       target here: a rule on body loses to it and every line stays at 1.5. */
-    .page { padding: 0; display: block; font-size: 9pt; line-height: 1.24; }
-    li { margin-bottom: 3px; }
-    .sheet { border: none; border-radius: 0; padding: 0; max-width: none; background: none; }
-    .back, .noprint { display: none; }
-    /* A CV sheet is not prose. The reading measure would waste a third of the
-       page width and cost lines, and the screen's section spacing is far looser
-       than a CV needs, so both are tightened here rather than shrinking the
-       type: 9pt in this stack matches the x-height of the 10pt Calibri original. */
-    .summary, .detail, li, .skills p { max-width: none; }
-    h1 { font-size: 18pt; margin-bottom: 3pt; }
-    .contact { font-size: 7.6pt; line-height: 1.45; margin-bottom: 6pt; }
-    .summary { font-size: 9pt; padding-top: 5pt; }
-    h2 { font-size: 8pt; margin: 5pt 0 2.5pt; padding-bottom: 2pt; }
-    .role { margin: 3.5pt 0 1pt; }
-    .role .when { font-size: 7.6pt; }
-    li, .detail, .skills p { font-size: 9pt; }
-    li { margin-bottom: 1pt; }
-    .skills p { margin-bottom: 1.5pt; }
-    ul { margin-top: 1pt; padding-left: 12pt; }
-    /* Keep a role heading with its first line; let long bullets split. */
-    .role { break-inside: avoid; }
-    h2, .role { break-after: avoid; }
-  }
-</style>
 <link rel="stylesheet" href="assets/site.css">
 <script src="assets/theme.js"></script>
+<style>
+  /* Generated by CVs/build_cvs.py from the same source as the Word files. Do not edit by hand. */
+  .page { padding: clamp(20px, 4vw, 52px) 16px; display: flex; justify-content: center; }
+  .sheet { background: var(--paper); max-width: 760px; width: 100%; padding: clamp(24px, 5vw, 52px); border: 1px solid var(--line); border-radius: 3px; }
+  .cvdoc, .cvdoc h1, .cvdoc h2, .cvdoc p, .cvdoc li, .cvdoc b { font-family: "Times New Roman", Times, serif; color: var(--ink); letter-spacing: 0; }
+  .cvdoc { font-size: 15px; line-height: 1.4; }
+  .cvdoc h1 { font-size: 24px; text-align: center; margin: 0; padding-bottom: 3px; border-bottom: 1.5px solid var(--ink); font-weight: 700; }
+  .cvdoc .contact { text-align: center; margin: 6px 0 4px; }
+  .cvdoc .contact a { color: var(--accent); text-decoration: none; }
+  .cvdoc .contact a:hover { text-decoration: underline; }
+  .cvdoc h2 { font-size: 18px; text-align: center; margin: 18px 0 4px; font-weight: 700; }
+  .cvdoc .entry { display: flex; justify-content: space-between; gap: 16px; margin: 8px 0 0; }
+  .cvdoc .entry span { white-space: nowrap; }
+  .cvdoc ul { margin: 2px 0 0 22px; padding: 0; }
+  .cvdoc li { margin: 0 0 2px; }
+  .back { display: inline-block; font-size: 13px; color: var(--ink-soft); text-decoration: none; margin-bottom: 18px; }
+  .back:hover { color: var(--accent); }
+  .foot { font-size: 13px; color: var(--ink-soft); border-top: 1px solid var(--line); padding-top: 12px; margin-top: 22px; }
+  @media (max-width: 560px) { .cvdoc .entry { display: block; } .cvdoc .entry span { display: block; white-space: normal; } }
+  @media print {
+    @page { size: A4; margin: 11mm 15mm 10mm; }
+    .page { padding: 0; display: block; }
+    .sheet { border: none; border-radius: 0; padding: 0; max-width: none; background: none; }
+    .back, .noprint, .theme-toggle { display: none; }
+    .cvdoc { font-size: 10.5pt; line-height: 1.18; color: #000; }
+    .cvdoc h1 { font-size: 16pt; padding-bottom: 1pt; border-bottom: 1pt solid #000; }
+    .cvdoc .contact { margin: 2pt 0 3pt; }
+    .cvdoc .contact a { color: #000; }
+    .cvdoc h2 { font-size: 12pt; margin: 7pt 0 1pt; }
+    .cvdoc .entry { margin: 3pt 0 0; gap: 12pt; }
+    .cvdoc ul { margin: 0 0 0 18pt; }
+    .cvdoc li { margin: 0; }
+    .cvdoc .entry, .cvdoc h2 { break-after: avoid; }
+  }
+</style>
 </head>
 <body>
 <div class="page">
   <article class="sheet">
     <a class="back" href="index.html">&#8592; Back to the portfolio</a>
-
-    <h1>Ethan Buckley</h1>
-    <p class="contact">London, UK&nbsp;&nbsp;·&nbsp; <a href="mailto:ethan@ethanbuckley.me.uk">ethan@ethanbuckley.me.uk</a>&nbsp;&nbsp;·&nbsp; <a href="https://www.linkedin.com/in/ethan-buckley">linkedin.com/in/ethan-buckley</a>&nbsp;&nbsp;·&nbsp; <a href="https://github.com/ethanbuckley">github.com/ethanbuckley</a>&nbsp;&nbsp;·&nbsp; <a href="https://ethanbuckley.github.io">ethanbuckley.github.io</a>&nbsp;&nbsp;·&nbsp; phone on request</p>
-
-    <p class="summary">Natural Sciences undergraduate (Physics major) at UCL and data science intern. Hierarchical Bayesian models fitted with MCMC, production pipelines for generated teaching materials, and the tests behind both. Seeking data science and quantitative research internships.</p>
-
-    <h2>Education</h2>
-    <div class="role"><span class="what">University College London, MSci Natural Sciences</span><span class="when">Sep 2024 &ndash; Jun 2028</span></div>
-    <p class="detail">Physics major, Physical Chemistry minor. Modules include Programming for Scientists, Mathematical Methods III, Quantum Physics, Atomic and Molecular Physics, Thermal Physics and Chemical Dynamics.</p>
-
-    <h2>Experience</h2>
-    <div class="role"><span class="what">Data Science &amp; Research Intern, Down Syndrome Education International</span><span class="when">Jun 2026 &ndash; Present</span></div>
-    <ul>
-      <li>Build and extend hierarchical Bayesian models (PyMC, MCMC) of vocabulary growth in children with Down syndrome: Beta-Binomial likelihoods with age-varying dispersion and Hilbert-space Gaussian-process trajectories, fitted to checklists pooled from fourteen datasets in six countries plus around 14,800 typically-developing children from Wordbank.</li>
-      <li>Wrote the report’s data chapter: the fourteen sources, and how counts from checklists of different lengths are scored against the 810-word inventory.</li>
-      <li>Wrote the intention-to-treat, difference-in-differences, mediation and mechanism models for a Bayesian re-analysis of a randomised reading trial (54 children, four waves), inside a causal DAG with LightGBM/SHAP predictor ranking: 124 merged pull requests, June to August 2026.</li>
-      <li>Rebuilt a single-notebook data pipeline into per-source scripts and moved a hard-coded anonymisation key into environment secrets; Python, DuckDB, Quarto, Azure Blob Storage and Git/GitHub review.</li>
-      <li>Build the pipeline that generates DSE’s teaching images, audio and video from a written specification, and the audit, repair and upload route that files them as draft assets in the charity’s catalogue. Its main rule is contrast, for the reduced contrast sensitivity common in Down syndrome.</li>
-      <li>Chose the voices by measurement, not preference: a blind A/B arena with Bradley&ndash;Terry ranking and bootstrap intervals over four commercial text-to-speech providers, then pace calibration. 3,407 curriculum items in four accents; 7,351 images in the first production set; image unit cost halved by batch inference.</li>
-    </ul>
-
-    <div class="role"><span class="what">UCL Centre for Computational Science, Literature Review</span><span class="when">From Oct 2026</span></div>
-    <ul>
-      <li>Literature review on quantum-GPU computing and variational quantum algorithms for biomolecular simulation, supervised by Professor Peter Coveney FRS. Begins October 2026.</li>
-    </ul>
-
-    <div class="role"><span class="what">Facilities Team Member, Roadchef, Killington Lake</span><span class="when">Jul 2025 &ndash; Apr 2026</span></div>
-    <ul>
-      <li>Facilities team for a motorway services: site cleaning and maintenance, taking in and distributing deliveries for every outlet, and regular cover at Costa, WHSmith and Days Inn housekeeping.</li>
-    </ul>
-
-    <div class="role"><span class="what">Nuclear industry placements, BAE Systems (Barrow) &amp; EDF Energy (Heysham 1)</span><span class="when">Jul&ndash;Aug 2023</span></div>
-    <ul>
-      <li>Placements across engineering, chemistry and maintenance in safety-critical nuclear environments, including reactor-chemistry monitoring in the Heysham laboratory.</li>
-    </ul>
-
-    <h2>Technical skills</h2>
-    <div class="skills">
-      <p><b>Programming:</b> Python (NumPy, pandas, PyMC, LightGBM, SHAP, Matplotlib, scikit-learn, pytest), SQL / DuckDB, Git / GitHub, LaTeX, Quarto, generative-model APIs (batch inference).</p>
-      <p><b>Statistics &amp; ML:</b> Bayesian inference and MCMC, hierarchical / random-effects models, Gaussian processes, gradient boosting, causal inference (DAGs), blind A/B evaluation with Bradley&ndash;Terry ranking and bootstrap intervals, hypothesis testing, error analysis.</p>
+    <div class="cvdoc">
+<h1>Ethan Buckley</h1><p class='contact'><a href="mailto:ethan@ethanbuckley.me.uk">ethan@ethanbuckley.me.uk</a> | <a href="https://www.linkedin.com/in/ethan-buckley">linkedin.com/in/ethan-buckley</a> | <a href="https://github.com/ethanbuckley">github.com/ethanbuckley</a> | <a href="https://ethanbuckley.github.io">ethanbuckley.github.io</a></p>
+<h2>Education</h2>
+<div class='entry'><b>University College London, MSci Natural Sciences</b><span>Sep 2024 to Jun 2028</span></div><ul><li>Physics major, Physical Chemistry minor; predicted First-Class Honours</li><li>Relevant modules: Mathematical Methods III (PDEs and Fourier analysis), Quantum Physics, Thermal and Statistical Physics</li><li>Extracurriculars: AI Society, Natural Sciences Society</li></ul>
+<h2>Experience</h2>
+<div class='entry'><b>Data Science and Research Intern, Down Syndrome Education International</b><span>Jun 2026 to present</span></div><ul><li>Build hierarchical Bayesian models (PyMC, NUTS) of vocabulary growth in children with Down syndrome: Beta-Binomial likelihoods, Gaussian-process age trajectories and study- and child-level random effects, fitted to 1,424 assessments pooled from 14 datasets in six countries.</li><li>Wrote the intention-to-treat, difference-in-differences and mediation models for a Bayesian re-analysis of a randomised reading trial (54 children, four waves), inside a causal DAG with LightGBM and SHAP predictor ranking.</li><li>Built the pipeline that generates the charity&#x27;s teaching images, audio and video from a written specification, and the audit, repair and upload route that files the results as draft assets in its catalogue. Its main rule is figure-ground contrast, for the reduced contrast sensitivity common in Down syndrome.</li><li>Chose text-to-speech voices with a blind A/B listening arena, Bradley-Terry ranking and bootstrap intervals over four commercial providers; found and fixed a scoring defect that awarded first place by sort order on tied comparisons.</li><li>Prior and posterior predictive checks, convergence gates (R-hat at most 1.01, effective sample size at least 400) and PSIS-LOO and leave-one-study-out model comparison, all run in CI.</li></ul>
+<div class='entry'><b>Literature review, UCL Centre for Computational Science</b><span>From Oct 2026</span></div><ul><li>Literature review on quantum-GPU computing and variational quantum algorithms for biomolecular simulation, supervised by Professor Peter Coveney FRS. Begins October 2026.</li></ul>
+<div class='entry'><b>Facilities Team Member, Roadchef, Killington Lake</b><span>Jul 2025 to Apr 2026</span></div><ul><li>Facilities team for a motorway services: site cleaning and maintenance, taking in and distributing deliveries for every outlet, and regular cover at Costa, WHSmith and Days Inn housekeeping.</li></ul>
+<div class='entry'><b>Placements, BAE Systems (Barrow) and EDF Energy (Heysham 1)</b><span>Jul to Aug 2023</span></div><ul><li>Placements across engineering, chemistry and maintenance in safety-critical nuclear sites, including reactor-chemistry monitoring in the Heysham laboratory.</li></ul>
+<h2>Projects</h2><ul><li><b>S&amp;P 500 stock screener (independent):</b> XGBoost classifier on about 1.3 million daily observations plus FinBERT news sentiment; 22 technical indicators; triple-barrier labelling; walk-forward validation over 1,630 out-of-sample days (2020 to 2026), top-15 precision about 48% against a 29% base rate. Survivorship bias and transaction costs reported as limitations.</li><li><b>SEIQR epidemic cellular automaton (UCL group project, individually extended):</b> Vectorised simulation (about 40-fold faster), validated against the mean-field ODE limit, bit-identical regression tests in CI on Python 3.10 to 3.12, Streamlit dashboard.</li><li><b>The Computable World (independent):</b> A referenced investment thesis on AI, virtual twins, robotics and the industrial stack behind them, published at ethanbuckley.github.io/computable-world.</li></ul>
+<h2>Relevant Skills</h2><ul><li><b>Programming:</b> Python (NumPy, pandas, PyMC, XGBoost, LightGBM, SHAP, scikit-learn, pytest), SQL and DuckDB, Git and GitHub Actions, Quarto, LaTeX, generative-model APIs with batch inference.</li><li><b>Statistics and machine learning:</b> Bayesian inference and MCMC, hierarchical models, Gaussian processes, gradient boosting, causal inference (DAGs, ITT, difference-in-differences, mediation), blind A/B evaluation with Bradley-Terry ranking, NLP with FinBERT.</li></ul>
+<h2>Extracurricular and Interests</h2><ul><li>UCL Men&#x27;s Hockey Club: play for the club.</li><li>Volunteer junior coach, Kirkby Lonsdale Hockey Club.</li><li>Interests: mountaineering, skiing, running.</li></ul>
     </div>
-
-    <h2>Projects</h2>
-    <ul>
-      <li>Algorithmic S&amp;P 500 stock screener (independent): combined an XGBoost classifier with a FinBERT sentiment model, trained on around 1.3 million daily observations. Built 22 technical indicators (RSI, MACD, VWAP, ATR) and used triple-barrier labelling to avoid look-ahead bias; validated with expanding-window walk-forward testing over 1,630 out-of-sample days (2020&ndash;2026): top-15 precision around 48% versus a 29% base rate.</li>
-      <li>SEIQR epidemic cellular automaton (extended from a UCL group project): vectorised the simulation with SciPy convolution and NumPy masking for a roughly 40&times; speed-up, and validated it against its analytical mean-field SEIQR ODE limit. Reproducible from fixed seeds, with bit-identical regression tests in CI on Python 3.10&ndash;3.12.</li>
-      <li>The Computable World (independent): a referenced portfolio thesis on AI, virtual twins and robotics, published as a website and PDF at ethanbuckley.github.io/computable-world.</li>
-    </ul>
-
-    <h2>Additional</h2>
-    <p class="detail">UCL Men’s Hockey Club and volunteer junior coach at Kirkby Lonsdale HC. Societies: AI, Natural Sciences. Interests: mountaineering, skiing, running.</p>
-
     <p class="foot noprint">Web copy of my CV. <a href="assets/ethan-buckley-cv.pdf">Download as PDF</a>.</p>
   </article>
 </div>
