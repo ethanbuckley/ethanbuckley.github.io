@@ -31,6 +31,10 @@ The demo page (`vocabulary-growth-demo.html`) embeds the same fit through `rende
 
 The comparisons with typically-developing children quoted beside these figures (the 13-point gap at 50 to 150 understood words, the spoken-vocabulary lag at age two) still come from the July 2026 fits, and the study meta line on the front page says so. Regenerating them needs the typically-developing models refitted alongside.
 
+## Layout, 2026-09-04
+
+The plates were redrawn chart-first at Ethan's request (the slide-deck apparatus read as machine-made). Panels are now 2944 x 1380 px, embedded at half size; the production-ratio panel carries its quoted numbers as annotations at one, four and six years; a new `--kind counts` panel (`vocabulary-counts-panel.png`, words understood and spoken by age) replaced the boxed-equation method plate; the causal plate kept its diagram and lost its callout box. The source line on each plate names the fit and its date.
+
 ## Style
 
 `render_panels.py` also fixes what the panel looks like, which is the one place on the site still showing matplotlib defaults: a grey ground, a boxed legend, DejaVu Sans, and `q(a) = p_S(a) / p_U(a)` as a y-axis label. The replacement uses the site's tokens and type, a hairline horizontal grid only, an unframed legend, age in years across the top because that is how the finding is quoted, and prose labels. Run it with `--csv` to see a preview without touching the published file.

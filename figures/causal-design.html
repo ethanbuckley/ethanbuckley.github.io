@@ -2,65 +2,48 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<title>A causal design for reading progress</title>
+<title>Causal structure assumed in the reading analysis</title>
 <!--
-  Source for assets/reading-causal-design.png (and its -1600 derivatives).
-  Canvas is 1600 x 1000 CSS px; render at 2x via figures/render.sh to get the 3200 x 2000 master.
-  The DAG is drawn as inline SVG; it is a simplified view of the revised 20-node study DAG.
+  Source for one of the four research plates. Canvas is 1600 x 1000 CSS px; render at 2x via figures/render.sh.
+  Chart-first: a sentence-case title, a one-line subtitle, the panel at full width, a source line. No decoration.
 -->
 <style>
   :root{
-    --ground:#ffffff; --paper:#ffffff; --ink:#14181d; --ink-soft:#5b6571;
-    --accent:#2440b3; --accent-2:#6b7480; --line:#e4e7eb; --tint:#f5f6f8;
-    --serif:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --paper:#ffffff; --ink:#14181d; --ink-soft:#5b6571; --accent:#2440b3; --accent-2:#6b7480; --line:#e4e7eb;
+    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   body{margin:0;background:var(--paper)}
   #fig{width:1600px;height:1000px;overflow:hidden;background:var(--paper);color:var(--ink);
-       font-family:var(--sans);display:flex;flex-direction:column;padding:52px 64px 0}
-  header{border-bottom:1px solid var(--line);padding-bottom:26px}
-  .eyebrow{font-family:var(--sans);font-size:17px;font-weight:600;letter-spacing:0;
-           text-transform:none;color:var(--ink-soft)}
-  h1{font-family:var(--serif);font-size:40px;font-weight:700;line-height:1.06;
-     letter-spacing:-.02em;margin-top:14px;color:var(--ink)}
-  .standfirst{font-size:21px;line-height:1.45;color:var(--ink-soft);margin-top:12px}
-  main{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:space-between;
-       padding:14px 0 22px}
-  svg.dag{display:block;font-family:var(--sans)}
-  svg.dag .nt{font-size:22px;font-weight:700;fill:var(--ink)}
+       font-family:var(--sans);display:flex;flex-direction:column;padding:54px 64px 44px}
+  h1{font-size:30px;font-weight:600;line-height:1.2;letter-spacing:-.005em;color:var(--ink);max-width:1360px}
+  .sub{font-size:19px;line-height:1.45;color:var(--ink-soft);margin-top:10px;max-width:1360px}
+  main{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:14px 0 8px}
+  .panel img{display:block;width:1472px;height:690px}
+  .source{font-size:14.5px;line-height:1.45;color:var(--ink-soft);margin-top:auto}
+  main{flex-direction:column;align-items:stretch;justify-content:center;gap:18px}
+  svg.dag{display:block;font-family:var(--sans);margin:0 auto}
+  svg.dag .nt{font-size:22px;font-weight:600;fill:var(--ink)}
   svg.dag .ns{font-size:16px;fill:var(--ink-soft)}
-  svg.dag .nt-inv{font-size:24px;font-weight:700;fill:#fff}
-  svg.dag .ns-inv{font-family:var(--mono);font-size:13px;letter-spacing:2px;fill:rgba(255,255,255,.82)}
-  svg.dag .nt-out{font-size:26px;font-weight:700;fill:#fff}
-  svg.dag .ga-t{font-size:23px;font-weight:700;fill:var(--ink)}
+  svg.dag .nt-inv{font-size:24px;font-weight:600;fill:#fff}
+  svg.dag .ns-inv{font-size:14px;fill:rgba(255,255,255,.85)}
+  svg.dag .nt-out{font-size:26px;font-weight:600}
+  svg.dag .ns-out{font-size:14px}
+  svg.dag .ga-t{font-size:23px;font-weight:600;fill:var(--ink)}
   svg.dag .ga-s{font-size:16px;font-style:italic;fill:var(--ink-soft)}
   svg.dag .dropped{font-size:16.5px;font-style:italic;fill:var(--ink-soft)}
-  .bottom{display:flex;gap:64px;align-items:flex-start}
-  .howto{flex:1}
-  .block-eyebrow{font-family:var(--sans);font-size:16px;font-weight:600;letter-spacing:0;
-                 text-transform:none;color:var(--ink-soft);margin-bottom:17px}
-  .lrow{display:flex;align-items:center;gap:17px;font-size:19.5px;color:var(--ink)}
-  .lrow + .lrow{margin-top:14px}
-  .lrow svg{flex:0 0 auto;display:block}
-  .ident{flex:1.45;background:var(--tint);border-radius:14px;padding:24px 30px 26px}
-  .ident p{font-size:21px;line-height:1.5}
-  .teal{color:var(--accent)}
-  .ochre{color:var(--accent-2)}
-  footer{border-top:1px solid var(--line);margin-top:auto;padding:19px 0 24px;
-         font-family:var(--mono);font-size:13.5px;color:var(--ink-soft);white-space:nowrap}
+  .legend{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px;font-size:16.5px;color:var(--ink)}
+  .legend span{display:inline-flex;align-items:center;gap:10px}
 </style>
 </head>
 <body>
 <div id="fig">
   <header>
-    <div class="eyebrow">Down Syndrome Education International &middot; Reading &amp; Language (RLI) Study</div>
-    <h1>A causal design for reading progress</h1>
-    <p class="standfirst">Separating what the teaching <em>causes</em> from what merely correlates with a child&rsquo;s general ability.</p>
+    <h1>Causal structure assumed in the reading analysis</h1>
+    <p class="sub">Randomisation makes the intervention independent of general ability, so its effects on the skills it targets are read as causal. Every skill-to-skill link stays confounded by ability and is reported as association, not cause.</p>
   </header>
   <main>
-    <svg class="dag" viewBox="0 0 1472 470" width="1472" height="470" aria-hidden="true">
+    <svg class="dag" viewBox="0 0 1472 470" width="1472" height="520" aria-hidden="true">
       <defs>
         <marker id="ah-teal" viewBox="0 0 10 10" refX="8.5" refY="5" markerUnits="userSpaceOnUse"
                 markerWidth="14" markerHeight="14" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2440b3"/></marker>
@@ -102,7 +85,7 @@
       <!-- Intervention -->
       <rect x="8" y="241" width="200" height="78" rx="12" fill="#2440b3"/>
       <text class="nt-inv" x="108" y="276" text-anchor="middle">Intervention</text>
-      <text class="ns-inv" x="108" y="303" text-anchor="middle">RANDOMISED</text>
+      <text class="ns-inv" x="108" y="303" text-anchor="middle">randomised</text>
 
       <!-- taught skills column -->
       <rect x="421" y="134" width="198" height="68" rx="10" fill="#fff" stroke="#2440b3" stroke-width="2.5"/>
@@ -127,9 +110,9 @@
       <text class="ns" x="880" y="392" text-anchor="middle">vocabulary</text>
 
       <!-- primary outcome -->
-      <rect x="1179" y="189" width="242" height="86" rx="12" fill="#14181d"/>
-      <text class="nt-out" x="1300" y="227" text-anchor="middle">Word reading</text>
-      <text class="ns-inv" x="1300" y="256" text-anchor="middle">PRIMARY OUTCOME</text>
+      <rect x="1179" y="189" width="242" height="86" rx="12" fill="#ffffff" stroke="#14181d" stroke-width="3"/>
+      <text class="nt-out" fill="#14181d" x="1300" y="227" text-anchor="middle">Word reading</text>
+      <text class="ns-out" fill="#5b6571" x="1300" y="256" text-anchor="middle">primary outcome</text>
 
       <!-- dropped node -->
       <rect x="1187" y="363" width="226" height="70" rx="10" fill="#fafbfc" stroke="#b7c1c7" stroke-width="2" stroke-dasharray="6 6"/>
@@ -137,52 +120,15 @@
       <text class="ns" x="1300" y="417" text-anchor="middle">vocabulary</text>
       <text class="dropped" x="1300" y="459" text-anchor="middle">no path to reading, by design</text>
     </svg>
-
-    <div class="bottom">
-      <div class="howto">
-        <div class="block-eyebrow">How to read it</div>
-        <div class="lrow">
-          <svg width="88" height="14" viewBox="0 0 88 14" aria-hidden="true">
-            <line x1="2" y1="7" x2="74" y2="7" stroke="#2440b3" stroke-width="3.5"/>
-            <path d="M74 1 L 87 7 L 74 13 z" fill="#2440b3"/>
-          </svg>
-          <span>Randomised effect, <strong>causal</strong></span>
-        </div>
-        <div class="lrow">
-          <svg width="88" height="14" viewBox="0 0 88 14" aria-hidden="true">
-            <line x1="2" y1="7" x2="74" y2="7" stroke="#33424d" stroke-width="3"/>
-            <path d="M74 1 L 87 7 L 74 13 z" fill="#33424d"/>
-          </svg>
-          <span>Hypothesised skill pathway, association</span>
-        </div>
-        <div class="lrow">
-          <svg width="88" height="14" viewBox="0 0 88 14" aria-hidden="true">
-            <line x1="2" y1="7" x2="72" y2="7" stroke="#b7c1c7" stroke-width="2.5" stroke-dasharray="7 6"/>
-            <path d="M74 2 L 85 7 L 74 12 z" fill="#b7c1c7"/>
-          </svg>
-          <span>General-ability confounding</span>
-        </div>
-        <div class="lrow">
-          <svg width="88" height="14" viewBox="0 0 88 14" aria-hidden="true">
-            <line x1="2" y1="7" x2="74" y2="7" stroke="#9aa6ad" stroke-width="3"/>
-            <path d="M74 1 L 87 7 L 74 13 z" fill="#9aa6ad"/>
-          </svg>
-          <span>Association through standardised vocabulary</span>
-        </div>
-        <div class="lrow">
-          <svg width="88" height="14" viewBox="0 0 88 14" aria-hidden="true">
-            <rect x="12" y="1" width="64" height="12" rx="4" fill="#fff" stroke="#2440b3" stroke-width="2.5"/>
-          </svg>
-          <span>Blue outline: a skill the teaching targets directly</span>
-        </div>
-      </div>
-      <div class="ident">
-        <div class="block-eyebrow">The identification</div>
-        <p><strong>Randomisation</strong> makes the intervention independent of general ability, so its effect on word reading is read as <strong class="teal">genuine cause</strong>. Every skill-to-skill link stays confounded by ability, so it is reported as <strong class="ochre">association, not cause</strong>.</p>
-      </div>
+    <div class="legend">
+      <span><svg width="64" height="12" viewBox="0 0 64 12"><line x1="2" y1="6" x2="50" y2="6" stroke="#2440b3" stroke-width="3"/><path d="M50 1 L 62 6 L 50 11 z" fill="#2440b3"/></svg>Randomised effect, read as causal</span>
+      <span><svg width="64" height="12" viewBox="0 0 64 12"><line x1="2" y1="6" x2="50" y2="6" stroke="#33424d" stroke-width="3"/><path d="M50 1 L 62 6 L 50 11 z" fill="#33424d"/></svg>Hypothesised skill pathway, association</span>
+      <span><svg width="64" height="12" viewBox="0 0 64 12"><line x1="2" y1="6" x2="50" y2="6" stroke="#b7c1c7" stroke-width="2.5" stroke-dasharray="6 5"/><path d="M50 1 L 62 6 L 50 11 z" fill="#b7c1c7"/></svg>Confounding by general ability</span>
+      <span><svg width="64" height="12" viewBox="0 0 64 12"><line x1="2" y1="6" x2="50" y2="6" stroke="#9aa6ad" stroke-width="3"/><path d="M50 1 L 62 6 L 50 11 z" fill="#9aa6ad"/></svg>Association through standardised vocabulary</span>
+      <span><svg width="64" height="12" viewBox="0 0 64 12"><rect x="8" y="1" width="48" height="10" rx="3" fill="#fff" stroke="#2440b3" stroke-width="2.5"/></svg>Skill the teaching targets directly</span>
     </div>
   </main>
-  <footer>Simplified from the revised 20-node DAG &middot; gradient-boosting discovery, then DAG-identified Bayesian estimation (ITT, difference-in-differences) &middot; RLI trial, n = 54 &middot; preliminary</footer>
+  <p class="source">Source: Down Syndrome Education International, Reading and Language Intervention trial re-analysis; simplified from the study's 20-node causal diagram. Estimation: gradient-boosting discovery, then DAG-identified Bayesian models (intention-to-treat, difference-in-differences). 54 children. Preliminary.</p>
 </div>
 </body>
 </html>

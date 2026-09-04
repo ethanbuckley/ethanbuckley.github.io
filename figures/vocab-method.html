@@ -2,122 +2,37 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<title>How the vocabulary model works</title>
+<title>Words understood and words spoken by age, children with Down syndrome</title>
 <!--
-  Source for assets/vocab-method.png (and its -1600 derivatives).
-  Canvas is 1600 x 1000 CSS px; render at 2x via figures/render.sh to get the 3200 x 2000 master.
-  Pure HTML/CSS diagram; no embedded panel.
+  Source for one of the four research plates. Canvas is 1600 x 1000 CSS px; render at 2x via figures/render.sh.
+  Chart-first: a sentence-case title, a one-line subtitle, the panel at full width, a source line. No decoration.
 -->
 <style>
   :root{
-    --ground:#ffffff; --paper:#ffffff; --ink:#14181d; --ink-soft:#5b6571;
-    --accent:#2440b3; --accent-2:#6b7480; --line:#e4e7eb; --tint:#f5f6f8;
-    --serif:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --paper:#ffffff; --ink:#14181d; --ink-soft:#5b6571; --accent:#2440b3; --accent-2:#6b7480; --line:#e4e7eb;
+    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   body{margin:0;background:var(--paper)}
   #fig{width:1600px;height:1000px;overflow:hidden;background:var(--paper);color:var(--ink);
-       font-family:var(--sans);display:flex;flex-direction:column;padding:52px 64px 0}
-  header{border-bottom:1px solid var(--line);padding-bottom:26px}
-  .eyebrow{font-family:var(--sans);font-size:17px;font-weight:600;letter-spacing:0;
-           text-transform:none;color:var(--ink-soft)}
-  h1{font-family:var(--serif);font-size:40px;font-weight:700;line-height:1.06;
-     letter-spacing:-.02em;margin-top:14px;color:var(--ink)}
-  .standfirst{font-size:21px;line-height:1.45;color:var(--ink-soft);margin-top:12px;max-width:1080px}
-  main{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:space-evenly;padding:6px 0}
-  .eq-row{display:flex;align-items:center;justify-content:center;gap:30px}
-  .box{width:344px;border-radius:12px;padding:30px 22px;text-align:center;background:var(--paper)}
-  .box .title{font-size:30px;font-weight:700;line-height:1.15}
-  .box .formula{font-family:var(--mono);font-size:23px;margin-top:10px}
-  .box .sub{font-size:18px;color:var(--ink-soft);margin-top:11px}
-  .box-teal{border:2.5px solid var(--accent)}
-  .box-teal .title,.box-teal .formula{color:var(--accent)}
-  .box-ochre{border:2.5px solid var(--accent-2)}
-  .box-ochre .title,.box-ochre .formula{color:var(--accent-2)}
-  .box-dark{background:var(--ink);border:2.5px solid var(--ink)}
-  .box-dark .title{color:#fff}
-  .box-dark .formula{color:rgba(255,255,255,.82)}
-  .box-dark .sub{color:rgba(255,255,255,.72)}
-  .op{font-size:46px;color:var(--ink-soft);opacity:.62;line-height:1}
-  .eq-caption{font-size:22.5px;line-height:1.5;text-align:center;max-width:1150px;margin:34px auto 0}
-  .teal{color:var(--accent);font-weight:700}
-  .q{font-family:var(--mono);font-weight:700;color:var(--accent)}
-  .blocks{display:flex;gap:72px;align-items:flex-start}
-  .block{flex:1}
-  .block-eyebrow{font-family:var(--sans);font-size:16px;font-weight:600;letter-spacing:0;
-                 text-transform:none;margin-bottom:15px}
-  .eb-teal{color:var(--accent)}
-  .eb-ochre{color:var(--accent-2)}
-  .block p{font-size:22px;line-height:1.55}
-  .est-row{display:flex;gap:28px;align-items:flex-start}
-  .spark{flex:0 0 auto;margin-top:5px}
-  .chips{display:flex;justify-content:center;gap:18px}
-  .chip{font-family:var(--mono);font-size:16.5px;color:var(--ink);background:var(--ground);
-        border:1px solid var(--line);border-radius:9px;padding:11px 18px;white-space:nowrap}
-  footer{border-top:1px solid var(--line);margin-top:auto;padding:19px 0 24px;text-align:center;
-         font-family:var(--mono);font-size:14px;color:var(--ink-soft);white-space:nowrap}
+       font-family:var(--sans);display:flex;flex-direction:column;padding:54px 64px 44px}
+  h1{font-size:30px;font-weight:600;line-height:1.2;letter-spacing:-.005em;color:var(--ink);max-width:1360px}
+  .sub{font-size:19px;line-height:1.45;color:var(--ink-soft);margin-top:10px;max-width:1360px}
+  main{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:14px 0 8px}
+  .panel img{display:block;width:1472px;height:690px}
+  .source{font-size:14.5px;line-height:1.45;color:var(--ink-soft);margin-top:auto}
 </style>
 </head>
 <body>
 <div id="fig">
   <header>
-    <div class="eyebrow">Down Syndrome Education International &middot; Vocabulary Growth Study</div>
-    <h1>How the vocabulary model works</h1>
-    <p class="standfirst">The modelling idea at the centre of the study: spoken vocabulary is built from what a child understands and the share of it they say.</p>
+    <h1>Words understood and words spoken by age, children with Down syndrome</h1>
+    <p class="sub">Posterior-predictive medians with 50% credible bands. The model estimates spoken vocabulary as words understood multiplied by the share also said, so speaking can never exceed understanding, and the gap between the curves is the comprehension-production gap.</p>
   </header>
   <main>
-    <section class="equation">
-      <div class="eq-row">
-        <div class="box box-teal">
-          <div class="title">Words understood</div>
-          <div class="formula">U(age)</div>
-          <div class="sub">what a child understands</div>
-        </div>
-        <div class="op">&times;</div>
-        <div class="box box-ochre">
-          <div class="title">Production ratio</div>
-          <div class="formula">q(age)</div>
-          <div class="sub">the share of those they also say</div>
-        </div>
-        <div class="op">=</div>
-        <div class="box box-dark">
-          <div class="title">Words spoken</div>
-          <div class="formula">S(age)</div>
-          <div class="sub">what a child says</div>
-        </div>
-      </div>
-      <p class="eq-caption">Modelling the two together means spoken vocabulary can <span class="teal">never exceed</span> what a child understands, and the comprehension-production gap falls out directly as the production ratio <span class="q">q</span>.</p>
-    </section>
-    <section class="blocks">
-      <div class="block">
-        <div class="block-eyebrow eb-teal">The data</div>
-        <p>Parent-report vocabulary checklists, <strong>pooled across 14 datasets</strong> from six countries onto a common 810-word scale: <strong>1,424 assessments</strong>, ages 8 months to about 9&frac12; years.</p>
-      </div>
-      <div class="block">
-        <div class="block-eyebrow eb-ochre">The estimate</div>
-        <div class="est-row">
-          <svg class="spark" width="168" height="84" viewBox="0 0 168 84" aria-hidden="true">
-            <line x1="4" y1="78" x2="164" y2="78" stroke="var(--line)" stroke-width="2"/>
-            <path d="M8 70 C 44 65, 66 51, 88 34 C 110 17, 134 6, 160 2 L160 16 C 134 22, 110 31, 88 46 C 66 61, 44 71, 8 74 Z"
-                  fill="var(--accent)" stroke="none" opacity=".14"/>
-            <path d="M8 72 C 44 68, 66 56, 88 40 C 110 24, 134 14, 160 9"
-                  fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
-          </svg>
-          <p>Each term is a <strong>smooth curve over age</strong> with full posterior uncertainty, so every result is a credible range, not a single number.</p>
-        </div>
-      </div>
-    </section>
-    <section class="chips">
-      <span class="chip">Hierarchical Beta-Binomial</span>
-      <span class="chip">Gaussian-process (HSGP) trends</span>
-      <span class="chip">study &amp; child random effects</span>
-      <span class="chip">PyMC / NUTS</span>
-      <span class="chip">PSIS-LOO comparison</span>
-    </section>
+    <figure class="panel"><img src="panels/vocabulary-counts-panel.png" width="1472" height="690" alt=""></figure>
   </main>
-  <footer>A Bayesian hierarchical model &middot; results are posterior distributions, so every trajectory carries explicit uncertainty &middot; preliminary</footer>
+  <p class="source">Source: Down Syndrome Education International, vocabulary growth study; model VG14 (hierarchical Beta-Binomial, Gaussian-process age trends, study- and child-level random effects; PyMC, NUTS), test-tier fit of 4 September 2026; 14 datasets, 1,424 assessments, 810-word common inventory. Preliminary.</p>
 </div>
 </body>
 </html>

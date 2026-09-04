@@ -41,11 +41,11 @@ HAIRLINE = "#e4e7eb"
 ACCENT = "#2440b3"
 GREY = "#8d97a3"
 PAPER = "#ffffff"
-SANS = ["Helvetica Neue", "Arial", "DejaVu Sans"]
+SANS = ["Helvetica Neue", "Helvetica", "Arial", "DejaVu Sans"]
 
 # The published panel is 1780 x 830 px, embedded at half size in the 1600 x 1000
 # plate, so the 2x render of the plate reuses these pixels without resampling.
-NATIVE_W, NATIVE_H = 1780, 830
+NATIVE_W, NATIVE_H = 2944, 1380   # fills the 1600x1000 plate at 2x
 DPI = 200
 
 JOINT = "lrp-rli-itt-012"
@@ -81,7 +81,7 @@ def render(effects: dict[str, tuple[float, float, float]], coverage: float, out:
     plt.rcParams["font.sans-serif"] = SANS
 
     fig = plt.figure(figsize=(NATIVE_W / DPI, NATIVE_H / DPI), dpi=DPI, facecolor=PAPER)
-    ax = fig.add_axes([0.30, 0.17, 0.66, 0.78])
+    ax = fig.add_axes([0.24, 0.16, 0.73, 0.80])
     ax.set_facecolor(PAPER)
 
     # Group headings take a slot of their own, so rows are laid out top to bottom
@@ -102,17 +102,17 @@ def render(effects: dict[str, tuple[float, float, float]], coverage: float, out:
     for yy, code, group in slots:
         if group is not None:
             ax.text(-0.02, yy, group, transform=ax.get_yaxis_transform(), ha="right", va="center",
-                    fontsize=6.6, color=SOFT)
+                    fontsize=11, color=SOFT)
             continue
         med, lo, hi = effects[code]
         clear = lo > 0 or hi < 0
         colour = ACCENT if clear else GREY
-        ax.plot([lo, hi], [yy, yy], color=colour, linewidth=2.0, solid_capstyle="round", zorder=3)
-        ax.plot([med], [yy], marker="o", markersize=5.2, color=colour, markeredgecolor=PAPER,
-                markeredgewidth=0.9, zorder=4)
+        ax.plot([lo, hi], [yy, yy], color=colour, linewidth=3.0, solid_capstyle="round", zorder=3)
+        ax.plot([med], [yy], marker="o", markersize=8, color=colour, markeredgecolor=PAPER,
+                markeredgewidth=1.4, zorder=4)
         name = next(lbl for c, lbl, _ in ROWS if c == code)
         ax.text(-0.02, yy, name, transform=ax.get_yaxis_transform(), ha="right", va="center",
-                fontsize=8.2, color=INK)
+                fontsize=13, color=INK)
 
     ax.axvline(0, color=INK, linewidth=0.8, linestyle=(0, (3, 3)), zorder=2)
     ax.set_ylim(y + 0.4, 0.6)
@@ -125,10 +125,10 @@ def render(effects: dict[str, tuple[float, float, float]], coverage: float, out:
     for side in ("left", "right", "top"):
         ax.spines[side].set_visible(False)
     ax.spines["bottom"].set_color(HAIRLINE)
-    ax.tick_params(axis="x", colors=SOFT, labelsize=7.2, length=0, pad=6)
+    ax.tick_params(axis="x", colors=SOFT, labelsize=12, length=0, pad=8)
     ax.grid(axis="x", color=HAIRLINE, linewidth=0.7, zorder=1)
     ax.set_xlabel("Intervention effect, log-odds. Right of the dashed line favours the teaching.",
-                  color=SOFT, fontsize=7.4, labelpad=8)
+                  color=SOFT, fontsize=13, labelpad=10)
 
     pct = f"{coverage * 100:.0f}"
     handles = [
@@ -137,7 +137,7 @@ def render(effects: dict[str, tuple[float, float, float]], coverage: float, out:
         Line2D([0], [0], color=GREY, marker="o", markersize=4.5, linewidth=2.0,
                markeredgecolor=PAPER, label=f"{pct}% interval spans zero"),
     ]
-    leg = ax.legend(handles=handles, loc="lower right", frameon=False, fontsize=6.8,
+    leg = ax.legend(handles=handles, loc="lower right", frameon=False, fontsize=12,
                     handlelength=2.2, borderaxespad=0.2)
     for t in leg.get_texts():
         t.set_color(SOFT)
