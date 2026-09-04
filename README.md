@@ -11,12 +11,8 @@ My portfolio site. Hand-written HTML and CSS, system fonts, no build step. It wo
 | --- | --- |
 | `index.html` | The front page: about, research, engineering, projects, approach, contact |
 | `cv.html`, `assets/ethan-buckley-cv.pdf` | My CV as a page and as a one-page PDF printed from it |
-| `vocabulary-growth-explainer.html`, `vocabulary-growth-modelling-explainer.html` | Study 1: plain-language and technical explainers |
-| `reading-language-predictors-explainer.html`, `reading-language-predictors-modelling-explainer.html` | Study 2: plain-language and technical explainers |
-| `asset-generation-explainer.html` | Technical note on the teaching-material pipelines |
-| `sp-500-stock-screener-explainer.html`, `epidemic-cellular-automaton-explainer.html` | Deep dives for the two independent projects |
-| `vocabulary-growth-demo.html` | An interactive posterior, drawn on a canvas |
-| `*.pdf` | The three research showcase decks |
+| `vocabulary-growth-demo.html` | An interactive posterior, drawn on a canvas. The one linked companion page |
+| `*-explainer.html` (seven pages), `*.pdf` (three decks) | **Retired on 2026-09-04**: no longer linked from the site and marked `noindex`. Kept on disk so old links still resolve. Their look was the template the redesign removed; if any of them is wanted back, rebuild it in the current style rather than relinking it |
 | `figures/` | Sources for every chart, Open Graph card and showcase deck, and `render.sh` to rebuild them. `figures/panels/` holds the two plot panels with the scripts that draw them from model output, and the script that rebuilds the demo page's data |
 | `assets/site.css`, `assets/theme.js` | The design tokens, type and light/dark switch shared by every page. Loaded after each page's own styles, so a change here applies everywhere |
 | `assets/` | Rendered figures, cards, favicon and the CV PDF |
@@ -38,6 +34,7 @@ The investment thesis linked from the projects section lives in its own reposito
 - The DSE material was cleared for description in general terms. It carries no money figures, no provider or model names, no generated images and no claim about image quality.
 - The same fact should appear once per page and read the same on every page. Before pushing, grep for the numbers that recur (children, studies, items, nodes) and check they agree.
 - No em-dashes in prose.
+- The hero figure is generated: `figures/panels/render_hero_figure.py` writes inline SVG between two marker comments in `index.html` from the same fit folder as the panel and the demo. Re-run it whenever that folder changes. The thesis card's bar chart is typed from the thesis's chapter 9 table and carries its date.
 - The "Now" line under the hero is dated. Update it when the month changes, or remove it; a stale one is worse than none.
 - The two plot panels are drawn from model output by `figures/panels/render_panels.py` and `render_effects_panel.py`; the demo page's data comes from `render_demo_data.py`. `figures/panels/PROVENANCE.md` names the fit each one currently shows. Do not edit the PNGs or the `DATA` block by hand.
 

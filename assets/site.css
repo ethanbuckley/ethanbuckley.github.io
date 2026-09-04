@@ -113,8 +113,16 @@ a:hover { color: var(--accent-dark); }
 .brand { font-weight: 650; letter-spacing: -0.01em; }
 
 /* ---- hero ---- */
-.hero-fig { display: none; }
-@media (min-width: 1000px) { .hero-copy { grid-column: 1 / 10; } }
+.hero h1 { font-size: clamp(34px, 4.2vw, 46px); line-height: 1.08; letter-spacing: -0.024em; margin-bottom: 14px; }
+.hero { padding-top: clamp(40px, 7vw, 76px); padding-bottom: clamp(40px, 6vw, 68px); }
+.hero-fig { margin: 36px 0 0; min-width: 0; max-width: 560px; }
+.hero-fig svg { width: 100%; height: auto; display: block; }
+.hero-fig figcaption { font-family: var(--sans); font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; margin-top: 8px; max-width: 34em; }
+@media (min-width: 1000px) {
+  .hero .wrap { align-items: center; }
+  .hero-copy { grid-column: 1 / 8; }
+  .hero-fig { grid-column: 8 / 13; margin-top: 0; max-width: none; }
+}
 .btn { font-size: 14px; font-weight: 600; padding: 10px 16px; border-radius: 6px; }
 .btn.primary { background: var(--ink); color: var(--ground); }
 .btn.primary:hover { background: var(--ink); color: var(--ground); opacity: .85; }
