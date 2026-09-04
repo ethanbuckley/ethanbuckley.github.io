@@ -492,7 +492,7 @@
       <div class="hero-copy">
         <h1 id="top-h">Ethan Buckley</h1>
         <p class="tagline">Bayesian models for language research, and the pipelines that produce teaching materials.</p>
-        <p class="lede">At Down Syndrome Education International I build the models behind two studies of how children with Down syndrome learn to understand and say words, and the system that generates the charity’s teaching images and audio. The rule in both is the same: the output is checked before anyone relies on it. On my own I’ve built a machine-learning stock screener and an epidemic simulator, and written an investment thesis on AI, virtual twins and robotics.</p>
+        <p class="lede">At Down Syndrome Education International I build the models behind two studies of how children with Down syndrome learn to understand and say words, and the system that generates the charity’s teaching images, audio and video. The rule in both is the same: the output is checked before anyone relies on it. On my own I’ve built a machine-learning stock screener and an epidemic simulator, and written an investment thesis on AI, virtual twins and robotics.</p>
         <ul class="hero-meta">
           <li>MSci Natural Sciences (Physics) · UCL · graduating 2028</li>
           <li>Data Science &amp; Research Intern · DSE · since June 2026</li>
@@ -708,16 +708,16 @@
         <p class="eyebrow">02 · Engineering</p>
         <h2 id="engineering-h">Tooling for teaching materials</h2>
         <hr class="rule">
-        <p class="lede">Two production systems I built at DSE to generate teaching materials. Both started as evaluation harnesses, because the first job was picking which model to use.</p>
+        <p class="lede">The production system behind DSE’s teaching materials: images, spoken audio and short video clips, and the route from a generated file to a catalogued asset. It started as an evaluation harness, because the first job was deciding which model to trust.</p>
       </div>
 
       <div class="proj-grid">
         <article class="proj">
           <p class="proj-kicker">Down Syndrome Education International · production system</p>
           <h3>Teaching-image pipeline</h3>
-          <p class="proj-desc">A pipeline producing photographic teaching images for a 500-word early-vocabulary programme, three complexity levels per word. Children with Down syndrome commonly have reduced contrast sensitivity, so the specification picks each background against its subject: the object keeps its true colour and the background moves, which is what stops a white bath dissolving into the backdrop.</p>
+          <p class="proj-desc">A pipeline producing photographic teaching images for an early-vocabulary programme: single words, phrases, sentences and a set of named characters who recur across the set. Children with Down syndrome commonly have reduced contrast sensitivity, so the specification picks each background against its subject: the object keeps its true colour and the background moves, which is what stops a white bath dissolving into the backdrop.</p>
           <p class="proj-desc">A wrong image gets a glossary fix; a wrong class of images gets a master-prompt rule that also governs the words not yet generated. Batch inference halved the unit cost, and reruns are idempotent by request hash.</p>
-          <p class="proj-note">~600 images generated · in production · quality review barely started: no claim is made about image quality</p>
+          <p class="proj-note">First production set delivered July 2026: 7,351 images · review so far is by eye, not by an automated check: no claim is made about image quality</p>
           <ul class="proj-tags">
             <li>Python</li>
             <li>CLI</li>
@@ -733,9 +733,9 @@
         <article class="proj">
           <p class="proj-kicker">Down Syndrome Education International · production system</p>
           <h3>Spoken-word audio pipeline</h3>
-          <p class="proj-desc">A pipeline that produced 4,307 spoken clips of words and sentences across 10 English accents. The voices were chosen in a blind A/B listening arena over four commercial text-to-speech providers, ranked by Bradley–Terry with bootstrap confidence intervals.</p>
+          <p class="proj-desc">A pipeline that reads the curriculum aloud: 3,407 words, phrases and sentences, each recorded by a male and a female voice in four English accents. The voices were chosen in a blind A/B listening arena over four commercial text-to-speech providers, ranked by Bradley–Terry with bootstrap confidence intervals, then brought to one measured speaking pace by calibration, because the same speed setting gives different voices different paces.</p>
           <p class="proj-desc">The scorer reports 90% intervals and flags which voices are statistically indistinguishable from the leader. I found and fixed one scoring bug: tie-credit had been inventing leaders out of dead heats.</p>
-          <p class="proj-note">Many short-phrase comparisons tie, so the middle of the ranking stays unresolved</p>
+          <p class="proj-note">Eight accents screened to sixteen voices; four accents shipped, four parked · many short-phrase comparisons tie, so the middle of the ranking stays unresolved</p>
           <ul class="proj-tags">
             <li>Python</li>
             <li>CLI</li>
@@ -745,6 +745,41 @@
           </ul>
           <p class="doc-links">
             <a class="doclink" href="asset-generation-explainer.html">Technical explainer <span class="k">html</span></a>
+          </p>
+        </article>
+
+        <article class="proj">
+          <p class="proj-kicker">Down Syndrome Education International · production system</p>
+          <h3>Verb video clips</h3>
+          <p class="proj-desc">Short clips that teach verbs: a toddler brushing, eating, sleeping. Through the video model’s API the same prompt failed on every tier, with two toothbrushes, broken physics and foam everywhere; in the model’s own web tool it worked. So clips are made there by hand, and the pipeline does the part a hand cannot: it holds one source of truth for every prompt, renders the paste-sheet from it, and refuses to file a clip whose brief has since changed.</p>
+          <p class="proj-desc">That rule came from a real drift. Four of the eight validated prompts no longer matched the wording that had been approved, because the sheet a person pastes from was a hand-written copy. Now it is generated, and a test fails when it is stale.</p>
+          <p class="proj-note">Prompts drafted for about sixty verbs; eight validated · provenance records the tool used, not a guessed model tier</p>
+          <ul class="proj-tags">
+            <li>Python</li>
+            <li>CLI</li>
+            <li>manifests</li>
+            <li>provenance</li>
+            <li>MP4 parsing (stdlib)</li>
+          </ul>
+          <p class="doc-links">
+            <a class="doclink" href="asset-generation-explainer.html#video">Technical explainer <span class="k">html</span></a>
+          </p>
+        </article>
+
+        <article class="proj">
+          <p class="proj-kicker">Down Syndrome Education International · production system</p>
+          <h3>From clips on a disk to catalogued assets</h3>
+          <p class="proj-desc">The route from a rendered clip to a draft asset in the charity’s catalogue: audit by measurement and by ear, repair, upload, reconcile. A defect found by listening is fixed by promoting a repaired take, never by regenerating: without the promotion stamp, the next render puts the defect back over the fix and reports success.</p>
+          <p class="proj-desc">Upload consumes an approved inventory, never a directory scan, and every row carries its content hash, which is also the key the reconciler joins on. Four accents of curriculum audio are in the catalogue as drafts. Publishing them is a separate human decision.</p>
+          <p class="proj-note">23,846 draft assets reconciled clean · stalls traced to hung TCP connects, so calls time out at 20 to 30 seconds · an expired session now stops the run instead of being retried for seven hours</p>
+          <ul class="proj-tags">
+            <li>Python</li>
+            <li>SHA-256</li>
+            <li>reconciliation</li>
+            <li>timeouts and retries</li>
+          </ul>
+          <p class="doc-links">
+            <a class="doclink" href="asset-generation-explainer.html#catalogue">Technical explainer <span class="k">html</span></a>
           </p>
         </article>
       </div>
