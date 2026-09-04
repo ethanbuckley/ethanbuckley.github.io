@@ -2,9 +2,9 @@
 """Rebuild the interactive demo's embedded posterior from a fitted VG14 output folder.
 
 `vocabulary-growth-demo.html` carries its data inline as `const DATA = {...}`: the
-production ratio with 50, 75 and 90% bands, posterior-predictive word counts for
+production ratio with 50 and 89% bands, posterior-predictive word counts for
 words understood, spoken and signed, and the spoken over-dispersion kappa, all on
-a 64-point age grid from 8 to 115 months. Until now that block had no source. This
+a 64-point age grid from 8 to 72 months, the range the pipeline reports. Until now that block had no source. This
 script writes it from the CSVs the fit pipeline emits, interpolating the pipeline's
 500-point grid onto the demo's.
 
@@ -26,7 +26,7 @@ from pathlib import Path
 import numpy as np
 
 N_POINTS = 64
-AGE_LO_M, AGE_HI_M = 8.0, 115.0
+AGE_LO_M, AGE_HI_M = 8.0, 72.0   # the pipeline reports comprehension-derived quantities to 72 months
 
 
 def cols(path: Path) -> dict[str, np.ndarray]:
@@ -49,23 +49,21 @@ def build(fit_dir: Path) -> dict:
 
     def counts(t: dict[str, np.ndarray], bands: bool = True) -> dict:
         out = {"m": onto(grid_m, t["age_months"], t["median"], 1),
-               "lo90": onto(grid_m, t["age_months"], t["p05"], 1),
-               "hi90": onto(grid_m, t["age_months"], t["p95"], 1)}
+               "lo89": onto(grid_m, t["age_months"], t["ci_lo"], 1),
+               "hi89": onto(grid_m, t["age_months"], t["ci_hi"], 1)}
         if bands:
-            out["lo50"] = onto(grid_m, t["age_months"], t["p25"], 1)
-            out["hi50"] = onto(grid_m, t["age_months"], t["p75"], 1)
+            out["lo50"] = onto(grid_m, t["age_months"], t["ci50_lo"], 1)
+            out["hi50"] = onto(grid_m, t["age_months"], t["ci50_hi"], 1)
         return out
 
     return {
         "age": [round(float(v) / 12.0, 3) for v in grid_m],
         "ratio": {
             "m": onto(grid_m, q["age_months"], q["q_median"], 4),
-            "lo90": onto(grid_m, q["age_months"], q["hdi_lo"], 4),
-            "hi90": onto(grid_m, q["age_months"], q["hdi_hi"], 4),
-            "lo75": onto(grid_m, q["age_months"], q["hdi75_lo"], 4),
-            "hi75": onto(grid_m, q["age_months"], q["hdi75_hi"], 4),
-            "lo50": onto(grid_m, q["age_months"], q["hdi50_lo"], 4),
-            "hi50": onto(grid_m, q["age_months"], q["hdi50_hi"], 4),
+            "lo89": onto(grid_m, q["age_months"], q["ci_lo"], 4),
+            "hi89": onto(grid_m, q["age_months"], q["ci_hi"], 4),
+            "lo50": onto(grid_m, q["age_months"], q["ci50_lo"], 4),
+            "hi50": onto(grid_m, q["age_months"], q["ci50_hi"], 4),
         },
         "understood": counts(u),
         "spoken": counts(s),
