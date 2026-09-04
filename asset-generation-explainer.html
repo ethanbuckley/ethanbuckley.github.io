@@ -9,8 +9,8 @@
 <meta name="description" content="How an accessibility requirement became a written specification for AI-generated teaching assets. The models were chosen by blind comparison, and the page says what has not been verified.">
 <link rel="canonical" href="https://ethanbuckley.github.io/asset-generation-explainer.html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Image and audio pipelines for teaching materials, and how the models were chosen">
-<meta property="og:description" content="An accessibility requirement, written up as a specification and enforced in tooling. Models chosen by blind comparison, with bootstrap intervals on the ranking. 4,307 audio clips across 10 English accents.">
+<meta property="og:title" content="Image, audio and video pipelines for teaching materials, and how the models were chosen">
+<meta property="og:description" content="An accessibility requirement, written up as a specification and enforced in tooling. Models chosen by blind comparison, with bootstrap intervals on the ranking. Images, audio and video for an early-vocabulary curriculum, and the route into the charity’s asset catalogue.">
 <meta property="og:url" content="https://ethanbuckley.github.io/asset-generation-explainer.html">
 <meta property="og:image" content="https://ethanbuckley.github.io/assets/og-card-asset-generation.png">
 <meta property="og:image:width" content="1200">
@@ -136,9 +136,9 @@
   <article class="sheet">
     <a class="back" href="index.html#engineering">← Back to engineering</a>
     <p class="eyebrow">Technical note · Down Syndrome Education International</p>
-    <h1>Image and audio pipelines for teaching materials, and how the models were chosen</h1>
-    <p class="lede">Two systems I built at Down Syndrome Education International. An image pipeline generates photographic teaching images for a 500-word early-vocabulary programme, three complexity levels per word; an audio pipeline produced 4,307 spoken clips of words and sentences across 10 English accents. Both are evaluation harnesses first and production pipelines second: the point was to decide which model and which settings to trust, with evidence, before spending at scale.</p>
-    <p class="meta">4,307 audio clips · 10 English accents · ~600 images · 389 offline tests · <b>Images in production · no claim about image quality</b></p>
+    <h1>Image, audio and video pipelines for teaching materials, and how the models were chosen</h1>
+    <p class="lede">One production system I built at Down Syndrome Education International, in three parts. An image pipeline generates photographic teaching images for an early-vocabulary programme: words, phrases, sentences and a set of recurring named characters. An audio pipeline reads the curriculum’s 3,407 items aloud in four English accents, two voices each. A video pipeline holds the prompts for short verb clips and files the clips people make from them. Behind all three sits the route from a generated file to a draft asset in the charity’s catalogue. Each part is an evaluation harness first and a production pipeline second: the point was to decide which model and which settings to trust, with evidence, before spending at scale.</p>
+    <p class="meta">7,351 images in the first production set · 3,407 curriculum items · four English accents shipped · 23,846 draft assets reconciled · <b>Images in production · no claim about image quality</b></p>
 
     <h2>The accessibility requirement</h2>
     <hr class="rule" />
@@ -191,11 +191,25 @@
     <p class="body">The voices came out of a <strong>blind A/B listening arena</strong>: pairs of clips scored with <strong>Bradley–Terry</strong> ranking and bootstrap confidence intervals over the outcomes. It compared four commercial text-to-speech providers across American, British and Irish English. The scorer reports 90% bootstrap intervals, the probability that each configuration ranks first, and which configurations are statistically indistinguishable from the leader, so a thin ranking reads as thin.</p>
     <p class="body">One methodology bug was found and fixed: <strong>tie-credit</strong>. First-place credit was going to whichever configuration happened to sort first, which invented leaders out of dead heats. The arena also locks the vote buttons until both clips have finished playing, as a protocol safeguard.</p>
     <p class="body">The limit: for short child-vocabulary phrases, many voices are hard to tell apart, so a lot of comparisons end in ties and the middle of the ranking stays unresolved. A second listener would be worth more than more pairs from the same one.</p>
+    <p class="body">Choosing a voice was not the end of it. The same speed setting produces different paces from different voices, and one provider’s voices vary by up to a tenth between renders at identical settings, so pace was settled by calibration: render, measure the audible speech with the silence trimmed, re-solve, and render again until each voice is inside a tolerance. Phrases and sentences take a slower read than single words, and that correction is held per voice. Eight accents were screened to sixteen voices; four accents shipped and four are parked, with the reasons recorded beside the manifests so a decision can be re-run rather than re-argued.</p>
 
     <h2>Cost and reruns</h2>
     <hr class="rule" />
     <p class="body">A batch-inference integration <strong>halved the unit cost</strong> of image generation, verified end to end, and turned out to be faster than the rate-limited synchronous path: 294 images in about 25 minutes, against about 45 minutes on the synchronous path. Reruns are idempotent by request hash, so a rerun bills only for what changed, and the plan table marks in yellow any image that would be <em>replaced</em>, because the expensive silent mistake is re-drafting a brief and invalidating approved work.</p>
     <p class="body">A local open-weight image model was evaluated and rejected for this specification. It has a 256-token prompt limit, against presets of roughly 363 tokens, so it silently truncated them. That looked like a model ignoring instructions, and was really a model that never saw them.</p>
+
+    <h2 id="video">Video: the prompt is the source of truth</h2>
+    <hr class="rule" />
+    <p class="body">The third modality is short clips that teach verbs: a toddler brushing, eating, sleeping. The first attempt went through the video model’s API, and the same prompt that produced a clean clip in the model’s own web tool failed on every API tier: two toothbrushes, broken physics, foam everywhere. Two differences were never controlled, clip duration and the tool’s own prompt rewriting, so the cause is open. The decision was not to wait for it. Clips are made by hand in the tool, and the pipeline does the rest.</p>
+    <p class="body">The rest is this. The manifest holds every prompt with its shot size, the decision behind the wording and a status of validated, draft or blocked, where absent approval counts as draft. The paste-sheet a person works from is rendered from the manifest, and a check fails when it is stale, because the previous hand-written sheet had drifted on four of the eight validated verbs without anything noticing. An ingest command files a downloaded clip where a generated one would go, with the same provenance sidecar, so review and verification work unchanged. Duration and resolution are read off the file with a small MP4 parser rather than copied from a request the tool never received, and the provenance names the tool and leaves the model tier empty rather than guess it.</p>
+    <p class="body">Prompts are drafted for about sixty verbs across five sets; eight are validated. One verb is blocked on a decision about which sign vocabulary to teach, and a few are flagged in advance as likely failures: a very young child in water, and a book, which is made of text.</p>
+
+    <h2 id="catalogue">From a disk to the catalogue</h2>
+    <hr class="rule" />
+    <p class="body">Audio was the first modality to reach the charity’s asset catalogue, so its conventions set the precedent. The route is audit, repair, upload, reconcile. Audit is mechanical first: clipping, silence, truncation and pace outliers are measured over a batch, and two clips with the same content hash are flagged, because that is the same audio filed under two words. Then it is by ear, because the measurements cannot hear a mispronunciation.</p>
+    <p class="body">A defect found by ear is fixed by promoting a repaired take, never by regenerating. Promotion stamps the fix’s provenance with what it replaced; without that stamp the next production run renders the defect back over the fix and reports success. Upload consumes an approved inventory, never a directory scan, since a scan ships whatever is on the disk: a superseded clip, a stray probe, a voice that failed review. Every inventory row carries its content hash, which is also the key the reconciler joins on, so completeness and correctness are checked against the ledger after every run.</p>
+    <p class="body">Two findings changed the code. Stalls between uploads were hung TCP connects, near-exact multiples of the operating system’s connect timeout, and one run spent most of its wall clock in them; calls now die at twenty to thirty seconds. And an expired session is not a transient failure: a retry policy built for those hung routes spent seven hours retrying a dead credential and blamed every row it reached. The run now stops, records nothing for the untried rows, and prints the sign-in command.</p>
+    <p class="body">Four accents, 23,846 draft assets, reconciled clean. Nothing is published. That is a separate human decision.</p>
 
     <h2>Failure modes worth knowing</h2>
     <hr class="rule" />
@@ -207,15 +221,17 @@
     <h2>What isn’t done</h2>
     <hr class="rule" />
     <ul class="family">
-      <li class="assoc"><span class="lvl">Quality review</span><span class="txt">Barely started. About a dozen images have been looked at individually, and the automated vision verifier has run on <strong>none</strong> of them.</span></li>
+      <li class="assoc"><span class="lvl">Image quality</span><span class="txt">Not reviewed systematically. The automated vision verifier has not been run over the set, so <strong>no claim is made about image quality</strong>.</span></li>
       <li class="assoc"><span class="lvl">Known defects</span><span class="txt">Two real ones found in that handful: unnamed props drift pale, a leak from the contrast rule; and transparent subjects such as a glass of water take the background’s tone and disappear.</span></li>
       <li class="assoc"><span class="lvl">Contrast metric</span><span class="txt">The repo’s own contrast metric is not trustworthy: two of its three numbers are artefacts, documented in the module. It reported a large failure count on a batch where the true number, never counted exactly, was far smaller.</span></li>
       <li class="assoc"><span class="lvl">Coverage</span><span class="txt">The image set is still <strong>in production</strong>, not finished.</span></li>
+      <li class="assoc"><span class="lvl">Video</span><span class="txt">Most drafted prompts have never been generated, and the rules they follow were learned by getting the first set wrong, so expect rejections.</span></li>
+      <li class="assoc"><span class="lvl">Audio</span><span class="txt">Four accents are parked, and a handful of clips ship as accepted with reservation: the least bad of several takes, on an open list.</span></li>
     </ul>
 
     <h2>Build</h2>
     <hr class="rule" />
-    <p class="body">Both pipelines sit behind one CLI, <code style="font-family:var(--mono)">asset-lab</code>, with subcommands like <code style="font-family:var(--mono)">image generate</code>, <code style="font-family:var(--mono)">items from-xlsx</code> and <code style="font-family:var(--mono)">review build</code>. The behaviour described above is covered by <strong>389 offline tests</strong> (186 + 203 across the two suites).</p>
+    <p class="body">All of it sits behind one CLI, <code style="font-family:var(--mono)">asset-lab</code>, with subcommands like <code style="font-family:var(--mono)">image generate</code>, <code style="font-family:var(--mono)">audio calibrate</code>, <code style="font-family:var(--mono)">video prompts</code> and <code style="font-family:var(--mono)">review build</code>. The behaviour described above is covered by about <strong>650 offline tests</strong> across the two code bases (467 + 186).</p>
     <ul class="chips">
       <li>Python</li>
       <li>asset-lab CLI</li>
@@ -224,6 +240,9 @@
       <li>Bradley–Terry + bootstrap</li>
       <li>batch inference</li>
       <li>request-hash idempotency</li>
+      <li>pace calibration</li>
+      <li>content-hash reconciliation</li>
+      <li>MP4 parsing</li>
     </ul>
 
     <p class="foot"><b>Scope &amp; status.</b> This is employer work at Down Syndrome Education International, described in general terms: counts, ratios and methods, with no provider or model names and no spend figures. The image set is in production. Quality review has barely started, so <strong>no claim is made here about image quality</strong>.</p>
