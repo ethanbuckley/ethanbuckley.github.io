@@ -12,7 +12,7 @@
   :root{
     --ground:#edf1f3; --paper:#ffffff; --ink:#17242c; --ink-soft:#52606a;
     --accent:#0f766e; --accent-2:#a4490a; --line:#d5dde2; --tint:#e4eeeb;
-    --serif:Georgia,"Times New Roman",serif;
+    --serif:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
   }
@@ -21,10 +21,10 @@
   #fig{width:1600px;height:1000px;overflow:hidden;background:var(--paper);color:var(--ink);
        font-family:var(--sans);display:flex;flex-direction:column;padding:52px 64px 0}
   header{border-bottom:1px solid var(--line);padding-bottom:26px}
-  .eyebrow{font-family:var(--mono);font-size:17px;font-weight:600;letter-spacing:.14em;
-           text-transform:uppercase;color:var(--accent)}
+  .eyebrow{font-family:var(--sans);font-size:17px;font-weight:600;letter-spacing:0;
+           text-transform:none;color:var(--ink-soft)}
   h1{font-family:var(--serif);font-size:40px;font-weight:700;line-height:1.06;
-     letter-spacing:-.008em;margin-top:14px;color:var(--ink)}
+     letter-spacing:-.02em;margin-top:14px;color:var(--ink)}
   .standfirst{font-size:21px;line-height:1.45;color:var(--ink-soft);margin-top:12px;max-width:1080px}
   main{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:space-evenly;padding:6px 0}
   .eq-row{display:flex;align-items:center;justify-content:center;gap:30px}
@@ -46,8 +46,8 @@
   .q{font-family:var(--mono);font-weight:700;color:var(--accent)}
   .blocks{display:flex;gap:72px;align-items:flex-start}
   .block{flex:1}
-  .block-eyebrow{font-family:var(--mono);font-size:16px;font-weight:600;letter-spacing:.14em;
-                 text-transform:uppercase;margin-bottom:15px}
+  .block-eyebrow{font-family:var(--sans);font-size:16px;font-weight:600;letter-spacing:0;
+                 text-transform:none;margin-bottom:15px}
   .eb-teal{color:var(--accent)}
   .eb-ochre{color:var(--accent-2)}
   .block p{font-size:22px;line-height:1.55}

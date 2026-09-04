@@ -24,6 +24,8 @@ The investment thesis linked from the projects section lives in its own reposito
 
 ## Editing rules
 
+- The design system is `assets/site.css` and `assets/theme.js`, linked from every page after its own `<style>`. Tokens (white ground, near-black ink, one blue accent, system sans, mono for numbers only), the dark palette and the theme switch live there, so a colour or type change is made once. Page-level styles handle layout only.
+- Dark mode follows the system until the visitor chooses. The choice is stored in `localStorage` under `theme` and applied as `data-theme` on `<html>` before first paint.
 - Figures are never hand-patched. Edit the source in `figures/` and run `figures/render.sh`, which renders through headless Chrome and writes the PNG, WebP and PDF outputs.
 - After editing `cv.html`, reprint the PDF and check it is still one page:
 

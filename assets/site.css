@@ -1,0 +1,194 @@
+/* Shared design tokens, type and theme switch for every page on the site.
+   Loaded after each page's own <style>, so at equal specificity these rules win.
+   Light is the default. Dark follows the system unless the visitor has chosen,
+   in which case data-theme on <html> decides. */
+
+:root {
+  --ground: #ffffff;
+  --paper: #ffffff;
+  --surface: #f5f6f8;
+  --ink: #14181d;
+  --ink-soft: #5b6571;
+  --accent: #2440b3;
+  --accent-dark: #182c86;
+  --accent-2: #6b7480;
+  --line: #e4e7eb;
+  --tint: #f5f6f8;
+  --btn-ink: #ffffff;
+  --fig-grid: #e4e7eb;
+  --fig-grid-faint: #f1f3f5;
+  --fig-axis: #c5cbd2;
+  --fig-chain: #7b93c4;
+  --img-mount: #ffffff;
+  --img-pad: 0px;
+  --serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #0f1114;
+    --paper: #14171b;
+    --surface: #191d22;
+    --ink: #e6e8eb;
+    --ink-soft: #9aa3ad;
+    --accent: #8fa6ff;
+    --accent-dark: #b7c5ff;
+    --accent-2: #8d97a3;
+    --line: #272c33;
+    --tint: #171b20;
+    --btn-ink: #0f1114;
+    --fig-grid: #272c33;
+    --fig-grid-faint: #1c2126;
+    --fig-axis: #3a424b;
+    --fig-chain: #6f8fc6;
+    --img-mount: #e6e9ec;
+    --img-pad: 10px;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #0f1114;
+  --paper: #14171b;
+  --surface: #191d22;
+  --ink: #e6e8eb;
+  --ink-soft: #9aa3ad;
+  --accent: #8fa6ff;
+  --accent-dark: #b7c5ff;
+  --accent-2: #8d97a3;
+  --line: #272c33;
+  --tint: #171b20;
+  --btn-ink: #0f1114;
+  --fig-grid: #272c33;
+  --fig-grid-faint: #1c2126;
+  --fig-axis: #3a424b;
+  --fig-chain: #6f8fc6;
+  --img-mount: #e6e9ec;
+  --img-pad: 10px;
+  color-scheme: dark;
+}
+
+/* ---- base ---- */
+body { background: var(--ground); color: var(--ink); font-family: var(--sans); }
+h1, h2, h3, h4, .brand, .hero h1, .tagline, .sec-head h2, .side h2, .study h3, .proj h3, .howto h3,
+.sheet h1, .sheet h2, .sheet h3, .vgdemo h3, .vg-top .brand {
+  font-family: var(--sans);
+}
+h1, .hero h1, .sheet h1 { font-weight: 650; letter-spacing: -0.022em; }
+h2, .sec-head h2, .sheet h2 { font-weight: 600; letter-spacing: -0.015em; }
+h3, .study h3, .proj h3, .sheet h3 { font-weight: 600; letter-spacing: -0.01em; }
+.tagline { font-weight: 400; color: var(--ink-soft); }
+a { color: var(--accent); }
+a:hover { color: var(--accent-dark); }
+
+/* ---- small labels: sentence case, no tracking, no mono ---- */
+.eyebrow, .side-label, .study-eyebrow, .proj-kicker, .contrib .label, .contact-list dt,
+.study-meta, .site-nav a, .btn, .cta-link, .approach-fig figcaption .tag, .howto h3,
+.hero-meta li, .proj-note, .proj-tags, .fig figcaption, .proj-fig figcaption,
+.approach-fig figcaption, .site-foot .wrap, .skip, .back, .meta, .kicker, .chips li,
+.vg-eyebrow, .vg-toggle button, .vg-field label, .vg-legend span, .vg-readout .k, .vg-top a.back,
+.family .lvl, .doc-links .k, .doclink .k, footer, .foot {
+  font-family: var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.eyebrow, .side-label, .study-eyebrow, .proj-kicker, .contrib .label, .howto h3, .vg-eyebrow, .kicker {
+  color: var(--ink-soft); font-weight: 500; font-size: 13px;
+}
+.proj-kicker.alt { color: var(--ink-soft); }
+.doclink .k, .doc-links .k { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
+.study-meta { font-size: 13px; }
+.study-meta b { color: var(--ink); }
+.hero-meta li, .proj-note, .proj-tags, .fig figcaption, .proj-fig figcaption, .approach-fig figcaption,
+.site-foot .wrap, .contact-list dt { font-size: 13px; }
+.stat, .n, .num, code, pre, kbd { font-family: var(--mono); }
+
+/* ---- header and nav ---- */
+.site-head, .site-foot, .vg-top { background: var(--ground); }
+.site-nav { align-items: center; }
+.site-nav a { font-size: 14px; font-weight: 500; color: var(--ink-soft); }
+.site-nav a:hover { color: var(--ink); }
+.site-nav a.ext { color: var(--accent); }
+.brand { font-weight: 650; letter-spacing: -0.01em; }
+
+/* ---- hero ---- */
+.hero-fig { display: none; }
+@media (min-width: 1000px) { .hero-copy { grid-column: 1 / 10; } }
+.btn { font-size: 14px; font-weight: 600; padding: 10px 16px; border-radius: 6px; }
+.btn.primary { background: var(--ink); color: var(--ground); }
+.btn.primary:hover { background: var(--ink); color: var(--ground); opacity: .85; }
+.cta-link { font-size: 14px; font-weight: 500; }
+
+/* ---- sections: one white page, hairline rules, no tinted bands ---- */
+.band.paper { background: transparent; border-bottom: 0; }
+.band, .band.paper { border-top: 1px solid var(--line); }
+.hero + .band, .band.quiet:first-of-type { border-top: 0; }
+.rule { display: none; }
+.sec-head h2 { margin-bottom: 14px; }
+
+/* ---- studies and cards ---- */
+.finding .dot { background: var(--ink); width: 8px; height: 8px; margin-top: 9px; }
+.finding.alt .dot { background: var(--accent-2); }
+.contrib { border-left-color: var(--ink); }
+.howto { background: var(--surface); border-left: 3px solid var(--ink); border-radius: 6px; }
+.doclink { font-weight: 500; }
+.doclink.live::before { background: var(--accent); }
+.fig img, .proj-fig img {
+  background: var(--img-mount); border-color: var(--line); padding: var(--img-pad); border-radius: 6px;
+}
+.figlink:hover img { border-color: var(--ink-soft); }
+.proj-tags li { color: var(--ink-soft); }
+.proj-note { border-top-color: var(--line); }
+
+/* ---- explainer and CV sheets ---- */
+.sheet { position: relative; }
+.sheet > .theme-toggle { position: absolute; top: 14px; right: 16px; }
+.family li .lvl { color: var(--ink-soft); font-weight: 500; }
+
+/* ---- the theme switch ---- */
+.theme-toggle {
+  font: 500 13px/1 var(--sans); color: var(--ink-soft);
+  background: transparent; border: 1px solid var(--line); border-radius: 999px;
+  padding: 6px 11px; cursor: pointer; letter-spacing: 0; text-transform: none;
+}
+.theme-toggle:hover { color: var(--ink); border-color: var(--ink-soft); }
+.theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.site-nav .theme-toggle { margin-left: 6px; }
+.vg-top .theme-toggle { margin-left: auto; }
+
+/* ---- print: always the light palette ---- */
+@media print {
+  :root, :root[data-theme="dark"] {
+    --ground: #fff; --paper: #fff; --surface: #fff; --ink: #000; --ink-soft: #444;
+    --accent: #000; --accent-dark: #000; --accent-2: #666; --line: #bbb; --tint: #fff;
+    --img-mount: #fff; --img-pad: 0px; color-scheme: light;
+  }
+  .theme-toggle { display: none; }
+  .sheet h2 { font-size: 8pt; margin: 5pt 0 2.5pt; }
+  .sheet h1 { font-size: 18pt; }
+}
+
+/* ---- page-specific labels, generated 2026-09-04 from every selector that still used tracked uppercase or mono type ---- */
+.approach-fig figcaption,
+.back,
+.chips li,
+.eyebrow,
+.family .lvl,
+.foot,
+.meta,
+.schematic .cap,
+.vg-field label,
+.vg-legend span,
+.vg-toggle button,
+.vg-top .brand,
+.vg-top a.back,
+.vgdemo .vg-eyebrow,
+.vgdemo h3,
+h1,
+h2 {
+  font-family: var(--sans); letter-spacing: 0; text-transform: none;
+}
+.sheet h2 { color: var(--ink); font-size: 15px; font-weight: 650; letter-spacing: 0; text-transform: none; }
+.sheet .role .when, .sheet .contact { font-family: var(--mono); }
+.vgdemo .vg-eyebrow, .h-label, .label, .kicker, .eyebrow { color: var(--ink-soft); font-weight: 500; }

@@ -36,6 +36,6 @@ Requirements: Google Chrome (the script uses its headless screenshot mode; overr
 ## Editing rules
 
 - Keep the canvas exactly 1600 x 1000 (`body{margin:0}`, `overflow:hidden` on the root div) or the screenshot will crop or letterbox.
-- Design tokens (colours, type stacks) are declared at the top of each file and match the site's `index.html`; change them in step with the site.
+- Design tokens (colours, type stacks) are declared at the top of each file and match the site's `assets/site.css`; change them in step with the site. Since 2026-09-04 the display type is the system sans stack (the `--serif` token aliases it) and labels are sentence case with no letter-spacing; the teal and ochre inside the plates are data and diagram colours, not the site palette.
 - No em dashes anywhere; en dashes only inside numeric ranges; British spelling.
 - The forest-plot panel carries its own labels and axis title; do not add duplicate labels around it.
