@@ -120,6 +120,10 @@ a:hover { color: var(--accent-dark); }
 .btn.primary:hover { background: var(--ink); color: var(--ground); opacity: .85; }
 .cta-link { font-size: 14px; font-weight: 500; }
 
+/* ---- the "now" line under the hero details ---- */
+.now { font-size: 14px; color: var(--ink-soft); max-width: var(--measure); margin: -14px 0 30px; line-height: 1.55; }
+.now-label { display: inline-block; font-weight: 600; color: var(--ink); margin-right: 8px; }
+
 /* ---- sections: one white page, hairline rules, no tinted bands ---- */
 .band.paper { background: transparent; border-bottom: 0; }
 .band, .band.paper { border-top: 1px solid var(--line); }

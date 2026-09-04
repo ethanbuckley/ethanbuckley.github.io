@@ -49,4 +49,12 @@ Previews are written to `*.preview.png` and are gitignored.
 
 ## The forest plot
 
-`intervention-effects-panel.png` still has no source. It needs the reading-intervention model output, which lives in a different repo, and the same provenance question applies to it.
+`intervention-effects-panel.png` now has a source: `render_effects_panel.py`, which reads `itt_vs_joint_tau-2026-07-21.csv`. That file is a dated copy of `output/statistical_models/comparison/itt_vs_joint_tau.csv` from the `language-reading-predictors` repository, written by its `compare_statistical_models.py` on 2026-07-21 from the reporting-tier fits. The panel plots the single-outcome intention-to-treat rows (`lrp-rli-itt-005` to `-010`) and leaves out the joint model (`-012`).
+
+The bounds are equal-tailed central quantiles at the coverage each fit's `config.json` records, `ci_prob = 0.89`. The plate and the pages that describe it used to say 95%; they were corrected on 2026-09-04, and the script takes the coverage as an argument so the label cannot drift from the data again. Regenerate with:
+
+```bash
+python figures/panels/render_effects_panel.py --coverage 0.89 --out intervention-effects-panel.png
+```
+
+If the study is refitted, replace the dated CSV with a new dated copy, check `ci_prob` in the new fits, and re-run.

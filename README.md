@@ -17,7 +17,8 @@ My portfolio site. Hand-written HTML and CSS, system fonts, no build step. It wo
 | `sp-500-stock-screener-explainer.html`, `epidemic-cellular-automaton-explainer.html` | Deep dives for the two independent projects |
 | `vocabulary-growth-demo.html` | An interactive posterior, drawn on a canvas |
 | `*.pdf` | The three research showcase decks |
-| `figures/` | Sources for every chart, Open Graph card and showcase deck, and `render.sh` to rebuild them |
+| `figures/` | Sources for every chart, Open Graph card and showcase deck, and `render.sh` to rebuild them. `figures/panels/` holds the two plot panels with the scripts that draw them from model output, and the script that rebuilds the demo page's data |
+| `assets/site.css`, `assets/theme.js` | The design tokens, type and light/dark switch shared by every page. Loaded after each page's own styles, so a change here applies everywhere |
 | `assets/` | Rendered figures, cards, favicon and the CV PDF |
 
 The investment thesis linked from the projects section lives in its own repository, `ethanbuckley/computable-world`.
@@ -37,6 +38,8 @@ The investment thesis linked from the projects section lives in its own reposito
 - The DSE material was cleared for description in general terms. It carries no money figures, no provider or model names, no generated images and no claim about image quality.
 - The same fact should appear once per page and read the same on every page. Before pushing, grep for the numbers that recur (children, studies, items, nodes) and check they agree.
 - No em-dashes in prose.
+- The "Now" line under the hero is dated. Update it when the month changes, or remove it; a stale one is worse than none.
+- The two plot panels are drawn from model output by `figures/panels/render_panels.py` and `render_effects_panel.py`; the demo page's data comes from `render_demo_data.py`. `figures/panels/PROVENANCE.md` names the fit each one currently shows. Do not edit the PNGs or the `DATA` block by hand.
 
 ## Publishing
 

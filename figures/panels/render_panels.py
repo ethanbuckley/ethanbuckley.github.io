@@ -47,13 +47,15 @@ from matplotlib.patches import Patch  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 
-# Site tokens, kept in step with index.html and figures/*.html by hand.
-INK = "#17242c"
-SOFT = "#52606a"
-FAINT = "#62727b"
-HAIRLINE = "#e2e7ea"
-TEAL = "#0f766e"
+# Site tokens, kept in step with assets/site.css and figures/*.html by hand.
+INK = "#14181d"
+SOFT = "#5b6571"
+FAINT = "#6b7480"
+HAIRLINE = "#e4e7eb"
+TEAL = "#2440b3"   # the site accent since 2026-09-04; the name is historical
 PAPER = "#ffffff"
+# The site's system sans; matplotlib takes the first family it can find.
+SANS = ["Helvetica Neue", "Arial", "DejaVu Sans"]
 
 # The published panel is 1776 x 1272 and embedded at exactly half that, so the 2x
 # render of the surrounding canvas reuses these pixels without resampling. Changing
@@ -122,22 +124,22 @@ def render(cols: dict[str, list[float]], out: Path) -> None:
     ax.set_yticklabels(["0", "20%", "40%", "60%", "80%", "100%"])
     ax.tick_params(colors=SOFT, labelsize=13, length=0, pad=8)
     for lbl in ax.get_xticklabels() + ax.get_yticklabels():
-        lbl.set_fontfamily("Georgia")
+        lbl.set_fontfamily(SANS)
 
     # Prose, not code. The published panel says "q(a) = p_S(a) / p_U(a)", which is
     # the model's variable name rather than anything a reader can use.
     ax.set_ylabel(
         "Share of understood words the child also says",
-        color=INK, fontsize=15, fontfamily="Georgia", labelpad=14,
+        color=INK, fontsize=15, fontfamily=SANS, labelpad=14,
     )
-    ax.set_xlabel("Age in months", color=INK, fontsize=15, fontfamily="Georgia", labelpad=12)
+    ax.set_xlabel("Age in months", color=INK, fontsize=15, fontfamily=SANS, labelpad=12)
 
     # Years across the top, because "seven and a half" is how the finding is quoted.
     top = ax.secondary_xaxis("top", functions=(lambda m: m / 12.0, lambda y: y * 12.0))
-    top.set_xlabel("Age in years", color=SOFT, fontsize=13, fontfamily="Georgia", labelpad=10)
+    top.set_xlabel("Age in years", color=SOFT, fontsize=13, fontfamily=SANS, labelpad=10)
     top.tick_params(colors=SOFT, labelsize=12, length=0, pad=6)
     for lbl in top.get_xticklabels():
-        lbl.set_fontfamily("Georgia")
+        lbl.set_fontfamily(SANS)
     top.spines["top"].set_visible(False)
 
     handles = [Line2D([], [], color=TEAL, linewidth=2.6, label="Posterior median")]
@@ -151,7 +153,7 @@ def render(cols: dict[str, list[float]], out: Path) -> None:
     )
     for text in leg.get_texts():
         text.set_color(SOFT)
-        text.set_fontfamily("Georgia")
+        text.set_fontfamily(SANS)
 
     fig.tight_layout(pad=1.6)
     fig.savefig(out, facecolor=PAPER, dpi=DPI)
