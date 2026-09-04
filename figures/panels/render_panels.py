@@ -60,7 +60,7 @@ SANS = ["Helvetica Neue", "Helvetica", "Arial", "DejaVu Sans"]
 # The published panel is 1776 x 1272 and embedded at exactly half that, so the 2x
 # render of the surrounding canvas reuses these pixels without resampling. Changing
 # either number means changing the <img> width/height in production-ratio.html too.
-NATIVE_W, NATIVE_H = 2944, 1380   # fills the 1600x1000 plate at 2x, under a two-line title and a source line
+NATIVE_W, NATIVE_H = 2944, 1560   # fills the 1600x1000 plate at 2x, under a two-line title and a source line
 DPI = 200
 
 # Band opacities. Widest is faintest, so the eye reads the median first and the

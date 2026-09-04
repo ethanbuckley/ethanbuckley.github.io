@@ -45,7 +45,7 @@ SANS = ["Helvetica Neue", "Helvetica", "Arial", "DejaVu Sans"]
 
 # The published panel is 1780 x 830 px, embedded at half size in the 1600 x 1000
 # plate, so the 2x render of the plate reuses these pixels without resampling.
-NATIVE_W, NATIVE_H = 2944, 1380   # fills the 1600x1000 plate at 2x
+NATIVE_W, NATIVE_H = 2944, 1560   # fills the 1600x1000 plate at 2x
 DPI = 200
 
 JOINT = "lrp-rli-itt-012"

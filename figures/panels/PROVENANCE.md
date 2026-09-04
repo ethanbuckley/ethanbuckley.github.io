@@ -23,7 +23,7 @@ python figures/panels/render_panels.py --csv figures/panels/vg14-test-2026-09-04
 | --- | --- |
 | Data | 14 datasets, 1,424 assessments (976 with a comprehension count, 1,421 spoken, 685 signed), ages 8 to 115 months; the September 2026 masking rules |
 | Sampling | `test` tier, 4 chains, nutpie; R-hat max 1.005, minimum ESS 1,609, BFMI 0.83 to 0.91 |
-| Gate | **not met**: 3 divergent transitions in 8,000 draws. Everything else passed. The site says so on the plate footer |
+| Gate | **not met**: 3 divergent transitions in 8,000 draws. Everything else passed. The site says so in the figure caption on the front page (the plates carry no source line since 2026-09-04) |
 
 The pipeline now reports comprehension-derived quantities, the production ratio among them, only to 72 months (`report_max_age_understood`), because comprehension data above six years are thin. So the old headline, about 86% by seven and a half years, cannot be reproduced by design, and the site now quotes about 44% at four years and 64% at six, the oldest age the model reports. That is a material change to a public claim, which is why it went out as a pull request rather than straight to `main`.
 
