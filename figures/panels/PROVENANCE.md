@@ -7,34 +7,29 @@
 
 `production-ratio-panel.png` and `intervention-effects-panel.png` were lifted as pixels out of the original figure masters. Unlike everything else in `figures/`, they have no source, so nothing on disk records which model fit produced them.
 
-`render_panels.py` now provides the missing source for the production-ratio panel. It is not yet wired into `render.sh`, because which model is canonical is a decision, not a lookup. See below.
+`render_panels.py` and `render_effects_panel.py` provide the sources. Neither is wired into `render.sh`, on purpose: a re-render of the plates should not silently swap the model behind a number that is quoted in prose.
 
-## The published panel does not match the current VG14 fit
+## The production-ratio panel: now drawn from a dated fit
 
-Checked 2026-07-31 against `output/models/VG14-age-understood-spoken-signed-ds/production_rate.csv` in the `vocabulary-growth` repo. That file has exactly the columns and the age grid the panel plots (8.0 to 115.0 months; median plus 50, 75 and 90% HDI), so it is the same quantity from the same pipeline. The values are not the same:
+Until 2026-09-04 the published panel was pixels from the July 2026 figure master, from a fit nothing on disk recorded, and it disagreed with the only VG14 output then on disk (a June development-tier run) by up to 0.05 at the top of the age range. On 2026-09-04 VG14 was refitted at test tier from the current pipeline and data, and the panel is now rendered from that fit:
 
-| Age        | Published panel | Current VG14 fit | Difference |
-| ---------- | --------------- | ---------------- | ---------- |
-| 4 years    | 0.524           | 0.529            | +0.005     |
-| 7 years    | 0.846           | 0.841            | −0.005     |
-| 7½ years   | 0.858           | 0.877            | +0.019     |
-| 8 years    | 0.878           | 0.909            | +0.031     |
-| 115 months | 0.918           | 0.966            | +0.048     |
+```bash
+python figures/panels/render_panels.py --csv figures/panels/vg14-test-2026-09-04/production_rate.csv --out production-ratio-panel.png
+```
 
-Panel figures were read off the image against its own gridlines, so they carry roughly ±0.01. The divergence at the top is well beyond that, and the shapes differ too: the VG14 curve has a shoulder around 20 to 30 months that the published curve does not.
+`vg14-test-2026-09-04/` holds the small CSVs the panel and the demo page read, plus the fit's `fit_manifest.json`, `diagnostics_summary.json` and `descriptive_statistics.csv`, so the numbers on the site can be traced without the trace file. Three things about that fit belong on the record:
 
-The likely explanation is that the panel came from a joint understood-and-spoken model without signing, or from an earlier fit. VG14 includes a signed outcome, which changes how the spoken cell is defined, so its production ratio is not the same quantity. Neither VG10 nor VG12 has a local fit, so this could not be settled from what is on disk.
+| | |
+| --- | --- |
+| Data | 14 datasets, 1,424 assessments (976 with a comprehension count, 1,421 spoken, 685 signed), ages 8 to 115 months; the September 2026 masking rules |
+| Sampling | `test` tier, 4 chains, nutpie; R-hat max 1.005, minimum ESS 1,609, BFMI 0.83 to 0.91 |
+| Gate | **not met**: 3 divergent transitions in 8,000 draws. Everything else passed. The site says so on the plate footer |
 
-## Why nothing was changed
+The pipeline now reports comprehension-derived quantities, the production ratio among them, only to 72 months (`report_max_age_understood`), because comprehension data above six years are thin. So the old headline, about 86% by seven and a half years, cannot be reproduced by design, and the site now quotes about 44% at four years and 64% at six, the oldest age the model reports. That is a material change to a public claim, which is why it went out as a pull request rather than straight to `main`.
 
-The number on this panel is quoted in `index.html` in three places: the `og:image:alt`, the chart's own `alt` text, and the body prose ("about 86% by seven and a half"). Regenerating from VG14 would move that to about 88% and require all three to change, on a public page, on the strength of a model that may be answering a slightly different question.
+The demo page (`vocabulary-growth-demo.html`) embeds the same fit through `render_demo_data.py`, on a 64-point grid from 8 to 72 months, with 50% and 89% bands. Its previous data block came from the June development-tier run.
 
-So the panel is untouched and the decision is open:
-
-1. **Confirm which model is canonical** for this figure. If it is a joint DS understood-and-spoken model, it needs fitting before the panel can be regenerated.
-2. **Then run `render_panels.py --out production-ratio-panel.png`** and re-check the three places in `index.html`, plus the explainer prose.
-
-Until then the panel stays as published, and the mismatch is recorded here rather than left to be rediscovered.
+The comparisons with typically-developing children quoted beside these figures (the 13-point gap at 50 to 150 understood words, the spoken-vocabulary lag at age two) still come from the July 2026 fits, and the study meta line on the front page says so. Regenerating them needs the typically-developing models refitted alongside.
 
 ## Style
 

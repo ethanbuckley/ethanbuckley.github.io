@@ -12,7 +12,7 @@ code identifiers (`q(a) = p_S(a) / p_U(a)`) on a page whose whole point is that 
 work is legible to non-specialists.
 
 This script closes that gap. Point it at a `production_rate.csv` from a fitted
-model and it emits a panel at exactly the published pixel size, styled to the
+model (the dated copy under `vg14-test-2026-09-04/` is the one published) and it emits a panel at exactly the published pixel size, styled to the
 site's tokens, so it drops into `production-ratio.html` unchanged.
 
 ## What it does NOT do
@@ -65,10 +65,11 @@ DPI = 200
 
 # Band opacities. Widest is faintest, so the eye reads the median first and the
 # bands as progressively weaker claims rather than as three equal objects.
+# Since the pipeline's 2026-08 output schema the CSV carries two equal-tailed
+# intervals: the inner 50% and the 89% that dse_research_utils reports by default.
 BANDS = [
-    ("hdi_lo", "hdi_hi", 0.13, "90% credible"),
-    ("hdi75_lo", "hdi75_hi", 0.17, "75% credible"),
-    ("hdi50_lo", "hdi50_hi", 0.24, "50% credible"),
+    ("ci_lo", "ci_hi", 0.14, "89% credible"),
+    ("ci50_lo", "ci50_hi", 0.28, "50% credible"),
 ]
 
 
@@ -134,7 +135,7 @@ def render(cols: dict[str, list[float]], out: Path) -> None:
     )
     ax.set_xlabel("Age in months", color=INK, fontsize=15, fontfamily=SANS, labelpad=12)
 
-    # Years across the top, because "seven and a half" is how the finding is quoted.
+    # Years across the top, because the finding is quoted in years.
     top = ax.secondary_xaxis("top", functions=(lambda m: m / 12.0, lambda y: y * 12.0))
     top.set_xlabel("Age in years", color=SOFT, fontsize=13, fontfamily=SANS, labelpad=10)
     top.tick_params(colors=SOFT, labelsize=12, length=0, pad=6)

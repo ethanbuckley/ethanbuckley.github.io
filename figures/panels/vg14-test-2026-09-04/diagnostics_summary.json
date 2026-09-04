@@ -1,0 +1,27 @@
+{
+  "passed": false,
+  "checks": {
+    "rhat": true,
+    "ess": true,
+    "divergences": false,
+    "bfmi": true,
+    "diagnostics_assessable": true
+  },
+  "divergences": 3,
+  "max_rhat": 1.0050856774691037,
+  "min_ess": 1609.1253532121689,
+  "bfmi_per_chain": [
+    0.8638049851209935,
+    0.9119692555068702,
+    0.8454243745054747,
+    0.8254827600771208
+  ],
+  "rhat_failing": [],
+  "ess_failing": [],
+  "unassessable_parameters": [],
+  "thresholds": {
+    "rhat_max": 1.01,
+    "ess_threshold": 400,
+    "bfmi_threshold": 0.3
+  }
+}
