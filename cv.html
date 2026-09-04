@@ -93,7 +93,8 @@
     @page { size: A4; margin: 11mm 13mm; }
     /* .page carries the screen font-size and line-height, so it must be the
        target here: a rule on body loses to it and every line stays at 1.5. */
-    .page { padding: 0; display: block; font-size: 9pt; line-height: 1.32; }
+    .page { padding: 0; display: block; font-size: 9pt; line-height: 1.28; }
+    li { margin-bottom: 3px; }
     .sheet { border: none; border-radius: 0; padding: 0; max-width: none; background: none; }
     .back, .noprint { display: none; }
     /* A CV sheet is not prose. The reading measure would waste a third of the
@@ -125,11 +126,11 @@
     <h1>Ethan Buckley</h1>
     <p class="contact">London, UK&nbsp;&nbsp;·&nbsp; <a href="mailto:ethan@ethanbuckley.me.uk">ethan@ethanbuckley.me.uk</a>&nbsp;&nbsp;·&nbsp; <a href="https://www.linkedin.com/in/ethan-buckley">linkedin.com/in/ethan-buckley</a>&nbsp;&nbsp;·&nbsp; <a href="https://github.com/ethanbuckley">github.com/ethanbuckley</a>&nbsp;&nbsp;·&nbsp; <a href="https://ethanbuckley.github.io">ethanbuckley.github.io</a>&nbsp;&nbsp;·&nbsp; phone on request</p>
 
-    <p class="summary">Natural Sciences undergraduate (Physics major) at UCL, working as a data science intern applying Bayesian statistics and machine learning to live research data. Hierarchical models fitted with MCMC, and the Python pipelines that keep them reproducible. Seeking data science and quantitative research internships.</p>
+    <p class="summary">Natural Sciences undergraduate (Physics major) at UCL, working as a data science intern applying Bayesian statistics and machine learning to live research data. Hierarchical models fitted with MCMC, production pipelines for generated teaching materials, and the tests behind both. Seeking data science and quantitative research internships.</p>
 
     <h2>Education</h2>
     <div class="role"><span class="what">University College London, MSci Natural Sciences</span><span class="when">Sep 2024 &ndash; Jun 2028</span></div>
-    <p class="detail">Physics major, Physical Chemistry minor. Modules include Programming for Scientists, Chemical Dynamics, Linear Algebra and Vector Calculus, Chemistry of Materials, Mathematical Methods III, Quantum Physics, Atomic and Molecular Physics, Thermal Physics, Mathematics for Natural Sciences.</p>
+    <p class="detail">Physics major, Physical Chemistry minor. Modules include Programming for Scientists, Mathematical Methods III, Quantum Physics, Atomic and Molecular Physics, Thermal Physics and Chemical Dynamics.</p>
 
     <div class="role"><span class="what">Queen Elizabeth School, Kirkby Lonsdale</span><span class="when">2017 &ndash; 2024</span></div>
     <p class="detail">A-levels: Mathematics, Chemistry, Biology, Physics; awarded school Physics prizes (GCSE and Year 12). GCSEs: ten subjects including Mathematics, Physics and Computer Science.</p>
@@ -137,16 +138,17 @@
     <h2>Experience</h2>
     <div class="role"><span class="what">Data Science &amp; Research Intern, Down Syndrome Education International</span><span class="when">Jun 2026 &ndash; Present</span></div>
     <ul>
-      <li>Build and extend hierarchical Bayesian models (PyMC, MCMC) of vocabulary growth in children with Down syndrome, using Beta-Binomial likelihoods with age-varying dispersion and Hilbert-space Gaussian-process trajectories, fitted to Communicative Development Inventory data pooled across UK, US and Italian cohorts plus around 6,100 typically-developing children from Wordbank.</li>
-      <li>Contribute to a Bayesian re-analysis of a randomised controlled reading-intervention trial (54 children, four assessment waves), using LightGBM/SHAP predictor ranking and a DAG-based causal framework for treatment-effect and mediation analysis.</li>
-      <li>Rebuilt a fragile single-notebook pipeline into modular, auditable per-source ETL scripts and replaced a hard-coded anonymisation key with environment-based secrets; work in Python with DuckDB, Quarto, Azure Blob Storage and Git/GitHub review.</li>
+      <li>Build and extend hierarchical Bayesian models (PyMC, MCMC) of vocabulary growth in children with Down syndrome, using Beta-Binomial likelihoods with age-varying dispersion and Hilbert-space Gaussian-process trajectories, fitted to parent-report checklists pooled from fourteen datasets in six countries, plus around 14,800 typically-developing children from Wordbank.</li>
+      <li>Wrote the report’s data chapter: the fourteen sources, and how counts from checklists of different lengths are scored against the 810-word inventory.</li>
+      <li>Wrote the intention-to-treat, difference-in-differences, mediation and mechanism models for a Bayesian re-analysis of a randomised reading trial (54 children, four waves), inside a causal DAG with LightGBM/SHAP predictor ranking: 124 merged pull requests, June to August 2026.</li>
+      <li>Rebuilt a single-notebook data pipeline into per-source scripts and moved a hard-coded anonymisation key into environment secrets; Python, DuckDB, Quarto, Azure Blob Storage and Git/GitHub review.</li>
       <li>Build the pipeline that generates DSE’s teaching images and audio from a written content specification. Its main rule is contrast, for the reduced contrast sensitivity common in Down syndrome.</li>
       <li>Chose the voices by measurement rather than preference, using a blind A/B listening arena with Bradley&ndash;Terry ranking and bootstrap confidence intervals across four commercial text-to-speech providers (4,307 clips, 10 English accents), and halved the image unit cost with a verified batch-inference integration.</li>
     </ul>
 
-    <div class="role"><span class="what">UCL Centre for Computational Science, Supervised Literature Review</span><span class="when">2026</span></div>
+    <div class="role"><span class="what">UCL Centre for Computational Science, Literature Review</span><span class="when">From Oct 2026</span></div>
     <ul>
-      <li>Selected to review quantum-GPU computing and variational quantum algorithms for biomolecular simulation, under Professor Peter Coveney FRS.</li>
+      <li>Literature review on quantum-GPU computing and variational quantum algorithms for biomolecular simulation, supervised by Professor Peter Coveney FRS. Begins October 2026.</li>
     </ul>
 
     <div class="role"><span class="what">Seasonal Team Member, Roadchef, Killington Lake</span><span class="when">Jul 2025 &ndash; Apr 2026</span></div>
@@ -169,6 +171,7 @@
     <ul>
       <li>Algorithmic S&amp;P 500 stock screener (independent): combined an XGBoost classifier with a FinBERT sentiment model, trained on around 1.3 million daily observations. Built 22 technical indicators (RSI, MACD, VWAP, ATR) and used triple-barrier labelling to avoid look-ahead bias; validated with expanding-window walk-forward testing over 1,630 out-of-sample days (2020&ndash;2026): top-15 precision around 48% versus a 29% base rate.</li>
       <li>SEIQR epidemic cellular automaton (extended from a UCL group project): vectorised the simulation with SciPy convolution and NumPy masking for a roughly 40&times; speed-up, and validated it against its analytical mean-field SEIQR ODE limit. Reproducible from fixed seeds, with bit-identical regression tests in CI on Python 3.10&ndash;3.12.</li>
+      <li>The Computable World (independent): a referenced portfolio thesis on AI, virtual twins and robotics, published as a website and PDF at ethanbuckley.github.io/computable-world.</li>
     </ul>
 
     <h2>Additional</h2>
