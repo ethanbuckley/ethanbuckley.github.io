@@ -39,7 +39,7 @@
   .vg-toggle{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;}
   .vg-toggle button{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;
     border:0;background:var(--paper);color:var(--ink-soft);padding:9px 14px;cursor:pointer;}
-  .vg-toggle button[aria-pressed="true"]{background:var(--accent);color:#fff;}
+  .vg-toggle button[aria-pressed="true"]{background:var(--accent);color:var(--btn-ink);}
   .vg-field{display:flex;flex-direction:column;gap:6px;min-width:210px;flex:1;}
   .vg-field label{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);}
   .vg-field label b{color:var(--ink);font-variant-numeric:tabular-nums;}
@@ -70,7 +70,7 @@
 <script src="assets/theme.js"></script>
 </head>
 <body>
-<header class="vg-top"><div class="in"><a class="brand" href="index.html">Ethan <span>Buckley</span></a><a class="back" href="index.html#research">← Back to research</a></div></header>
+<header class="vg-top"><div class="in"><a class="brand" href="index.html">Ethan Buckley</a><a class="back" href="index.html#research">← Back to research</a></div></header>
 <div class="vgdemo">
   <p class="vg-eyebrow">Interactive · Study 01</p>
   <h1>Vocabulary growth, with the uncertainty shown</h1>
@@ -156,7 +156,7 @@ const DATA = {"age":[0.667,0.751,0.836,0.921,1.005,1.09,1.175,1.259,1.344,1.429,
     ctx.textAlign='center'; ctx.textBaseline='top';
     for(let yr=1; yr<=9; yr++){ if(yr<x0||yr>x1)continue; const px=X(yr); ctx.fillText(yr, px, h-mB+8); }
     ctx.textBaseline='alphabetic'; ctx.fillStyle=SOFT;
-    ctx.fillText('age (years)', mL+pw/2, h-2);
+    ctx.fillText('Age in years', mL+pw/2, h-2);
 
     function band(series,loKey,hiKey,rgb,alpha){
       ctx.beginPath();
