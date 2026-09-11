@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ethan Buckley: data science, machine learning and scientific computing</title>
+<meta name="author" content="Ethan Buckley">
 <meta name="description" content="Ethan Buckley, a physics student at UCL. Bayesian research and teaching-material pipelines at Down Syndrome Education International, independent machine-learning and scientific-computing projects, and a written investment thesis.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="canonical" href="https://ethanbuckley.github.io/">
@@ -20,7 +21,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ethanbuckley.github.io/assets/og-card-production-ratio.png">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#16232b" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#0f1114" media="(prefers-color-scheme: dark)">
 <style>
   /* ---------- tokens ---------- */
   :root {
@@ -376,12 +377,12 @@
     text-transform: uppercase; color: var(--accent-2); font-weight: 600;
     margin-right: 8px;
   }
-  .cap-clusters { margin-top: clamp(28px, 4vw, 38px); }
-  .cap { color: var(--ink-soft); max-width: var(--measure); margin: 0 0 22px; }
-  .cap:last-child { margin-bottom: 0; }
-  /* inline-block keeps each run-in head atomic; a single unbreakable word wider
-     than the column would overflow, so keep the heads shorter than the measure */
-  .cap b { color: var(--ink); font-weight: 600; display: inline-block; }
+  /* capability list: two columns from 700px, one below; each item a head and one line */
+  .caps { margin: clamp(28px, 4vw, 38px) 0 0; display: grid; gap: 18px 32px; grid-template-columns: 1fr; }
+  @media (min-width: 700px) { .caps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .caps > div { min-width: 0; }
+  .caps dt { color: var(--ink); font-weight: 600; font-size: var(--step-3); margin: 0 0 3px; line-height: 1.35; }
+  .caps dd { color: var(--ink-soft); font-size: var(--step-3); margin: 0; line-height: 1.55; text-wrap: pretty; }
   .stat { font-family: var(--mono); letter-spacing: 0; }
 
   /* ---------- contact ---------- */
@@ -444,6 +445,8 @@
   }
   @media (max-width: 560px) {
     .contact-list > div { grid-template-columns: 1fr; gap: 2px; }
+    .site-head .wrap { padding-top: 12px; padding-bottom: 12px; gap: 8px 16px; }
+    .site-nav { gap: 4px 14px; }
   }
 
   /* ---------- print ---------- */
@@ -468,6 +471,19 @@
 </style>
 <link rel="stylesheet" href="assets/site.css">
 <script src="assets/theme.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ethan Buckley",
+  "url": "https://ethanbuckley.github.io/",
+  "email": "mailto:ethan@ethanbuckley.me.uk",
+  "jobTitle": "Data Science and Research Intern",
+  "worksFor": { "@type": "Organization", "name": "Down Syndrome Education International" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "University College London" },
+  "sameAs": ["https://github.com/ethanbuckley", "https://www.linkedin.com/in/ethan-buckley"]
+}
+</script>
 </head>
 <body>
 
@@ -502,9 +518,8 @@
           <li>MSci Natural Sciences (Physics) · UCL · graduating 2028</li>
           <li>Data Science &amp; Research Intern · DSE · since June 2026</li>
           <li>London, UK</li>
-          <li><a href="https://github.com/ethanbuckley">github.com/ethanbuckley</a></li>
         </ul>
-        <p class="now"><span class="now-label">Now</span> September 2026: the vocabulary report’s data chapter, the audio catalogue upload at DSE, and the thesis. From October, a literature review at UCL’s Centre for Computational Science.</p>
+        <p class="now"><span class="now-label">Now</span> September 2026: the vocabulary report’s data chapter and the audio catalogue upload at DSE, and revisions to the thesis.</p>
         <p class="hero-cta">
           <a class="btn primary" href="#research">The two studies</a>
           <a class="cta-link" href="cv.html">CV</a>
@@ -535,8 +550,8 @@
 <path d="M44.0 315.6 L45.7 315.6 L47.4 315.6 L49.0 315.6 L50.7 315.6 L52.4 315.6 L54.1 315.6 L55.7 315.6 L57.4 315.6 L59.1 315.6 L60.8 315.6 L62.4 315.6 L64.1 315.6 L65.8 315.6 L67.5 315.6 L69.1 315.6 L70.8 315.6 L72.5 315.3 L74.2 315.3 L75.8 315.3 L77.5 315.3 L79.2 315.3 L80.9 315.3 L82.5 315.3 L84.2 315.3 L85.9 315.3 L87.6 314.9 L89.2 314.9 L90.9 314.9 L92.6 314.9 L94.3 314.9 L95.9 314.9 L97.6 314.6 L99.3 314.6 L101.0 314.6 L102.6 314.2 L104.3 314.2 L106.0 314.2 L107.7 314.2 L109.3 314.2 L111.0 313.8 L112.7 313.8 L114.4 313.8 L116.0 313.5 L117.7 313.5 L119.4 313.5 L121.1 313.1 L122.7 313.1 L124.4 312.7 L126.1 312.7 L127.8 312.7 L129.4 312.4 L131.1 312.0 L132.8 312.0 L134.5 311.6 L136.1 311.6 L137.8 311.3 L139.5 311.3 L141.2 311.3 L142.8 310.9 L144.5 310.6 L146.2 310.2 L147.9 310.2 L149.5 310.2 L151.2 309.8 L152.9 309.5 L154.6 309.5 L156.2 308.8 L157.9 308.8 L159.6 308.4 L161.3 308.4 L162.9 308.0 L164.6 307.7 L166.3 307.3 L168.0 307.3 L169.6 307.3 L171.3 306.6 L173.0 306.2 L174.7 305.8 L176.3 305.8 L178.0 305.8 L179.7 305.1 L181.4 305.1 L183.0 304.4 L184.7 304.8 L186.4 304.0 L188.1 304.0 L189.7 303.7 L191.4 303.3 L193.1 302.9 L194.8 302.9 L196.4 302.2 L198.1 301.9 L199.8 301.5 L201.5 301.1 L203.1 301.1 L204.8 300.4 L206.5 300.1 L208.2 300.1 L209.8 300.1 L211.5 299.7 L213.2 299.7 L214.9 298.6 L216.5 298.6 L218.2 297.5 L219.9 297.9 L221.6 297.2 L223.2 296.8 L224.9 296.3 L226.6 296.1 L228.3 295.7 L230.0 295.2 L231.6 294.6 L233.3 294.6 L235.0 293.9 L236.7 293.5 L238.3 294.2 L240.0 292.8 L241.7 292.4 L243.4 292.1 L245.0 290.3 L246.7 289.2 L248.4 289.5 L250.1 289.2 L251.7 289.5 L253.4 287.7 L255.1 287.7 L256.8 287.0 L258.4 285.9 L260.1 286.3 L261.8 285.6 L263.5 283.7 L265.1 283.4 L266.8 282.6 L268.5 281.9 L270.2 281.6 L271.8 280.5 L273.5 280.5 L275.2 278.3 L276.9 278.3 L278.5 277.6 L280.2 277.2 L281.9 274.9 L283.6 275.0 L285.2 273.6 L286.9 272.9 L288.6 271.8 L290.3 272.1 L291.9 271.0 L293.6 269.2 L295.3 268.9 L297.0 268.9 L298.6 267.4 L300.3 266.0 L302.0 264.9 L303.7 263.8 L305.3 262.4 L307.0 262.0 L308.7 260.5 L310.4 259.1 L312.0 258.7 L313.7 258.0 L315.4 257.3 L317.1 255.8 L318.7 252.9 L320.4 252.6 L322.1 252.1 L323.8 252.6 L325.4 250.0 L327.1 248.6 L328.8 248.2 L330.5 246.4 L332.1 245.7 L333.8 245.7 L335.5 243.1 L337.2 242.1 L338.8 241.3 L340.5 241.0 L342.2 240.6 L343.9 237.6 L345.5 237.0 L347.2 236.2 L348.9 236.9 L350.6 233.4 L352.2 235.2 L353.9 231.5 L355.6 231.2 L357.3 229.0 L358.9 229.7 L360.6 229.0 L362.3 226.1 L364.0 226.1 L365.6 224.3 L367.3 225.0 L369.0 224.3 L370.7 222.8 L372.3 223.9 L374.0 218.9 L375.7 219.9 L377.4 220.3 L379.0 218.5 L380.7 218.5 L382.4 218.1 L384.1 214.5 L385.7 216.0 L387.4 214.9 L389.1 214.5 L390.8 212.2 L392.4 212.7 L394.1 212.0 L395.8 213.1 L397.5 210.5 L399.1 209.4 L400.8 209.4 L402.5 207.6 L404.2 207.2 L405.8 206.9 L407.5 204.7 L409.2 203.6 L410.9 203.6 L412.5 205.8 L414.2 202.8 L415.9 201.8 L417.6 202.9 L419.3 201.4 L420.9 202.2 L422.6 199.6 L424.3 200.4 L426.0 199.6 L427.6 200.0 L429.3 197.8 L431.0 199.6 L432.7 195.3 L434.3 195.6 L436.0 195.3 L437.7 194.6 L439.4 194.2 L441.0 194.9 L442.7 194.2 L444.4 192.4 L446.1 192.8 L447.7 192.4 L449.4 192.8 L451.1 190.2 L452.8 191.7 L454.4 191.7 L456.1 189.8 L457.8 188.8 L459.5 188.4 L461.1 187.3 L462.8 186.6 L464.5 185.5 L466.2 184.0 L467.8 183.7 L469.5 185.1 L471.2 184.0 L472.9 183.7 L474.5 182.2 L476.2 182.2 L477.9 181.1 L479.6 179.7 L481.2 181.1 L482.9 179.7 L484.6 179.3 L486.3 177.5 L487.9 176.8 L489.6 178.6 L491.3 176.1 L493.0 176.1 L494.6 175.7 L496.3 175.0 L498.0 174.6 L499.7 175.7 L501.3 174.6 L503.0 174.3 L504.7 172.1 L506.4 173.2 L508.0 171.0 L509.7 171.7 L511.4 171.0 L513.1 170.6 L514.7 166.3 L516.4 168.1 L518.1 167.7 L519.8 167.0 L521.4 167.7 L523.1 164.5 L524.8 165.2 L526.5 165.6 L528.1 164.8 L529.8 163.4 L531.5 164.5 L533.2 163.8 L534.8 162.3 L536.5 161.2 L538.2 163.0 L539.9 160.5 L541.5 161.9 L543.2 160.8 L543.2 256.9 L541.5 256.9 L539.9 257.3 L538.2 256.2 L536.5 256.6 L534.8 257.3 L533.2 258.0 L531.5 257.3 L529.8 257.3 L528.1 258.7 L526.5 259.1 L524.8 257.3 L523.1 258.7 L521.4 260.2 L519.8 260.5 L518.1 260.9 L516.4 261.3 L514.7 261.6 L513.1 260.2 L511.4 261.6 L509.7 262.4 L508.0 261.6 L506.4 263.4 L504.7 263.4 L503.0 263.8 L501.3 263.1 L499.7 264.2 L498.0 262.4 L496.3 264.2 L494.6 264.2 L493.0 264.9 L491.3 264.2 L489.6 266.3 L487.9 266.1 L486.3 265.6 L484.6 267.8 L482.9 267.1 L481.2 266.0 L479.6 267.8 L477.9 269.2 L476.2 268.1 L474.5 267.4 L472.9 268.5 L471.2 270.0 L469.5 268.9 L467.8 270.3 L466.2 269.3 L464.5 270.0 L462.8 270.3 L461.1 272.5 L459.5 271.4 L457.8 271.4 L456.1 272.5 L454.4 272.1 L452.8 273.6 L451.1 272.5 L449.4 273.6 L447.7 273.9 L446.1 272.9 L444.4 274.3 L442.7 273.9 L441.0 275.0 L439.4 274.7 L437.7 276.1 L436.0 275.8 L434.3 274.3 L432.7 275.4 L431.0 275.4 L429.3 277.6 L427.6 277.6 L426.0 278.3 L424.3 277.6 L422.6 277.9 L420.9 279.4 L419.3 279.4 L417.6 279.4 L415.9 279.4 L414.2 279.4 L412.5 281.9 L410.9 280.8 L409.2 280.6 L407.5 280.5 L405.8 281.2 L404.2 281.2 L402.5 282.3 L400.8 283.0 L399.1 282.6 L397.5 283.0 L395.8 283.4 L394.1 284.5 L392.4 283.0 L390.8 283.7 L389.1 285.6 L387.4 285.6 L385.7 286.3 L384.1 285.9 L382.4 286.3 L380.7 285.9 L379.0 287.4 L377.4 287.7 L375.7 287.0 L374.0 287.7 L372.3 288.4 L370.7 288.4 L369.0 290.3 L367.3 290.3 L365.6 289.2 L364.0 291.4 L362.3 291.4 L360.6 291.4 L358.9 292.1 L357.3 291.7 L355.6 292.4 L353.9 292.4 L352.2 293.5 L350.6 293.5 L348.9 295.3 L347.2 295.0 L345.5 294.6 L343.9 295.7 L342.2 296.4 L340.5 296.4 L338.8 296.8 L337.2 297.5 L335.5 298.2 L333.8 298.2 L332.1 299.0 L330.5 299.3 L328.8 299.7 L327.1 300.1 L325.4 300.1 L323.8 301.1 L322.1 301.1 L320.4 301.1 L318.7 301.5 L317.1 302.6 L315.4 302.6 L313.7 303.3 L312.0 303.7 L310.4 304.0 L308.7 304.4 L307.0 304.8 L305.3 304.4 L303.7 305.2 L302.0 305.5 L300.3 306.2 L298.6 306.2 L297.0 306.6 L295.3 306.6 L293.6 307.3 L291.9 307.3 L290.3 307.7 L288.6 308.0 L286.9 308.0 L285.2 308.4 L283.6 308.4 L281.9 308.8 L280.2 309.1 L278.5 309.5 L276.9 309.6 L275.2 309.8 L273.5 309.8 L271.8 310.2 L270.2 310.3 L268.5 310.6 L266.8 310.6 L265.1 310.9 L263.5 311.3 L261.8 311.3 L260.1 311.6 L258.4 311.3 L256.8 311.3 L255.1 312.0 L253.4 311.6 L251.7 312.0 L250.1 312.0 L248.4 312.0 L246.7 312.0 L245.0 312.4 L243.4 312.7 L241.7 312.7 L240.0 312.7 L238.3 313.1 L236.7 312.7 L235.0 313.1 L233.3 313.1 L231.6 313.1 L230.0 313.1 L228.3 313.1 L226.6 313.5 L224.9 313.5 L223.2 313.5 L221.6 313.5 L219.9 313.5 L218.2 313.8 L216.5 313.8 L214.9 313.8 L213.2 313.8 L211.5 313.8 L209.8 313.8 L208.2 314.2 L206.5 314.2 L204.8 314.2 L203.1 314.2 L201.5 314.2 L199.8 314.2 L198.1 314.2 L196.4 314.2 L194.8 314.2 L193.1 314.2 L191.4 314.2 L189.7 314.6 L188.1 314.6 L186.4 314.6 L184.7 314.6 L183.0 314.6 L181.4 314.6 L179.7 314.6 L178.0 314.9 L176.3 314.9 L174.7 314.9 L173.0 314.9 L171.3 314.9 L169.6 314.9 L168.0 314.9 L166.3 314.9 L164.6 314.9 L162.9 314.9 L161.3 315.3 L159.6 315.3 L157.9 315.3 L156.2 315.3 L154.6 315.3 L152.9 315.3 L151.2 315.3 L149.5 315.3 L147.9 315.3 L146.2 315.3 L144.5 315.3 L142.8 315.6 L141.2 315.6 L139.5 315.6 L137.8 315.6 L136.1 315.6 L134.5 315.6 L132.8 315.6 L131.1 315.6 L129.4 315.6 L127.8 315.6 L126.1 315.6 L124.4 315.6 L122.7 315.6 L121.1 316.0 L119.4 316.0 L117.7 316.0 L116.0 316.0 L114.4 316.0 L112.7 316.0 L111.0 316.0 L109.3 316.0 L107.7 316.0 L106.0 316.0 L104.3 316.0 L102.6 316.0 L101.0 316.0 L99.3 316.0 L97.6 316.0 L95.9 316.0 L94.3 316.0 L92.6 316.0 L90.9 316.0 L89.2 316.0 L87.6 316.0 L85.9 316.0 L84.2 316.0 L82.5 316.0 L80.9 316.0 L79.2 316.0 L77.5 316.0 L75.8 316.0 L74.2 316.0 L72.5 316.0 L70.8 316.0 L69.1 316.0 L67.5 316.0 L65.8 316.0 L64.1 316.0 L62.4 316.0 L60.8 316.0 L59.1 316.0 L57.4 316.0 L55.7 316.0 L54.1 316.0 L52.4 316.0 L50.7 316.0 L49.0 316.0 L47.4 316.0 L45.7 316.0 L44.0 316.0 Z" style="fill:var(--ink-soft)" opacity="0.16"/>
 <path d="M44.0 313.1 L45.7 312.7 L47.4 312.7 L49.0 312.7 L50.7 312.4 L52.4 312.4 L54.1 312.0 L55.7 312.0 L57.4 312.0 L59.1 311.6 L60.8 311.3 L62.4 311.3 L64.1 310.6 L65.8 310.6 L67.5 310.2 L69.1 310.2 L70.8 309.8 L72.5 309.5 L74.2 309.1 L75.8 308.8 L77.5 308.4 L79.2 307.7 L80.9 307.7 L82.5 307.3 L84.2 306.2 L85.9 306.2 L87.6 305.5 L89.2 305.5 L90.9 304.8 L92.6 304.4 L94.3 303.3 L95.9 303.3 L97.6 302.2 L99.3 301.9 L101.0 300.8 L102.6 300.1 L104.3 299.7 L106.0 299.0 L107.7 298.6 L109.3 297.9 L111.0 296.8 L112.7 296.1 L114.4 295.0 L116.0 294.6 L117.7 293.5 L119.4 292.8 L121.1 291.7 L122.7 291.0 L124.4 289.5 L126.1 289.2 L127.8 288.4 L129.4 287.0 L131.1 285.2 L132.8 285.6 L134.5 284.8 L136.1 283.4 L137.8 283.0 L139.5 281.9 L141.2 280.5 L142.8 279.8 L144.5 278.3 L146.2 277.2 L147.9 276.5 L149.5 276.1 L151.2 274.3 L152.9 273.2 L154.6 273.2 L156.2 271.0 L157.9 271.0 L159.6 270.0 L161.3 269.2 L162.9 268.1 L164.6 267.1 L166.3 264.9 L168.0 264.9 L169.6 264.9 L171.3 263.8 L173.0 263.1 L174.7 260.5 L176.3 260.2 L178.0 260.9 L179.7 258.0 L181.4 258.0 L183.0 256.6 L184.7 255.8 L186.4 254.7 L188.1 254.7 L189.7 254.4 L191.4 252.2 L193.1 252.6 L194.8 251.8 L196.4 250.8 L198.1 249.7 L199.8 248.6 L201.5 248.9 L203.1 247.1 L204.8 246.8 L206.5 246.8 L208.2 244.9 L209.8 244.6 L211.5 243.9 L213.2 243.9 L214.9 242.8 L216.5 242.1 L218.2 240.6 L219.9 240.2 L221.6 240.2 L223.2 239.5 L224.9 239.5 L226.6 237.0 L228.3 237.3 L230.0 236.2 L231.6 235.5 L233.3 236.2 L235.0 233.4 L236.7 234.1 L238.3 233.4 L240.0 233.0 L241.7 232.3 L243.4 231.9 L245.0 229.0 L246.7 229.0 L248.4 227.6 L250.1 227.9 L251.7 227.2 L253.4 227.9 L255.1 225.9 L256.8 226.5 L258.4 224.3 L260.1 223.2 L261.8 224.3 L263.5 222.5 L265.1 220.7 L266.8 221.8 L268.5 220.3 L270.2 220.3 L271.8 219.9 L273.5 219.9 L275.2 217.4 L276.9 217.0 L278.5 215.4 L280.2 216.3 L281.9 213.1 L283.6 212.7 L285.2 214.5 L286.9 212.7 L288.6 211.2 L290.3 211.6 L291.9 209.8 L293.6 208.7 L295.3 208.0 L297.0 208.7 L298.6 208.0 L300.3 207.6 L302.0 206.9 L303.7 204.7 L305.3 204.7 L307.0 202.9 L308.7 203.3 L310.4 201.4 L312.0 201.1 L313.7 201.1 L315.4 199.3 L317.1 200.4 L318.7 197.8 L320.4 196.0 L322.1 197.8 L323.8 196.7 L325.4 196.7 L327.1 194.2 L328.8 192.4 L330.5 193.5 L332.1 192.4 L333.8 192.0 L335.5 189.5 L337.2 190.2 L338.8 189.5 L340.5 189.1 L342.2 188.0 L343.9 185.5 L345.5 186.6 L347.2 185.9 L348.9 185.5 L350.6 183.0 L352.2 184.0 L353.9 183.0 L355.6 183.0 L357.3 181.5 L358.9 181.5 L360.6 180.1 L362.3 179.0 L364.0 177.5 L365.6 178.2 L367.3 177.2 L369.0 177.9 L370.7 177.5 L372.3 176.1 L374.0 174.6 L375.7 175.7 L377.4 174.3 L379.0 173.2 L380.7 173.5 L382.4 172.1 L384.1 173.2 L385.7 172.4 L387.4 172.8 L389.1 172.4 L390.8 171.0 L392.4 170.6 L394.1 170.3 L395.8 171.4 L397.5 168.8 L399.1 168.5 L400.8 167.4 L402.5 168.1 L404.2 168.5 L405.8 165.9 L407.5 164.5 L409.2 165.6 L410.9 166.1 L412.5 167.0 L414.2 167.0 L415.9 164.8 L417.6 165.6 L419.3 163.9 L420.9 165.6 L422.6 163.8 L424.3 164.1 L426.0 163.6 L427.6 163.0 L429.3 163.0 L431.0 163.8 L432.7 161.2 L434.3 160.8 L436.0 161.9 L437.7 160.8 L439.4 160.8 L441.0 161.6 L442.7 161.9 L444.4 160.5 L446.1 160.8 L447.7 160.8 L449.4 159.8 L451.1 159.4 L452.8 160.5 L454.4 160.1 L456.1 158.3 L457.8 157.6 L459.5 158.7 L461.1 157.9 L462.8 157.2 L464.5 156.9 L466.2 157.9 L467.8 156.1 L469.5 156.5 L471.2 155.4 L472.9 155.0 L474.5 155.8 L476.2 155.4 L477.9 154.3 L479.6 153.6 L481.2 154.7 L482.9 153.2 L484.6 154.0 L486.3 153.8 L487.9 152.5 L489.6 154.0 L491.3 151.8 L493.0 151.8 L494.6 151.1 L496.3 151.1 L498.0 151.4 L499.7 152.2 L501.3 150.0 L503.0 150.3 L504.7 150.7 L506.4 148.2 L508.0 148.2 L509.7 148.7 L511.4 149.2 L513.1 148.9 L514.7 147.4 L516.4 147.1 L518.1 146.4 L519.8 146.7 L521.4 146.7 L523.1 144.2 L524.8 145.6 L526.5 143.8 L528.1 142.7 L529.8 142.7 L531.5 144.5 L533.2 142.5 L534.8 142.4 L536.5 139.8 L538.2 140.6 L539.9 140.6 L541.5 140.2 L543.2 141.3" fill="none" style="stroke:var(--accent)" stroke-width="2.2" stroke-linecap="round"/>
 <path d="M44.0 316.0 L45.7 316.0 L47.4 316.0 L49.0 316.0 L50.7 316.0 L52.4 316.0 L54.1 316.0 L55.7 316.0 L57.4 316.0 L59.1 316.0 L60.8 316.0 L62.4 316.0 L64.1 316.0 L65.8 316.0 L67.5 316.0 L69.1 316.0 L70.8 316.0 L72.5 316.0 L74.2 316.0 L75.8 316.0 L77.5 316.0 L79.2 316.0 L80.9 316.0 L82.5 316.0 L84.2 315.6 L85.9 315.6 L87.6 315.6 L89.2 315.6 L90.9 315.6 L92.6 315.6 L94.3 315.6 L95.9 315.6 L97.6 315.6 L99.3 315.6 L101.0 315.6 L102.6 315.6 L104.3 315.6 L106.0 315.6 L107.7 315.3 L109.3 315.3 L111.0 315.3 L112.7 315.3 L114.4 315.3 L116.0 315.3 L117.7 315.3 L119.4 315.3 L121.1 314.9 L122.7 314.9 L124.4 314.9 L126.1 314.9 L127.8 314.9 L129.4 314.6 L131.1 314.6 L132.8 314.6 L134.5 314.6 L136.1 314.6 L137.8 314.2 L139.5 314.2 L141.2 314.2 L142.8 313.8 L144.5 313.8 L146.2 313.8 L147.9 313.8 L149.5 313.8 L151.2 313.5 L152.9 313.5 L154.6 313.5 L156.2 313.1 L157.9 313.1 L159.6 313.1 L161.3 313.1 L162.9 312.7 L164.6 312.7 L166.3 312.7 L168.0 312.7 L169.6 312.4 L171.3 312.4 L173.0 312.0 L174.7 312.0 L176.3 312.0 L178.0 312.0 L179.7 311.6 L181.4 311.6 L183.0 311.3 L184.7 311.3 L186.4 310.9 L188.1 311.3 L189.7 310.9 L191.4 310.9 L193.1 310.6 L194.8 310.6 L196.4 310.6 L198.1 310.2 L199.8 310.2 L201.5 309.8 L203.1 309.8 L204.8 309.5 L206.5 309.5 L208.2 309.5 L209.8 309.5 L211.5 309.1 L213.2 309.1 L214.9 309.1 L216.5 308.8 L218.2 308.4 L219.9 308.4 L221.6 308.4 L223.2 308.0 L224.9 307.7 L226.6 307.7 L228.3 307.3 L230.0 307.3 L231.6 306.9 L233.3 306.9 L235.0 306.9 L236.7 306.6 L238.3 306.6 L240.0 305.8 L241.7 305.8 L243.4 305.5 L245.0 304.8 L246.7 304.4 L248.4 304.8 L250.1 304.4 L251.7 304.4 L253.4 303.7 L255.1 303.7 L256.8 302.9 L258.4 302.2 L260.1 302.9 L261.8 302.2 L263.5 301.9 L265.1 301.1 L266.8 300.8 L268.5 300.8 L270.2 300.1 L271.8 300.1 L273.5 299.3 L275.2 299.0 L276.9 298.2 L278.5 298.2 L280.2 297.9 L281.9 296.8 L283.6 296.4 L285.2 296.1 L286.9 295.3 L288.6 295.0 L290.3 294.6 L291.9 293.9 L293.6 293.2 L295.3 292.8 L297.0 292.4 L298.6 291.7 L300.3 290.6 L302.0 290.3 L303.7 289.5 L305.3 288.8 L307.0 288.4 L308.7 287.7 L310.4 287.0 L312.0 285.6 L313.7 285.6 L315.4 284.8 L317.1 284.5 L318.7 282.5 L320.4 281.9 L322.1 281.4 L323.8 282.3 L325.4 280.5 L327.1 280.1 L328.8 279.4 L330.5 278.7 L332.1 278.3 L333.8 277.2 L335.5 276.1 L337.2 275.8 L338.8 273.9 L340.5 274.3 L342.2 273.6 L343.9 272.5 L345.5 270.3 L347.2 271.8 L348.9 271.4 L350.6 268.5 L352.2 270.0 L353.9 267.8 L355.6 267.1 L357.3 265.2 L358.9 266.0 L360.6 265.2 L362.3 264.2 L364.0 264.2 L365.6 261.6 L367.3 262.7 L369.0 262.7 L370.7 260.9 L372.3 260.5 L374.0 257.6 L375.7 258.0 L377.4 259.1 L379.0 258.7 L380.7 256.6 L382.4 258.0 L384.1 254.0 L385.7 256.9 L387.4 255.1 L389.1 254.7 L390.8 252.9 L392.4 253.3 L394.1 252.6 L395.8 252.9 L397.5 251.8 L399.1 250.4 L400.8 250.0 L402.5 249.7 L404.2 250.4 L405.8 248.2 L407.5 248.2 L409.2 247.8 L410.9 247.1 L412.5 248.6 L414.2 246.9 L415.9 246.0 L417.6 245.7 L419.3 244.6 L420.9 245.3 L422.6 244.9 L424.3 242.8 L426.0 243.9 L427.6 243.5 L429.3 241.7 L431.0 241.3 L432.7 241.3 L434.3 239.2 L436.0 240.6 L437.7 240.4 L439.4 239.5 L441.0 238.8 L442.7 238.4 L444.4 238.1 L446.1 236.6 L447.7 237.5 L449.4 237.7 L451.1 234.3 L452.8 236.2 L454.4 236.6 L456.1 234.8 L457.8 234.4 L459.5 234.1 L461.1 233.7 L462.8 233.7 L464.5 232.6 L466.2 231.9 L467.8 231.9 L469.5 230.8 L471.2 230.8 L472.9 230.5 L474.5 229.4 L476.2 229.7 L477.9 229.7 L479.6 227.6 L481.2 227.2 L482.9 227.6 L484.6 226.5 L486.3 225.6 L487.9 225.4 L489.6 226.1 L491.3 225.0 L493.0 225.0 L494.6 223.9 L496.3 224.3 L498.0 223.2 L499.7 223.6 L501.3 221.8 L503.0 222.8 L504.7 222.1 L506.4 222.5 L508.0 219.9 L509.7 219.9 L511.4 220.3 L513.1 218.5 L514.7 217.0 L516.4 218.5 L518.1 217.8 L519.8 217.8 L521.4 217.4 L523.1 215.2 L524.8 215.2 L526.5 215.6 L528.1 215.2 L529.8 214.1 L531.5 215.2 L533.2 214.5 L534.8 213.8 L536.5 211.6 L538.2 212.7 L539.9 213.1 L541.5 213.1 L543.2 213.1" fill="none" style="stroke:var(--ink-soft)" stroke-width="2.2" stroke-linecap="round"/>
-<text x="540" y="133.3" text-anchor="end" style="font-family:var(--sans);font-size:14px;font-weight:600;fill:var(--accent)">Understood</text>
-<text x="540" y="229.1" text-anchor="end" style="font-family:var(--sans);font-size:14px;font-weight:600;fill:var(--ink-soft)">Spoken</text>
+<text x="540" y="133.3" text-anchor="end" style="font-family:var(--sans);font-size:14px;font-weight:600;fill:var(--accent);paint-order:stroke;stroke:var(--ground);stroke-width:4px;stroke-linejoin:round;">Understood</text>
+<text x="540" y="229.1" text-anchor="end" style="font-family:var(--sans);font-size:14px;font-weight:600;fill:var(--ink-soft);paint-order:stroke;stroke:var(--ground);stroke-width:4px;stroke-linejoin:round;">Spoken</text>
 </svg>
 <!-- hero-figure:end -->
         <figcaption>Words understood and spoken by age, children with Down syndrome. Posterior medians with 50% bands, from the VG14 fit of 4 September 2026.</figcaption>
@@ -552,8 +567,8 @@
         <h2 id="about-h">What I do</h2>
       </div>
       <div class="side-body about-cols">
-        <p>I’m a data science intern at Down Syndrome Education International, where the team studies how children with Down syndrome learn language and turns that research into guidance for families and teachers. I build the models behind that research and the pipelines that produce the teaching materials.</p>
-        <p>I’m studying for an MSci in Natural Sciences (Physics) at UCL. <strong>The DSE work here was done with their team and under senior review;</strong> the projects and thesis below are my own. From October 2026, I’ll begin a literature review at UCL’s Centre for Computational Science, supervised by Peter Coveney.</p>
+        <p>I’m a third-year physics student at UCL, on the MSci in Natural Sciences, and since June 2026 a data science intern at Down Syndrome Education International (DSE). The charity studies how children with Down syndrome learn language and turns that research into guidance for families and teachers. My part is the statistics and the software underneath it.</p>
+        <p><strong>The DSE work on this page was done with their team and under senior review;</strong> the projects and the thesis are my own. From October 2026 I’ll be writing a literature review at UCL’s Centre for Computational Science, on quantum-GPU computing for biomolecular simulation, supervised by Peter Coveney.</p>
       </div>
     </div>
   </section>
@@ -565,7 +580,7 @@
         <p class="eyebrow">Research</p>
         <h2 id="research-h">Two studies of language development</h2>
         <hr class="rule">
-        <p class="lede">Two Bayesian studies of language development in children with Down syndrome. Each has a plain-language explainer and a more technical write-up.</p>
+        <p class="lede">Both studies are Bayesian, both were done at DSE, and both are still preliminary. The first pools fourteen datasets to model how vocabulary grows. The second re-analyses a randomised reading trial.</p>
       </div>
 
       <!-- ---- study 1 ---- -->
@@ -573,7 +588,7 @@
         <p class="study-eyebrow">Study 01 · Vocabulary growth</p>
         <h3>How children with Down&nbsp;syndrome build vocabulary</h3>
         <p class="study-desc">A pooled Bayesian study of the words children understand, say and sign. It draws on parent-report checklists from fourteen datasets in six countries, put onto a common scale.</p>
-        <p class="study-meta">Production ratio from a VG14 test-tier fit of 4 September 2026&nbsp;&nbsp;·&nbsp; 14 datasets&nbsp;&nbsp;·&nbsp; 1,424 assessments&nbsp;&nbsp;·&nbsp; reported to 6 years&nbsp;&nbsp;·&nbsp; comparisons with typically-developing children from the July 2026 fits&nbsp;&nbsp;·&nbsp; <b>Preliminary findings</b></p>
+        <p class="study-meta">VG14 test-tier fit, 4 September 2026&nbsp;&nbsp;·&nbsp; 14 datasets&nbsp;&nbsp;·&nbsp; 1,424 assessments&nbsp;&nbsp;·&nbsp; reported to age 6&nbsp;&nbsp;·&nbsp; typically-developing comparisons from the July 2026 fits&nbsp;&nbsp;·&nbsp; <b>Preliminary findings</b></p>
 
         <figure class="fig fig-primary">
           <a class="figlink" href="assets/vocab-production-ratio.png?v=20260905" target="_blank" rel="noopener">
@@ -711,7 +726,7 @@
 
       <div class="proj-grid">
         <article class="proj">
-          <p class="proj-kicker">Down Syndrome Education International · production system</p>
+          <p class="proj-kicker">DSE production system · images</p>
           <h3>Teaching-image pipeline</h3>
           <p class="proj-desc">7,351 photographic teaching images for an early-vocabulary programme, generated from reproducible specifications: single words, phrases, sentences, and named characters who recur across the set. Batch inference halved the unit cost, and reruns are idempotent by request hash. A wrong image gets a glossary fix; a wrong class gets a master-prompt rule that also governs words not yet generated.</p>
           <p class="proj-desc">Reduced contrast sensitivity is common in Down syndrome, so each background is set against its subject: the object keeps its true colour, the background moves. It is what stops a white bath dissolving into the backdrop.</p>
@@ -726,7 +741,7 @@
         </article>
 
         <article class="proj">
-          <p class="proj-kicker">Down Syndrome Education International · production system</p>
+          <p class="proj-kicker">DSE production system · audio</p>
           <h3>Spoken-word audio pipeline</h3>
           <p class="proj-desc">3,407 curriculum words, phrases and sentences read aloud, each by a male and a female voice in four English accents. Voices were chosen by blind A/B listening across four commercial providers, ranked by Bradley–Terry with bootstrap intervals, then calibrated to one measured pace, since the same speed setting gives different voices different paces.</p>
           <p class="proj-desc">The scorer reports 90% intervals and flags which voices are statistically indistinguishable from the leader. I found and fixed one scoring bug: tie-credit had been inventing leaders out of dead heats.</p>
@@ -741,7 +756,7 @@
         </article>
 
         <article class="proj">
-          <p class="proj-kicker">Down Syndrome Education International · production system</p>
+          <p class="proj-kicker">DSE production system · video</p>
           <h3>Verb video clips</h3>
           <p class="proj-desc">Short clips that teach verbs: a toddler brushing, eating, sleeping. The pipeline holds one source of truth for every prompt, renders the paste-sheet from it, and refuses to file a clip whose brief has since changed. Clips are rendered by hand in the model’s own web tool, because through its API the same prompt failed on every tier, with two toothbrushes, broken physics and foam everywhere.</p>
           <p class="proj-desc">That rule came from a real drift. Four of the eight validated prompts no longer matched the wording that had been approved, because the sheet a person pastes from was a hand-written copy. Now it is generated, and a test fails when it is stale.</p>
@@ -756,7 +771,7 @@
         </article>
 
         <article class="proj">
-          <p class="proj-kicker">Down Syndrome Education International · production system</p>
+          <p class="proj-kicker">DSE production system · catalogue</p>
           <h3>From clips on a disk to catalogued assets</h3>
           <p class="proj-desc">23,846 draft assets reconciled clean, on the route from a rendered clip to a catalogued asset: audit by measurement and by ear, repair, upload, reconcile. A defect found by listening is fixed by promoting a repaired take, never by regenerating: without the promotion stamp, the next render puts the defect back over the fix and reports success.</p>
           <p class="proj-desc">Upload consumes an approved inventory, never a directory scan, and every row carries its content hash, which is also the key the reconciler joins on. Four accents of curriculum audio are in the catalogue as drafts. Publishing them is a separate human decision.</p>
@@ -905,11 +920,18 @@
           </svg>
           <figcaption><span class="tag">Schematic</span>A convergence check from a Bayesian fit. The three chains cover the same band (R&#x0302; &#8776; 1.00), so the draws can be pooled into the posterior on the right.</figcaption>
         </figure>
-        <div class="cap-clusters">
-          <p class="cap"><b>Bayesian hierarchical modelling:</b> multilevel models with interpretable priors; study- and child-level random effects. <b>Gaussian processes:</b> scalable Hilbert-space (HSGP) smooths for age trajectories. <b>PyMC &amp; NUTS sampling:</b> full-posterior MCMC via nutpie, gated on <span class="stat">R&#x0302;</span>, effective sample size and divergences. <b>Model checking &amp; comparison:</b> prior and posterior predictive checks; PSIS-LOO and leave-one-study-out cross-validation.</p>
-          <p class="cap"><b>Causal inference &amp; DAGs:</b> randomised effects identified by design; confounded paths reported as association. <b>Gradient boosting &amp; NLP:</b> XGBoost and LightGBM with grouped cross-validation and SHAP; FinBERT for financial-news sentiment. <b>Generative-model evaluation:</b> blind A/B comparison with Bradley–Terry ranking and bootstrap intervals; prompts written as a specification.</p>
-          <p class="cap"><b>Scientific computing &amp; simulation:</b> vectorised simulations, like a spatial epidemic cellular automaton, validated against their analytical limits; ~40× speedups. <b>Data engineering:</b> eleven studies harmonised in a DuckDB view, with validation and ceiling guards. <b>Reproducible pipelines:</b> raw data → posteriors → figures → report, reproducible at three sampling tiers and tested in CI.</p>
-        </div>
+        <dl class="caps">
+          <div><dt>Bayesian hierarchical modelling</dt><dd>Multilevel models with interpretable priors; study- and child-level random effects.</dd></div>
+          <div><dt>Gaussian processes</dt><dd>Hilbert-space (HSGP) smooths for age trajectories, which keep the fits tractable.</dd></div>
+          <div><dt>PyMC and NUTS sampling</dt><dd>Full-posterior MCMC via nutpie, gated on <span class="stat">R&#x0302;</span>, effective sample size and divergences.</dd></div>
+          <div><dt>Model checking and comparison</dt><dd>Prior and posterior predictive checks; PSIS-LOO and leave-one-study-out cross-validation.</dd></div>
+          <div><dt>Causal inference and DAGs</dt><dd>Randomised effects identified by design; confounded paths reported as association.</dd></div>
+          <div><dt>Gradient boosting and NLP</dt><dd>XGBoost and LightGBM with grouped cross-validation and SHAP; FinBERT for financial-news sentiment.</dd></div>
+          <div><dt>Generative-model evaluation</dt><dd>Blind A/B comparison with Bradley–Terry ranking and bootstrap intervals; prompts written as a specification.</dd></div>
+          <div><dt>Scientific computing and simulation</dt><dd>Vectorised simulations, like a spatial epidemic cellular automaton, validated against their analytical limits; ~40× speedups.</dd></div>
+          <div><dt>Data engineering</dt><dd>Fourteen datasets harmonised in a DuckDB view, with validation and ceiling guards.</dd></div>
+          <div><dt>Reproducible pipelines</dt><dd>Raw data to posteriors to figures to report, reproducible at three sampling tiers and tested in CI.</dd></div>
+        </dl>
       </div>
     </div>
   </section>
@@ -940,14 +962,6 @@
           <div>
             <dt>LinkedIn</dt>
             <dd><a href="https://www.linkedin.com/in/ethan-buckley">linkedin.com/in/ethan-buckley</a></dd>
-          </div>
-          <div>
-            <dt>University</dt>
-            <dd>MSci Natural Sciences (Physics), University College London</dd>
-          </div>
-          <div>
-            <dt>Research</dt>
-            <dd>Down Syndrome Education International, data science &amp; research intern</dd>
           </div>
         </dl>
 
