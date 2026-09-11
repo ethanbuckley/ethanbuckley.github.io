@@ -144,7 +144,7 @@
         <div class="eq"><span class="cause">group IG &nbsp;⟂&nbsp; GA</span> &nbsp;(by randomisation) &nbsp; ⟹ &nbsp; <span class="cause">ITT effect τ is causal</span></div>
         <div class="eq">skill → skill / predictor paths open through GA &nbsp; ⟹ &nbsp; <span class="c">association only</span></div>
         <div class="eq">y<sub>i</sub> ~ BetaBinomial(N<sub>out</sub>, &nbsp;logit⁻¹(η<sub>i</sub>), &nbsp;κ);&nbsp; smooth terms via <span class="k">HSGP</span></div>
-        <div class="eq">τ → posterior median, 95% CrI, P(τ&gt;0), ROPE&nbsp;δ <span class="c">&nbsp; // no p-values</span></div>
+        <div class="eq">τ → posterior median, 89% CrI, P(τ&gt;0), ROPE&nbsp;δ <span class="c">&nbsp; // no p-values</span></div>
       </dl>
       <p class="eqnote">The DAG is the causal spine. Randomisation d-separates the treatment group from latent ability, so the <code>ITT</code> effect is identified. Every non-randomised path stays confounded, and is reported only as an <em>adjusted association</em>.</p>
     </div>
@@ -166,7 +166,7 @@
 
     <h2>What the models show</h2>
     <hr class="rule" />
-    <p class="body">The intervention effect on <strong>decoding is robust</strong>: letter-sound knowledge (τ ≈ <strong>+3.5 items</strong>, 89% credible range +1.7 to +5.3) and word reading (≈ <strong>+2.4 words</strong>, +0.7 to +4.1) are credibly positive under <strong>four independent identification strategies</strong> (ITT, difference-in-differences, gain- and level-factor), survive SES and non-verbal-ability adjustment, and show a session dose-response. Taught vocabulary moves; standardised vocabulary and grammar are precise nulls. This is a <strong>transfer gradient</strong> that shrinks with distance from instruction, reproducing the original trial. Everything outside the randomised contrast (mechanisms, mediators, predictor rankings, ability associations) is reported as adjusted, ability-confounded association, never as a causal lever.</p>
+    <p class="body">The intervention effect on <strong>decoding is robust</strong>: letter-sound knowledge (τ ≈ <strong>+3.5 items</strong>, 89% credible interval +1.7 to +5.3) and word reading (≈ <strong>+2.4 words</strong>, +0.7 to +4.1) are credibly positive under <strong>four independent identification strategies</strong> (ITT, difference-in-differences, gain- and level-factor), survive SES and non-verbal-ability adjustment, and show a session dose-response. Taught vocabulary moves; standardised vocabulary and grammar are precise nulls. This is a <strong>transfer gradient</strong> that shrinks with distance from instruction, reproducing the original trial. Everything outside the randomised contrast (mechanisms, mediators, predictor rankings, ability associations) is reported as adjusted, ability-confounded association, never as a causal lever.</p>
 
     <p class="foot"><b>Where this stands.</b> At n = 54, point estimates are Type-M inflated, so results lead with the credible interval, not the point. Priors are weakly-informative and scale-calibrated; floored outcomes use a pre-specified off-floor rule; the full pipeline (discovery → DAG → estimation → diagnostics → report) is reproducible and was cross-checked by an independent audit. The integrated report is still being written: the substantive numbers are converged but preliminary, from a single cohort awaiting replication.</p>
   </article>
