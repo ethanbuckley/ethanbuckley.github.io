@@ -45,17 +45,19 @@ import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.lines import Line2D  # noqa: E402
 from matplotlib.patches import Patch  # noqa: E402
 
+import figstyle
+
 HERE = Path(__file__).resolve().parent
 
 # Site tokens, kept in step with assets/site.css and figures/*.html by hand.
-INK = "#14181d"
-SOFT = "#5b6571"
+INK = figstyle.TEXT
+SOFT = figstyle.SOFT
 FAINT = "#6b7480"
-HAIRLINE = "#e4e7eb"
-TEAL = "#2440b3"   # the site accent since 2026-09-04; the name is historical
-PAPER = "#ffffff"
+HAIRLINE = figstyle.LINE
+TEAL = figstyle.ACCENT   # the site accent; the name is historical
+PAPER = figstyle.PAPER
 # The site's system sans; matplotlib takes the first family it can find.
-SANS = ["Helvetica Neue", "Helvetica", "Arial", "DejaVu Sans"]
+SANS = figstyle.SANS
 
 # The published panel is 1776 x 1272 and embedded at exactly half that, so the 2x
 # render of the surrounding canvas reuses these pixels without resampling. Changing
@@ -97,33 +99,23 @@ def load(path: Path) -> dict[str, list[float]]:
 
 
 def _style_axes(ax):
-    ax.set_axisbelow(True)
-    ax.yaxis.grid(True, color=HAIRLINE, linewidth=1.0)
-    ax.xaxis.grid(False)
-    for side in ("top", "right"):
-        ax.spines[side].set_visible(False)
-    for side in ("left", "bottom"):
-        ax.spines[side].set_color(HAIRLINE)
-        ax.spines[side].set_linewidth(1.0)
-    ax.tick_params(colors=SOFT, labelsize=14, length=0, pad=9)
-    for lbl in ax.get_xticklabels() + ax.get_yticklabels():
-        lbl.set_fontfamily(SANS)
+    figstyle.style_axes(ax)   # research style: hairline grid on both axes, no spines
 
 
 def _years_axis(ax, lo_m: float, hi_m: float):
-    ax.set_xlim(lo_m, hi_m)
-    years = [y for y in range(1, 10) if lo_m <= 12 * y <= hi_m]
+    # Pinning the axis to the data range put the last marker on the right spine
+    # and clipped its label. Pad both ends, and keep a whole-year tick the data
+    # reaches to within half a month: the grid stops at 71.9, which is six years
+    # to any reader and is what the annotation calls it.
+    figstyle.pad_limits(ax, lo_m, hi_m)
+    years = [y for y in range(1, 10) if lo_m - 0.5 <= 12 * y <= hi_m + 0.5]
     ax.set_xticks([12 * y for y in years])
     ax.set_xticklabels([str(y) for y in years])
-    ax.set_xlabel("Age (years)", color=INK, fontsize=15, fontfamily=SANS, labelpad=12)
+    ax.set_xlabel("Age (years)", labelpad=12)
 
 
 def _legend(ax, handles):
-    leg = ax.legend(handles=handles, loc="upper left", frameon=False, fontsize=14,
-                    handlelength=1.6, borderpad=0.4, labelspacing=0.6)
-    for text in leg.get_texts():
-        text.set_color(SOFT)
-        text.set_fontfamily(SANS)
+    figstyle.legend(ax, handles, loc="upper left")
 
 
 def _check_size(out: Path) -> None:
@@ -148,8 +140,7 @@ def render(cols: dict[str, list[float]], out: Path) -> None:
     """The production ratio by age, annotated at one, four and six years."""
     import bisect
     age, med = cols["age_months"], cols["q_median"]
-    plt.rcParams["font.family"] = "sans-serif"
-    plt.rcParams["font.sans-serif"] = SANS
+    figstyle.use()
     fig, ax = plt.subplots(figsize=(NATIVE_W / DPI, NATIVE_H / DPI), dpi=DPI)
     fig.patch.set_facecolor(PAPER)
     ax.set_facecolor(PAPER)
@@ -161,7 +152,7 @@ def render(cols: dict[str, list[float]], out: Path) -> None:
     ax.set_ylim(0, 1.0)
     ax.set_yticks([0, 0.2, 0.4, 0.6, 0.8, 1.0])
     ax.set_yticklabels(["0", "20%", "40%", "60%", "80%", "100%"])
-    ax.set_ylabel("Share of understood words the child also says", color=INK, fontsize=15, fontfamily=SANS, labelpad=14)
+    ax.set_ylabel("Share of understood words the child also says", labelpad=14)
     for yr in (1, 4, 6):
         m = 12 * yr
         if m < min(age) or m > max(age) + 1.0:   # the grid ends a fraction short of 72 months
@@ -171,7 +162,7 @@ def render(cols: dict[str, list[float]], out: Path) -> None:
         ax.plot([m], [q], marker="o", markersize=7, color=TEAL, markeredgecolor=PAPER, markeredgewidth=1.5, zorder=6)
         label = f"{q * 100:.0f}% at {yr} year" + ("" if yr == 1 else "s")
         ax.annotate(label, (m, q), textcoords="offset points", xytext=(-12, 14), ha="right",
-                    fontsize=14, color=INK, fontfamily=SANS, annotation_clip=False)
+                    fontsize=figstyle.SIZE["annot"], annotation_clip=False)
     _legend(ax, [Line2D([], [], color=TEAL, linewidth=2.6, label="Posterior median")]
             + [Patch(facecolor=TEAL, alpha=alpha, linewidth=0, label=label) for _, _, alpha, label in reversed(BANDS)])
     fig.tight_layout(pad=1.4)
@@ -182,8 +173,7 @@ def render(cols: dict[str, list[float]], out: Path) -> None:
 
 def render_counts(fit_dir: Path, out: Path) -> None:
     """Words understood and words spoken by age: posterior-predictive medians with 50% bands."""
-    plt.rcParams["font.family"] = "sans-serif"
-    plt.rcParams["font.sans-serif"] = SANS
+    figstyle.use()
     u = load_generic(fit_dir / "posterior_predictive_median_trend_u.csv")
     s_ = load_generic(fit_dir / "posterior_predictive_median_trend_s.csv")
     hi_m = max(u["age_months"])
@@ -199,7 +189,7 @@ def render_counts(fit_dir: Path, out: Path) -> None:
     _years_axis(ax, min(u["age_months"]), hi_m)
     ax.set_ylim(0, 810)
     ax.set_yticks([0, 200, 400, 600, 810])
-    ax.set_ylabel("Words, out of the 810 on the checklist", color=INK, fontsize=15, fontfamily=SANS, labelpad=14)
+    ax.set_ylabel("Words, out of the 810 on the checklist", labelpad=14)
     _legend(ax, [Line2D([], [], color=TEAL, linewidth=2.6, label="Words understood, median"),
                  Line2D([], [], color=FAINT, linewidth=2.6, label="Words spoken, median"),
                  Patch(facecolor=SOFT, alpha=0.18, linewidth=0, label="50% credible bands")])

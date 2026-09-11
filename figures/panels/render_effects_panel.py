@@ -33,15 +33,17 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.lines import Line2D  # noqa: E402
 
+import figstyle  # noqa: E402
+
 HERE = Path(__file__).resolve().parent
 
 INK = "#14181d"
 SOFT = "#5b6571"
 HAIRLINE = "#e4e7eb"
-ACCENT = "#2440b3"
-GREY = "#8d97a3"
+ACCENT = figstyle.ACCENT
+GREY = figstyle.MUTED
 PAPER = "#ffffff"
-SANS = ["Helvetica Neue", "Helvetica", "Arial", "DejaVu Sans"]
+SANS = figstyle.SANS
 
 # The published panel is 1780 x 830 px, embedded at half size in the 1600 x 1000
 # plate, so the 2x render of the plate reuses these pixels without resampling.
@@ -77,11 +79,17 @@ def load(path: Path, config: str) -> dict[str, tuple[float, float, float]]:
 
 
 def render(effects: dict[str, tuple[float, float, float]], coverage: float, out: Path) -> None:
-    plt.rcParams["font.family"] = "sans-serif"
-    plt.rcParams["font.sans-serif"] = SANS
+    figstyle.use()
 
     fig = plt.figure(figsize=(NATIVE_W / DPI, NATIVE_H / DPI), dpi=DPI, facecolor=PAPER)
-    ax = fig.add_axes([0.24, 0.16, 0.73, 0.80])
+    # 0.24 is set by the longest group heading, which is drawn in the left margin
+    # with ha="right". Narrowing it to 0.20 clipped "Decoding and phonics,
+    # taught directly" off the left edge.
+    # 0.24 on the left is set by the longest group heading, which is drawn in
+    # the margin with ha="right"; 0.20 clipped it. The width stops at 0.60 to
+    # leave a column for the estimates, the way a published forest plot prints
+    # them so a reader need not measure against the axis.
+    ax = fig.add_axes([0.24, 0.16, 0.60, 0.80])
     ax.set_facecolor(PAPER)
 
     # Group headings take a slot of their own, so rows are laid out top to bottom
@@ -92,17 +100,21 @@ def render(effects: dict[str, tuple[float, float, float]], coverage: float, out:
     for code, label, group in ROWS:
         if group != last_group:
             if last_group is not None:
-                y -= 0.55
+                y -= 0.25
             slots.append((y, "", group))
-            y -= 0.85
+            y -= 0.65
             last_group = group
         slots.append((y, code, None))
         y -= 1.0
 
+    ax.text(1.04, slots[0][0] + 0.75, "Effect  [89% interval]",
+            transform=ax.get_yaxis_transform(), ha="left", va="center",
+            fontsize=figstyle.SIZE["group"], color=figstyle.SOFT)
+
     for yy, code, group in slots:
         if group is not None:
             ax.text(-0.02, yy, group, transform=ax.get_yaxis_transform(), ha="right", va="center",
-                    fontsize=11, color=SOFT)
+                    fontsize=figstyle.SIZE["group"], color=SOFT)
             continue
         med, lo, hi = effects[code]
         clear = lo > 0 or hi < 0
@@ -112,35 +124,40 @@ def render(effects: dict[str, tuple[float, float, float]], coverage: float, out:
                 markeredgewidth=1.4, zorder=4)
         name = next(lbl for c, lbl, _ in ROWS if c == code)
         ax.text(-0.02, yy, name, transform=ax.get_yaxis_transform(), ha="right", va="center",
-                fontsize=13, color=INK)
+                fontsize=figstyle.SIZE["label"], color=INK)
+        ax.text(1.04, yy, f"{med:+.2f}  [{lo:+.2f}, {hi:+.2f}]",
+                transform=ax.get_yaxis_transform(), ha="left", va="center",
+                fontsize=figstyle.SIZE["annot"], color=colour)
 
     ax.axvline(0, color=INK, linewidth=0.8, linestyle=(0, (3, 3)), zorder=2)
     ax.set_ylim(y + 0.4, 0.6)
     lo_all = min(v[1] for v in effects.values())
     hi_all = max(v[2] for v in effects.values())
-    pad = 0.06 * (hi_all - lo_all)
+    pad = 0.10 * (hi_all - lo_all)   # 0.06 left the longest interval against the frame
     ax.set_xlim(min(lo_all, -0.2) - pad, hi_all + pad)
 
     ax.set_yticks([])
-    for side in ("left", "right", "top"):
-        ax.spines[side].set_visible(False)
-    ax.spines["bottom"].set_color(HAIRLINE)
-    ax.tick_params(axis="x", colors=SOFT, labelsize=12, length=0, pad=8)
-    ax.grid(axis="x", color=HAIRLINE, linewidth=0.7, zorder=1)
-    ax.set_xlabel("Intervention effect, log-odds. Right of the dashed line favours the teaching.",
-                  color=SOFT, fontsize=13, labelpad=10)
+    # A forest plot has no vertical scale to read against, so the grid stays on
+    # the x axis only; everything else is the research treatment.
+    figstyle.style_axes(ax, grid="x")
+    ax.set_xlabel("Intervention effect (log-odds)",
+                  color=SOFT, fontsize=figstyle.SIZE["label"], labelpad=10)
 
     pct = f"{coverage * 100:.0f}"
     handles = [
-        Line2D([0], [0], color=ACCENT, marker="o", markersize=4.5, linewidth=2.0,
-               markeredgecolor=PAPER, label=f"{pct}% interval clear of zero"),
-        Line2D([0], [0], color=GREY, marker="o", markersize=4.5, linewidth=2.0,
-               markeredgecolor=PAPER, label=f"{pct}% interval spans zero"),
+        # Weight matches the intervals themselves: a legend key that is thinner
+        # than the mark it names reads as a different kind of line.
+        Line2D([0], [0], color=ACCENT, marker="o", markersize=8, linewidth=3.0,
+               markeredgecolor=PAPER, markeredgewidth=1.4,
+               label=f"{pct}% interval clear of zero"),
+        Line2D([0], [0], color=GREY, marker="o", markersize=8, linewidth=3.0,
+               markeredgecolor=PAPER, markeredgewidth=1.4,
+               label=f"{pct}% interval spans zero"),
     ]
-    leg = ax.legend(handles=handles, loc="lower right", frameon=False, fontsize=12,
-                    handlelength=2.2, borderaxespad=0.2)
-    for t in leg.get_texts():
-        t.set_color(SOFT)
+    # Lower right now collides with the bottom row: the axes lost width to the
+    # estimates column. Upper left is clear, because the taught-skill intervals
+    # all start right of 0.27.
+    figstyle.legend(ax, handles, loc="upper left")
 
     fig.savefig(out, dpi=DPI, facecolor=PAPER)
     plt.close(fig)

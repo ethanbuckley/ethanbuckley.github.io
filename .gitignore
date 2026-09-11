@@ -1,3 +1,6 @@
 
 # Panel previews: unverified model renders, not published assets.
 figures/panels/*.preview.png
+
+# Bytecode from the panel renderers, which now import a shared style module.
+figures/panels/__pycache__/
