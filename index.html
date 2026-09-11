@@ -145,10 +145,13 @@
     text-transform: uppercase; color: var(--accent); font-weight: 600;
     margin: 0 0 18px;
   }
+  /* The h1 carries the tagline now, so it is sized to be read as a sentence
+     rather than as a nameplate: 28-36px, not 36-56px. */
   .hero h1 {
     font-family: var(--serif); font-weight: 700;
-    font-size: clamp(var(--step-7), 6vw, var(--step-8)); line-height: 1.04;
-    letter-spacing: -0.015em; margin: 0 0 16px;
+    font-size: clamp(var(--step-6), 3.4vw, var(--step-7)); line-height: 1.2;
+    letter-spacing: -0.01em; margin: 0 0 20px; max-width: 20em;
+    text-wrap: balance;
   }
   .tagline {
     font-family: var(--serif); font-size: clamp(var(--step-4), 2.2vw, var(--step-5));
@@ -492,8 +495,8 @@
   <section class="hero" id="top" aria-labelledby="top-h">
     <div class="wrap">
       <div class="hero-copy">
-        <h1 id="top-h">Ethan Buckley</h1>
-        <p class="tagline">Bayesian models for language research, and the pipelines that produce teaching materials.</p>
+        <p class="eyebrow">Research and engineering</p>
+        <h1 id="top-h">Bayesian models for language research, and the pipelines that produce teaching materials.</h1>
         <p class="lede">At Down Syndrome Education International I build the models behind two studies of how children with Down syndrome learn words, and the system that generates the charity’s teaching images, audio and video. In both, the output is checked before anyone relies on it. Independently I’ve built a machine-learning stock screener and an epidemic simulator, and written an investment thesis on AI, virtual twins and robotics.</p>
         <ul class="hero-meta">
           <li>MSci Natural Sciences (Physics) · UCL · graduating 2028</li>
