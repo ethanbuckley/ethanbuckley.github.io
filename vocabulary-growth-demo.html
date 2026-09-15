@@ -66,15 +66,15 @@
   .vg-foot{max-width:900px;margin:0 auto;padding:20px clamp(16px,4vw,32px) 44px;color:var(--ink-soft);font-size:12.5px;line-height:1.5;}
   .vg-foot a{color:var(--accent);}
 </style>
-<link rel="stylesheet" href="assets/site.css">
-<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/site.css?v=20260915">
+<script src="assets/theme.js?v=20260915"></script>
 </head>
 <body>
 <header class="vg-top"><div class="in"><a class="brand" href="index.html">Ethan Buckley</a><a class="back" href="index.html#research">← Back to research</a></div></header>
 <div class="vgdemo">
   <p class="vg-eyebrow">Interactive · Study 01</p>
-  <h1>Vocabulary growth, with the uncertainty shown</h1>
-  <p class="vg-lede">The posterior from the pooled Down-syndrome vocabulary model: how many words children understand, say and sign across age, each as a credible interval rather than a single line. Drag through age, and use the dispersion control to see how the spread between children widens the bands.</p>
+  <h1>Bayesian vocabulary-growth model</h1>
+  <p class="vg-lede">Interactive results from the pooled vocabulary model for children with Down syndrome. Explore estimated comprehension, spoken vocabulary and signing across age, with credible intervals. The dispersion control illustrates changes in the spread between children.</p>
   <div class="vg-card">
     <div class="vg-controls">
       <div>
@@ -85,7 +85,7 @@
       </div>
       <div class="vg-field">
         <label for="age">Age · <b id="ageLab">4.0 yr</b></label>
-        <input type="range" id="age" min="0" max="63" value="27" step="1">
+        <input type="range" id="age" min="0" max="63" value="39" step="1">
       </div>
       <div class="vg-field">
         <label for="disp">Dispersion κ (what-if) · <b id="dispLab">×1.0</b></label>
@@ -107,12 +107,15 @@ const DATA = {"age":[0.667,0.751,0.836,0.921,1.005,1.09,1.175,1.259,1.344,1.429,
   const cssVar=k=>getComputedStyle(document.documentElement).getPropertyValue(k).trim();
   const rgbOf=h=>{h=h.replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');
     return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)].join(',');};
-  let view='vocab', ai=39, kf=1.0;
+  let view='vocab', ai=A.reduce((best, age, i)=>Math.abs(age-4)<Math.abs(A[best]-4)?i:best,0), kf=1.0;
 
   const btnV=document.getElementById('btnVocab'), btnR=document.getElementById('btnRatio');
   const ageEl=document.getElementById('age'), dispEl=document.getElementById('disp');
   const ageLab=document.getElementById('ageLab'), dispLab=document.getElementById('dispLab');
   const readout=document.getElementById('readout'), legend=document.getElementById('legend');
+  ageEl.max=N-1;
+  ageEl.value=ai;
+  dispEl.value=kf*100;
 
   function setView(v){ view=v; btnV.setAttribute('aria-pressed',v==='vocab'); btnR.setAttribute('aria-pressed',v==='ratio'); draw(); }
   btnV.onclick=()=>setView('vocab'); btnR.onclick=()=>setView('ratio');
@@ -195,6 +198,9 @@ const DATA = {"age":[0.667,0.751,0.836,0.921,1.005,1.09,1.175,1.259,1.344,1.429,
 
     // labels
     ageLab.textContent=fmtAge(A[ai]); dispLab.textContent='×'+kf.toFixed(2);
+    ageEl.setAttribute('aria-valuetext',fmtAge(A[ai]));
+    dispEl.setAttribute('aria-valuetext',kf.toFixed(2)+' times the fitted band width');
+    cv.setAttribute('aria-label',view==='ratio'?'Posterior production ratio with credible bands':'Posterior vocabulary trajectories with credible bands');
     renderLegend(); renderReadout();
   }
 
@@ -224,8 +230,9 @@ const DATA = {"age":[0.667,0.751,0.836,0.921,1.005,1.09,1.175,1.259,1.344,1.429,
       readout.innerHTML='At <b>'+fmtAge(y)+'</b>: understood ≈ <b>'+Math.round(u.m[ai])+'</b> words '+
         '<b>(50% CI '+Math.round(u.lo50[ai])+'–'+Math.round(u.hi50[ai])+')</b>, spoken ≈ <b>'+Math.round(s.m[ai])+'</b> '+
         '<b>('+Math.round(s.lo50[ai])+'–'+Math.round(s.hi50[ai])+')</b>, signed ≈ <b>'+Math.round(sg.m[ai])+'</b>.'+
-        '<span class="k">Over-dispersion κ ≈ '+k.toFixed(1)+' here (as fitted). Lower κ means wider spread between children.'+(Math.abs(kf-1)<0.005?'':' Bands rescaled ×'+kf.toFixed(2)+' (what-if).')+'</span>';
+        '<span class="k">Over-dispersion κ ≈ '+k.toFixed(1)+' here (as fitted). Lower κ means wider spread between children.</span>';
     }
+    if(Math.abs(kf-1)>=0.005) readout.innerHTML+='<span class="k">Intervals above are from the fitted model. Chart bands are rescaled ×'+kf.toFixed(2)+' as an illustrative what-if.</span>';
   }
 
   window.addEventListener('resize', ()=>{ clearTimeout(window.__vgt); window.__vgt=setTimeout(draw,120); });
