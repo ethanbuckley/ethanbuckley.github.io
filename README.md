@@ -9,7 +9,7 @@ My portfolio site. Hand-written HTML and CSS, system fonts, no build step. It wo
 
 | File | What it is |
 | --- | --- |
-| `index.html` | The front page: introduction, work index, research, engineering, projects, about, approach, contact |
+| `index.html` | The front page: introduction, research, engineering, projects, about, approach, contact |
 | `assets/portfolio.css` | Homepage layout and responsive styles, loaded after the shared design tokens |
 | `cv.html`, `assets/ethan-buckley-cv.pdf` | My CV as a page and as a one-page PDF printed from it |
 | `vocabulary-growth-demo.html` | An interactive posterior, drawn on a canvas. The one linked companion page |
@@ -34,7 +34,8 @@ The investment thesis linked from the projects section lives in its own reposito
 - Nothing public carries a phone number or a grade of any kind.
 - The DSE material was cleared for description in general terms. It carries no money figures, no provider or model names, no generated images and no claim about image quality.
 - The same fact should appear once per page and read the same on every page. Before pushing, grep for the numbers that recur (children, studies, items, nodes) and check they agree.
-- No em-dashes in prose.
+- No em-dashes in prose. Copy is first person and active voice: "I built", not "a pipeline was built". No decorative numbering, and no arrow glyphs on links.
+- The h1 is a sentence about the work, set at reading size (26 to 33px). It is not a nameplate or a job category.
 - The hero figure is generated: `figures/panels/render_hero_figure.py` writes inline SVG between two marker comments in `index.html` from the same fit folder as the panel and the demo. Re-run it whenever that folder changes. The thesis card's bar chart is typed from the thesis's chapter 9 table and carries its date.
 - The homepage uses native `<details>` for research findings, method figures and engineering implementation notes. The project overviews, contributions and limitations stay visible. These controls work without JavaScript; keep the figure provenance with its figure.
 - The two plot panels are drawn from model output by `figures/panels/render_panels.py` and `render_effects_panel.py`; the demo page's data comes from `render_demo_data.py`. `figures/panels/PROVENANCE.md` names the fit each one currently shows. Do not edit the PNGs or the `DATA` block by hand.

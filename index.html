@@ -22,8 +22,8 @@
 <meta name="twitter:image" content="https://ethanbuckley.github.io/assets/og-card-production-ratio.png">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1114" media="(prefers-color-scheme: dark)">
-<link rel="stylesheet" href="assets/site.css?v=20260915">
-<link rel="stylesheet" href="assets/portfolio.css?v=20260915-2">
+<link rel="stylesheet" href="assets/site.css?v=20260917">
+<link rel="stylesheet" href="assets/portfolio.css?v=20260917">
 <script src="assets/theme.js?v=20260915"></script>
 <script type="application/ld+json">
 {
@@ -51,7 +51,7 @@
       <a href="#engineering">Engineering</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
-      <a class="nav-cv" href="cv.html">View CV <span aria-hidden="true">↗</span></a>
+      <a class="nav-cv" href="cv.html">CV</a>
     </nav>
   </div>
 </header>
@@ -62,20 +62,19 @@
   <section class="hero" id="top" aria-labelledby="top-h">
     <div class="wrap">
       <div class="hero-copy">
-        <p class="eyebrow">Research and engineering</p>
-        <h1 id="top-h">Data science and scientific computing</h1>
-        <p class="lede">I am a physics student at UCL and a data science and research intern at Down Syndrome Education International. My work spans Bayesian modelling, language-development research and software for educational resources.</p>
+        <h1 id="top-h">Bayesian models of how children with Down syndrome learn words, and the pipelines that produce their teaching materials.</h1>
+        <p class="lede">I am a physics student at UCL and a data science and research intern at Down Syndrome Education International. Independently, I have built a machine-learning stock screener and an epidemic simulator, and written an investment thesis.</p>
         <p class="hero-cta">
-          <a class="btn primary" href="#selected-work">View selected work <span aria-hidden="true">↓</span></a>
-          <a class="btn secondary" href="cv.html">View CV <span aria-hidden="true">↗</span></a>
+          <a class="btn primary" href="#research">The research</a>
+          <a class="btn secondary" href="cv.html">CV</a>
         </p>
         <ul class="hero-meta">
-          <li>MSci Natural Sciences (Physics) · graduating 2028</li>
-          <li>London, UK · <a href="#contact">Open to internships <span aria-hidden="true">↗</span></a></li>
+          <li>MSci Natural Sciences (Physics), UCL · graduating 2028</li>
+          <li>London · <a href="#contact">open to internships</a></li>
         </ul>
       </div>
       <figure class="hero-fig">
-        <p class="figure-label"><span>Vocabulary-growth research</span><span>01 / Vocabulary</span></p>
+        <p class="figure-label">From the vocabulary-growth study</p>
         <!-- hero-figure:start -->
 <svg viewBox="0 0 560 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two rising curves of vocabulary size against age for children with Down syndrome: words understood climbs from near zero at eight months to a median of about 500 by six years, and words spoken follows below it, reaching about 300. Each curve carries a 50% credible band.">
 <line x1="44" y1="316.0" x2="544" y2="316.0" style="stroke:var(--fig-grid)" stroke-width="1"/>
@@ -105,19 +104,8 @@
 </svg>
 <!-- hero-figure:end -->
         <figcaption>Words understood and spoken by age, children with Down syndrome. Posterior medians with 50% bands, from the VG14 fit of 4 September 2026.</figcaption>
-        <a class="figure-cta" href="vocabulary-growth-demo.html">View interactive model <span aria-hidden="true">↗</span></a>
+        <a class="figure-cta" href="vocabulary-growth-demo.html">Interactive model</a>
       </figure>
-    </div>
-  </section>
-
-  <section class="selected-work" id="selected-work" aria-labelledby="selected-work-h">
-    <div class="wrap">
-      <div class="section-line"><h2 id="selected-work-h">Selected work</h2><span>Research, engineering &amp; independent projects</span></div>
-      <div class="work-index">
-        <a href="#research"><span class="work-number" aria-hidden="true">01</span><h3>Language-development research <span aria-hidden="true">↗</span></h3><p>Bayesian studies of vocabulary growth and a reading intervention.</p><span class="work-type">Research · DSE</span></a>
-        <a href="#engineering"><span class="work-number" aria-hidden="true">02</span><h3>Educational-resource pipelines <span aria-hidden="true">↗</span></h3><p>Production pipelines for images, spoken audio, video and asset catalogues.</p><span class="work-type">Engineering · DSE</span></a>
-        <a href="#projects"><span class="work-number" aria-hidden="true">03</span><h3>Independent projects <span aria-hidden="true">↗</span></h3><p>A stock screener, an epidemic simulator and an investment thesis.</p><span class="work-type">Independent projects</span></a>
-      </div>
     </div>
   </section>
 
@@ -151,7 +139,7 @@
           <div class="study-aside">
             <div class="contrib">
               <span class="label">My contribution</span>
-              <p>I built the signing and within-child longitudinal models, the pipeline that harmonises the studies in DuckDB, and the descriptive and comprehension–production-gap reports. In September 2026 I wrote the report’s data chapter: what each of the fourteen sources collected, and how counts from checklists of different lengths are scored against the 810-word inventory. Following data validation, the expanded pool includes 777 children; the figures reflect the earlier fit.</p>
+              <p>I built the signing and within-child longitudinal models, the pipeline that harmonises the studies in DuckDB, and the descriptive and comprehension–production-gap reports. In September 2026 I wrote the report’s data chapter: what each of the fourteen sources collected, and how counts from checklists of different lengths are scored against the 810-word inventory. Since then, data validation has expanded the pool to 777 children; the figures on this page still show the September fit.</p>
             </div>
 
             <p class="doc-links">
@@ -160,8 +148,8 @@
           </div>
         </div>
         <details class="study-more">
-          <summary>Vocabulary findings and model detail</summary>
-          <div class="study-detail">
+          <summary>Vocabulary findings</summary>
+          <div class="study-detail single">
             <div class="study-main">
             <div class="findings">
               <div class="finding">
@@ -186,15 +174,6 @@
               </div>
             </div>
             </div>
-          <figure class="fig fig-side">
-            <a class="figlink" href="assets/vocab-method.png?v=20260905" target="_blank" rel="noopener">
-              <picture>
-                <source type="image/webp" srcset="assets/vocab-method-1600.webp?v=20260905">
-                <img src="assets/vocab-method-1600.png?v=20260905" width="1600" height="1000" loading="lazy" decoding="async" alt="Chart: words understood and words spoken by age for children with Down syndrome, posterior-predictive medians with 50% bands; understood rises to about 500 words by six years and spoken to about 300.">
-              </picture>
-            </a>
-            <figcaption>Words understood and words spoken by age, with 50% bands, from the same fit. The model treats speaking as understanding times the production ratio, so speech never exceeds comprehension. <a href="assets/vocab-method.png?v=20260905" target="_blank" rel="noopener">Open full size</a></figcaption>
-          </figure>
           </div>
         </details>
       </article>
@@ -273,16 +252,16 @@
         <p class="eyebrow">Engineering</p>
         <h2 id="engineering-h">Software for educational resources</h2>
         <hr class="rule">
-        <p class="lede">Production and quality-control pipelines for DSE’s teaching images, spoken audio and video, covering model evaluation, asset generation, review and catalogue integration.</p>
+        <p class="lede">The pipelines that generate, check and catalogue DSE’s teaching images, spoken audio and video.</p>
       </div>
 
       <div class="proj-grid">
         <article class="proj">
           <p class="proj-kicker">DSE production system · images</p>
           <h3>Teaching-image pipeline</h3>
-          <p class="proj-desc">7,351 photographic teaching images for an early-vocabulary programme, generated from reproducible specifications: single words, phrases, sentences, and named characters who recur across the set. Batch inference halved the unit cost, and reruns are idempotent by request hash. Item-specific errors are addressed through glossary revisions; recurring errors inform prompt rules applied across the programme.</p>
+          <p class="proj-desc">I built the pipeline that generated 7,351 photographic teaching images for an early-vocabulary programme, from written specifications for single words, phrases, sentences and named characters who recur across the set. Batch inference halved the unit cost, and a rerun skips anything whose request hash it has already produced. When one image is wrong I fix its glossary entry. When a kind of error recurs I add a prompt rule for the whole programme.</p>
           <details class="engineering-more"><summary>Implementation detail</summary>
-            <p class="proj-desc">Background colours are chosen to distinguish each subject while preserving its natural colour, addressing the reduced contrast sensitivity common in Down syndrome.</p>
+            <p class="proj-desc">I chose background colours that separate each subject from its surroundings without changing its natural colour, because reduced contrast sensitivity is common in Down syndrome.</p>
           </details>
           <p class="proj-note">First production set delivered July 2026 · manually reviewed · no validated image-quality claims</p>
           <ul class="proj-tags">
@@ -297,9 +276,9 @@
         <article class="proj">
           <p class="proj-kicker">DSE production system · audio</p>
           <h3>Spoken-word audio pipeline</h3>
-          <p class="proj-desc">3,407 curriculum words, phrases and sentences read aloud, each by a male and a female voice in four English accents. Voices were chosen by blind A/B listening across four commercial providers, ranked by Bradley–Terry with bootstrap intervals, then calibrated to one measured pace, since the same speed setting gives different voices different paces.</p>
+          <p class="proj-desc">I produced recordings of 3,407 curriculum words, phrases and sentences, each read by a male and a female voice in four English accents. I chose the voices by blind A/B listening across four commercial providers, ranked them with a Bradley–Terry model and bootstrap intervals, then calibrated each to one measured pace, because the same speed setting gives different voices different paces.</p>
           <details class="engineering-more"><summary>Implementation detail</summary>
-            <p class="proj-desc">The scorer reports 90% intervals and identifies voices statistically indistinguishable from the highest-ranked voice. I corrected a tie-handling error that produced artificial ranking differences.</p>
+            <p class="proj-desc">The scorer reports 90% intervals and flags voices that cannot be separated from the top-ranked one. I found and fixed a tie-handling error that had been inventing ranking differences.</p>
           </details>
           <p class="proj-note">Sixteen voices selected across eight accents · four accents delivered · frequent ties leave uncertainty in intermediate rankings</p>
           <ul class="proj-tags">
@@ -314,9 +293,9 @@
         <article class="proj">
           <p class="proj-kicker">DSE production system · video</p>
           <h3>Video-generation workflow</h3>
-          <p class="proj-desc">A workflow for short clips illustrating everyday verbs. Versioned prompt specifications generate the production instructions, and validation prevents clips from being catalogued against an outdated brief. Generation uses the provider’s web interface following unsuccessful API evaluations.</p>
+          <p class="proj-desc">I set up the workflow for short clips that illustrate everyday verbs. Versioned prompt specifications generate the production instructions, and a validation step stops a clip being catalogued against an outdated brief. After the API trials failed to produce usable clips, generation runs through the provider’s web interface.</p>
           <details class="engineering-more"><summary>Implementation detail</summary>
-            <p class="proj-desc">An audit found that four of eight validated prompts differed from their approved specifications. Generating production instructions directly from the specifications, with automated consistency checks, prevents this source of drift.</p>
+            <p class="proj-desc">An audit I ran found that four of the eight validated prompts had drifted from their approved specifications. Generating the instructions directly from the specifications, with an automated consistency check, closed that gap.</p>
           </details>
           <p class="proj-note">Specifications drafted for approximately sixty verbs; eight validated · generation tools recorded in asset provenance</p>
           <ul class="proj-tags">
@@ -331,9 +310,9 @@
         <article class="proj">
           <p class="proj-kicker">DSE production system · catalogue</p>
           <h3>Asset audit and catalogue integration</h3>
-          <p class="proj-desc">A pipeline for auditing, repairing, uploading and reconciling 23,846 draft assets. Audio review combines measurement and listening checks. Approved repairs are recorded explicitly so subsequent runs preserve corrected files.</p>
+          <p class="proj-desc">I wrote the pipeline that audits, repairs, uploads and reconciles 23,846 draft assets. Audio review combines measurements with listening checks. Each approved repair is recorded, so a later run keeps the corrected file rather than regenerating it.</p>
           <details class="engineering-more"><summary>Implementation detail</summary>
-            <p class="proj-desc">Uploads use an approved inventory, with content hashes linking each file to its catalogue record. Curriculum audio in four accents is catalogued as drafts, with publication subject to human approval.</p>
+            <p class="proj-desc">Uploads work from an approved inventory, and a content hash links each file to its catalogue record. The curriculum audio in four accents sits in the catalogue as drafts until a person approves it for publication.</p>
           </details>
           <p class="proj-note">Connection timeouts of 20–30 seconds · expired sessions stop the run · reconciliation verifies catalogue records against file hashes</p>
           <ul class="proj-tags">
@@ -459,7 +438,7 @@
       </div>
       <div class="side-body about-cols">
         <p>I am a third-year MSci Natural Sciences student at UCL, specialising in physics. Since June 2026, I have worked as a data science and research intern at Down Syndrome Education International (DSE), contributing statistical models and software to its language-development research and educational programmes.</p>
-        <p><strong>The DSE work presented here was completed with the team and under senior review;</strong> the projects and the thesis are my own. From October 2026, I will undertake a literature review at UCL’s Centre for Computational Science, on quantum-GPU computing for biomolecular simulation, supervised by Peter Coveney.</p>
+        <p><strong>I did the DSE work with the team and under senior review.</strong> The projects and the thesis are my own. From October 2026, I will undertake a literature review at UCL’s Centre for Computational Science, on quantum-GPU computing for biomolecular simulation, supervised by Peter Coveney.</p>
       </div>
     </div>
   </section>
@@ -472,7 +451,7 @@
         <h2 id="approach-h">Methods and tools</h2>
       </div>
       <div class="side-body">
-        <p class="lede">My work combines Bayesian inference, machine learning and scientific computing, supported by model diagnostics, validation and reproducible software pipelines.</p>
+        <p class="lede">I work with Bayesian inference, machine learning and scientific computing. Every fit is checked with diagnostics and validation, and every result can be rebuilt from its pipeline.</p>
         <figure class="approach-fig">
           <svg viewBox="0 0 620 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schematic, not plotted from data. An MCMC diagnostic: three sampler chains on the left overlap in one stable band, showing they have converged (R-hat about 1.00); on the right, the resulting posterior distribution is summarised by an 89% credible interval around its median rather than a single point estimate.">
             <line x1="40" y1="30" x2="40" y2="200" style="stroke:var(--fig-grid)" stroke-width="1"/>
@@ -503,7 +482,7 @@
           <div><dt>Causal inference and DAGs</dt><dd>Randomised effects identified by design; confounded paths reported as association.</dd></div>
           <div><dt>Gradient boosting and NLP</dt><dd>XGBoost and LightGBM with grouped cross-validation and SHAP; FinBERT for financial-news sentiment.</dd></div>
           <div><dt>Generative-model evaluation</dt><dd>Blind A/B comparison with Bradley–Terry ranking and bootstrap intervals; prompts written as a specification.</dd></div>
-          <div><dt>Scientific computing and simulation</dt><dd>Vectorised simulations, like a spatial epidemic cellular automaton, validated against their analytical limits; ~40× speedups.</dd></div>
+          <div><dt>Scientific computing and simulation</dt><dd>Vectorised simulations, like a spatial epidemic cellular automaton, validated against their analytical limits.</dd></div>
           <div><dt>Data engineering</dt><dd>Fourteen datasets harmonised in a DuckDB view, with validation and ceiling guards.</dd></div>
           <div><dt>Reproducible pipelines</dt><dd>Raw data to posteriors to figures to report, reproducible at three sampling tiers and tested in CI.</dd></div>
         </dl>
@@ -519,7 +498,7 @@
         <h2 id="contact-h">Internships and enquiries</h2>
       </div>
       <div class="side-body">
-        <p class="lede">I am seeking internships in data science, machine learning and software engineering, with particular interest in statistical modelling and data infrastructure. Please contact me by email to discuss relevant opportunities.</p>
+        <p class="lede">I am looking for internships in data science, machine learning and software engineering, particularly in statistical modelling and data infrastructure. Email is the best way to reach me.</p>
 
         <dl class="contact-list">
           <div>
