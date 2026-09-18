@@ -86,7 +86,7 @@ a:hover { color: var(--accent-dark); }
 /* ---- small labels: sentence case, no tracking, no mono ---- */
 .eyebrow, .side-label, .study-eyebrow, .proj-kicker, .contrib .label, .contact-list dt,
 .study-meta, .site-nav a, .btn, .cta-link, .approach-fig figcaption .tag, .howto h3,
-.hero-meta li, .proj-note, .proj-tags, .fig figcaption, .proj-fig figcaption,
+.hero-meta li, .proj-note, .fig figcaption, .proj-fig figcaption,
 .approach-fig figcaption, .site-foot .wrap, .skip, .back, .meta, .kicker, .chips li,
 .vg-eyebrow, .vg-toggle button, .vg-field label, .vg-legend span, .vg-readout .k, .vg-top a.back,
 .family .lvl, .doc-links .k, .doclink .k, footer, .foot {
@@ -101,7 +101,7 @@ a:hover { color: var(--accent-dark); }
 .doclink .k, .doc-links .k { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
 .study-meta { font-size: 13px; }
 .study-meta b { color: var(--ink); }
-.hero-meta li, .proj-note, .proj-tags, .fig figcaption, .proj-fig figcaption, .approach-fig figcaption,
+.hero-meta li, .proj-note, .fig figcaption, .proj-fig figcaption, .approach-fig figcaption,
 .site-foot .wrap, .contact-list dt { font-size: 13px; }
 .stat, .n, .num, code, pre, kbd { font-family: var(--mono); }
 
@@ -151,7 +151,6 @@ a:hover { color: var(--accent-dark); }
   background: var(--img-mount); border-color: var(--line); padding: var(--img-pad); border-radius: 6px;
 }
 .figlink:hover img { border-color: var(--ink-soft); }
-.proj-tags li { color: var(--ink-soft); }
 .proj-note { border-top-color: var(--line); }
 
 /* ---- explainer and CV sheets ---- */

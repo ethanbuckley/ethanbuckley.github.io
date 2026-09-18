@@ -38,11 +38,11 @@ a { text-underline-offset: 4px; text-decoration-thickness: 1px; }
 .hero-meta li { font-size: 13px; }
 .hero-meta a { text-decoration: none; }
 .hero-meta a:hover { text-decoration: underline; }
-.hero-fig { margin: 0; padding: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; max-width: none; }
+.hero-fig { margin: 0; max-width: none; }
 .figure-label { font-size: 13px; color: var(--ink); font-weight: 600; margin: 0 0 14px; }
 .hero-fig svg { display: block; width: 100%; height: auto; }
-.hero-fig figcaption { margin: 12px 0 16px; font-size: 12px; line-height: 1.55; max-width: none; color: var(--ink-soft); }
-.figure-cta { display: flex; align-items: center; min-height: 44px; border-top: 1px solid var(--line); padding-top: 12px; text-decoration: none; font-size: 13px; font-weight: 600; }
+.hero-fig figcaption { margin: 12px 0 4px; font-size: 12px; line-height: 1.55; max-width: none; color: var(--ink-soft); }
+.figure-cta { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; font-size: 13px; font-weight: 600; }
 .figure-cta:hover { text-decoration: underline; }
 
 /* Research: show the work and the contribution, then let readers go deeper. */
@@ -91,8 +91,6 @@ summary::marker { font-size: 12px; }
 .engineering-more { margin: -6px 0 16px; }
 .engineering-more .proj-desc { margin: 0; }
 .proj-note { border-top: 1px solid var(--line); margin: auto 0 16px; padding-top: 14px; color: var(--ink-soft); font-size: 12px; line-height: 1.65; }
-.proj-tags { display: flex; flex-wrap: wrap; gap: 6px 0; list-style: none; padding: 0; margin: 0 0 16px; color: var(--ink-soft); font-size: 12px; }
-.proj-tags li:not(:last-child)::after { content: '·'; margin-inline: 8px; }
 .doc-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 0; }
 .doclink { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; }
 .doclink.live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
@@ -166,7 +164,6 @@ summary::marker { font-size: 12px; }
 }
 @media (max-width: 420px) {
   .site-nav .theme-toggle { margin-left: 0; }
-  .hero-fig { padding: 16px; }
   .caps { grid-template-columns: minmax(0, 1fr); }
   .contact-list > div { grid-template-columns: minmax(0, 1fr); gap: 0; }
 }
