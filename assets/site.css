@@ -75,7 +75,8 @@ h1, h2, h3, h4, .brand, .hero h1, .tagline, .sec-head h2, .side h2, .study h3, .
 .sheet h1, .sheet h2, .sheet h3, .vgdemo h3, .vg-top .brand {
   font-family: var(--sans);
 }
-h1, .hero h1, .sheet h1 { font-weight: 650; letter-spacing: -0.022em; }
+h1, .sheet h1 { font-weight: 650; letter-spacing: -0.022em; }
+.hero h1 { font-weight: 500; }
 h2, .sec-head h2, .sheet h2 { font-weight: 600; letter-spacing: -0.015em; }
 h3, .study h3, .proj h3, .sheet h3 { font-weight: 600; letter-spacing: -0.01em; }
 .tagline { font-weight: 400; color: var(--ink-soft); }
@@ -113,7 +114,7 @@ a:hover { color: var(--accent-dark); }
 .brand { font-weight: 650; letter-spacing: -0.01em; }
 
 /* ---- hero ---- */
-.hero h1 { font-size: clamp(26px, 2.5vw, 33px); line-height: 1.28; letter-spacing: -0.015em; margin-bottom: 18px; }
+.hero h1 { font-size: clamp(23px, 2.1vw, 28px); line-height: 1.32; letter-spacing: -0.012em; margin-bottom: 16px; }
 .hero { padding-top: clamp(40px, 7vw, 76px); padding-bottom: clamp(40px, 6vw, 68px); }
 .hero-fig { margin: 36px 0 0; min-width: 0; max-width: 560px; }
 .hero-fig svg { width: 100%; height: auto; display: block; }
