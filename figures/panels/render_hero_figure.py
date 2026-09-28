@@ -56,7 +56,7 @@ def band(ages, lo, hi) -> str:
 def build(fit_dir: Path) -> str:
     u = cols(fit_dir / "posterior_predictive_median_trend_u.csv")
     s = cols(fit_dir / "posterior_predictive_median_trend_s.csv")
-    lbl = 'font-family:var(--sans);font-size:13px;fill:var(--ink-soft)'
+    lbl = 'font-family:var(--sans);font-size:16px;fill:var(--ink-soft)'
     parts = [
         f'<svg viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" role="img" '
         'aria-label="Two rising curves of vocabulary size against age for children with Down syndrome: '
@@ -82,8 +82,8 @@ def build(fit_dir: Path) -> str:
     def last(series):
         pairs = [(a, v) for a, v in zip(series["age_months"], series["median"]) if a <= AGE_HI]
         return pairs[-1][1]
-    parts.append(f'<text x="{W-R-4}" y="{y(last(u))-8:.1f}" text-anchor="end" style="font-family:var(--sans);font-size:14px;font-weight:600;fill:var(--accent);paint-order:stroke;stroke:var(--ground);stroke-width:4px;stroke-linejoin:round;">Understood</text>')
-    parts.append(f'<text x="{W-R-4}" y="{y(last(s))+26:.1f}" text-anchor="end" style="font-family:var(--sans);font-size:14px;font-weight:600;fill:var(--ink-soft);paint-order:stroke;stroke:var(--ground);stroke-width:4px;stroke-linejoin:round;">Spoken</text>')
+    parts.append(f'<text x="{W-R-4}" y="{y(last(u))-8:.1f}" text-anchor="end" style="font-family:var(--sans);font-size:17px;font-weight:600;fill:var(--accent);paint-order:stroke;stroke:var(--ground);stroke-width:4px;stroke-linejoin:round;">Understood</text>')
+    parts.append(f'<text x="{W-R-4}" y="{y(last(s))+26:.1f}" text-anchor="end" style="font-family:var(--sans);font-size:17px;font-weight:600;fill:var(--ink-soft);paint-order:stroke;stroke:var(--ground);stroke-width:4px;stroke-linejoin:round;">Spoken</text>')
     parts.append("</svg>")
     return "\n".join(parts)
 
