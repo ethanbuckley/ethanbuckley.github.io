@@ -258,7 +258,7 @@
         <article class="proj">
           <p class="proj-kicker">DSE production system · images</p>
           <h3>Teaching-image pipeline</h3>
-          <p class="proj-desc">I built the pipeline that generated 7,351 photographic teaching images for an early-vocabulary programme, from written specifications for single words, phrases, sentences and named characters who recur across the set. A rerun skips any request it has already completed. I corrected a single wrong image by editing its glossary entry. For a kind of error that recurred, I added a prompt rule for the whole programme.</p>
+          <p class="proj-desc">I built the pipeline that generated 7,351 photographic teaching images for an early-vocabulary programme, from written specifications for single words, phrases, sentences and named characters who recur across the set. A rerun skips any request it has already completed. I fixed a wrong image by editing its glossary entry. When an error recurred, I added a prompt rule for the whole programme.</p>
           <details class="engineering-more"><summary>Implementation detail</summary>
             <p class="proj-desc">I chose background colours that separate each subject from its surroundings without changing its natural colour, because reduced contrast sensitivity is common in Down syndrome.</p>
           </details>
@@ -288,7 +288,7 @@
         <article class="proj">
           <p class="proj-kicker">DSE production system · catalogue</p>
           <h3>Asset audit and catalogue integration</h3>
-          <p class="proj-desc">I wrote the pipeline that audits, repairs, uploads and reconciles 23,846 draft assets. Audio review combines measurements with listening checks. Each approved repair is recorded, so a later run keeps the corrected file rather than regenerating it.</p>
+          <p class="proj-desc">I wrote the pipeline that audits, repairs, uploads and reconciles more than 23,000 draft assets. Audio review combines measurements with listening checks. Each approved repair is recorded, so a later run keeps the corrected file rather than regenerating it.</p>
           <details class="engineering-more"><summary>Implementation detail</summary>
             <p class="proj-desc">Uploads work from an approved inventory, and a content hash links each file to its catalogue record. The curriculum audio in four accents sits in the catalogue as drafts until a person approves it for publication.</p>
           </details>
@@ -312,7 +312,7 @@
         <article class="proj">
           <p class="proj-kicker">Independent project</p>
           <h3>S&amp;P 500 stock screener</h3>
-          <p class="proj-desc">I built a two-stage screener for the S&amp;P&nbsp;500. An XGBoost classifier ranks long and short candidates, and FinBERT scores news sentiment for the shortlist. Training labels use the triple-barrier method: each records whether a stock gained 4% before it lost 4% within five trading days. In walk-forward tests over 1,659 trading days from 2020 to 2026, on average 46% of each day’s top 15 did so, against 29% of all the stocks it ranked. That share is the classifier’s precision, a measure of how well it ranks stocks. When I validated the model, I found that sorting stocks by their 14-day volatility alone did as well (46.1%), so the ranking is explained by volatility. A Streamlit dashboard shows the latest signals, with a Monte Carlo value-at-risk simulator.</p>
+          <p class="proj-desc">I built a two-stage screener for the S&amp;P&nbsp;500. An XGBoost classifier ranks long and short candidates, and FinBERT scores news sentiment for the shortlist. Training labels use the triple-barrier method: each records whether a stock gained 4% before it lost 4% within five trading days. In walk-forward tests over 1,659 trading days from 2020 to 2026, on average 46% of each day’s top 15 did so, against 29% of all the stocks it ranked. That share is the classifier’s precision, a measure of how well it ranks stocks. When I validated the model, I found that sorting stocks by their 14-day volatility alone did as well (46.1% against the model’s 46.0%), so the ranking is explained by volatility. A Streamlit dashboard shows the latest signals, with a Monte Carlo value-at-risk simulator.</p>
           <figure class="proj-fig">
             <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scatter of candidate stocks by model confidence on the x-axis and news sentiment on the y-axis: high-confidence, positive-sentiment names cluster top-right as longs; low-confidence, negative-sentiment names cluster bottom-left as shorts.">
               <rect x="173" y="26" width="129" height="117" style="fill:var(--accent)" opacity="0.10"/>
@@ -352,7 +352,7 @@
               <source media="(prefers-reduced-motion: reduce)" srcset="assets/epidemic-still.png?v=20260928">
               <img src="assets/epidemic-demo.gif?v=20260905" width="440" height="459" loading="lazy" decoding="async" alt="Animated simulation grid: infection spreading spatially across a heterogeneous population, then receding as the epidemic passes.">
             </picture>
-            <figcaption>One simulated outbreak crossing the grid.</figcaption>
+            <figcaption>One simulated outbreak crossing the grid. Pale grey cells are susceptible, orange exposed, red infected, darker grey quarantined and blue recovered.</figcaption>
           </figure>
           <p class="proj-note">Individual extension: vectorised simulation, about 40 times faster · reproducible pipeline, with regression tests for bit-identical results · validated against the analytical SEIQR ODE</p>
           <p class="doc-links">
@@ -369,7 +369,7 @@
             <svg viewBox="0 0 440 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Horizontal bars of portfolio weight by layer: platforms 38.1%, semiconductors 17.3%, healthcare 12.5%, broad funds 12.4%, power 7.3%, robotics 6.6%, defence and space 3.9%, scientific simulation 2.0%."><text x="204" y="29" text-anchor="end" style="font-family:var(--sans);font-size:12px;fill:var(--ink-soft)">Platforms and enterprise software</text><rect x="214" y="17" width="178.0" height="17" rx="2" style="fill:var(--accent)" opacity="0.9"/><text x="398.0" y="29" style="font-family:var(--mono);font-size:12px;fill:var(--ink)">38.1</text><text x="204" y="59" text-anchor="end" style="font-family:var(--sans);font-size:12px;fill:var(--ink-soft)">Semiconductors and compute</text><rect x="214" y="47" width="80.8" height="17" rx="2" style="fill:var(--accent)" opacity="0.7"/><text x="300.8" y="59" style="font-family:var(--mono);font-size:12px;fill:var(--ink)">17.3</text><text x="204" y="89" text-anchor="end" style="font-family:var(--sans);font-size:12px;fill:var(--ink-soft)">Healthcare and biotechnology</text><rect x="214" y="77" width="58.4" height="17" rx="2" style="fill:var(--accent)" opacity="0.7"/><text x="278.4" y="89" style="font-family:var(--mono);font-size:12px;fill:var(--ink)">12.5</text><text x="204" y="119" text-anchor="end" style="font-family:var(--sans);font-size:12px;fill:var(--ink-soft)">Broad geographic funds</text><rect x="214" y="107" width="57.9" height="17" rx="2" style="fill:var(--accent)" opacity="0.7"/><text x="277.9" y="119" style="font-family:var(--mono);font-size:12px;fill:var(--ink)">12.4</text><text x="204" y="149" text-anchor="end" style="font-family:var(--sans);font-size:12px;fill:var(--ink-soft)">Power and grid</text><rect x="214" y="137" width="34.1" height="17" rx="2" style="fill:var(--accent)" opacity="0.7"/><text x="254.1" y="149" style="font-family:var(--mono);font-size:12px;fill:var(--ink)">7.3</text><text x="204" y="179" text-anchor="end" style="font-family:var(--sans);font-size:12px;fill:var(--ink-soft)">Robotics and physical AI</text><rect x="214" y="167" width="30.8" height="17" rx="2" style="fill:var(--accent)" opacity="0.7"/><text x="250.8" y="179" style="font-family:var(--mono);font-size:12px;fill:var(--ink)">6.6</text><text x="204" y="209" text-anchor="end" style="font-family:var(--sans);font-size:12px;fill:var(--ink-soft)">Defence and space</text><rect x="214" y="197" width="18.2" height="17" rx="2" style="fill:var(--accent)" opacity="0.7"/><text x="238.2" y="209" style="font-family:var(--mono);font-size:12px;fill:var(--ink)">3.9</text><text x="204" y="239" text-anchor="end" style="font-family:var(--sans);font-size:12px;fill:var(--ink-soft)">Scientific simulation</text><rect x="214" y="227" width="9.3" height="17" rx="2" style="fill:var(--accent)" opacity="0.7"/><text x="229.3" y="239" style="font-family:var(--mono);font-size:12px;fill:var(--ink)">2.0</text><line x1="214" y1="14" x2="214" y2="254" style="stroke:var(--fig-grid)" stroke-width="1"/></svg>
             <figcaption>Weight of each layer, per cent of invested assets, 11 September 2026. From the thesis, chapter 9.</figcaption>
           </figure>
-          <p class="proj-note">Portfolio weights by layer · cited sources · revisions documented following external review</p>
+          <p class="proj-note">Portfolio weights by layer · cited sources</p>
           <p class="doc-links">
             <a class="doclink" href="https://ethanbuckley.github.io/computable-world/" target="_blank" rel="noopener">Read thesis <span class="k">web</span></a>
             <a class="doclink" href="https://ethanbuckley.github.io/computable-world/the-computable-world.pdf" target="_blank" rel="noopener">Download thesis <span class="k">PDF</span></a>
@@ -423,7 +423,7 @@
             <text x="510" y="212" text-anchor="middle" font-size="11" style="fill:var(--ink-soft);font-family:var(--sans);">89% credible interval</text>
             <text x="40" y="216" font-size="11" style="fill:var(--ink-soft);font-family:var(--sans);">Iteration</text>
           </svg>
-          <figcaption><span class="tag">Schematic</span>A convergence check from a Bayesian fit. The three chains cover the same band (<span class="stat">R&#x0302;</span>&nbsp;&#8776;&nbsp;1.00), so the draws can be pooled into the posterior on the right.</figcaption>
+          <figcaption><span class="tag">Schematic</span>What a convergence check looks for in a Bayesian fit. The three chains cover the same band (<span class="stat">R&#x0302;</span>&nbsp;&#8776;&nbsp;1.00), so the draws can be pooled into the posterior on the right.</figcaption>
         </figure>
         <dl class="caps">
           <div><dt>Bayesian hierarchical modelling</dt><dd>Multilevel models with interpretable priors; study- and child-level random effects.</dd></div>
