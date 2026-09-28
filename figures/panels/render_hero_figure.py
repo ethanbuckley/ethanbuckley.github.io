@@ -9,8 +9,6 @@ and dark mode without a second render.
 
 Usage:
     python figures/panels/render_hero_figure.py --fit-dir figures/panels/vg14-test-2026-09-04 --html index.html
-
-Built by an LLM-based AI tool (Claude Code/Fable 5.1).
 """
 
 from __future__ import annotations

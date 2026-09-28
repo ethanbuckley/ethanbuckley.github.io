@@ -1,9 +1,6 @@
 # ethanbuckley.github.io
 
-> [!NOTE]
-> Drafted by an LLM-based AI tool (Claude Code/Fable 5.1).
-
-My portfolio site. Hand-written HTML and CSS, system fonts, no build step. It works opened from disk and on GitHub Pages at https://ethanbuckley.github.io.
+My portfolio site. Plain HTML and CSS, system fonts, no build step. It works opened from disk and on GitHub Pages at https://ethanbuckley.github.io.
 
 ## What is here
 

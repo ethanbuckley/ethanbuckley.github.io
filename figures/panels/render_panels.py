@@ -28,8 +28,6 @@ Usage:
 
 Requires matplotlib. The vocabulary-growth conda env has it:
     /opt/miniconda3/envs/dse-vocab-growth/bin/python
-
-Built by an LLM-based AI tool (Claude Code/Opus 5).
 """
 
 from __future__ import annotations

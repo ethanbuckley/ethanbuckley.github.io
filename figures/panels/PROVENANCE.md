@@ -1,8 +1,5 @@
 # Panel provenance
 
-> [!NOTE]
-> Drafted by an LLM-based AI tool (Claude Code/Opus 5).
-
 ## The state of these two files
 
 `production-ratio-panel.png` and `intervention-effects-panel.png` were lifted as pixels out of the original figure masters. Unlike everything else in `figures/`, they have no source, so nothing on disk records which model fit produced them.

@@ -17,8 +17,6 @@ is passed in with --coverage so the label cannot drift from the data.
 Usage:
     python figures/panels/render_effects_panel.py            # preview file
     python figures/panels/render_effects_panel.py --out intervention-effects-panel.png
-
-Built by an LLM-based AI tool (Claude Code/Fable 5.1).
 """
 
 from __future__ import annotations

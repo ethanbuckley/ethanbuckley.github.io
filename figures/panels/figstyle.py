@@ -28,8 +28,6 @@ size and the pixel dimensions are load-bearing.
 ``Source Sans 3`` heads the font stack to match the research style, but nothing
 on this machine has it — the report falls back to Helvetica too, so the two
 already agree in practice.
-
-Built by an LLM-based AI tool (Claude Code/Opus 5).
 """
 
 from __future__ import annotations

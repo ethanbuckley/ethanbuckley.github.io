@@ -1,8 +1,5 @@
 # Figure sources
 
-> [!NOTE]
-> Drafted by an LLM-based AI tool (Claude Code/Fable 5).
-
 ## Why this exists
 
 The four "showcase" research figures on the site (`assets/vocab-production-ratio.*`, `assets/vocab-method.*`, `assets/reading-intervention-effects.*`, `assets/reading-causal-design.*`) were originally assembled as one-off PNGs with no source on disk, so every copy fix meant repainting pixels and the images drifted stale (588 vs 576 children, 800 vs 810 words, "locked 19-node DAG" vs the revised 20-node DAG). This directory is the regenerable source of truth: each figure is a self-contained HTML file that headless Chrome screenshots at 2x.

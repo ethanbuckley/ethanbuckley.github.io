@@ -11,8 +11,6 @@ script writes it from the CSVs the fit pipeline emits, interpolating the pipelin
 Usage:
     python figures/panels/render_demo_data.py --fit-dir <output>/models/<VG14 run> \
         --html vocabulary-growth-demo.html --label "VG14 test-tier fit, September 2026"
-
-Built by an LLM-based AI tool (Claude Code/Fable 5.1).
 """
 
 from __future__ import annotations
