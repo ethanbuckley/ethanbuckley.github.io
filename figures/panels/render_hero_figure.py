@@ -83,7 +83,7 @@ def build(fit_dir: Path) -> str:
         pairs = [(a, v) for a, v in zip(series["age_months"], series["median"]) if a <= AGE_HI]
         return pairs[-1][1]
     parts.append(f'<text x="{W-R-4}" y="{y(last(u))-8:.1f}" text-anchor="end" style="font-family:var(--sans);font-size:14px;font-weight:600;fill:var(--accent);paint-order:stroke;stroke:var(--ground);stroke-width:4px;stroke-linejoin:round;">Understood</text>')
-    parts.append(f'<text x="{W-R-4}" y="{y(last(s))+16:.1f}" text-anchor="end" style="font-family:var(--sans);font-size:14px;font-weight:600;fill:var(--ink-soft);paint-order:stroke;stroke:var(--ground);stroke-width:4px;stroke-linejoin:round;">Spoken</text>')
+    parts.append(f'<text x="{W-R-4}" y="{y(last(s))+26:.1f}" text-anchor="end" style="font-family:var(--sans);font-size:14px;font-weight:600;fill:var(--ink-soft);paint-order:stroke;stroke:var(--ground);stroke-width:4px;stroke-linejoin:round;">Spoken</text>')
     parts.append("</svg>")
     return "\n".join(parts)
 
