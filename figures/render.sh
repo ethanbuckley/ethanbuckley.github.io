@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# Render the four figure sources in figures/ to the site assets in assets/,
-# plus the six Open Graph cards, then re-print the three showcase-deck PDFs
-# that embed the plate renders.
+# Render the three figure sources in figures/ to the site assets in assets/,
+# plus the Open Graph card.
 #
 # For each figure this renders the 1600x1000 CSS px HTML at a 2x device scale
 # factor (giving the 3200x2000 PNG master the site links to), then emits the
@@ -42,7 +41,6 @@ fi
 # do not rename these).
 FIGURES=(
   "production-ratio:vocab-production-ratio"
-  "vocab-method:vocab-method"
   "intervention-effects:reading-intervention-effects"
   "causal-design:reading-causal-design"
 )
@@ -72,16 +70,11 @@ print(f"    {base}-1600.webp / -1600.png written")
 PY
 done
 
-# The Open Graph cards are a different shape from the four plates: 1200 x 630 CSS px,
-# the 1.91:1 ratio Facebook, LinkedIn and Slack all crop to. They get no -1600
-# derivatives because nothing on the site loads them; only link unfurlers fetch them.
+# The Open Graph card is a different shape from the three plates: 1200 x 630 CSS px,
+# the 1.91:1 ratio Facebook, LinkedIn and Slack all crop to. It gets no -1600
+# derivatives because nothing on the site loads it; only link unfurlers fetch it.
 OG_CARDS=(
   "og-card-production-ratio"
-  "og-card-intervention-effects"
-  "og-card-vocab-method"
-  "og-card-asset-generation"
-  "og-card-vocab-modelling"
-  "og-card-reading-modelling"
 )
 for src in "${OG_CARDS[@]}"; do
   echo "==> $src.html -> $src (1200x630 Open Graph card)"
@@ -104,21 +97,4 @@ print("    written at 1200x630")
 PY
 done
 
-# The three showcase decks embed the plate masters rendered above, so they are
-# re-printed here whenever the plates change. Each source is a multi-sheet HTML
-# file in figures/; Chrome prints one PDF per deck into the repo root, under the
-# filenames index.html links (do not rename them).
-DECKS=(
-  "showcase-dse-research:dse-research-showcase"
-  "showcase-vocabulary-growth:vocabulary-growth-showcase"
-  "showcase-reading-language:reading-language-showcase"
-)
-for pair in "${DECKS[@]}"; do
-  src="${pair%%:*}"
-  out="${pair##*:}"
-  echo "==> $src.html -> $out.pdf"
-  "$CHROME" --headless --disable-gpu --no-pdf-header-footer \
-    --print-to-pdf="$REPO_DIR/$out.pdf" "file://$SCRIPT_DIR/$src.html"
-done
-
-echo "Done. Rendered ${#FIGURES[@]} figures plus ${#OG_CARDS[@]} Open Graph cards into $ASSETS_DIR, and ${#DECKS[@]} showcase PDFs into $REPO_DIR"
+echo "Done. Rendered ${#FIGURES[@]} figures plus ${#OG_CARDS[@]} Open Graph card into $ASSETS_DIR"

@@ -9,9 +9,8 @@ My portfolio site. Plain HTML and CSS, system fonts, no build step. It works ope
 | `index.html` | The front page: introduction, research, engineering, projects, about, approach, contact |
 | `assets/portfolio.css` | Homepage layout and responsive styles, loaded after the shared design tokens |
 | `cv.html`, `assets/ethan-buckley-cv.pdf` | My CV as a page and as a one-page PDF printed from it |
-| `vocabulary-growth-demo.html` | An interactive posterior, drawn on a canvas. The one linked companion page |
-| `*-explainer.html` (seven pages), `*.pdf` (three decks) | **Retired on 2026-09-04**: no longer linked from the site and marked `noindex`. Kept on disk so old links still resolve. Their look was the template the redesign removed; if any of them is wanted back, rebuild it in the current style rather than relinking it |
-| `figures/` | Sources for every chart, Open Graph card and showcase deck, and `render.sh` to rebuild them. `figures/panels/` holds the two plot panels with the scripts that draw them from model output, and the script that rebuilds the demo page's data |
+| `vocabulary-growth-demo.html` | An interactive chart of the vocabulary model, drawn on a canvas. The one linked companion page |
+| `figures/` | Sources for every chart and the Open Graph card, and `render.sh` to rebuild them. `figures/panels/` holds the two plot panels with the scripts that draw them from model output, and the script that rebuilds the demo page's data |
 | `assets/site.css`, `assets/theme.js` | The design tokens, type and light/dark switch shared by every page. Loaded after each page's own styles, so a change here applies everywhere |
 | `assets/` | Rendered figures, cards, favicon and the CV PDF |
 
