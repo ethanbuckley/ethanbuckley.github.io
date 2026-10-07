@@ -62,7 +62,7 @@
       <div class="hero-copy">
         <p class="eyebrow">Research and projects portfolio</p>
         <h1 id="top-h">Bayesian models of how children with Down syndrome learn words, and the pipelines that produce their teaching materials.</h1>
-        <p class="lede">I am a physics student at UCL. From June to September 2026 I was a data science and research intern at Down Syndrome Education International (DSE). Outside the internship I built a machine-learning stock screener, extended an epidemic simulator that began as a UCL group project, and wrote an investment thesis.</p>
+        <p class="lede">I am a physics student at UCL. From June to September 2026 I was a data science and research intern at Down Syndrome Education International (DSE). My projects include SwimSignal, a pollution-risk forecasting service, a machine-learning stock screener and extensions to an epidemic simulator that began as a UCL group project.</p>
         <p class="hero-cta">
           <a class="btn primary" href="#research">The research</a>
           <a class="btn secondary" href="cv.html">CV</a>
@@ -311,6 +311,17 @@
       <div class="proj-grid">
         <article class="proj">
           <p class="proj-kicker">Independent project</p>
+          <h3>SwimSignal</h3>
+          <p class="proj-desc">I built a pollution-risk forecasting service for river and lake swim spots. It combines live storm-overflow feeds, rainfall forecasts and a network of 193,040 river links. A gradient-boosted model predicts overflow discharges, with calibration for each overflow; the river model then accounts for travel time, die-off and dilution. Forecasts and verification are published automatically through GitHub Actions.</p>
+          <p class="proj-desc">On 826,725 held-out United Utilities overflow-days in 2025, the spill model had a Brier score of 0.0445, against 0.0669 for site climatology. These scores measure discharge prediction. The downstream transport weights remain uncalibrated against water samples.</p>
+          <p class="doc-links">
+            <a class="doclink live" href="https://swimsignal.co.uk/" target="_blank" rel="noopener">Live service <span class="k">app</span></a>
+            <a class="doclink" href="https://swimsignal.co.uk/verification.html" target="_blank" rel="noopener">Forecast verification <span class="k">results</span></a>
+            <a class="doclink" href="https://github.com/ethanbuckley/swimsignal" target="_blank" rel="noopener">GitHub <span class="k">repo</span></a>
+          </p>
+        </article>
+        <article class="proj">
+          <p class="proj-kicker">Independent project</p>
           <h3>S&amp;P 500 stock screener</h3>
           <p class="proj-desc">I built a two-stage screener for the S&amp;P&nbsp;500. An XGBoost classifier ranks long and short candidates, and FinBERT scores news sentiment for the shortlist. Training labels use the triple-barrier method: each records whether a stock gained 4% before it lost 4% within five trading days. In walk-forward tests over 1,659 trading days from 2020 to 2026, on average 46% of each day’s top 15 did so, against 29% of all the stocks it ranked. That share is the classifier’s precision, a measure of how well it ranks stocks. When I validated the model, I found that sorting stocks by their 14-day volatility alone did as well (46.1% against the model’s 46.0%), so the ranking is explained by volatility. A Streamlit dashboard shows the latest signals, with a Monte Carlo value-at-risk simulator.</p>
           <figure class="proj-fig">
@@ -389,7 +400,7 @@
       </div>
       <div class="side-body about-cols">
         <p>I am a third-year MSci Natural Sciences student at UCL, with a Physics major and a Physical Chemistry minor. My internship at DSE ran from June to September 2026. I contributed statistical models and software to its language-development research and educational programmes.</p>
-        <p><strong>I did the DSE work with the charity’s team, and senior staff reviewed it.</strong> The stock screener and the thesis are my own, and so are the extensions to the epidemic simulator. From October 2026 I will write a literature review on hybrid quantum and GPU computing for biomolecular simulation at UCL’s Centre for Computational Science, supervised by Professor Peter Coveney.</p>
+        <p><strong>I did the DSE work with the charity’s team, and senior staff reviewed it.</strong> SwimSignal, the stock screener and the thesis are my own, and so are the extensions to the epidemic simulator. Since October 2026 I have been reviewing the literature on hybrid quantum and GPU computing for biomolecular simulation at UCL’s Centre for Computational Science, supervised by Professor Peter Coveney.</p>
       </div>
     </div>
   </section>
