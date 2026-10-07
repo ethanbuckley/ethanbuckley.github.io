@@ -1,29 +1,25 @@
 # Figure sources
 
-> [!NOTE]
-> Drafted by an LLM-based AI tool (Claude Code/Fable 5).
-
 ## Why this exists
 
-The four "showcase" research figures on the site (`assets/vocab-production-ratio.*`, `assets/vocab-method.*`, `assets/reading-intervention-effects.*`, `assets/reading-causal-design.*`) were originally assembled as one-off PNGs with no source on disk, so every copy fix meant repainting pixels and the images drifted stale (588 vs 576 children, 800 vs 810 words, "locked 19-node DAG" vs the revised 20-node DAG). This directory is the regenerable source of truth: each figure is a self-contained HTML file that headless Chrome screenshots at 2x.
+The research figures on the site (`assets/vocab-production-ratio.*`, `assets/reading-intervention-effects.*`, `assets/reading-causal-design.*`) were originally assembled as one-off PNGs with no source on disk, so every copy fix meant repainting pixels and the images drifted stale (588 vs 576 children, 800 vs 810 words, "locked 19-node DAG" vs the revised 20-node DAG). This directory is the regenerable source of truth: each figure is a self-contained HTML file that headless Chrome screenshots at 2x.
 
 ## Layout
 
 | Source                      | Published asset (do not rename)        |
 | --------------------------- | -------------------------------------- |
 | `production-ratio.html`     | `assets/vocab-production-ratio.*`      |
-| `vocab-method.html`         | `assets/vocab-method.*`                |
 | `intervention-effects.html` | `assets/reading-intervention-effects.*`|
 | `causal-design.html`        | `assets/reading-causal-design.*`       |
-| `asset-generation-og.html`  | `assets/asset-generation-og.png`       |
+| `og-card-production-ratio.html` | `assets/og-card-production-ratio.png` |
 
-`asset-generation-og.html` is the odd one out: a **1200 x 630** canvas, the 1.91:1 ratio link unfurlers crop to, rendered at 2x and downscaled back to 1200 x 630 with no `-1600` derivatives, because nothing on the site loads it. It is the `og:image` for `asset-generation-explainer.html`, which means it is the thumbnail on the LinkedIn Featured card and in any Slack or Facebook unfurl of that page. It embeds the **same four-layer schematic SVG** as `asset-generation-explainer.html`; the two are copies, so change both together. **LinkedIn caches Featured thumbnails when the link is added**, so re-rendering this file does not update an existing card: the link has to be removed and re-added, which also resets that card's title and description.
+`og-card-production-ratio.html` is the odd one out: a **1200 x 630** canvas, the 1.91:1 ratio link unfurlers crop to, rendered at 2x and downscaled back to 1200 x 630 with no `-1600` derivatives, because nothing on the site loads it. It is the `og:image` for `index.html` and `vocabulary-growth-demo.html`, so it is the thumbnail in any LinkedIn, Slack or Facebook unfurl of those pages. **LinkedIn caches link thumbnails when the link is added**, so re-rendering this file does not update an existing card: the link has to be removed and re-added.
 
-The other four HTML files are a fixed 1600 x 1000 CSS px canvas. Since 2026-09-04 they are chart-first: a sentence-case title, a one-line subtitle, the panel at 1472 x 690 CSS px (rendered at 2944 x 1380 by the scripts in `panels/`), and a plain source line. No eyebrow, stat row, callout or monospace. Rendering at a device scale factor of 2 produces the 3200 x 2000 PNG master that `index.html` links to; the script then emits the two 1600px-wide derivatives the page actually loads (`<name>-1600.webp` and a palettised `<name>-1600.png` fallback).
+The three plate files are a fixed 1600 x 1000 CSS px canvas. Since 2026-09-04 they are chart-first: a sentence-case title, a one-line subtitle, the panel at 1472 x 690 CSS px (rendered at 2944 x 1380 by the scripts in `panels/`), and a plain source line. No eyebrow, stat row, callout or monospace. Rendering at a device scale factor of 2 produces the 3200 x 2000 PNG master that `index.html` links to; the script then emits the two 1600px-wide derivatives the page actually loads (`<name>-1600.webp` and a palettised `<name>-1600.png` fallback).
 
-`panels/` holds the two real plot panels, each now with a renderer beside it (`render_panels.py` for the production ratio, `render_effects_panel.py` for the reading effects) and `render_demo_data.py`, which rebuilds the interactive demo's embedded posterior from a fit. `PROVENANCE.md` records which fit each shows. Older text below that says the panels have no source predates 2026-09-04. (`production-ratio-panel.png`, `intervention-effects-panel.png`), extracted from the original masters. They are model output, embedded as `<img>`; do not try to redraw them in CSS. If the models are re-fitted, replace these PNGs and re-render.
+`panels/` holds the two real plot panels, each now with a renderer beside it (`render_panels.py` for the production ratio, `render_effects_panel.py` for the reading effects) and `render_demo_data.py`, which rebuilds the interactive demo's embedded posterior from a fit. `PROVENANCE.md` records which fit each shows. The panels (`production-ratio-panel.png`, `intervention-effects-panel.png`) are model output, embedded as `<img>`; do not try to redraw them in CSS. If the models are re-fitted, replace these PNGs and re-render.
 
-**Read `panels/PROVENANCE.md` before replacing either.** These two are the only figures on the site that are still pixels without a source, which is the exact problem the rest of this directory exists to solve. `panels/render_panels.py` now supplies that source for the production-ratio panel, styled to the site's tokens rather than matplotlib's defaults, but it is deliberately not wired into `render.sh`: the published panel and the current VG14 fit disagree by up to 0.05, and the number is quoted in three places in `index.html`. Which model is canonical is a decision to take before regenerating, not a lookup.
+**Read `panels/PROVENANCE.md` before replacing either.** Neither panel script is wired into `render.sh`, on purpose: a re-render of the plates should not silently swap the model behind a number that is quoted in the page's prose.
 
 ## Regenerating
 
@@ -37,5 +33,5 @@ Requirements: Google Chrome (the script uses its headless screenshot mode; overr
 
 - Keep the canvas exactly 1600 x 1000 (`body{margin:0}`, `overflow:hidden` on the root div) or the screenshot will crop or letterbox.
 - Design tokens (colours, type stacks) are declared at the top of each file and match the site's `assets/site.css`; change them in step with the site. Since 2026-09-04 the display type is the system sans stack (the `--serif` token aliases it) and labels are sentence case with no letter-spacing; the teal and ochre inside the plates are data and diagram colours, not the site palette.
-- No em dashes anywhere; en dashes only inside numeric ranges; British spelling.
+- No em dashes or en dashes; write ranges as "2020 to 2026"; British spelling.
 - The forest-plot panel carries its own labels and axis title; do not add duplicate labels around it.

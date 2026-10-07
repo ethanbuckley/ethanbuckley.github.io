@@ -4,15 +4,13 @@
 `vocabulary-growth-demo.html` carries its data inline as `const DATA = {...}`: the
 production ratio with 50 and 89% bands, posterior-predictive word counts for
 words understood, spoken and signed, and the spoken over-dispersion kappa, all on
-a 64-point age grid from 8 to 72 months, the range the pipeline reports. Until now that block had no source. This
+a 65-point monthly age grid from 8 to 72 months, the range the pipeline reports. Until now that block had no source. This
 script writes it from the CSVs the fit pipeline emits, interpolating the pipeline's
 500-point grid onto the demo's.
 
 Usage:
     python figures/panels/render_demo_data.py --fit-dir <output>/models/<VG14 run> \
-        --html vocabulary-growth-demo.html --label "VG14 test-tier fit, September 2026"
-
-Built by an LLM-based AI tool (Claude Code/Fable 5.1).
+        --html vocabulary-growth-demo.html --label "model fit of 4 September 2026"
 """
 
 from __future__ import annotations
@@ -25,7 +23,7 @@ from pathlib import Path
 
 import numpy as np
 
-N_POINTS = 64
+N_POINTS = 65   # one point per month, so whole years fall on the grid
 AGE_LO_M, AGE_HI_M = 8.0, 72.0   # the pipeline reports comprehension-derived quantities to 72 months
 
 
@@ -76,7 +74,7 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--fit-dir", type=Path, required=True)
     ap.add_argument("--html", type=Path, required=True)
-    ap.add_argument("--label", required=True, help="how the page should name the fit, e.g. 'VG14 test-tier fit, September 2026'")
+    ap.add_argument("--label", required=True, help="how the page should name the fit, e.g. 'model fit of 4 September 2026'")
     args = ap.parse_args(argv)
 
     data = build(args.fit_dir)
@@ -85,7 +83,7 @@ def main(argv: list[str] | None = None) -> int:
     html, n = re.subn(r"const DATA = \{.*?\};\n", new_block, html, count=1, flags=re.S)
     if n != 1:
         raise SystemExit("could not find the `const DATA = {...};` block")
-    html, m = re.subn(r"\(VG14 [^;]*?fit[^)]*?; findings preliminary\)",
+    html, m = re.subn(r"\([^;()]*?fit[^)]*?; findings preliminary\)",
                       f"({args.label}; findings preliminary)", html, count=1)
     args.html.write_text(html, encoding="utf-8")
     print(f"rewrote DATA in {args.html} from {args.fit_dir.name}; caption updated: {bool(m)}")

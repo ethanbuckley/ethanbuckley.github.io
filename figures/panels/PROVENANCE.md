@@ -1,8 +1,5 @@
 # Panel provenance
 
-> [!NOTE]
-> Drafted by an LLM-based AI tool (Claude Code/Opus 5).
-
 ## The state of these two files
 
 `production-ratio-panel.png` and `intervention-effects-panel.png` were lifted as pixels out of the original figure masters. Unlike everything else in `figures/`, they have no source, so nothing on disk records which model fit produced them.
@@ -27,7 +24,7 @@ python figures/panels/render_panels.py --csv figures/panels/vg14-test-2026-09-04
 
 The pipeline now reports comprehension-derived quantities, the production ratio among them, only to 72 months (`report_max_age_understood`), because comprehension data above six years are thin. So the old headline, about 86% by seven and a half years, cannot be reproduced by design, and the site now quotes about 44% at four years and 64% at six, the oldest age the model reports. That is a material change to a public claim, which is why it went out as a pull request rather than straight to `main`.
 
-The demo page (`vocabulary-growth-demo.html`) embeds the same fit through `render_demo_data.py`, on a 64-point grid from 8 to 72 months, with 50% and 89% bands. Its previous data block came from the June development-tier run.
+The demo page (`vocabulary-growth-demo.html`) embeds the same fit through `render_demo_data.py`, on a 65-point monthly grid from 8 to 72 months, with 50% and 89% bands. Its previous data block came from the June development-tier run.
 
 The comparisons with typically-developing children quoted beside these figures (the 13-point gap at 50 to 150 understood words, the spoken-vocabulary lag at age two) still come from the July 2026 fits, and the study meta line on the front page says so. Regenerating them needs the typically-developing models refitted alongside.
 
