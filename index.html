@@ -138,7 +138,7 @@
           <div class="study-aside">
             <div class="contrib">
               <span class="label">My contribution</span>
-              <p>I built the signing and within-child longitudinal models, the DuckDB pipeline that puts the fourteen datasets on one scale, and the descriptive and comprehension-gap reports. I also wrote the report’s data chapter: what each source collected, and how checklists of different lengths are scored against the 810-word inventory. The study has since added a fifteenth dataset. The figures here still show the fit of 4 September 2026.</p>
+              <p>Within a modelling framework my supervisor set up, I built the signing models, the comparison models for typically developing children and a within-child model, and wrote the descriptive and comprehension-gap reports. I also rebuilt the data preparation as per-source scripts feeding one DuckDB view, and drafted the report’s data chapter: what each source collected, and how checklists of different lengths are scored against the 810-word inventory. The study has since added a fifteenth dataset. The figures here come from a development fit of 4 September 2026 that did not pass the study’s convergence checks, so treat them as provisional.</p>
             </div>
 
             <p class="doc-links">
@@ -154,7 +154,7 @@
               <div class="finding">
                 <span class="dot"></span>
                 <h4>Comprehension precedes spoken vocabulary</h4>
-                <p>The production ratio is the share of understood words a child also says. It rises with age. It is about 44% at age four and 64% at six, the oldest age the model reports.</p>
+                <p>The production ratio is the share of understood words a child also says. It rises with age. In that development fit it is about 44% at age four and 64% at six, the oldest age the model reports.</p>
               </div>
               <div class="finding">
                 <span class="dot"></span>
@@ -164,7 +164,7 @@
               <div class="finding">
                 <span class="dot"></span>
                 <h4>The comprehension-production gap narrows with vocabulary size</h4>
-                <p>At the same level of comprehension, children with Down syndrome say a smaller share of the words they know than typically developing children do. The difference peaks at around 13 percentage points at 50 to 150 understood words, then fades as vocabulary grows.</p>
+                <p>At the same level of comprehension, children with Down syndrome say a smaller share of the words they know than typically developing children do. In July development fits the difference peaked at around 13 percentage points at 50 to 150 understood words, then faded as vocabulary grew.</p>
               </div>
               <div class="finding">
                 <span class="dot"></span>
@@ -197,7 +197,7 @@
           <div class="study-aside">
             <div class="contrib">
               <span class="label">My contribution</span>
-              <p>I built the intention-to-treat, difference-in-differences, mediation and mechanism models within the study’s causal framework. I also used gradient-boosting models to rank predictors, and wrote the results reports. The work came to 124 merged pull requests between June and August 2026.</p>
+              <p>I built the intention-to-treat models and the first crossover and mediation models, and extended the mechanism models, within a causal framework my supervisor set up. I also overhauled the gradient-boosting ranking of predictors, and wrote results reports. The work came to 124 merged pull requests between June and August 2026.</p>
             </div>
           </div>
         </div>
@@ -268,11 +268,11 @@
         <article class="proj">
           <p class="proj-kicker">DSE production system · audio</p>
           <h3>Spoken-word audio pipeline</h3>
-          <p class="proj-desc">I generated text-to-speech audio for 3,407 curriculum words, phrases and sentences, each in a male and a female voice in four English accents. I chose the voices by blind A/B listening across four commercial providers and ranked them with a Bradley-Terry model and bootstrap intervals. I then set each voice to the same measured pace, because one speed setting gives different voices different paces.</p>
+          <p class="proj-desc">I generated text-to-speech audio for about 3,400 curriculum words, phrases and sentences, each in a male and a female voice in four English accents. I built a blind A/B listening test and ranked voices with a Bradley-Terry model and bootstrap intervals. Most comparisons were ties, so the test settled one voice slot. The rest were chosen by listening review after I set each voice to the same measured pace, because one speed setting gives different voices different paces.</p>
           <details class="engineering-more"><summary>Implementation detail</summary>
-            <p class="proj-desc">The scorer reports 90% intervals and flags voices that cannot be separated from the top-ranked one. I found and fixed a tie-handling error that had been inventing ranking differences.</p>
+            <p class="proj-desc">The scorer reports 90% intervals and flags voices that cannot be separated from the top-ranked one. A unit test I wrote caught a tie-handling error, which would have given first place to whichever voice sorted first, before it was committed.</p>
           </details>
-          <p class="proj-note">Sixteen voices selected across eight accents · four accents delivered · frequent ties leave uncertainty in intermediate rankings</p>
+          <p class="proj-note">Sixteen voices selected across eight accents · four accents delivered · frequent ties left the blind test unable to separate most voices</p>
         </article>
 
         <article class="proj">
@@ -288,7 +288,7 @@
         <article class="proj">
           <p class="proj-kicker">DSE production system · catalogue</p>
           <h3>Asset audit and catalogue integration</h3>
-          <p class="proj-desc">I wrote the pipeline that audits, repairs, uploads and reconciles more than 23,000 draft assets. Audio review combines measurements with listening checks. Each approved repair is recorded, so a later run keeps the corrected file rather than regenerating it.</p>
+          <p class="proj-desc">I wrote the pipeline that audits, repairs, uploads and reconciles more than 23,000 draft audio assets. Audio review combines measurements with listening checks. Each approved repair is recorded, so a later run keeps the corrected file rather than regenerating it.</p>
           <details class="engineering-more"><summary>Implementation detail</summary>
             <p class="proj-desc">Uploads work from an approved inventory, and a content hash links each file to its catalogue record. The curriculum audio in four accents sits in the catalogue as drafts until a person approves it for publication.</p>
           </details>
@@ -445,7 +445,7 @@
           <div><dt>Gradient boosting and NLP</dt><dd>XGBoost and LightGBM with grouped cross-validation and SHAP; FinBERT for financial-news sentiment.</dd></div>
           <div><dt>Generative-model evaluation</dt><dd>Blind A/B comparison with Bradley-Terry ranking and bootstrap intervals; prompts written as a specification.</dd></div>
           <div><dt>Scientific computing and simulation</dt><dd>Vectorised simulations, like a spatial epidemic cellular automaton, validated against their analytical limits.</dd></div>
-          <div><dt>Data engineering</dt><dd>Fourteen datasets harmonised in one DuckDB view, with validation checks.</dd></div>
+          <div><dt>Data engineering</dt><dd>Per-source preparation scripts for ten datasets, combined in one DuckDB view and covered by tests.</dd></div>
           <div><dt>Reproducible pipelines</dt><dd>One rerunnable path from raw data to posteriors, figures and report, with tests in CI.</dd></div>
         </dl>
       </div>
