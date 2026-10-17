@@ -20,7 +20,7 @@ site's tokens, so it drops into `production-ratio.html` unchanged.
 It does not decide which model is canonical, and it does not overwrite the
 published panel unless you ask it to with --out. Read PROVENANCE.md in this folder
 before you do: the live panel and the current VG14 fit disagree, and the numbers on
-the panel are quoted in three places in `index.html`.
+the panel are quoted in `research.html` and on the homepage.
 
 Usage:
     python figures/panels/render_panels.py --csv path/to/production_rate.csv

@@ -6,10 +6,14 @@ My portfolio site. Plain HTML and CSS, system fonts, no build step. It works ope
 
 | File | What it is |
 | --- | --- |
-| `index.html` | The front page: introduction, research, engineering, projects, about, approach, contact |
-| `assets/portfolio.css` | Homepage layout and responsive styles, loaded after the shared design tokens |
+| `index.html` | The front page: a short introduction, three project entrances (SwimSignal, vocabulary research, DSE software), writing, smaller projects, background, contact |
+| `swimsignal.html` | SwimSignal project page: the problem, what I built, verification, limitations |
+| `research.html` | Both DSE studies with findings and figures, the hero figure, and the methods and tools list |
+| `dse-software.html` | The four DSE software tools |
+| `stock-screener-volatility.html` | Article: the screener did no better than ranking by volatility |
+| `assets/portfolio.css` | Layout for the homepage, project pages and article, loaded after the shared design tokens |
 | `cv.html`, `assets/ethan-buckley-cv.pdf` | My CV as a page and as a one-page PDF exported from the shared Word layout |
-| `vocabulary-growth-demo.html` | An interactive chart of the vocabulary model, drawn on a canvas. The one linked companion page |
+| `vocabulary-growth-demo.html` | An interactive chart of the vocabulary model, drawn on a canvas, linked from the homepage and the research page |
 | `figures/` | Sources for every chart and the Open Graph card, and `render.sh` to rebuild them. `figures/panels/` holds the two plot panels with the scripts that draw them from model output, and the script that rebuilds the demo page's data |
 | `assets/site.css`, `assets/theme.js` | The design tokens, type and light/dark switch shared by every page. Loaded after each page's own styles, so a change here applies everywhere |
 | `assets/` | Rendered figures, cards, favicon and the CV PDF |
@@ -18,7 +22,7 @@ The investment thesis linked from the projects section lives in its own reposito
 
 ## Editing rules
 
-- The design system is `assets/site.css` and `assets/theme.js`. Tokens (white ground, near-black ink, one blue accent, system sans, mono for numbers only), the dark palette and the theme switch live there, so a colour or type change is made once. The homepage loads its layout from `assets/portfolio.css` after the shared stylesheet; companion pages retain their own `<style>` before the shared stylesheet.
+- The design system is `assets/site.css` and `assets/theme.js`. Tokens (white ground, near-black ink, one blue accent, system sans, mono for numbers only), the dark palette and the theme switch live there, so a colour or type change is made once. The homepage, project pages and article load their layout from `assets/portfolio.css` after the shared stylesheet and share one header; the CV and demo pages retain their own `<style>` before the shared stylesheet.
 - Dark mode follows the system until the visitor chooses. The choice is stored in `localStorage` under `theme` and applied as `data-theme` on `<html>` before first paint.
 - Figures are never hand-patched. Edit the source in `figures/` and run `figures/render.sh`, which renders through headless Chrome and writes the PNG, WebP and PDF outputs.
 - `cv.html` and `assets/ethan-buckley-cv.pdf` are generated. Edit `~/Documents/Internships-and-Careers/CVs/build_cvs.py` and run it with `--public`. It writes the page from the same source as the Word CVs, minus the phone number and module marks, then exports the public PDF from the same Word layout with embedded Calibri fonts and neutral metadata. Its page count must be 1. `SITE_CV` sets where the page goes; point it at this checkout. `CV_QA_DIR` preserves rendered pages for visual review:
@@ -29,18 +33,19 @@ SITE_CV="<this checkout>/cv.html" CV_QA_DIR=/private/tmp/cv-site-review /Users/e
 
 - Nothing public carries a private phone number or an academic grade.
 - The CV and portfolio record the DSE internship as June to September 2026 and the Coveney literature review as underway from October 2026. Roadchef was university-holiday work. These facts were confirmed during the 7 October 2026 CV review.
-- SwimSignal's spill-model figures come from `dipcast/data/processed/verification_2025.csv`: 826,725 held-out United Utilities overflow-days in 2025, Brier score 0.0445 against 0.0669 for site climatology. They measure discharge prediction, not water-quality accuracy.
+- SwimSignal's spill-model figures come from `dipcast/data/processed/verification_2025.csv`: 826,725 held-out United Utilities overflow-days in 2025, Brier score 0.0445 against 0.0669 for site climatology. They measure discharge prediction, not water-quality accuracy. The river transport settings were fitted to EA E. coli samples on 17 October 2026; lake settings were not. SwimSignal's code is written with AI coding assistants under my direction, so the site says "designed and run", not "built on my own". The same applies to the stock screener article.
 - The DSE material was cleared for description in general terms. It carries no money figures, no provider or model names, no generated images and no claim about image quality.
 - The same fact should appear once per page and read the same on every page. Before pushing, grep for the numbers that recur (children, studies, items, nodes) and check they agree.
 - No em-dashes in prose. Copy is first person and active voice: "I built", not "a pipeline was built". No decorative numbering, and no arrow glyphs on links.
 - The h1 is a sentence about the work, set at reading size (23 to 28px, weight 500) under a small grey label. It is not a nameplate or a job category. Section headings sit below it in size: h2 at most 28px, h3 at most 23px.
-- The hero figure is generated: `figures/panels/render_hero_figure.py` writes inline SVG between two marker comments in `index.html` from the same fit folder as the panel and the demo. Re-run it whenever that folder changes. The thesis card's bar chart is typed from the thesis's chapter 9 table and carries its date.
-- The homepage uses native `<details>` for research findings, method figures and engineering implementation notes. The project overviews, contributions and limitations stay visible. These controls work without JavaScript; keep the figure provenance with its figure.
+- The homepage stays short: three project entrances, each answering the problem, what I did and where to see the result, then links. Detail belongs on the project pages. Add a project entrance only by replacing one.
+- The vocabulary hero figure is generated: `figures/panels/render_hero_figure.py --html research.html` writes inline SVG between two marker comments in `research.html` from the same fit folder as the panel and the demo. Re-run it whenever that folder changes. The thesis card's bar chart is typed from the thesis's chapter 9 table and carries its date.
+- The research and software pages use native `<details>` for research findings, method figures and engineering implementation notes. The project overviews, contributions and limitations stay visible. These controls work without JavaScript; keep the figure provenance with its figure.
 - The two plot panels are drawn from model output by `figures/panels/render_panels.py` and `render_effects_panel.py`; the demo page's data comes from `render_demo_data.py`. `figures/panels/PROVENANCE.md` names the fit each one currently shows. Do not edit the PNGs or the `DATA` block by hand.
 
 ## Local checks
 
-Preview with `python3 -m http.server 8765 --bind 127.0.0.1`, then open http://localhost:8765. Check the homepage, CV and interactive demo in both themes, including at narrow phone widths. No build or package installation is required.
+Preview with `python3 -m http.server 8765 --bind 127.0.0.1`, then open http://localhost:8765. Check the homepage, each project page, the article, CV and interactive demo in both themes, including at narrow phone widths. No build or package installation is required.
 
 Run the regression checks with `node --test tests/*.test.cjs`. They cover unavailable browser storage, system preference changes, explicit choices, synchronisation between tabs, and the demo's initial slider position and illustrative-band labels.
 
