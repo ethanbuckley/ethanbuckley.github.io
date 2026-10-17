@@ -81,7 +81,7 @@
           <figcaption>Share of picks that rose 4% before falling 4% within five trading days. Daily means over 1,659 walk-forward test days, 2020 to 2026. Per-day AUC, which scores the whole ranking rather than the top 15, was 0.643 for the model and 0.642 for the ATR ratio.</figcaption>
         </figure>
 
-        <p>Ranking by the ATR ratio alone scored 46.1%. The model scored 46.0%. Across the whole ranking the two were also level. The model had not found a pattern in prices or news. It had found volatility.</p>
+        <p>Ranking by the ATR ratio alone scored 46.1%. The model scored 46.0%. Across the whole ranking the two were also level. The classifier’s ranking performed no better than a simple volatility measure. The walk-forward test covers the classifier only, so it says nothing either way about the FinBERT news stage, which I have not validated.</p>
 
         <h2>Why volatility wins under this label</h2>
         <p>The label rewards volatility by construction. A volatile stock is likely to hit one of the two barriers within five days. A quiet stock often hits neither, and those windows are labelled 0. So the stocks most likely to be labelled 1 are the ones that move most. The model learned exactly what the label asked for.</p>
@@ -106,7 +106,7 @@
           <li><strong>I read the label before the model.</strong> The question is what the cheapest way to score well on this label is. Here it was “pick volatile stocks”, and a powerful model will always find the cheapest way.</li>
           <li><strong>I report the negative result.</strong> The project README and this site now lead with the finding, not with the 46%.</li>
         </ul>
-        <p>If I return to the screener, the first change is the label. Barriers that scale with each stock’s own volatility would make a quiet stock and a volatile stock equally likely to reach them, so the model would have to find something else.</p>
+        <p>If I return to the screener, the first change is the label. I would test volatility-scaled barriers to reduce the label’s preference for volatile stocks, then run the ATR baseline again before trusting any improvement.</p>
 
         <p class="page-next">Code, data pipeline and evaluation outputs: <a href="https://github.com/ethanbuckley/stockmarketS-P" target="_blank" rel="noopener">github.com/ethanbuckley/stockmarketS-P</a>. The <a href="https://stockmarkets-p-cngwhp4eigfgpq5xphgwng.streamlit.app" target="_blank" rel="noopener">dashboard</a> is still live. Nothing here is investment advice.</p>
       </article>
