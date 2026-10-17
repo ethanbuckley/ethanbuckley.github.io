@@ -3,12 +3,12 @@
 
 The figure shows posterior-predictive medians of words understood and words spoken
 by age for children with Down syndrome, each with its 50% band, from the same fit
-folder the panel and demo use. It is written straight into index.html between two
+folder the panel and demo use. It is written straight into research.html between two
 marker comments, as SVG that reads the page's CSS variables, so it follows light
 and dark mode without a second render.
 
 Usage:
-    python figures/panels/render_hero_figure.py --fit-dir figures/panels/vg14-test-2026-09-04 --html index.html
+    python figures/panels/render_hero_figure.py --fit-dir figures/panels/vg14-test-2026-09-04 --html research.html
 """
 
 from __future__ import annotations
@@ -96,7 +96,7 @@ def main(argv: list[str] | None = None) -> int:
     svg = build(args.fit_dir)
     html = args.html.read_text(encoding="utf-8")
     if START not in html or END not in html:
-        raise SystemExit("index.html needs the hero-figure marker comments")
+        raise SystemExit("the page needs the hero-figure marker comments")
     html = re.sub(re.escape(START) + r".*?" + re.escape(END), START + "\n" + svg + "\n" + END, html, count=1, flags=re.S)
     args.html.write_text(html, encoding="utf-8")
     print(f"hero figure written into {args.html} ({len(svg)} bytes of SVG)")

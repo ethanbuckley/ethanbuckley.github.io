@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My stock-ranking model did no better than sorting by volatility: Ethan Buckley</title>
+<meta name="author" content="Ethan Buckley">
+<meta name="description" content="My S&amp;P 500 screener picked winners 46.0% of the time against a 28.8% base rate. Ranking stocks by one volatility measure scored 46.1%. How the baseline exposed that, and what I would change.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="canonical" href="https://ethanbuckley.github.io/stock-screener-volatility.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="My stock-ranking model did no better than sorting by volatility">
+<meta property="og:description" content="My S&amp;P 500 screener picked winners 46.0% of the time against a 28.8% base rate. Ranking stocks by one volatility measure scored 46.1%.">
+<meta property="og:url" content="https://ethanbuckley.github.io/stock-screener-volatility.html">
+<meta property="og:site_name" content="Ethan Buckley">
+<meta property="og:locale" content="en_GB">
+<meta property="article:published_time" content="2026-10-17">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1114" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="assets/site.css?v=20260918-2">
+<link rel="stylesheet" href="assets/portfolio.css?v=20261017">
+<script src="assets/theme.js?v=20260915"></script>
+</head>
+<body class="portfolio">
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html">Ethan Buckley</a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="index.html#work">Projects</a>
+      <a href="index.html#writing">Writing</a>
+      <a href="index.html#contact">Contact</a>
+      <a class="nav-cv" href="cv.html">CV</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <section class="hero page-hero solo" id="top" aria-labelledby="top-h">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow"><a class="crumb" href="index.html#writing">Writing</a> · 17 October 2026</p>
+        <h1 id="top-h">My stock-ranking model did no better than sorting by volatility.</h1>
+        <p class="lede">For two months my S&amp;P&nbsp;500 screener looked like it worked. A one-line baseline showed that almost everything it had learned was how volatile each stock was.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-label="Article">
+    <div class="wrap">
+      <article class="prose">
+
+        <h2>What I built</h2>
+        <p>The screener ranks S&amp;P&nbsp;500 stocks each day. An XGBoost classifier scores every stock, and FinBERT, a language model trained on financial text, scores news sentiment for the shortlist. A Streamlit dashboard shows the latest picks.</p>
+        <p>The classifier learns from a label built with the triple-barrier method. For each stock and day, I look five trading days ahead. If the price rises 4% before it falls 4%, the label is 1. If it falls 4% first, or touches neither barrier, the label is 0.</p>
+        <p>I tested it walk-forward: train on the past, predict the next year, then move the window on. The test covers 1,659 trading days from January 2020 to September 2026.</p>
+
+        <h2>The result that looked good</h2>
+        <p>On an average day, 28.8% of stocks hit the upper barrier first. Of the model’s top 15 picks, 46.0% did. The picks beat the base rate on 77% of test days. In July the project’s README said the ranking added value in every regime tested.</p>
+
+        <h2>The baseline</h2>
+        <p>In September I reviewed the project with an AI coding assistant. One of the checks we added was the simplest possible competitor: rank each day’s stocks by a single number and use no model at all.</p>
+        <p>The number was the ATR ratio. ATR, average true range, is the average size of a stock’s daily price range, including overnight gaps, over the last 14 days. Dividing by the closing price makes it comparable across stocks. It is a plain measure of how much a stock moves.</p>
+
+        <figure>
+          <svg viewBox="0 0 520 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar chart of the share of top-15 picks that hit the upper barrier first: all stocks 28.8 per cent, the model 46.0 per cent, ranking by ATR ratio alone 46.1 per cent.">
+            <text x="196" y="44" text-anchor="end" style="font-family:var(--sans);font-size:14px;fill:var(--ink-soft)">All stocks (base rate)</text>
+            <rect x="208" y="28" width="140.2" height="24" rx="2" style="fill:var(--ink-soft)" opacity="0.45"/>
+            <text x="356" y="45" style="font-family:var(--mono);font-size:14px;fill:var(--ink)">28.8%</text>
+            <text x="196" y="104" text-anchor="end" style="font-family:var(--sans);font-size:14px;fill:var(--ink-soft)">Model, top 15</text>
+            <rect x="208" y="88" width="224.0" height="24" rx="2" style="fill:var(--accent)"/>
+            <text x="440" y="105" style="font-family:var(--mono);font-size:14px;fill:var(--ink)">46.0%</text>
+            <text x="196" y="164" text-anchor="end" style="font-family:var(--sans);font-size:14px;fill:var(--ink-soft)">ATR ratio alone, top 15</text>
+            <rect x="208" y="148" width="224.5" height="24" rx="2" style="fill:var(--accent)" opacity="0.55"/>
+            <text x="440" y="165" style="font-family:var(--mono);font-size:14px;fill:var(--ink)">46.1%</text>
+            <line x1="208" y1="16" x2="208" y2="186" style="stroke:var(--fig-grid)" stroke-width="1"/>
+          </svg>
+          <figcaption>Share of picks that rose 4% before falling 4% within five trading days. Daily means over 1,659 walk-forward test days, 2020 to 2026. Per-day AUC, which scores the whole ranking rather than the top 15, was 0.643 for the model and 0.642 for the ATR ratio.</figcaption>
+        </figure>
+
+        <p>Ranking by the ATR ratio alone scored 46.1%. The model scored 46.0%. Across the whole ranking the two were also level. The classifier’s ranking performed no better than a simple volatility measure. The walk-forward test covers the classifier only, so it says nothing either way about the FinBERT news stage, which I have not validated.</p>
+
+        <h2>Why volatility wins under this label</h2>
+        <p>The label rewards volatility by construction. A volatile stock is likely to hit one of the two barriers within five days. A quiet stock often hits neither, and those windows are labelled 0. So the stocks most likely to be labelled 1 are the ones that move most. The model learned exactly what the label asked for.</p>
+
+        <h2>Did it beat the index?</h2>
+        <p>No. The backtest buys each day’s top 15 at the close, holds them for five trading days whatever happens, and charges 10 basis points (0.1%) each way.</p>
+        <table>
+          <thead><tr><th>Series, 2020 to 2026</th><th>Annual return</th><th>Annual volatility</th><th>Sharpe ratio</th><th>Worst fall</th></tr></thead>
+          <tbody>
+            <tr><td>Top-15 picks, after costs</td><td class="num">11.7%</td><td class="num">38%</td><td class="num">0.48</td><td class="num">−49.1%</td></tr>
+            <tr><td>ATR ratio alone, after costs</td><td class="num">14.4%</td><td class="num">47%</td><td class="num">0.52</td><td class="num">−64.2%</td></tr>
+            <tr><td>Equal weight in every stock, no costs</td><td class="num">12.9%</td><td class="num">21%</td><td class="num">0.68</td><td class="num">−40.0%</td></tr>
+            <tr><td>SPY, an S&amp;P&nbsp;500 index fund</td><td class="num">15.9%</td><td class="num">20%</td><td class="num">0.84</td><td class="num">−33.7%</td></tr>
+          </tbody>
+        </table>
+        <p>The picks made money, 11.7% a year after costs, but less than simply holding the index, and with almost twice its volatility. The hit rate counts how often a stock rose 4% before it fell 4%. It says nothing about how far the picks moved over the five days they were actually held, and volatile stocks move a long way in both directions.</p>
+        <p class="note">One more caveat. The stock universe is rebuilt from the index’s change history, but price data survives for only 124 of the 242 stocks removed since the start. The firms that dropped out, often after falling, are partly missing, so all of these numbers are somewhat flattering.</p>
+
+        <h2>What it changed</h2>
+        <ul>
+          <li><strong>I run the dumbest baseline first.</strong> Before training anything, I now rank by the one or two obvious variables and record the score. A model has to beat that, not the base rate.</li>
+          <li><strong>I read the label before the model.</strong> The question is what the cheapest way to score well on this label is. Here it was “pick volatile stocks”, and a powerful model will always find the cheapest way.</li>
+          <li><strong>I report the negative result.</strong> The project README and this site now lead with the finding, not with the 46%.</li>
+        </ul>
+        <p>If I return to the screener, the first change is the label. I would test volatility-scaled barriers to reduce the label’s preference for volatile stocks, then run the ATR baseline again before trusting any improvement.</p>
+
+        <p class="page-next">Code, data pipeline and evaluation outputs: <a href="https://github.com/ethanbuckley/stockmarketS-P" target="_blank" rel="noopener">github.com/ethanbuckley/stockmarketS-P</a>. The <a href="https://stockmarkets-p-cngwhp4eigfgpq5xphgwng.streamlit.app" target="_blank" rel="noopener">dashboard</a> is still live. Nothing here is investment advice.</p>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>© 2026 Ethan Buckley</span>
+    <span><a href="index.html">Portfolio</a> <span aria-hidden="true">·</span> No trackers.</span>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+</body>
+</html>

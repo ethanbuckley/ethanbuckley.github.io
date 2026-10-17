@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SwimSignal: Ethan Buckley</title>
+<meta name="author" content="Ethan Buckley">
+<meta name="description" content="SwimSignal is a free five-day sewage-pollution risk forecast for river and lake swim spots in England. What problem it addresses, how it works, how well it scores, and its limits.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="canonical" href="https://ethanbuckley.github.io/swimsignal.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SwimSignal: Ethan Buckley">
+<meta property="og:description" content="A free five-day sewage-pollution risk forecast for river and lake swim spots in England: how it works, how well it scores, and its limits.">
+<meta property="og:url" content="https://ethanbuckley.github.io/swimsignal.html">
+<meta property="og:site_name" content="Ethan Buckley">
+<meta property="og:locale" content="en_GB">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1114" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="assets/site.css?v=20260918-2">
+<link rel="stylesheet" href="assets/portfolio.css?v=20261017">
+<script src="assets/theme.js?v=20260915"></script>
+</head>
+<body class="portfolio">
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html">Ethan Buckley</a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="index.html#work">Projects</a>
+      <a href="index.html#writing">Writing</a>
+      <a href="index.html#contact">Contact</a>
+      <a class="nav-cv" href="cv.html">CV</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <section class="hero page-hero solo" id="top" aria-labelledby="top-h">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow"><a class="crumb" href="index.html">Portfolio</a> · SwimSignal</p>
+        <h1 id="top-h">SwimSignal forecasts the risk of sewage pollution at river and lake swim spots in England, for today and the next four days.</h1>
+        <p class="lede">It is free, with no adverts and no accounts. It is a forecast, not a water test. I run it on my own.</p>
+        <p class="hero-cta">
+          <a class="btn primary" href="https://swimsignal.co.uk/" target="_blank" rel="noopener">Open SwimSignal</a>
+          <a class="btn secondary" href="https://swimsignal.co.uk/verification.html" target="_blank" rel="noopener">Forecast scores</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-label="Project">
+    <div class="wrap">
+      <article class="prose">
+
+        <h2>The problem</h2>
+        <p>Storm overflows release sewage into rivers after heavy rain. Existing maps from the National Storm Overflow Hub, the Rivers Trust and others show spills that are happening or have already happened. The Environment Agency’s same-day pollution forecast covered no inland bathing water in 2026.</p>
+        <p>I wanted something a swimmer could check a few days before a swim. SwimSignal looks five days ahead, adds up every monitored overflow upstream of a spot, and scores its own forecasts in public.</p>
+
+        <h2>What I did</h2>
+        <p>I designed the forecast and run the service. The code was written with AI coding assistants under my direction. I set what each change had to do, made the modelling decisions, checked the results against data, and approved every change before it went live. I also handle feedback from swimmers and contact with water companies and researchers.</p>
+
+        <h2>How it works</h2>
+        <ol>
+          <li><strong>Spill model.</strong> A gradient-boosted classifier predicts the chance that each overflow spills on a given day. It uses recent and forecast rainfall, season, and the overflow’s own spill record. More rain can never lower the prediction. A second layer adjusts each overflow towards its observed spill rate. It was trained on United Utilities spill records from 2023 and 2024.</li>
+          <li><strong>River transport.</strong> Each spill is carried downstream along 193,040 river links from OS Open Rivers. Its weight at a swim spot falls with travel time, bacterial die-off and dilution. On 17 October 2026 the river travel speed, die-off and dilution settings were fitted to Environment Agency E.&nbsp;coli samples.</li>
+          <li><strong>Risk level.</strong> Each spot gets low, moderate, high or very high. The level is the worst of the spill risk, an E.&nbsp;coli estimate for rivers in summer, any Environment Agency “poor” rating, and recent algae reports.</li>
+          <li><strong>Publishing.</strong> GitHub Actions runs the tests, rebuilds the forecasts several times a day, and publishes a static site. It covers live overflow status from nine English water companies, about 14,200 overflows, and 105 named swim spots. Any other point on an English river can be clicked.</li>
+        </ol>
+
+        <h2>How well it works</h2>
+        <p>The spill model was tested on 2025, a year it never saw: 826,725 United Utilities overflow-days.</p>
+        <table>
+          <thead><tr><th>Forecast</th><th>Brier score</th><th>AUC</th></tr></thead>
+          <tbody>
+            <tr><td>SwimSignal spill model</td><td class="num">0.0445</td><td class="num">0.930</td></tr>
+            <tr><td>Each overflow’s historical spill rate</td><td class="num">0.0669</td><td class="num">0.768</td></tr>
+            <tr><td>Rain rule: more than 10&nbsp;mm in 48 hours</td><td class="num">0.0621</td><td class="num">0.758</td></tr>
+          </tbody>
+        </table>
+        <p>The Brier score is the mean squared error of a probability forecast: lower is better. AUC is the chance that a random spill-day is ranked above a random dry day. The model is well calibrated at low probabilities and somewhat overconfident above 70%. Four days ahead, the Brier score rises to 0.0536.</p>
+        <p>These numbers measure spill prediction, not water quality. Against 2,165 Environment Agency samples at 38 inland bathing waters, the forecast ranks sites by how polluted they tend to be. Within a single river site, it does no better than rainfall alone.</p>
+        <p>Live forecasts are scored every day. Between 29 September and 16 October 2026, 79,084 live forecasts scored a Brier score of 0.0272, against 0.0364 for each overflow’s historical rate. The high-risk warning caught fewer than one spill in five, and several companies’ overflows are over-forecast. The <a href="https://swimsignal.co.uk/verification.html" target="_blank" rel="noopener">accuracy page</a> shows the current figures.</p>
+
+        <h2>Limits</h2>
+        <ul>
+          <li>The spill model was trained only on United Utilities data. Other companies use the pooled model without their own calibration.</li>
+          <li>River length stands in for river flow, and upstream spills are treated as independent.</li>
+          <li>Lake transport settings have not been fitted to samples, and the E.&nbsp;coli estimate has no skill on lakes.</li>
+          <li>Forecasts run at daily resolution and there is no wind term.</li>
+        </ul>
+
+        <h2>What comes next</h2>
+        <p>The most useful next step is finding out whether the forecast changes anyone’s decision to swim. It has had few visitors so far. In October a local swimming group tested it and reported four faults, which I fixed. Over the winter I am asking swimmers to try it, and the test for the 2027 season is fixed in advance so I cannot move the goalposts.</p>
+        <p>If you swim outdoors in England, or monitor water quality, I would like to hear what would make it useful: <a href="mailto:hello@swimsignal.co.uk">hello@swimsignal.co.uk</a>.</p>
+
+        <p class="page-next">Code and method: <a href="https://github.com/ethanbuckley/swimsignal" target="_blank" rel="noopener">github.com/ethanbuckley/swimsignal</a>.</p>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>© 2026 Ethan Buckley</span>
+    <span><a href="index.html">Portfolio</a> <span aria-hidden="true">·</span> No trackers.</span>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+</body>
+</html>
