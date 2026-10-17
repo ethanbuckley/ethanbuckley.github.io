@@ -85,20 +85,19 @@
 
         <h2>Why volatility wins under this label</h2>
         <p>The label rewards volatility by construction. A volatile stock is likely to hit one of the two barriers within five days. A quiet stock often hits neither, and those windows are labelled 0. So the stocks most likely to be labelled 1 are the ones that move most. The model learned exactly what the label asked for.</p>
-        <p>A second check pointed the same way. With the labels shuffled among stocks on the same day, the model still scored about 0.55 AUC, above the 0.5 of pure chance. Volatility differs between stocks on any given day, so it survives that shuffle.</p>
 
-        <h2>Did it make money?</h2>
-        <p>Not after costs. The backtest holds each day’s top 15 and charges 10 basis points (0.1%) each way.</p>
+        <h2>Did it beat the index?</h2>
+        <p>No. The backtest buys each day’s top 15 at the close, holds them for five trading days whatever happens, and charges 10 basis points (0.1%) each way.</p>
         <table>
-          <thead><tr><th>Series, 2020 to 2026</th><th>Annual return</th><th>Sharpe ratio</th><th>Worst fall</th></tr></thead>
+          <thead><tr><th>Series, 2020 to 2026</th><th>Annual return</th><th>Annual volatility</th><th>Sharpe ratio</th><th>Worst fall</th></tr></thead>
           <tbody>
-            <tr><td>Top-15 picks, after costs</td><td class="num">11.7%</td><td class="num">0.48</td><td class="num">−49.1%</td></tr>
-            <tr><td>ATR ratio alone, after costs</td><td class="num">14.4%</td><td class="num">0.52</td><td class="num">−64.2%</td></tr>
-            <tr><td>Equal weight in every stock, no costs</td><td class="num">12.9%</td><td class="num">0.68</td><td class="num">−40.0%</td></tr>
-            <tr><td>SPY, an S&amp;P&nbsp;500 index fund</td><td class="num">15.9%</td><td class="num">0.84</td><td class="num">−33.7%</td></tr>
+            <tr><td>Top-15 picks, after costs</td><td class="num">11.7%</td><td class="num">38%</td><td class="num">0.48</td><td class="num">−49.1%</td></tr>
+            <tr><td>ATR ratio alone, after costs</td><td class="num">14.4%</td><td class="num">47%</td><td class="num">0.52</td><td class="num">−64.2%</td></tr>
+            <tr><td>Equal weight in every stock, no costs</td><td class="num">12.9%</td><td class="num">21%</td><td class="num">0.68</td><td class="num">−40.0%</td></tr>
+            <tr><td>SPY, an S&amp;P&nbsp;500 index fund</td><td class="num">15.9%</td><td class="num">20%</td><td class="num">0.84</td><td class="num">−33.7%</td></tr>
           </tbody>
         </table>
-        <p>Buying the index did better, with less risk. A high hit rate does not mean high returns. The barriers are symmetric, so volatile stocks also hit the lower barrier often, and those losses are as large as the gains.</p>
+        <p>The picks made money, 11.7% a year after costs, but less than simply holding the index, and with almost twice its volatility. The hit rate counts how often a stock rose 4% before it fell 4%. It says nothing about how far the picks moved over the five days they were actually held, and volatile stocks move a long way in both directions.</p>
         <p class="note">One more caveat. The stock universe is rebuilt from the index’s change history, but price data survives for only 124 of the 242 stocks removed since the start. The firms that dropped out, often after falling, are partly missing, so all of these numbers are somewhat flattering.</p>
 
         <h2>What it changed</h2>

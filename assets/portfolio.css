@@ -226,4 +226,6 @@ summary::marker { font-size: 12px; }
 @media (max-width: 760px) {
   .more-list { grid-template-columns: minmax(0, 1fr); }
   .prose p, .prose li { font-size: 16px; }
+  .prose table { font-size: 14px; }
+  .prose th, .prose td { padding-right: 8px; }
 }
