@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ethan Buckley: data science, machine learning and scientific computing</title>
 <meta name="author" content="Ethan Buckley">
-<meta name="description" content="Ethan Buckley, a physics student at UCL. Bayesian models and teaching-material pipelines built during a summer 2026 internship at Down Syndrome Education International, plus a machine-learning stock screener, an epidemic simulator and an investment thesis.">
+<meta name="description" content="Ethan Buckley, a Natural Sciences student at UCL. Language-development research and software from a DSE internship, alongside SwimSignal and independent projects in machine learning and simulation.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="canonical" href="https://ethanbuckley.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ethan Buckley: data science, machine learning and scientific computing">
-<meta property="og:description" content="Physics student at UCL. Bayesian models and teaching-material pipelines built during a summer 2026 internship at Down Syndrome Education International, plus an S&amp;P 500 stock screener, an epidemic simulator and an investment thesis.">
+<meta property="og:description" content="Natural Sciences student at UCL. Language-development research and software from a DSE internship, alongside SwimSignal and independent projects in machine learning and simulation.">
 <meta property="og:url" content="https://ethanbuckley.github.io/">
 <meta property="og:image" content="https://ethanbuckley.github.io/assets/og-card-production-ratio.png">
 <meta property="og:site_name" content="Ethan Buckley">
@@ -61,8 +61,8 @@
     <div class="wrap">
       <div class="hero-copy">
         <p class="eyebrow">Research and projects portfolio</p>
-        <h1 id="top-h">Bayesian models of how children with Down syndrome learn words, and the pipelines that produce their teaching materials.</h1>
-        <p class="lede">I am a physics student at UCL. From June to September 2026 I was a data science and research intern at Down Syndrome Education International (DSE). My projects include SwimSignal, a pollution-risk forecasting service, a machine-learning stock screener and extensions to an epidemic simulator that began as a UCL group project.</p>
+        <h1 id="top-h">I build models and software for language research and pollution forecasting.</h1>
+        <p class="lede">I’m a third-year student at UCL. Last summer I worked at Down Syndrome Education International (DSE), building models for language-development studies and software for teaching materials. My independent projects include SwimSignal, a free website for river and lake swimmers.</p>
         <p class="hero-cta">
           <a class="btn primary" href="#research">The research</a>
           <a class="btn secondary" href="cv.html">CV</a>
@@ -115,14 +115,14 @@
         <p class="eyebrow">Research</p>
         <h2 id="research-h">Two studies of language development</h2>
         <hr class="rule">
-        <p class="lede">Both come from my internship at DSE and are preliminary. One pools vocabulary data from fourteen datasets. The other re-analyses a randomised reading-and-language trial.</p>
+        <p class="lede">During my DSE internship, I worked on a pooled vocabulary study and a re-analysis of a randomised reading-and-language trial. Both are preliminary.</p>
       </div>
 
       <!-- ---- study 1 ---- -->
       <article class="study">
         <p class="study-eyebrow">Study 1 · Vocabulary growth</p>
         <h3>Vocabulary development in children with Down&nbsp;syndrome</h3>
-        <p class="study-desc">A pooled Bayesian study of the words children understand, say and sign. It draws on parent-report checklists from fourteen datasets in six countries, put onto a common scale.</p>
+        <p class="study-desc">A Bayesian study of the words children understand, say and sign, combining parent-report checklists from six countries on a common scale.</p>
         <p class="study-meta">Model fit of 4 September 2026&nbsp;&nbsp;·&nbsp; 14 datasets&nbsp;&nbsp;·&nbsp; 1,424 assessments&nbsp;&nbsp;·&nbsp; reported to age 6&nbsp;&nbsp;·&nbsp; <span class="nowrap">typically developing comparisons from the July 2026 fits</span>&nbsp;&nbsp;·&nbsp; <b>Preliminary findings</b></p>
 
         <div class="study-overview">
@@ -138,7 +138,9 @@
           <div class="study-aside">
             <div class="contrib">
               <span class="label">My contribution</span>
-              <p>Within a modelling framework my supervisor set up, I built the signing models, the comparison models for typically developing children and a within-child model, and wrote the descriptive and comprehension-gap reports. I also rebuilt the data preparation as per-source scripts feeding one DuckDB view, and drafted the report’s data chapter: what each source collected, and how checklists of different lengths are scored against the 810-word inventory. The study has since added a fifteenth dataset. The figures here come from a development fit of 4 September 2026 that did not pass the study’s convergence checks, so treat them as provisional.</p>
+              <p>Working within my supervisor’s modelling framework, I built the signing models, comparison models for typically developing children and a within-child model. I also wrote the descriptive and comprehension-gap reports.</p>
+              <p>I rebuilt data preparation as scripts for each source feeding a shared DuckDB view, and drafted the report’s data chapter. It explains what each source collected and how checklists of different lengths are scored against the 810-word inventory.</p>
+              <p>The study has since added a fifteenth dataset. The figures shown here come from a development fit of 4 September 2026 that did not pass the study’s convergence checks, so they remain provisional.</p>
             </div>
 
             <p class="doc-links">
@@ -197,7 +199,7 @@
           <div class="study-aside">
             <div class="contrib">
               <span class="label">My contribution</span>
-              <p>I built the intention-to-treat models and the first crossover and mediation models, and extended the mechanism models, within a causal framework my supervisor set up. I also overhauled the gradient-boosting ranking of predictors, and wrote results reports. The work came to 124 merged pull requests between June and August 2026.</p>
+              <p>Working within my supervisor’s causal framework, I built the intention-to-treat models and the first crossover and mediation models, and extended the mechanism models. I also revised the gradient-boosting analysis used to rank predictors and wrote results reports.</p>
             </div>
           </div>
         </div>
@@ -251,14 +253,14 @@
         <p class="eyebrow">Engineering</p>
         <h2 id="engineering-h">Software for educational resources</h2>
         <hr class="rule">
-        <p class="lede">At DSE I built the pipelines that generated teaching images and spoken audio. I also set up the workflow for the video clips, and wrote the tools that audit and catalogue the files.</p>
+        <p class="lede">At DSE I built tools for teaching images and spoken audio, set up a video-production workflow, and wrote software to audit and catalogue the files.</p>
       </div>
 
       <div class="proj-grid">
         <article class="proj">
           <p class="proj-kicker">DSE production system · images</p>
           <h3>Teaching-image pipeline</h3>
-          <p class="proj-desc">I built the pipeline that generated 7,351 photographic teaching images for an early-vocabulary programme, from written specifications for single words, phrases, sentences and named characters who recur across the set. A rerun skips any request it has already completed. I fixed a wrong image by editing its glossary entry. When an error recurred, I added a prompt rule for the whole programme.</p>
+          <p class="proj-desc">I built a pipeline that generated more than 7,000 photographic teaching images for an early-vocabulary programme. Written specifications cover words, phrases, sentences and recurring characters. Completed requests are skipped on later runs, and corrections to glossary entries or programme-wide prompt rules guide future generation.</p>
           <details class="engineering-more"><summary>Implementation detail</summary>
             <p class="proj-desc">I chose background colours that separate each subject from its surroundings without changing its natural colour, because reduced contrast sensitivity is common in Down syndrome.</p>
           </details>
@@ -268,17 +270,17 @@
         <article class="proj">
           <p class="proj-kicker">DSE production system · audio</p>
           <h3>Spoken-word audio pipeline</h3>
-          <p class="proj-desc">I generated text-to-speech audio for about 3,400 curriculum words, phrases and sentences, each in a male and a female voice in four English accents. I built a blind A/B listening test and ranked voices with a Bradley-Terry model and bootstrap intervals. Most comparisons were ties, so the test settled one voice slot. The rest were chosen by listening review after I set each voice to the same measured pace, because one speed setting gives different voices different paces.</p>
+          <p class="proj-desc">I generated text-to-speech audio for about 3,400 curriculum words, phrases and sentences, each in male and female voices across four English accents. I also built a blind A/B listening test, using a Bradley-Terry model and bootstrap intervals to compare voices. Most comparisons were ties, so the test resolved only one voice choice. The rest were selected by listening review after I adjusted each voice to the same measured pace.</p>
           <details class="engineering-more"><summary>Implementation detail</summary>
-            <p class="proj-desc">The scorer reports 90% intervals and flags voices that cannot be separated from the top-ranked one. A unit test I wrote caught a tie-handling error, which would have given first place to whichever voice sorted first, before it was committed.</p>
+            <p class="proj-desc">The scorer reports 90% intervals and flags voices that cannot be distinguished from the top-ranked one. A unit test caught a tie-handling error that would have awarded first place to whichever voice sorted first.</p>
           </details>
-          <p class="proj-note">Sixteen voices selected across eight accents · four accents delivered · frequent ties left the blind test unable to separate most voices</p>
+          <p class="proj-note">Sixteen voices selected across eight accents · four accents delivered</p>
         </article>
 
         <article class="proj">
           <p class="proj-kicker">DSE production system · video</p>
           <h3>Video-generation workflow</h3>
-          <p class="proj-desc">I set up the workflow for short clips that illustrate everyday verbs. Versioned prompt specifications generate the production instructions, and a validation step stops a clip being catalogued against an outdated brief. The API trials did not produce usable clips, so generation moved to the provider’s web interface.</p>
+          <p class="proj-desc">I set up a workflow for short clips illustrating everyday verbs. Production instructions are generated from versioned specifications, with a check to prevent clips being catalogued against outdated briefs. API trials did not produce usable clips, so generation moved to the provider’s web interface.</p>
           <details class="engineering-more"><summary>Implementation detail</summary>
             <p class="proj-desc">An audit I ran found that four of the eight validated prompts had drifted from their approved specifications. I then generated the instructions directly from the specifications, and added an automated check that the two match.</p>
           </details>
@@ -292,7 +294,7 @@
           <details class="engineering-more"><summary>Implementation detail</summary>
             <p class="proj-desc">Uploads work from an approved inventory, and a content hash links each file to its catalogue record. The curriculum audio in four accents sits in the catalogue as drafts until a person approves it for publication.</p>
           </details>
-          <p class="proj-note">Hung connections time out after 20 to 30 seconds · an expired session stops the run · catalogue records checked against file hashes</p>
+          <p class="proj-note">Connection timeouts and session checks prevent stalled runs · file hashes link assets to catalogue records</p>
         </article>
       </div>
     </div>
@@ -304,7 +306,7 @@
       <div class="sec-head">
         <p class="eyebrow">Projects</p>
         <h2 id="projects-h">Projects outside the internship</h2>
-        <p class="lede">Projects in machine learning, numerical simulation and investment research.</p>
+        <p class="lede">Forecasting, machine learning, numerical simulation and investment research.</p>
         <hr class="rule">
       </div>
 
@@ -312,8 +314,8 @@
         <article class="proj">
           <p class="proj-kicker">Independent project</p>
           <h3>SwimSignal</h3>
-          <p class="proj-desc">I built a pollution-risk forecasting service for river and lake swim spots. It combines live storm-overflow feeds, rainfall forecasts and a network of 193,040 river links. A gradient-boosted model predicts overflow discharges, with calibration for each overflow; the river model then accounts for travel time, die-off and dilution. Forecasts and verification are published automatically through GitHub Actions.</p>
-          <p class="proj-desc">On 826,725 held-out United Utilities overflow-days in 2025, the spill model had a Brier score of 0.0445, against 0.0669 for site climatology. These scores measure discharge prediction. The downstream transport weights remain uncalibrated against water samples.</p>
+          <p class="proj-desc">I built SwimSignal to forecast pollution risk at river and lake swimming spots. It combines live storm-overflow reports, rainfall forecasts and a network of 193,040 river links. A gradient-boosted model predicts spills, with calibration for each overflow. The river model accounts for travel time, bacterial die-off and dilution. GitHub Actions publishes the forecasts and verification results automatically.</p>
+          <p class="proj-desc">On held-out 2025 data from United Utilities, covering 826,725 overflow-days, the spill model’s Brier score was 0.0445, compared with 0.0669 for a baseline using each overflow’s historical spill rate. This measures spill prediction, not water-quality accuracy. The downstream transport weights have not been calibrated against water samples.</p>
           <p class="doc-links">
             <a class="doclink live" href="https://swimsignal.co.uk/" target="_blank" rel="noopener">Live service <span class="k">app</span></a>
             <a class="doclink" href="https://swimsignal.co.uk/verification.html" target="_blank" rel="noopener">Forecast verification <span class="k">results</span></a>
@@ -323,7 +325,8 @@
         <article class="proj">
           <p class="proj-kicker">Independent project</p>
           <h3>S&amp;P 500 stock screener</h3>
-          <p class="proj-desc">I built a two-stage screener for the S&amp;P&nbsp;500. An XGBoost classifier ranks long and short candidates, and FinBERT scores news sentiment for the shortlist. Training labels use the triple-barrier method: each records whether a stock gained 4% before it lost 4% within five trading days. In walk-forward tests over 1,659 trading days from 2020 to 2026, on average 46% of each day’s top 15 did so, against 29% of all the stocks it ranked. That share is the classifier’s precision, a measure of how well it ranks stocks. When I validated the model, I found that sorting stocks by their 14-day volatility alone did as well (46.1% against the model’s 46.0%), so the ranking is explained by volatility. A Streamlit dashboard shows the latest signals, with a Monte Carlo value-at-risk simulator.</p>
+          <p class="proj-desc">I built a two-stage screener for the S&amp;P&nbsp;500. An XGBoost classifier ranks long and short candidates, and FinBERT scores news sentiment for the shortlist. The training labels record whether a stock gained 4% before losing 4% within five trading days, using the triple-barrier method. A Streamlit dashboard shows the latest signals and includes a Monte Carlo value-at-risk simulator.</p>
+          <p class="proj-desc">In walk-forward tests over 1,659 trading days from 2020 to 2026, an average of 46% of each day’s top 15 reached the gain threshold first, compared with 29% of all ranked stocks. However, ranking by 14-day volatility alone performed just as well: 46.1%, compared with the model’s 46.0%. The model did not improve on that simple baseline.</p>
           <figure class="proj-fig">
             <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scatter of candidate stocks by model confidence on the x-axis and news sentiment on the y-axis: high-confidence, positive-sentiment names cluster top-right as longs; low-confidence, negative-sentiment names cluster bottom-left as shorts.">
               <rect x="173" y="26" width="129" height="117" style="fill:var(--accent)" opacity="0.10"/>
@@ -365,7 +368,7 @@
             </picture>
             <figcaption>One simulated outbreak crossing the grid. Pale grey cells are susceptible, orange exposed, red infected, darker grey quarantined and blue recovered.</figcaption>
           </figure>
-          <p class="proj-note">Individual extension: vectorised simulation, about 40 times faster · reproducible pipeline, with regression tests for bit-identical results · validated against the analytical SEIQR ODE</p>
+          <p class="proj-note">My extensions: vectorised simulation, about 40 times faster · regression tests for reproducible results · checked against the analytical SEIQR equations</p>
           <p class="doc-links">
             <a class="doclink live" href="https://epidemiccellularautomata-bhc8wjiiughpqeuljwgzew.streamlit.app" target="_blank" rel="noopener">Live demo <span class="k">app</span></a>
             <a class="doclink" href="https://github.com/ethanbuckley/EpidemicCellularAutomata" target="_blank" rel="noopener">GitHub <span class="k">repo</span></a>
@@ -399,8 +402,8 @@
         <h2 id="about-h">Background</h2>
       </div>
       <div class="side-body about-cols">
-        <p>I am a third-year MSci Natural Sciences student at UCL, with a Physics major and a Physical Chemistry minor. My internship at DSE ran from June to September 2026. I contributed statistical models and software to its language-development research and educational programmes.</p>
-        <p><strong>I did the DSE work with the charity’s team, and senior staff reviewed it.</strong> SwimSignal, the stock screener and the thesis are my own, and so are the extensions to the epidemic simulator. My third-year literature review, supervised by Professor Peter Coveney at UCL’s Centre for Computational Science, covers hybrid quantum and GPU computing for biomolecular simulation.</p>
+        <p>My DSE internship ran from June to September 2026. I worked with the charity’s team, and senior staff reviewed the work. SwimSignal, the stock screener and the thesis are independent projects; the epidemic simulator began as a UCL group project, which I later rebuilt and extended.</p>
+        <p>My third-year literature review, supervised by Professor Peter Coveney at UCL’s Centre for Computational Science, covers hybrid quantum and GPU computing for biomolecular simulation.</p>
       </div>
     </div>
   </section>
@@ -438,15 +441,15 @@
         </figure>
         <dl class="caps">
           <div><dt>Bayesian hierarchical modelling</dt><dd>Multilevel models with interpretable priors; study- and child-level random effects.</dd></div>
-          <div><dt>Gaussian processes</dt><dd>Hilbert-space (HSGP) smooths for age trajectories, which keep the fits tractable.</dd></div>
-          <div><dt>PyMC and NUTS sampling</dt><dd>Full-posterior MCMC via nutpie, gated on <span class="stat">R&#x0302;</span>, effective sample size and divergences.</dd></div>
+          <div><dt>Gaussian processes</dt><dd>Hilbert-space approximations (HSGP) for age trajectories, to keep model fitting tractable.</dd></div>
+          <div><dt>PyMC and NUTS sampling</dt><dd>Posterior sampling with nutpie, checked using <span class="stat">R&#x0302;</span>, effective sample size and divergences.</dd></div>
           <div><dt>Model checking and comparison</dt><dd>Prior and posterior predictive checks; model comparison by PSIS-LOO; convergence checks using R-hat and effective sample size.</dd></div>
           <div><dt>Causal inference and DAGs</dt><dd>Randomised effects identified by design; confounded paths reported as association.</dd></div>
           <div><dt>Gradient boosting and NLP</dt><dd>XGBoost and LightGBM with grouped cross-validation and SHAP; FinBERT for financial-news sentiment.</dd></div>
-          <div><dt>Generative-model evaluation</dt><dd>Blind A/B comparison with Bradley-Terry ranking and bootstrap intervals; prompts written as a specification.</dd></div>
+          <div><dt>Generative-model evaluation</dt><dd>Blind A/B listening tests with Bradley-Terry ranking and bootstrap intervals.</dd></div>
           <div><dt>Scientific computing and simulation</dt><dd>Vectorised simulations, like a spatial epidemic cellular automaton, validated against their analytical limits.</dd></div>
           <div><dt>Data engineering</dt><dd>Per-source preparation scripts for ten datasets, combined in one DuckDB view and covered by tests.</dd></div>
-          <div><dt>Reproducible pipelines</dt><dd>One rerunnable path from raw data to posteriors, figures and report, with tests in CI.</dd></div>
+          <div><dt>Reproducible pipelines</dt><dd>Scripts that rerun the analysis from raw data through model results, figures and reports, with tests in CI.</dd></div>
         </dl>
       </div>
     </div>
